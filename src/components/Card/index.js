@@ -8,12 +8,12 @@ import { Grid } from "@material-ui/core";
 
 const CardComp = (props) => {
   return (
-    <Grid container justifyContent="center">
+    <Grid container alignItems="center" justifyContent="center">
       <Card sx={{ maxWidth: 250, paddingRight: 2 }}>
         <CardActionArea>
           <CardMedia
             component="img"
-            height="145"
+            height="140"
             image={props.image}
             alt={props.title}
           />
@@ -21,7 +21,7 @@ const CardComp = (props) => {
             <Typography gutterBottom variant="h5" component="div">
               {props.title}
             </Typography>
-            <Typography variant="body1" color="text.secondary">
+            <Typography variant="body2" color="text.secondary">
               {props.desc}
             </Typography>
           </CardContent>

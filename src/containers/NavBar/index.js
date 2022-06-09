@@ -1,8 +1,12 @@
-import * as React from "react";
-import NavBarComp from "../../components/NavBar";
+import React from "react";
+import NavbarComp from "../../components/Navbar";
 
-const NavBar = () => {
-  return <NavBarComp />;
-};
+function Navbar(props) {
+  return (
+    <>
+      <NavbarComp />
+    </>
+  );
+}
 
-export default NavBar;
+export default Navbar;

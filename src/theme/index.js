@@ -5,6 +5,7 @@ const theme = createTheme({
     primary: {
       // light: will be calculated from palette.primary.main,
       main: "#ff4a52",
+      // main: "#1ec6b6",
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
     },
@@ -12,7 +13,7 @@ const theme = createTheme({
       light: "#0066ff",
       main: "#1ec6b6",
       // dark: will be calculated from palette.secondary.main,
-      contrastText: "white",
+      contrastText: "#ffcc00",
     },
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.
@@ -21,13 +22,6 @@ const theme = createTheme({
     // two indexes within its tonal palette.
     // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset: 0.2,
-  },
-  overrides: {
-    MuiTextField: {
-      root: {
-        color: "#0066ff",
-      },
-    },
   },
 });
 
