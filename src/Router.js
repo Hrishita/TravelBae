@@ -6,6 +6,7 @@ import Loader from "./components/Loader";
 //imports are lazy loaded for better performance and to reduce size of bundle.
 const HomePage = React.lazy(() => import("./pages/HomePage"));
 const RegisterUser = React.lazy(() => import("./containers/Registration"));
+const Destinations = React.lazy(() => import("./pages/Destinations"));
 
 function Router() {
   return (
@@ -20,7 +21,9 @@ function Router() {
             }}
           />
           <Route exact path="/register" component={RegisterUser} />
-        
+          <Route exact path="/destinations" render={() => {
+              return <Destinations />;
+            }} />
         </Switch>
       </Suspense>
     </BrowserRouter>
