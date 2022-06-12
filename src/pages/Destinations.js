@@ -9,14 +9,14 @@ const Destinations = () => {
       <Grid
         item
         sx={{ display: { xs: "none", sm: "none", md: "block" } }}
-        md={2}
+        md={2.5}
         xs={0}
       >
           
         <Filter filterProperties={data}></Filter>
               
       </Grid>
-      <Grid item xs={12} md={10}>
+      <Grid item xs={12} md={9.2}>
         <Typography
           gutterBottom
           variant="h4"
