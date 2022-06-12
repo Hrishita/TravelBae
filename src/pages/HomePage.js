@@ -12,6 +12,9 @@ import Card from "../containers/Card";
 import cards from "../containers/Card/mockData";
 
 //homepage
+import data from "../containers/Card/mockData";
+import Footer from "../containers/Footer";
+
 const HomePage = () => {
   return (
     <Grid container spacing={1}>
@@ -158,6 +161,12 @@ const HomePage = () => {
               </Grid>
             );
           })}
+        </Grid>
+      </Grid>
+
+      <Grid item xs={12}>
+        <Grid container alignItems="center" justifyContent="center">
+          <Footer />
         </Grid>
       </Grid>
     </Grid>
