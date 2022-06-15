@@ -6,6 +6,8 @@ import { Box } from "@material-ui/core";
 import SearchBoxComp from "../components/SearchBox";
 import Card from "../containers/Card";
 import data from "../containers/Card/mockData";
+import Footer from "../containers/Footer";
+
 const HomePage = () => {
   return (
     <Grid container spacing={0.5}>
@@ -58,6 +60,12 @@ const HomePage = () => {
               </Grid>
             );
           })}
+        </Grid>
+      </Grid>
+
+      <Grid item xs={12}>
+        <Grid container alignItems="center" justifyContent="center">
+          <Footer/>
         </Grid>
       </Grid>
     </Grid>
