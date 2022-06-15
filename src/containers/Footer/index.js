@@ -14,7 +14,6 @@ function Footer() {
     <Box
       borderTop={0.1}
       sx={{
-        mt: 5,
         pt: 2,
         flexGrow: 1,
         backgroundColor: "#040e27",

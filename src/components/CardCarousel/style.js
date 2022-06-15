@@ -36,6 +36,9 @@ const useStyles = makeStyles({
     textAlign: "center",
     color: "white",
   },
+  cardImgTextColor: {
+    color: "white",
+  },
 });
 
 export default useStyles;

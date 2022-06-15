@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     transition: "transform 0.15s ease-in-out",
     "&:hover": { transform: "scale3d(1.05, 1.05, 1)", cursor: "pointer" },
+    marginBottom: "10%",
   },
   font: {
     position: "absolute",
