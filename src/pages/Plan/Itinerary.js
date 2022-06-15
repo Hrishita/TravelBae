@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import { Box } from "@mui/material";
-import Navbar from "../../containers/Navbar";
+import NavBar from "../../containers/NavBar";
 import Footer from "../../containers/Footer";
 import Slide from "@mui/material/Slide";
 import Card from "@mui/material/Card";
@@ -17,7 +17,7 @@ const Itinerary = () => {
   return (
     <Grid container alignItems="center" justifyContent="center">
       <Grid item xs={12}>
-        <Navbar />
+        <NavBar />
       </Grid>
       <Grid item xs={12}>
         <Slide direction="left" in={true} mountOnEnter unmountOnExit>

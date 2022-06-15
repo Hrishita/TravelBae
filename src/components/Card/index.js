@@ -9,7 +9,7 @@ import { Grid } from "@material-ui/core";
 const CardComp = (props) => {
   return (
     <Grid container alignItems="center" justifyContent="center">
-      <Card sx={{ maxWidth: 250, paddingRight: 2 }}>
+      <Card sx={{ maxWidth: 250 }}>
         <CardActionArea>
           <CardMedia
             component="img"

@@ -3,15 +3,16 @@ import { Typography } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import React from "react";
 import Box from "@mui/material/Box";
-import Navbar from "../containers/Navbar";
+import NavBar from "../containers/NavBar";
 import DescriptionList from "../containers/DescriptionList";
 import descList from "../containers/DescriptionList/mockData";
+import Footer from "../containers/Footer";
 
 const DayItineraryPage = () => {
   return (
     <Grid container>
       <Grid item xs={12}>
-        <Navbar />
+        <NavBar />
       </Grid>
       <Grid item xs={12}>
         <Box
@@ -100,6 +101,9 @@ const DayItineraryPage = () => {
             />
           );
         })}
+      </Grid>
+      <Grid item xs={12}>
+        <Footer />
       </Grid>
     </Grid>
   );

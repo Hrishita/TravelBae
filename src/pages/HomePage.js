@@ -1,180 +1,127 @@
-import { Grid } from "@material-ui/core";
-import { Typography } from "@mui/material";
+import {
+  Divider,
+  Grid,
+  Link,
+  Typography,
+  makeStyles,
+  Card,
+  CardMedia,
+} from "@material-ui/core";
 import React from "react";
-import Navbar from "../containers/Navbar";
-import Box from "@mui/material/Box";
-import InputAdornment from "@mui/material/InputAdornment";
-import TextField from "@mui/material/TextField";
-import SearchIcon from "@mui/icons-material/Search";
-import Link from "@mui/material/Link";
-import Divider from "@mui/material/Divider";
-import CardCont from "../containers/Card";
-import cards from "../containers/Card/mockData";
-
-//homepage
+import CardCarousel from "../containers/CardCarousel";
+import NavBar from "../containers/NavBar";
+import { Box } from "@material-ui/core";
+import SearchBoxComp from "../components/SearchBox";
+import data from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    position: "relative",
+    width: "100%",
+    transition: "transform 0.15s ease-in-out",
+    "&:hover": { transform: "scale3d(1.05, 1.05, 1)", cursor: "pointer" },
+  },
+  font: {
+    position: "absolute",
+    top: "80%",
+    left: "10%",
+    color: "white",
+    backgroundColor: "none",
+    fontFamily: "Comic Sans MS",
+    textAlign: "center",
+  },
+}));
 const HomePage = () => {
+  const classes = useStyles();
+  const displayStrip = (title) => {
+    return (
+      <>
+        <Grid item xs={12}>
+          <Grid container>
+            <Grid item xs={10}>
+              <Box pl={2} pt={4}>
+                <Typography fontFamily="Nothing You Could Do" variant="h5">
+                  {title}
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={2}>
+              <Box pt={4} pr={2} display="flex" justifyContent="flex-end">
+                <Link>View All</Link>
+              </Box>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Box pb={4}>
+            <Divider />
+          </Box>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Grid
+            container
+            alignItems="center"
+            justifyContent="center"
+            spacing={2}
+          >
+            {data.map((card) => {
+              return (
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={3}
+                  style={{ textAlign: "center" }}
+                >
+                  <Card className={classes.root}>
+                    <CardMedia
+                      component="img"
+                      alt="Contemplative Reptile"
+                      height="300"
+                      image={card.img}
+                      title="Contemplative Reptile"
+                    />
+                    <Typography
+                      gutterBottom
+                      variant="h6"
+                      component="h6"
+                      className={classes.font}
+                    >
+                      {card.title}
+                    </Typography>
+                  </Card>
+                </Grid>
+              );
+            })}
+            {/* <ImageList /> */}
+          </Grid>
+        </Grid>
+      </>
+    );
+  };
   return (
     <Grid container>
       <Grid item xs={12}>
-        <Navbar />
+        <NavBar />
       </Grid>
       <Grid item xs={12}>
-        <Box
-          sx={{
-            width: "auto",
-            height: 200,
-            backgroundColor: "white",
-            border: 1,
-            marginTop: "2rem",
-            marginLeft: "2rem",
-            marginRight: "2rem",
-          }}
-        >
-          <Typography
-            variant="h5"
-            paddingTop={2}
-            paddingBottom={2}
-            align="center"
-          >
-            Where to go?
-          </Typography>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={8} md={8}>
-              <Box pl={3} pr={3}>
-                <TextField
-                  color="secondary"
-                  id="search-with-input"
-                  label="Search"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                  variant="outlined"
-                  type="search"
-                  fullWidth
-                />
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={4} md={4}>
-              <Box pl={2} textAlign="center" pr={2}>
-                <TextField
-                  color="secondary"
-                  sx={{ marginRight: "1rem" }}
-                  id="date_from"
-                  label="From"
-                  type="date"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-                <TextField
-                  color="secondary"
-                  id="date_to"
-                  label="To"
-                  type="date"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-              </Box>
-            </Grid>
-          </Grid>
+        <CardCarousel hasImgText="true" />
+      </Grid>
+      <Grid item xs={12}>
+        <Box pt={4} pb={4}>
+          <SearchBoxComp />
         </Box>
       </Grid>
-      <Grid item xs={12} style={{ textAlign: "left" }}>
-        <Grid container>
-          <Grid item xs={10} sm={10} md={11}>
-            <Typography variant="h5" paddingLeft={4}>
-              Popular Destinations
-            </Typography>
-          </Grid>
-          <Grid item xs={2} sm={2} md={1}>
-            <Link href="#" variant="h5">
-              View All
-            </Link>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Grid item xs={12}>
-        <Divider
-          variant="middle"
-          sx={{ borderBottomWidth: 3, background: "black" }}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <Grid container alignItems="center" justifyContent="center">
-          {cards.map((card) => {
-            return (
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                md={4}
-                lg={2}
-                style={{ textAlign: "center" }}
-              >
-                <CardCont
-                  image={card.img}
-                  title={card.title}
-                  desc={card.desc}
-                />
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Grid>
-      <Grid item xs={12} style={{ textAlign: "left" }}>
-        <Grid container>
-          <Grid item xs={10} sm={10} md={11}>
-            <Typography variant="h5" paddingLeft={4}>
-              Popular Activities To Do
-            </Typography>
-          </Grid>
-          <Grid item xs={2} sm={2} md={1}>
-            <Link href="#" variant="h5">
-              View All
-            </Link>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Grid item xs={12}>
-        <Divider
-          variant="middle"
-          sx={{ borderBottomWidth: 3, background: "black" }}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <Grid container alignItems="center" justifyContent="center">
-          {cards.map((card) => {
-            return (
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                md={4}
-                lg={2}
-                style={{ textAlign: "center" }}
-              >
-                <CardCont
-                  image={card.img}
-                  title={card.title}
-                  desc={card.desc}
-                />
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Grid>
+      {displayStrip("Popular Placees")}
+      {displayStrip("Travel Blogs")}
+      {displayStrip("Accommodations")}
 
       <Grid item xs={12}>
-        <Grid container alignItems="center" justifyContent="center">
-          <Footer />
-        </Grid>
+        <Footer />
       </Grid>
     </Grid>
   );

@@ -19,11 +19,6 @@ const cards = [
     title: "USA",
     desc: "Dolore aute amet dolore voluptate. Excepteur ut aute officia fugiat aliqua est dolor ipsum elit dolore sint commodo velit. Culpa sit dolor amet irure nostrud dolore ipsum eiusmod eu tempor mollit ad ad.",
   },
-  {
-    img: "https://live.staticflickr.com/50/114538159_cb64552e0d_b.jpg",
-    title: "Australia",
-    desc: "Dolore aute amet dolore voluptate. Excepteur ut aute officia fugiat aliqua est dolor ipsum elit dolore sint commodo velit. Culpa sit dolor amet irure nostrud dolore ipsum eiusmod eu tempor mollit ad ad.",
-  },
 ];
 
 export default cards;

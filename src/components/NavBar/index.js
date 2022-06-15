@@ -7,27 +7,32 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
+import Logo from "../../assets/logo.jpeg";
+import { useStyles } from "./style";
 import { useHistory } from "react-router-dom";
 
-const pages = ["Destinations", "Activities To Do", "Itinerary", "Trip Planner"];
+const pages = [
+  "Destinations",
+  "Activities To Do",
+  "Accommodation",
+  "Transport",
+  "Travel Blogs",
+];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-const NavbarComp = () => {
+const NavBarComp = () => {
+  const classes = useStyles();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const history = useHistory();
-
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+  // const handleOpenUserMenu = (event) => {
+  //   setAnchorElUser(event.currentTarget);
+  // };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -36,22 +41,16 @@ const NavbarComp = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-  const handleClick = (event) => {
-    const value = event.target.innerText;
-    if (value === "ITINERARY" || value === "Itinerary") {
-      history.push("/itinerary");
-    }
-    if (value === "TRIP PLANNER" || value === "Trip Planner") {
-      history.push("/trip-planner");
-    }
+  const handleSignIn = () => {
+    history.push("/register");
   };
-
   return (
-    <AppBar position="static">
+    <AppBar position="static" className={classes.root}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
+            <img src={Logo} alt="travelbae-logo" height="50px" />
+          </Box>
           <Typography
             variant="h6"
             noWrap
@@ -62,15 +61,14 @@ const NavbarComp = () => {
               display: { xs: "none", md: "flex" },
               fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
               textDecoration: "none",
             }}
+            color="primary"
           >
             TRAVEL BAE
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ flexGrow: 2, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -100,49 +98,61 @@ const NavbarComp = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={(event) => handleClick(event)}>
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
+          <Box sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}>
+            <img src={Logo} alt="travelbae-logo" height="35px" />
+          </Box>
           <Typography
             variant="h5"
             noWrap
             component="a"
             href="/"
             sx={{
-              mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
               fontFamily: "monospace",
               fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
               textDecoration: "none",
             }}
+            color="primary"
           >
             TRAVEL BAE
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            p={2}
+            sx={{ flexGrow: 2, display: { xs: "none", md: "flex" } }}
+            justifyContent="center"
+          >
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={(event) => handleClick(event)}
-                sx={{ my: 2, color: "white", display: "block" }}
+                onClick={handleCloseNavMenu}
+                sx={{ m: 2, color: "#5a5a5a", display: "block" }}
               >
                 {page}
               </Button>
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+          <Box sx={{ flexGrow: 0 }} justifyContent="flex-end">
+            {/* <Tooltip title="Open settings"> */}
+            {/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
+              </IconButton> */}
+            <Button
+              color="secondary"
+              variant="contained"
+              onClick={handleSignIn}
+              type="submit"
+            >
+              <Typography color="white">Sign Up</Typography>
+            </Button>
+            {/* </Tooltip> */}
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"
@@ -171,4 +181,4 @@ const NavbarComp = () => {
     </AppBar>
   );
 };
-export default NavbarComp;
+export default NavBarComp;

@@ -1,21 +1,22 @@
 import { Grid } from "@material-ui/core";
 import { Typography } from "@mui/material";
 import React from "react";
-import Navbar from "../containers/Navbar";
+import NavBar from "../containers/NavBar";
 import Box from "@mui/material/Box";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import Divider from "@mui/material/Divider";
-import CardCont from "../containers/Card";
-import cards from "../containers/Card/mockData";
+import CardCont from "../containers/CardCont";
+import cards from "../containers/CardCont/mockData";
 import { Link } from "react-router-dom";
+import Footer from "../containers/Footer";
 
 const ItineraryPage = () => {
   return (
     <Grid container>
       <Grid item xs={12}>
-        <Navbar />
+        <NavBar />
       </Grid>
       <Grid item xs={12}>
         <Box
@@ -25,6 +26,7 @@ const ItineraryPage = () => {
             backgroundColor: "white",
             marginLeft: "2rem",
             marginRight: "2rem",
+            mt: 2,
           }}
         >
           <Typography
@@ -66,11 +68,11 @@ const ItineraryPage = () => {
       <Grid item xs={12}>
         <Divider
           variant="middle"
-          sx={{ borderBottomWidth: 3, background: "black" }}
+          sx={{ borderBottomWidth: 3, background: "black", mb: 3 }}
         />
       </Grid>
       <Grid item xs={12}>
-        <Grid container alignItems="center" justifyContent="center">
+        <Grid container alignItems="center" justifyContent="center" spacing="2">
           {cards.map((card) => {
             return (
               <Grid
@@ -92,6 +94,9 @@ const ItineraryPage = () => {
             );
           })}
         </Grid>
+      </Grid>
+      <Grid item xs={12}>
+        <Footer />
       </Grid>
     </Grid>
   );

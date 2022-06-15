@@ -1,6 +1,6 @@
 import KenyaImg from "../../assets/kenya.jpg";
 import SwitzerlandImg from "../../assets/switzerland.jpg";
-import IndiaImg from "../../assets/India.jpg";
+import MalaysiaImg from "../../assets/India.jpg";
 import ParisImg from "../../assets/paris.jpg";
 import NewYorkImg from "../../assets/NewYork.jpg";
 
@@ -14,8 +14,8 @@ const data = [
     image: SwitzerlandImg,
   },
   {
-    city: "India",
-    image: IndiaImg,
+    city: "Malaysia",
+    image: MalaysiaImg,
   },
   {
     city: "Paris",

@@ -1,12 +1,12 @@
 import React from "react";
-import NavbarComp from "../../components/Navbar";
+import NavBarComp from "../../components/NavBar";
 
-function Navbar(props) {
+function NavBar(props) {
   return (
     <>
-      <NavbarComp />
+      <NavBarComp />
     </>
   );
 }
 
-export default Navbar;
+export default NavBar;

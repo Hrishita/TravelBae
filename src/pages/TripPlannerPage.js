@@ -3,7 +3,7 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@mui/material/TextField";
 import { Grid } from "@material-ui/core";
-import Navbar from "../containers/Navbar";
+import NavBar from "../containers/NavBar";
 import Footer from "../containers/Footer";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
@@ -15,7 +15,7 @@ const TripPlannerPage = () => {
     <Fade in={true}>
       <Grid container alignItems="center" justifyContent="center">
         <Grid item xs={12}>
-          <Navbar />
+          <NavBar />
         </Grid>
         <Grid item xs={12}>
           <Box

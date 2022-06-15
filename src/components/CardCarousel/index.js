@@ -2,10 +2,8 @@ import React from "react";
 import {
   Box,
   Card,
-  CardActionArea,
   CardContent,
   CardMedia,
-  Grid,
   Typography,
 } from "@material-ui/core";
 import Carousel from "react-material-ui-carousel";
@@ -25,7 +23,7 @@ const CardCarouselComp = (props) => {
       <Card>
         <CardMedia
           component="img"
-          height="400"
+          height="700"
           image={item.image}
           alt="green iguana"
         />
@@ -48,19 +46,19 @@ const CardCarouselComp = (props) => {
    */
   const carouselWithImageTextOverlay = (item, index) => {
     return (
-      <Card className={classes.card}>
-        <div style={{ position: "relative" }}>
-          <CardMedia
-            style={{ height: "250px", paddingTop: "2%" }}
-            component="img"
-            image={item.image}
-            title={item.city}
-            alt="city"
-          />
-          <Box>
-            <Typography className={classes.cardImgText}>{item.city}</Typography>
-          </Box>
-        </div>
+      <Card>
+        <CardMedia
+          component="img"
+          image={item.image}
+          height="500"
+          title={item.city}
+          alt="city"
+        />
+        <Box>
+          <Typography variant="h2" className={classes.cardImgText}>
+            {item.city}
+          </Typography>
+        </Box>
       </Card>
     );
   };
