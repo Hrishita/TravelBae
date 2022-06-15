@@ -1,7 +1,7 @@
 import React from "react";
 import CardComp from "../../components/Card";
 
-function Card(props) {
+function CardCont(props) {
   return (
     <>
       <CardComp image={props.image} title={props.title} desc={props.desc} />
@@ -9,4 +9,4 @@ function Card(props) {
   );
 }
 
-export default Card;
+export default CardCont;

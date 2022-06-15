@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useHistory } from "react-router-dom";
 
-const pages = ["Destinations", "Activities To Do", "Itinerary"];
+const pages = ["Destinations", "Activities To Do", "Itinerary", "Trip Planner"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const NavbarComp = () => {
@@ -41,6 +41,9 @@ const NavbarComp = () => {
     const value = event.target.innerText;
     if (value === "ITINERARY" || value === "Itinerary") {
       history.push("/itinerary");
+    }
+    if (value === "TRIP PLANNER" || value === "Trip Planner") {
+      history.push("/trip-planner");
     }
   };
 

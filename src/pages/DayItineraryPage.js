@@ -9,7 +9,7 @@ import descList from "../containers/DescriptionList/mockData";
 
 const DayItineraryPage = () => {
   return (
-    <Grid container spacing={1}>
+    <Grid container>
       <Grid item xs={12}>
         <Navbar />
       </Grid>

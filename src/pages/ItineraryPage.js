@@ -7,13 +7,13 @@ import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import Divider from "@mui/material/Divider";
-import Card from "../containers/Card";
+import CardCont from "../containers/Card";
 import cards from "../containers/Card/mockData";
 import { Link } from "react-router-dom";
 
 const ItineraryPage = () => {
   return (
-    <Grid container spacing={1}>
+    <Grid container>
       <Grid item xs={12}>
         <Navbar />
       </Grid>
@@ -82,21 +82,16 @@ const ItineraryPage = () => {
                 style={{ textAlign: "center" }}
               >
                 <Link to={"/dayItinerary"} style={{ textDecoration: "none" }}>
-                  <Card image={card.img} title={card.title} desc={card.desc} />
+                  <CardCont
+                    image={card.img}
+                    title={card.title}
+                    desc={card.desc}
+                  />
                 </Link>
               </Grid>
             );
           })}
         </Grid>
-        {/* <Box pl={3} sx={{ display: "flex" }} pr={3}>
-          {cards.map((card) => {
-            return (
-              <Link to={"/dayItinerary"} style={{ textDecoration: "none" }}>
-                <Card image={card.img} title={card.title} desc={card.desc} />
-              </Link>
-            );
-          })}
-        </Box> */}
       </Grid>
     </Grid>
   );

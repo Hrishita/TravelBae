@@ -8,16 +8,15 @@ import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import Link from "@mui/material/Link";
 import Divider from "@mui/material/Divider";
-import Card from "../containers/Card";
+import CardCont from "../containers/Card";
 import cards from "../containers/Card/mockData";
 
 //homepage
-import data from "../containers/Card/mockData";
 import Footer from "../containers/Footer";
 
 const HomePage = () => {
   return (
-    <Grid container spacing={1}>
+    <Grid container>
       <Grid item xs={12}>
         <Navbar />
       </Grid>
@@ -119,7 +118,11 @@ const HomePage = () => {
                 lg={2}
                 style={{ textAlign: "center" }}
               >
-                <Card image={card.img} title={card.title} desc={card.desc} />
+                <CardCont
+                  image={card.img}
+                  title={card.title}
+                  desc={card.desc}
+                />
               </Grid>
             );
           })}
@@ -157,7 +160,11 @@ const HomePage = () => {
                 lg={2}
                 style={{ textAlign: "center" }}
               >
-                <Card image={card.img} title={card.title} desc={card.desc} />
+                <CardCont
+                  image={card.img}
+                  title={card.title}
+                  desc={card.desc}
+                />
               </Grid>
             );
           })}

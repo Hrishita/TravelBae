@@ -3,7 +3,7 @@ import { Typography } from "@mui/material";
 import { Grid } from "@material-ui/core";
 const DescriptionListComp = (props) => {
   return (
-    <Grid container spacing={1}>
+    <Grid container>
       <Grid item xs={12} lg={4}>
         <Grid container alignItems="center" justifyContent="center">
           <Box
