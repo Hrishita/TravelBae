@@ -9,6 +9,8 @@ import {
 import Carousel from "react-material-ui-carousel";
 import useStyles from "./style";
 import data from "../../containers/CardCarousel/mockdata";
+import Button from "@mui/material/Button";
+
 const CardCarouselComp = (props) => {
   const classes = useStyles();
 
@@ -57,6 +59,36 @@ const CardCarouselComp = (props) => {
         <Box>
           <Typography variant="h2" className={classes.cardImgText}>
             {item.city}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                pt: "5%",
+              }}
+            >
+              <Typography variant="h5" className={classes.cardImgTextColor}>
+                Take only memories, leave only footprints
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                pt: "10%",
+              }}
+            >
+              <Button
+                variant="contained"
+                color="secondary"
+                href="/trip-planner"
+              >
+                <Typography className={classes.cardImgTextColor}>
+                  Plan your Next Trip
+                </Typography>
+              </Button>
+            </Box>
           </Typography>
         </Box>
       </Card>
@@ -64,7 +96,7 @@ const CardCarouselComp = (props) => {
   };
 
   return (
-    <Carousel classeName={classes.root} index={4}>
+    <Carousel index={4}>
       {data.map((item, index) => {
         return props.hasImgText
           ? carouselWithImageTextOverlay(item, index)
