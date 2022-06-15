@@ -12,7 +12,7 @@ import CardCarousel from "../containers/CardCarousel";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
 import SearchBoxComp from "../components/SearchBox";
-import data from "../containers/Card/mockData";
+import data from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
 
 const useStyles = makeStyles((theme) => ({
@@ -104,7 +104,7 @@ const HomePage = () => {
     );
   };
   return (
-    <Grid container spacing={0.5}>
+    <Grid container>
       <Grid item xs={12}>
         <NavBar />
       </Grid>
@@ -121,9 +121,7 @@ const HomePage = () => {
       {displayStrip("Accommodations")}
 
       <Grid item xs={12}>
-        <Grid container alignItems="center" justifyContent="center">
-          <Footer />
-        </Grid>
+        <Footer />
       </Grid>
     </Grid>
   );

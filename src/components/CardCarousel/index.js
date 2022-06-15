@@ -2,10 +2,8 @@ import React from "react";
 import {
   Box,
   Card,
-  CardActionArea,
   CardContent,
   CardMedia,
-  Grid,
   Typography,
 } from "@material-ui/core";
 import Carousel from "react-material-ui-carousel";
