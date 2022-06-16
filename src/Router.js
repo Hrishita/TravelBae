@@ -6,8 +6,15 @@ import Loader from "./components/Loader";
 const HomePage = React.lazy(() => import("./pages/HomePage"));
 const RegisterUser = React.lazy(() => import("./containers/Registration"));
 const LoginUser = React.lazy(() => import("./containers/Login"));
-const ItineraryPage = React.lazy(() => import("./pages/ItineraryPage"));
-const DayItineraryPage = React.lazy(() => import("./pages/DayItineraryPage"));
+const ItineraryPage = React.lazy(() =>
+  import("./pages/Itinerary/ItineraryPage")
+);
+const DayItineraryPage = React.lazy(() =>
+  import("./pages/Itinerary/DayItineraryPage")
+);
+const CityItineraryPage = React.lazy(() =>
+  import("./pages/Itinerary/CityItineraryPage")
+);
 const TripPlannerPage = React.lazy(() => import("./pages/TripPlannerPage"));
 const City = React.lazy(() => import("./pages/Plan/City"));
 const Travel = React.lazy(() => import("./pages/Plan/Travel"));
@@ -16,6 +23,7 @@ const Destinations = React.lazy(() => import("./pages/Destinations"));
 const ThingsToCarryPage = React.lazy(() => import("./pages/ThingsToCarryPage"));
 const Trips = React.lazy(() => import("./pages/UserDashboardTrip"));
 const Blogs = React.lazy(() => import("./pages/UserDashboardBlog"));
+// const WriteBlogs = React.lazy(() => import("./pages/WriteBlog"));
 
 function Router() {
   return (
@@ -31,6 +39,14 @@ function Router() {
           />
           <Route exact path="/register" component={RegisterUser} />
           <Route exact path="/login" component={LoginUser} />
+
+          <Route
+            exact
+            path="/destinations"
+            render={() => {
+              return <Destinations />;
+            }}
+          />
           <Route
             exact
             path="/itinerary"
@@ -40,9 +56,9 @@ function Router() {
           />
           <Route
             exact
-            path="/destinations"
+            path="/cityItinerary"
             render={() => {
-              return <Destinations />;
+              return <CityItineraryPage />;
             }}
           />
           <Route
@@ -103,6 +119,13 @@ function Router() {
               return <Blogs />;
             }}
           />
+          {/* <Route
+            exact
+            path="/writeblogs"
+            render={() => {
+              return <WriteBlogs />;
+            }}
+          /> */}
         </Switch>
       </Suspense>
     </BrowserRouter>

@@ -1,16 +1,16 @@
 import { Grid } from "@material-ui/core";
 import { Typography } from "@mui/material";
 import React from "react";
-import NavBar from "../containers/NavBar";
+import NavBar from "../../containers/NavBar";
 import Box from "@mui/material/Box";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import Divider from "@mui/material/Divider";
-import CardCont from "../containers/CardCont";
-import cards from "../containers/CardCont/mockData";
+import CardCont from "../../containers/CardCont";
+import { cards } from "../../containers/CardCont/mockData";
 import { Link } from "react-router-dom";
-import Footer from "../containers/Footer";
+import Footer from "../../containers/Footer";
 
 const ItineraryPage = () => {
   return (

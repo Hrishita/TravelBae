@@ -5,7 +5,6 @@ import EditorComp from "../components/Editor";
 import ModalComp from "../components/Modal";
 
 export const Blog = () => {
- 
   return (
     <div className="Blog">
       <EditorComp />
@@ -112,7 +111,7 @@ export const Write = () => {
           }}
           style={{ zIndex: "0", width: "50%" }}
         />
-        <Editor 
+        <EditorComp
           handleSubmit={handleSubmit}
           onChangeText={(e) => setEditorData(e)}
         />
@@ -129,4 +128,3 @@ export const Write = () => {
     </div>
   );
 };
-
