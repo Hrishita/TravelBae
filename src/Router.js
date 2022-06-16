@@ -9,6 +9,7 @@ const LoginUser = React.lazy(() => import("./containers/Login"));
 const ItineraryPage = React.lazy(() =>
   import("./pages/Itinerary/ItineraryPage")
 );
+const BucketList = React.lazy(() => import("./pages/BucketList"));
 const DayItineraryPage = React.lazy(() =>
   import("./pages/Itinerary/DayItineraryPage")
 );
@@ -135,11 +136,25 @@ function Router() {
               return <ViewBlog />;
             }}
           />
-           <Route
+          <Route
             exact
             path="/write-blog"
             render={() => {
               return <Write />;
+            }}
+          />
+          <Route
+            exact
+            path="/bucket-list"
+            render={() => {
+              return <BucketList />;
+            }}
+          />
+          <Route
+            exact
+            path="/destination"
+            render={() => {
+              return <Destination />;
             }}
           />
         </Switch>

@@ -10,7 +10,11 @@ import {
 import React from "react";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
-import data from "../containers/CardCont/mockData";
+import {
+  destinationData,
+  blogCards,
+  accCards,
+} from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
 
 const useStyles = makeStyles((theme) => ({
@@ -33,7 +37,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Destination = () => {
   const classes = useStyles();
-  const displayStrip = (title) => {
+  const displayStrip = (title, cards) => {
+    const data = cards;
     return (
       <>
         <Grid item xs={12}>
@@ -108,10 +113,10 @@ const Destination = () => {
       </Grid>
       <Grid container>
         <Grid item xs={12}>
-          <Box sx={{ padding: "1em 3em"}}>
+          <Box sx={{ padding: "1em 3em" }}>
             <Grid container>
               <Grid item xs={12} sm={3}>
-                <Box sx={{ height: "20em", marginBottom:"1em"}}>
+                <Box sx={{ height: "20em", marginBottom: "1em" }}>
                   <img
                     src="https://live.staticflickr.com/4109/4991929737_4d661d0ff4_b.jpg"
                     height={"100%"}
@@ -121,10 +126,10 @@ const Destination = () => {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <Box sx={{ margin: "0px 10px 20px" }}>
-                <Typography variant="h4" color="primary">
+                  <Typography variant="h4" color="primary">
                     Canada
                   </Typography>
-                  <Typography variant="body2" color="default" >
+                  <Typography variant="body2" color="default">
                     Dolore aute amet dolore voluptate. Excepteur ut aute officia
                     fugiat aliqua est dolor ipsum elit dolore sint commodo
                     velit. Culpa sit dolor amet irure nostrud dolore ipsum
@@ -137,10 +142,8 @@ const Destination = () => {
         </Grid>
         <Grid item xs={12}>
           <Box sx={{ padding: "1em 3em" }}>
-            {displayStrip("Activities to do")}
-            {displayStrip("Accomodations")}
-            {displayStrip("Blogs")}
-            {displayStrip("Itinerary")}
+            {displayStrip("Travel Blogs", blogCards)}
+            {displayStrip("Accommodations", accCards)}
           </Box>
         </Grid>
       </Grid>
