@@ -1,9 +1,18 @@
 import { Button, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { Box, Grid } from "@material-ui/core";
+import AlertDialog from "../../containers/AlertDialog";
 
 // Search box
 const SearchBoxComp = () => {
+  const [open, setOpen] = useState(false); // for alert box
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <Box marginLeft={4} marginRight={4}>
       <Grid container spacing={4} alignItems="center">
@@ -19,6 +28,8 @@ const SearchBoxComp = () => {
               size="medium"
               type="search"
               color="secondary"
+              variant="outlined"
+              onChange={handleOpen}
               fullWidth
             />
           </Box>
@@ -39,9 +50,18 @@ const SearchBoxComp = () => {
           alignContent="center"
           alignItems="center"
         >
-          <Button variant="contained" fullWidth>
+          <Button variant="contained" fullWidth onClick={handleOpen}>
             <Typography p={1}>Search</Typography>
           </Button>
+        </Grid>
+        <Grid item xs={12}>
+          <AlertDialog
+            open={open}
+            title="Confirm"
+            message="API logic required to Search"
+            handleClose={handleClose}
+            buttons={["Cancel", "Ok"]}
+          />
         </Grid>
       </Grid>
     </Box>

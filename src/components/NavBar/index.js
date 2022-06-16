@@ -18,7 +18,7 @@ const pages = [
   "Activities To Do",
   "Accommodation",
   "Transport",
-  "Travel Blogs",
+  "Things to Carry",
   "Bucket List",
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
