@@ -9,7 +9,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import Logo from "../../assets/logo.jpeg";
 import { useStyles } from "./style";
 import { useHistory } from "react-router-dom";
@@ -31,9 +30,9 @@ const NavBarComp = () => {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+  // const handleOpenUserMenu = (event) => {
+  //   setAnchorElUser(event.currentTarget);
+  // };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -50,7 +49,7 @@ const NavBarComp = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
-            <img src={Logo} height="50px" />
+            <img src={Logo} alt="travelbae-logo" height="50px" />
           </Box>
           <Typography
             variant="h6"
@@ -106,7 +105,7 @@ const NavBarComp = () => {
             </Menu>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}>
-            <img src={Logo} height="35px" />
+            <img src={Logo} alt="travelbae-logo" height="35px" />
           </Box>
           <Typography
             variant="h5"
@@ -149,8 +148,9 @@ const NavBarComp = () => {
               color="secondary"
               variant="contained"
               onClick={handleSignIn}
+              type="submit"
             >
-              Sign Up
+              <Typography color="white">Sign Up</Typography>
             </Button>
             {/* </Tooltip> */}
             <Menu

@@ -25,9 +25,6 @@ export const passwordValidator = (value) => {
   const pwdValidation = {};
   let errorMsg = "";
   let isValid = true;
-  const cond1 = "/^(?=.*[a-z]).{6,20}$/";
-  const cond2 = "/^(?=.*[A-Z]).{6,20}$/";
-  const cond3 = "/^(?=.*[0-9]).{6,20}$/";
   const password = value;
   if (!password) {
     errorMsg = "password is required";
@@ -38,18 +35,7 @@ export const passwordValidator = (value) => {
   } else if (password.length >= 20) {
     errorMsg = "Password must shorter than 20 characters";
     isValid = false;
-  }
-  // else if (!password.match(cond1)) {
-  //   errorMsg = "Password must contain at least one lowercase";
-  //   isValid = false;
-  // } else if (!password.match(cond2)) {
-  //   errorMsg = "Password must contain at least one capital letter";
-  //   isValid = false;
-  // } else if (!password.match(cond3)) {
-  //   errorMsg = "Password must contain at least a number";
-  //   isValid = false;
-  // }
-  else {
+  } else {
     errorMsg = "";
     isValid = false;
   }

@@ -5,16 +5,15 @@ import Loader from "./components/Loader";
 //imports are lazy loaded for better performance and to reduce size of bundle.
 const HomePage = React.lazy(() => import("./pages/HomePage"));
 const RegisterUser = React.lazy(() => import("./containers/Registration"));
-const AccommodationPage = React.lazy(() => import("./pages/AccommodationPage"));
-const AccommodationListPage = React.lazy(() =>
-  import("./pages/AccommodationListPage")
-);
-const ActivitiesToDoMainPage = React.lazy(() =>
-  import("./pages/ActivitiesToDoMainPage")
-);
-const ActivitiesToDoListPage = React.lazy(() =>
-  import("./pages/ActivitiesToDoListPage")
-);
+const LoginUser = React.lazy(() => import("./containers/Login"));
+const ItineraryPage = React.lazy(() => import("./pages/ItineraryPage"));
+const DayItineraryPage = React.lazy(() => import("./pages/DayItineraryPage"));
+const TripPlannerPage = React.lazy(() => import("./pages/TripPlannerPage"));
+const City = React.lazy(() => import("./pages/Plan/City"));
+const Travel = React.lazy(() => import("./pages/Plan/Travel"));
+const Itinerary = React.lazy(() => import("./pages/Plan/Itinerary"));
+const Destinations = React.lazy(() => import("./pages/Destinations"));
+const ThingsToCarryPage = React.lazy(() => import("./pages/ThingsToCarryPage"));
 
 function Router() {
   return (
@@ -29,32 +28,61 @@ function Router() {
             }}
           />
           <Route exact path="/register" component={RegisterUser} />
+          <Route exact path="/login" component={LoginUser} />
           <Route
             exact
-            path="/accommodation"
+            path="/itinerary"
             render={() => {
-              return <AccommodationPage />;
+              return <ItineraryPage />;
             }}
           />
           <Route
             exact
-            path="/accommodationlist"
+            path="/destinations"
             render={() => {
-              return <AccommodationListPage />;
+              return <Destinations />;
             }}
           />
           <Route
             exact
-            path="/activities"
+            path="/dayItinerary"
             render={() => {
-              return <ActivitiesToDoMainPage />;
+              return <DayItineraryPage />;
             }}
           />
           <Route
             exact
-            path="/activitieslist"
+            path="/trip-planner"
             render={() => {
-              return <ActivitiesToDoListPage />;
+              return <TripPlannerPage />;
+            }}
+          />
+          <Route
+            exact
+            path="/trip-planner/plan"
+            render={() => {
+              return <City />;
+            }}
+          />
+          <Route
+            exact
+            path="/trip-planner/travel"
+            render={() => {
+              return <Travel />;
+            }}
+          />
+          <Route
+            exact
+            path="/trip-planner/itinerary"
+            render={() => {
+              return <Itinerary />;
+            }}
+          />
+          <Route
+            exact
+            path="/thingstocarry"
+            render={() => {
+              return <ThingsToCarryPage />;
             }}
           />
         </Switch>
