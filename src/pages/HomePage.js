@@ -12,7 +12,11 @@ import CardCarousel from "../containers/CardCarousel";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
 import SearchBoxComp from "../components/SearchBox";
-import { cards } from "../containers/CardCont/mockData";
+import {
+  destinationData,
+  blogCards,
+  accCards,
+} from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
 
 const useStyles = makeStyles((theme) => ({
@@ -35,7 +39,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 const HomePage = () => {
   const classes = useStyles();
-  const displayStrip = (title) => {
+  const displayStrip = (title, cards) => {
+    const data = cards;
     return (
       <>
         <Grid item xs={12}>
@@ -68,7 +73,7 @@ const HomePage = () => {
             justifyContent="center"
             spacing={2}
           >
-            {cards.map((card) => {
+            {data.map((card) => {
               return (
                 <Grid
                   item
@@ -117,9 +122,9 @@ const HomePage = () => {
           <SearchBoxComp />
         </Box>
       </Grid>
-      {displayStrip("Popular Placees")}
-      {displayStrip("Travel Blogs")}
-      {displayStrip("Accommodations")}
+      {displayStrip("Popular Placees", destinationData)}
+      {displayStrip("Travel Blogs", blogCards)}
+      {displayStrip("Accommodations", accCards)}
 
       <Grid item xs={12}>
         <Footer />
