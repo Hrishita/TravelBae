@@ -1,5 +1,4 @@
 import React from "react";
-import { Box } from "@mui/system";
 import { Grid, Link } from "@mui/material";
 
 function FooterComp(props) {
