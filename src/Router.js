@@ -16,7 +16,9 @@ const Destinations = React.lazy(() => import("./pages/Destinations"));
 const ThingsToCarryPage = React.lazy(() => import("./pages/ThingsToCarryPage"));
 const Trips = React.lazy(() => import("./pages/UserDashboardTrip"));
 const Blogs = React.lazy(() => import("./pages/UserDashboardBlog"));
-
+const SearchFlights = React.lazy(() => import("./pages/SearchFlights"));
+const ViewBlog = React.lazy(() => import("./pages/ViewBlog"));
+const Write = React.lazy(() => import("./pages/WriteBlog"));
 function Router() {
   return (
     <BrowserRouter>
@@ -101,6 +103,28 @@ function Router() {
             path="/userdashbord-blogs"
             render={() => {
               return <Blogs />;
+            }}
+          />
+          <Route
+            exact
+            path="/flights"
+            render={() => {
+              return <SearchFlights />;
+            }}
+          />
+
+          <Route
+            exact
+            path="/view-blogs"
+            render={() => {
+              return <ViewBlog />;
+            }}
+          />
+           <Route
+            exact
+            path="/write-blog"
+            render={() => {
+              return <Write />;
             }}
           />
         </Switch>
