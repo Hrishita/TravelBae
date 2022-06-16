@@ -38,6 +38,13 @@ function Router() {
               return <HomePage />;
             }}
           />
+          <Route
+            exact
+            path="/destination"
+            render={() => {
+              return <Destination />;
+            }}
+          />
           <Route exact path="/register" component={RegisterUser} />
           <Route exact path="/login" component={LoginUser} />
 
@@ -135,7 +142,7 @@ function Router() {
               return <ViewBlog />;
             }}
           />
-           <Route
+          <Route
             exact
             path="/write-blog"
             render={() => {
