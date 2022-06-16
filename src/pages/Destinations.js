@@ -81,6 +81,7 @@ const Destinations = () => {
             display={showNoData}
             message="Destination not present. Please search for another one or select from the list."
             listEmpty={destinationIsEmpty}
+            className="text-align-center"
           ></NoDataFound>
           <Box sx={{ textAlign: "center", width: "100%" }}>
             <Pagination

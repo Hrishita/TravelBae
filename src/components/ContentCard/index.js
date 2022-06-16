@@ -5,22 +5,35 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useHistory } from "react-router-dom";
+import AlertDialog from "../../containers/AlertDialog";
+import { useState } from "react";
 
 const ContentCardComp = ({ details }) => {
   const history = useHistory();
-  const handleListItemClick = (destinationId) => {
+  const handleListItemClick = () => {
     history.push("/destination");
+  };
+  const [open, setOpen] = useState(false); // for alert box
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
   };
   return (
     <Paper
       elevation={6}
       sx={{ height: "150px", width: "90%", margin: "20px", cursor: "pointer" }}
-      onClick={() => {
-        handleListItemClick();
-      }}
     >
       <Grid container spacing={5}>
-        <Grid item xs={3}>
+        <Grid
+          item
+          xs={3}
+          onClick={() => {
+            handleListItemClick();
+          }}
+        >
           <Box
             sx={{
               height: "110px",
@@ -28,13 +41,16 @@ const ContentCardComp = ({ details }) => {
               margin: "20px",
             }}
           >
-            <img
-              className="destination-image"
-              src={details.details.img}
-            ></img>
+            <img className="destination-image" src={details.details.img}></img>
           </Box>
         </Grid>
-        <Grid item xs={7}>
+        <Grid
+          item
+          xs={7}
+          onClick={() => {
+            handleListItemClick();
+          }}
+        >
           <Typography
             variant="h5"
             component="div"
@@ -59,8 +75,18 @@ const ContentCardComp = ({ details }) => {
             aria-haspopup="false"
             color="primary"
             sx={{ margin: "0px", height: "100%" }}
+            onClick={handleOpen}
           />
         </Grid>
+        <Grid item xs={12}>
+        <AlertDialog
+          open={open}
+          title="Confirm"
+          message="Are you sure you want to add it to the bucket list ?"
+          handleClose={handleClose}
+          buttons={["Cancel", "Ok"]}
+        />
+      </Grid>
       </Grid>
     </Paper>
   );
