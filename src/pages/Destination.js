@@ -8,6 +8,8 @@ import {
   accCards,
 } from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
+import { useHistory } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
@@ -28,7 +30,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Destination = () => {
   const classes = useStyles();
-  const displayStrip = (title, cards) => {
+  const history = useHistory();
+  const handleListItemClick = (navigationLink) => {
+    history.push(navigationLink);
+  };
+  const displayStrip = (title, cards, navigationLink) => {
     const data = cards;
     return (
       <>
@@ -70,7 +76,9 @@ const Destination = () => {
                   lg={3}
                   style={{ textAlign: "center" }}
                 >
-                  <Card className={classes.root}>
+                  <Card className={classes.root} onClick={() => {
+        handleListItemClick(navigationLink);
+      }}>
                     <CardMedia
                       component="img"
                       alt="Contemplative Reptile"
@@ -139,8 +147,8 @@ const Destination = () => {
         </Grid>
         <Grid item xs={12}>
           <Box sx={{ padding: "1em 3em" }}>
-            {displayStrip("Travel Blogs", blogCards)}
-            {displayStrip("Accommodations", accCards)}
+            {displayStrip("Travel Blogs", blogCards, "/view-blogs")}
+            {displayStrip("Accommodations", accCards, "/accommodationList")}
           </Box>
         </Grid>
       </Grid>
