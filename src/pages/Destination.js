@@ -1,11 +1,5 @@
-
-import {
-  Divider,
-  Link,
-  makeStyles,
-  Card,
-  CardMedia,
-} from "@material-ui/core";
+import { Link, makeStyles, Card, CardMedia } from "@material-ui/core";
+import Divider from "@mui/material/Divider";
 import React from "react";
 import NavBar from "../containers/NavBar";
 import { Grid, Box, Typography } from "@mui/material";
@@ -67,7 +61,7 @@ const Destination = () => {
             justifyContent="center"
             spacing={2}
           >
-            {data.map((card) => {
+            {cards.map((card) => {
               return (
                 <Grid
                   item
@@ -116,6 +110,7 @@ const Destination = () => {
                   <img
                     src="https://live.staticflickr.com/4109/4991929737_4d661d0ff4_b.jpg"
                     height={"100%"}
+                    alt="image4"
                     width={"100%"}
                   ></img>
                 </Box>

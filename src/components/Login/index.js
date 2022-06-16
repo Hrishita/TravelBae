@@ -10,10 +10,16 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Link } from "@material-ui/core";
+import AlertDialog from "../../containers/AlertDialog";
 
 function LoginComp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [open, setOpen] = useState(false); // for alert box
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   const containerStyle = {
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
@@ -91,6 +97,7 @@ function LoginComp() {
     if (errorObj.email || errorObj.password) {
       return;
     }
+    setOpen(true);
   };
 
   return (
@@ -176,6 +183,15 @@ function LoginComp() {
             </Grid>
           </Box>
         </Container>
+      </Grid>
+      <Grid item xs={12}>
+        <AlertDialog
+          open={open}
+          title="Confirm"
+          message="API logic required to Save"
+          handleClose={handleClose}
+          buttons={["Cancel", "Ok"]}
+        />
       </Grid>
     </Grid>
   );

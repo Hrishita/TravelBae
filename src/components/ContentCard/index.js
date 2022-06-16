@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import Paper from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
@@ -19,6 +18,7 @@ const ContentCardComp = ({ details }) => {
           >
             <img
               className="destination-image"
+              alt="destination"
               src="https://live.staticflickr.com/4109/4991929737_4d661d0ff4_b.jpg"
             ></img>
           </Box>
@@ -35,13 +35,13 @@ const ContentCardComp = ({ details }) => {
           <Typography
             variant="body2"
             color="text.secondary"
-            sx={{ margin: "0px 10px 20px"}}
+            sx={{ margin: "0px 10px 20px" }}
             className="card-overflow-ellipsis"
           >
             {details.details.description}
           </Typography>
         </Grid>
-        <Grid item xs={2} sx={{paddingLeft: "20px"}}>
+        <Grid item xs={2} sx={{ paddingLeft: "20px" }}>
           <FavoriteIcon
             size="large"
             aria-label="add to bucket list"
@@ -54,5 +54,5 @@ const ContentCardComp = ({ details }) => {
       </Grid>
     </Paper>
   );
-}
+};
 export default ContentCardComp;
