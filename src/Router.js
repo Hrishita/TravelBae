@@ -20,6 +20,7 @@ const City = React.lazy(() => import("./pages/Plan/City"));
 const Travel = React.lazy(() => import("./pages/Plan/Travel"));
 const Itinerary = React.lazy(() => import("./pages/Plan/Itinerary"));
 const Destinations = React.lazy(() => import("./pages/Destinations"));
+const Destination = React.lazy(() => import("./pages/Destination"));
 const ThingsToCarryPage = React.lazy(() => import("./pages/ThingsToCarryPage"));
 const Trips = React.lazy(() => import("./pages/UserDashboardTrip"));
 const Blogs = React.lazy(() => import("./pages/UserDashboardBlog"));

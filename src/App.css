@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 } */
+
+.card-content-overflow-ellipsis{
+    -webkit-line-clamp: 9;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+}
+
+.text-align-center{
+  text-align: center;
+}
+
+.filter-menu button{
+  border: 1px solid #737dbb;
+  color: #737dbb;
+}
+
+.filter-menu button:hover{
+  border: 1px solid #737dbb;
+  background-color: #737dbb;
+  color: #fff;
+}
