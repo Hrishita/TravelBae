@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Typography from "@material-ui/core/Typography";
+import Button from "@mui/material/Button";
 import { Grid } from "@material-ui/core";
 import { Box } from "@mui/material";
 import NavBar from "../../containers/NavBar";
@@ -11,9 +12,19 @@ import CardMedia from "@mui/material/CardMedia";
 import { CardActionArea } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
-import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
+// import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
+import AlertDialog from "../../containers/AlertDialog";
 
 const Itinerary = () => {
+  const [open, setOpen] = useState(false); // for alert box
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Grid container alignItems="center" justifyContent="center">
       <Grid item xs={12}>
@@ -174,6 +185,16 @@ const Itinerary = () => {
                       </CardActionArea>
                     </Card>
                   </Box>
+                  <Box pt={4}>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      onClick={handleOpen}
+                    >
+                      Add to Plan
+                    </Button>
+                  </Box>
                 </Box>
               </Grid>
               <Grid item xs={12} lg={2}>
@@ -194,12 +215,12 @@ const Itinerary = () => {
                     <IconButton aria-label="back" href="/trip-planner/travel">
                       <ArrowBackOutlinedIcon />
                     </IconButton>
-                    <IconButton aria-label="next" href="#">
+                    {/* <IconButton aria-label="next" href="#">
                       <ArrowForwardOutlinedIcon />
-                    </IconButton>
+                    </IconButton> */}
                   </Box>
                 </Box>
-                <Box
+                {/* <Box
                   display="flex"
                   justifyContent="flex-end"
                   sx={{ pr: 2, display: { xs: "none", lg: "flex" }, mr: 0 }}
@@ -207,7 +228,7 @@ const Itinerary = () => {
                   <IconButton aria-label="next" href="#">
                     <ArrowForwardOutlinedIcon />
                   </IconButton>
-                </Box>
+                </Box> */}
               </Grid>
             </Grid>
           </Box>
@@ -215,6 +236,15 @@ const Itinerary = () => {
       </Grid>
       <Grid item xs={12}>
         <Footer />
+      </Grid>
+      <Grid item xs={12}>
+        <AlertDialog
+          open={open}
+          title="Confirm"
+          message="API logic required to Save"
+          handleClose={handleClose}
+          buttons={["Cancel", "Ok"]}
+        />
       </Grid>
     </Grid>
   );

@@ -1,7 +1,7 @@
 import * as React from "react";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import Filter from "../../containers/Filter";
 import Menu from "@mui/material/Menu";
 import { Box } from "@mui/system";
@@ -17,8 +17,8 @@ export default function FilterMenuComp(props) {
     setTravelBaeFilterMenu(null);
   };
   return (
-    <Toolbar sx={{display: {xs: "inline-block", md: "none"}}}>
-      <Box sx={{ display: { xs: "flex", md: "none" } }}>
+    <Toolbar sx={{ display: { xs: "inline-block", md: "inline-block" } }}>
+      <Box sx={{ display: { xs: "flex", md: "flex" } }}>
         <IconButton
           size="large"
           aria-label="navigation links"
@@ -47,9 +47,9 @@ export default function FilterMenuComp(props) {
             display: { xs: "block", md: "none" },
           }}
         >
-        <Filter filterProperties={props}></Filter>
+          <Filter filterProperties={props}></Filter>
         </Menu>
       </Box>
-      </Toolbar>
+    </Toolbar>
   );
 }

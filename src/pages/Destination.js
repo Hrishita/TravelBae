@@ -66,7 +66,7 @@ const Destination = () => {
             justifyContent="center"
             spacing={2}
           >
-            {data.map((card) => {
+            {cards.map((card) => {
               return (
                 <Grid
                   item
@@ -117,6 +117,7 @@ const Destination = () => {
                   <img
                     src="https://live.staticflickr.com/7105/27035703252_15ee559f5a_b.jpg"
                     height={"100%"}
+                    alt="image4"
                     width={"100%"}
                   ></img>
                 </Box>

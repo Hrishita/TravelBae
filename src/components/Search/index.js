@@ -37,7 +37,7 @@ const SearchComp = ({ onEvent }) => {
             sx={{
               width: "400px",
               marginRight: "20px",
-              marginBottom: "10px"
+              marginBottom: "10px",
             }}
           />
           <Button
@@ -85,6 +85,6 @@ const SearchComp = ({ onEvent }) => {
       </form>
     </div>
   );
-}
+};
 
 export default SearchComp;
