@@ -104,7 +104,7 @@ const Destination = () => {
         <Grid item xs={12}>
           <Box sx={{ padding: "1em 3em" }}>
             <Grid container>
-              <Grid item xs={12} sm={3}>
+              <Grid item sm={12} md={4}>
                 <Box sx={{ height: "20em", marginBottom: "1em" }}>
                   <img
                     src="https://live.staticflickr.com/7105/27035703252_15ee559f5a_b.jpg"
@@ -113,7 +113,7 @@ const Destination = () => {
                   ></img>
                 </Box>
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item sm={12} md={6}>
                 <Box sx={{ margin: "0px 10px 20px" }}>
                   <Typography variant="h4" color="primary">
                     Canada
