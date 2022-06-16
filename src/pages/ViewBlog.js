@@ -1,8 +1,10 @@
+import { Grid } from "@material-ui/core";
 import { Comment } from "@material-ui/icons";
 import { CommentBank, Send } from "@mui/icons-material";
 import { Avatar, Box, TextField, Typography } from "@mui/material";
 import { deepOrange, grey } from "@mui/material/colors";
 import React, { useState } from "react";
+import Footer from "../containers/Footer";
 import NavBar from "../containers/NavBar";
 
 function SingleComment({ index, comment, name = "John Doe" }) {
@@ -39,7 +41,10 @@ function ViewBlog() {
     setComment("");
   };
   return (
-
+<Grid container spacing={3}>
+       <Grid item xs={12}>
+        <NavBar />
+      </Grid>
       <div className="container p-4">
         <div className="d-flex flex-column justify-content-center align-items-center">
           <div>
@@ -147,7 +152,8 @@ function ViewBlog() {
           </div>
         </div>
       </div>
-   
+      <Footer/>
+   </Grid>
   );
 }
 

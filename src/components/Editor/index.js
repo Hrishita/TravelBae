@@ -52,7 +52,8 @@ function EditorComp({handleSubmit, onChangeText}){
             <Wrapper style={{height: '100%'}}>
             <WrapperLeft style={{height: '100%'}}>
             <ReactQuill value={text}
-            ref={ref}
+              ref={ref}
+
               style={{height: '100%'}}
               modules={modules}
               onChange={handleChange} />

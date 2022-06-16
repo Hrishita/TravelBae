@@ -1,4 +1,6 @@
 import { Box, ButtonBase } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import Footer from "../containers/Footer";
 import { LocationCity } from "@mui/icons-material";
 import {
   Alert,
@@ -7,7 +9,7 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
-  Select,
+  Select, 
   Slider,
   Snackbar,
   TextField,
@@ -18,6 +20,7 @@ import React, { useState } from "react";
 import NavBar from "../containers/NavBar";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { deepOrange, grey } from "@mui/material/colors";
+import { margin } from "@mui/system";
 
 const fakeData = [
   {
@@ -82,7 +85,8 @@ function SearchFlights() {
     setShowSnackbar(true);
   };
   return (
-    <>
+    <Grid container sx={{margin:'30px'}}>
+   
       <div className="container">
         <div className="card shadow flex-wrap p-3 d-flex justify-content-start align-items-center flex-row my-3">
           <Snackbar
@@ -213,7 +217,8 @@ function SearchFlights() {
           })}
         </div>
       </div>
-    </>
+      <Footer/>
+    </Grid>
   );
 }
 

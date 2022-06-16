@@ -2,11 +2,12 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import Card from "@material-ui/core/Card";
+import Footer from "../containers/Footer";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -66,7 +67,13 @@ function BlogList() {
   const classes = useStyles();
 
   return (
-    <div className="bloglist">
+    <Grid container spacing={3}>
+       <Grid item xs={12}>
+        <NavBar />
+      </Grid>
+    <Grid >
+      <Grid className="bloglist">
+      
       <Box className={classes.hero}>
         <Box>
           <Typography gutterBottom variant="h1" component="h2">
@@ -341,7 +348,11 @@ function BlogList() {
           <Pagination count={10} />
         </Box>
       </Container>
-    </div>
+      </Grid>
+      </Grid>
+      <Footer/>
+    </Grid>
+  
   );
 }
 
