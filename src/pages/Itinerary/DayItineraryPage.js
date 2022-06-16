@@ -3,10 +3,10 @@ import { Typography } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import React from "react";
 import Box from "@mui/material/Box";
-import NavBar from "../containers/NavBar";
-import DescriptionList from "../containers/DescriptionList";
-import descList from "../containers/DescriptionList/mockData";
-import Footer from "../containers/Footer";
+import NavBar from "../../containers/NavBar";
+import DescriptionList from "../../containers/DescriptionList";
+import descList from "../../containers/DescriptionList/mockData";
+import Footer from "../../containers/Footer";
 
 const DayItineraryPage = () => {
   return (

@@ -5,7 +5,7 @@ import { AiOutlinePieChart, AiOutlineFlag } from "react-icons/ai";
 
 import { MdOutlineFlight } from "react-icons/md";
 
-import ProfileImage from "./../../assests/profile.jpeg";
+import ProfileImage from "./../../assets/profile.jpg";
 
 import "./Sidebar.css";
 
@@ -13,7 +13,7 @@ function Sidebar() {
   return (
     <div className="sidebar-container" style={{}}>
       <div className="sidebar-userprofileContainer">
-        <img className="sidebar-userphoto" src={ProfileImage} />
+        <img className="sidebar-userphoto" alt="ProfileImage" src={ProfileImage} />
         <h1 className="sidebar-username">Jenner Joe</h1>
       </div>
       <div className="sidebar-option-container" style={{}}>
@@ -25,31 +25,31 @@ function Sidebar() {
           >
             <MdOutlineFlight />
             <h3 style={{ margin: "0", padding: "0" }}>
-              <a href="/Trips">Trips</a>
+              <a href="/userdashbord-trips">Trips</a>
             </h3>
           </li>
           <li className="sidebar-link-to-pages" href="/blogs" style={{}}>
             <RiFileCopyLine />
             <h3 style={{ margin: "0", padding: "0" }}>
-              <a href="/Blogs">Blogs</a>
+              <a href="/userdashbord-blogs">Blogs</a>
             </h3>
           </li>
           <li className="sidebar-link-to-pages" href="/flags">
             <AiOutlineFlag />
             <h3 style={{ margin: "0", padding: "0" }}>
-              <a href="/Flags">Flags</a>
+              <a href="/userdashbord-flags">Flags</a>
             </h3>
           </li>
           <li className="sidebar-link-to-pages">
             <AiOutlinePieChart />
             <h3 style={{ margin: "0", padding: "0" }}>
-              <a href="/Planning">Planning</a>
+              <a href="/userdashbord-planning">Planning</a>
             </h3>
           </li>
         </u1>
         <div className="sidebar-contact-container" style={{}}>
           <span>Reach us at</span>
-          <a href="#">help@travelbae.com </a>
+          <a href="#">help@travelbae.com</a>
         </div>
       </div>
     </div>

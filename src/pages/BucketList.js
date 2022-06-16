@@ -8,16 +8,15 @@ import {
   CardMedia,
 } from "@material-ui/core";
 import React from "react";
-import CardCarousel from "../containers/CardCarousel";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
-import SearchBoxComp from "../components/SearchBox";
 import {
   destinationData,
   blogCards,
   accCards,
 } from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
+import { Button, CardActionArea, CardActions } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
 }));
-const HomePage = () => {
+const BucketList = () => {
   const classes = useStyles();
   const displayStrip = (title, cards) => {
     const data = cards;
@@ -54,7 +53,7 @@ const HomePage = () => {
             </Grid>
             <Grid item xs={2}>
               <Box pt={4} pr={2} display="flex" justifyContent="flex-end">
-                <Link>View All</Link>
+                <Link color="secondary">View All</Link>
               </Box>
             </Grid>
           </Grid>
@@ -84,21 +83,32 @@ const HomePage = () => {
                   style={{ textAlign: "center" }}
                 >
                   <Card className={classes.root}>
-                    <CardMedia
-                      component="img"
-                      alt="Contemplative Reptile"
-                      height="300"
-                      image={card.img}
-                      title="Contemplative Reptile"
-                    />
-                    <Typography
-                      gutterBottom
-                      variant="h6"
-                      component="h6"
-                      className={classes.font}
-                    >
-                      {card.title}
-                    </Typography>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        alt="Contemplative Reptile"
+                        height="300"
+                        image={card.img}
+                        title="Contemplative Reptile"
+                      />
+                      <Typography
+                        gutterBottom
+                        variant="h6"
+                        component="h6"
+                        className={classes.font}
+                      >
+                        {card.title}
+                      </Typography>
+                    </CardActionArea>
+                    <CardActions sx={{ display: "inline-block" }}>
+                      <Button
+                        size="small"
+                        color="primary"
+                        className="text-align-center"
+                      >
+                        Remove from bucket list
+                      </Button>
+                    </CardActions>
                   </Card>
                 </Grid>
               );
@@ -114,18 +124,13 @@ const HomePage = () => {
       <Grid item xs={12}>
         <NavBar />
       </Grid>
-      <Grid item xs={12}>
-        <CardCarousel hasImgText="true" />
+      <Grid container>
+        <Grid item xs={12}>
+          <Box sx={{ padding: "1em 3em" }}>
+            {displayStrip("Destinations", destinationData)}
+          </Box>
+        </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <Box pt={4} pb={4}>
-          <SearchBoxComp />
-        </Box>
-      </Grid>
-      {displayStrip("Popular Placees", destinationData)}
-      {displayStrip("Travel Blogs", blogCards)}
-      {displayStrip("Accommodations", accCards)}
-
       <Grid item xs={12}>
         <Footer />
       </Grid>
@@ -133,4 +138,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default BucketList;

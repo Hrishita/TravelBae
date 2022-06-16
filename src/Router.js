@@ -1,24 +1,43 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Loader from "./components/Loader";
-
+import Write from "./pages/WriteBlog";
 //imports are lazy loaded for better performance and to reduce size of bundle.
 const HomePage = React.lazy(() => import("./pages/HomePage"));
 const RegisterUser = React.lazy(() => import("./containers/Registration"));
 const LoginUser = React.lazy(() => import("./containers/Login"));
-const ItineraryPage = React.lazy(() => import("./pages/ItineraryPage"));
-const DayItineraryPage = React.lazy(() => import("./pages/DayItineraryPage"));
+const ItineraryPage = React.lazy(() =>
+  import("./pages/Itinerary/ItineraryPage")
+);
+const BucketList = React.lazy(() => import("./pages/BucketList"));
+const DayItineraryPage = React.lazy(() =>
+  import("./pages/Itinerary/DayItineraryPage")
+);
+const CityItineraryPage = React.lazy(() =>
+  import("./pages/Itinerary/CityItineraryPage")
+);
 const TripPlannerPage = React.lazy(() => import("./pages/TripPlannerPage"));
 const City = React.lazy(() => import("./pages/Plan/City"));
 const Travel = React.lazy(() => import("./pages/Plan/Travel"));
 const Itinerary = React.lazy(() => import("./pages/Plan/Itinerary"));
 const Destinations = React.lazy(() => import("./pages/Destinations"));
+const Destination = React.lazy(() => import("./pages/Destination"));
 const ThingsToCarryPage = React.lazy(() => import("./pages/ThingsToCarryPage"));
-const AccommodationListPage = React.lazy(() =>import("./pages/AccommodationListPage"));
-const AccommodationPage = React.lazy(() =>import("./pages/AccommodationPage"));
-const ActivitiesToDoListPage = React.lazy(() =>import("./pages/ActivitiesToDoListPage"));
-const ActivitiesToDoMainPage = React.lazy(() =>import("./pages/ActivitiesToDoMainPage"));
+const AccommodationListPage = React.lazy(() =>
+  import("./pages/AccommodationListPage")
+);
+const AccommodationPage = React.lazy(() => import("./pages/AccommodationPage"));
+const ActivitiesToDoListPage = React.lazy(() =>
+  import("./pages/ActivitiesToDoListPage")
+);
+const ActivitiesToDoMainPage = React.lazy(() =>
+  import("./pages/ActivitiesToDoMainPage")
+);
 
+const Trips = React.lazy(() => import("./pages/UserDashboardTrip"));
+const Blogs = React.lazy(() => import("./pages/UserDashboardBlog"));
+const SearchFlights = React.lazy(() => import("./pages/SearchFlights"));
+const ViewBlog = React.lazy(() => import("./pages/ViewBlog"));
 function Router() {
   return (
     <BrowserRouter>
@@ -33,6 +52,14 @@ function Router() {
           />
           <Route exact path="/register" component={RegisterUser} />
           <Route exact path="/login" component={LoginUser} />
+
+          <Route
+            exact
+            path="/destinations"
+            render={() => {
+              return <Destinations />;
+            }}
+          />
           <Route
             exact
             path="/itinerary"
@@ -42,9 +69,9 @@ function Router() {
           />
           <Route
             exact
-            path="/destinations"
+            path="/cityItinerary"
             render={() => {
-              return <Destinations />;
+              return <CityItineraryPage />;
             }}
           />
           <Route
@@ -105,6 +132,21 @@ function Router() {
           />
           <Route
             exact
+            path="/userdashbord-trips"
+            render={() => {
+              return <Trips />;
+            }}
+          />
+
+          <Route
+            exact
+            path="/userdashbord-blogs"
+            render={() => {
+              return <Blogs />;
+            }}
+          />
+          <Route
+            exact
             path="/activities"
             render={() => {
               return <ActivitiesToDoMainPage />;
@@ -115,6 +157,43 @@ function Router() {
             path="/activitylist"
             render={() => {
               return <ActivitiesToDoListPage />;
+            }}
+          />
+
+          <Route
+            exact
+            path="/flights"
+            render={() => {
+              return <SearchFlights />;
+            }}
+          />
+
+          <Route
+            exact
+            path="/view-blogs"
+            render={() => {
+              return <ViewBlog />;
+            }}
+          />
+          <Route
+            exact
+            path="/write-blog"
+            render={() => {
+              return <Write />;
+            }}
+          />
+          <Route
+            exact
+            path="/bucket-list"
+            render={() => {
+              return <BucketList />;
+            }}
+          />
+          <Route
+            exact
+            path="/destination"
+            render={() => {
+              return <Destination />;
             }}
           />
         </Switch>

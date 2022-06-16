@@ -8,10 +8,8 @@ import {
   CardMedia,
 } from "@material-ui/core";
 import React from "react";
-import CardCarousel from "../containers/CardCarousel";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
-import SearchBoxComp from "../components/SearchBox";
 import {
   destinationData,
   blogCards,
@@ -37,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
 }));
-const HomePage = () => {
+const Destination = () => {
   const classes = useStyles();
   const displayStrip = (title, cards) => {
     const data = cards;
@@ -54,7 +52,7 @@ const HomePage = () => {
             </Grid>
             <Grid item xs={2}>
               <Box pt={4} pr={2} display="flex" justifyContent="flex-end">
-                <Link>View All</Link>
+                <Link color="secondary">View All</Link>
               </Box>
             </Grid>
           </Grid>
@@ -103,7 +101,6 @@ const HomePage = () => {
                 </Grid>
               );
             })}
-            {/* <ImageList /> */}
           </Grid>
         </Grid>
       </>
@@ -114,18 +111,42 @@ const HomePage = () => {
       <Grid item xs={12}>
         <NavBar />
       </Grid>
-      <Grid item xs={12}>
-        <CardCarousel hasImgText="true" />
+      <Grid container>
+        <Grid item xs={12}>
+          <Box sx={{ padding: "1em 3em" }}>
+            <Grid container>
+              <Grid item xs={12} sm={3}>
+                <Box sx={{ height: "20em", marginBottom: "1em" }}>
+                  <img
+                    src="https://live.staticflickr.com/4109/4991929737_4d661d0ff4_b.jpg"
+                    height={"100%"}
+                    width={"100%"}
+                  ></img>
+                </Box>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Box sx={{ margin: "0px 10px 20px" }}>
+                  <Typography variant="h4" color="primary">
+                    Canada
+                  </Typography>
+                  <Typography variant="body2" color="default">
+                    Dolore aute amet dolore voluptate. Excepteur ut aute officia
+                    fugiat aliqua est dolor ipsum elit dolore sint commodo
+                    velit. Culpa sit dolor amet irure nostrud dolore ipsum
+                    eiusmod eu tempor mollit ad ad.
+                  </Typography>
+                </Box>
+              </Grid>
+            </Grid>
+          </Box>
+        </Grid>
+        <Grid item xs={12}>
+          <Box sx={{ padding: "1em 3em" }}>
+            {displayStrip("Travel Blogs", blogCards)}
+            {displayStrip("Accommodations", accCards)}
+          </Box>
+        </Grid>
       </Grid>
-      <Grid item xs={12}>
-        <Box pt={4} pb={4}>
-          <SearchBoxComp />
-        </Box>
-      </Grid>
-      {displayStrip("Popular Placees", destinationData)}
-      {displayStrip("Travel Blogs", blogCards)}
-      {displayStrip("Accommodations", accCards)}
-
       <Grid item xs={12}>
         <Footer />
       </Grid>
@@ -133,4 +154,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Destination;

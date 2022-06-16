@@ -23,8 +23,7 @@ const Itinerary = () => {
         <Slide direction="left" in={true} mountOnEnter unmountOnExit>
           <Box
             sx={{
-              bgcolor: "secondary.light",
-              color: "primary.contrastText",
+              bgcolor: "#e0ffff",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -62,8 +61,8 @@ const Itinerary = () => {
                       Start Date: 14 June 2022 - End Date: 22 June 2022
                     </Typography>
                   </Box>
-                  <Box display="inline-flex" sx={{ mr: 0 }}>
-                    <Card sx={{ maxWidth: 200, mr: "2%" }}>
+                  <Box display="inline-flex">
+                    <Card sx={{ maxWidth: "25%", mr: "2%" }}>
                       <CardActionArea>
                         <CardMedia
                           component="img"
@@ -91,7 +90,7 @@ const Itinerary = () => {
                         </CardContent>
                       </CardActionArea>
                     </Card>
-                    <Card sx={{ maxWidth: 200, mr: "2%" }}>
+                    <Card sx={{ maxWidth: "25%", mr: "2%" }}>
                       <CardActionArea>
                         <CardMedia
                           component="img"
@@ -119,7 +118,7 @@ const Itinerary = () => {
                         </CardContent>
                       </CardActionArea>
                     </Card>
-                    <Card sx={{ maxWidth: 200, mr: "2%" }}>
+                    <Card sx={{ maxWidth: "25%", mr: "2%" }}>
                       <CardActionArea>
                         <CardMedia
                           component="img"
@@ -147,7 +146,7 @@ const Itinerary = () => {
                         </CardContent>
                       </CardActionArea>
                     </Card>
-                    <Card sx={{ maxWidth: 200, mr: "2%" }}>
+                    <Card sx={{ maxWidth: "25%", mr: "2%" }}>
                       <CardActionArea>
                         <CardMedia
                           component="img"
