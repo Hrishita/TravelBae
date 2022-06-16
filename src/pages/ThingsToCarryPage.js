@@ -58,6 +58,8 @@ import towel from "../assets/clothes/towel.jpg";
 import sunscreen from "../assets/clothes/sunscreen.jpg";
 import toothpaste from "../assets/clothes/toothpaste.jpg";
 import mouthwash from "../assets/clothes/mouthwash.jpg";
+import AlertDialog from "../containers/AlertDialog";
+import Footer from "../containers/Footer";
 
 const data = [
   {
@@ -228,8 +230,14 @@ const useStyles = makeStyles((theme) => ({
 const ThingsToCarryPage = (props) => {
   const classes = useStyles();
   const [checkedItems, setCheckedItems] = useState([]);
-  console.log("checkedItems........", checkedItems);
+  const [open, setOpen] = useState(false); // for alert box
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   const handleClick = (name) => {
     console.log("name...", name);
     const updatedChecklist = [...checkedItems];
@@ -317,7 +325,12 @@ const ThingsToCarryPage = (props) => {
 
               <Grid item xs={12}>
                 <Box display="flex" justifyContent="flex-end" paddingRight={4}>
-                  <Button type="submit" variant="contained" color="primary">
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    onClick={handleOpen}
+                  >
                     Add to Plan
                   </Button>
                 </Box>
@@ -327,9 +340,18 @@ const ThingsToCarryPage = (props) => {
         </Grid>
       </Grid>
 
-      {/* <Grid item xs={12}>
+      <Grid item xs={12}>
         <Footer />
-      </Grid> */}
+      </Grid>
+      <Grid item xs={12}>
+        <AlertDialog
+          open={open}
+          title="Confirm"
+          message="API logic required to Save"
+          handleClose={handleClose}
+          buttons={["Cancel", "Ok"]}
+        />
+      </Grid>
     </Grid>
   );
 };
