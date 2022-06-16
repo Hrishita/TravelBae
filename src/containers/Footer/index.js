@@ -1,11 +1,8 @@
 import { Box, Grid } from "@mui/material";
 import React from "react";
 import FooterComp from "../../components/Footer";
-import { footerData } from "./FooterDummyData";
-import { Divider } from "@mui/material";
 import vacation from "../../assets/vac.png";
 import { Typography } from "@material-ui/core";
-import { Label } from "@material-ui/icons";
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
@@ -28,7 +25,7 @@ function Footer() {
             fontWeight="bold"
             sx={{ pb: 1 }}
           >
-            <img src={vacation} width="30%" height="30%" />
+            <img src={vacation} alt="vacation" width="30%" height="30%" />
           </Box>
           <Box
             // fontFamily="Arial"

@@ -7,7 +7,7 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import { CardActionArea } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
-import Footer from "../containers/Footer";
+// import Footer from "../containers/Footer";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Filter from "../containers/Filter";
 import filterData from "../containers/ThingsToCarry/mockData";
