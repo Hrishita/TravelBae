@@ -16,7 +16,7 @@ import Avatar from "@material-ui/core/Avatar";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import Pagination from "@material-ui/lab/Pagination";
 import NavBar from "../containers/NavBar";
-
+import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   hero: {
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/6965513/pexels-photo-6965513.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
@@ -65,12 +65,13 @@ const useStyles = makeStyles((theme) => ({
 
 function BlogList() {
   const classes = useStyles();
-
+  const history = useHistory();
+  const handleClick=(e)=>{
+    history.push("view-blogs");
+  }
   return (
     <Grid container spacing={3}>
-       <Grid item xs={12}>
-        <NavBar />
-      </Grid>
+    
     <Grid >
       <Grid className="bloglist">
       
@@ -84,7 +85,7 @@ function BlogList() {
       <Container maxWidth="lg" className={classes.blogsContainer}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={4}>
-            <Card className={classes.card}>
+            <Card className={classes.card} onClick={handleClick}>
               <CardActionArea>
                 <CardMedia
                   className={classes.media}
@@ -107,7 +108,7 @@ function BlogList() {
                   </Typography>
                 </CardContent>
               </CardActionArea>
-              <CardActions className={classes.cardActions}>
+              <CardActions className={classes.cardActions} >
                 <Box className={classes.author}>
                   <Avatar src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
                   <Box ml={2}>
@@ -127,7 +128,7 @@ function BlogList() {
             </Card>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Card className={classes.card}>
+            <Card className={classes.card} onClick={handleClick}>
               <CardActionArea>
                 <CardMedia
                   className={classes.media}
@@ -214,7 +215,7 @@ function BlogList() {
             </Card>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Card className={classes.card}>
+            <Card className={classes.card} onClick={handleClick}>
               <CardActionArea>
                 <CardMedia
                   className={classes.media}
@@ -257,7 +258,7 @@ function BlogList() {
             </Card>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Card className={classes.card}>
+            <Card className={classes.card} onClick={handleClick}>
               <CardActionArea>
                 <CardMedia
                   className={classes.media}
@@ -301,7 +302,7 @@ function BlogList() {
           </Grid>
 
           <Grid item xs={12} sm={6} md={4}>
-            <Card className={classes.card}>
+            <Card className={classes.card} onClick={handleClick}>
               <CardActionArea>
                 <CardMedia
                   className={classes.media}

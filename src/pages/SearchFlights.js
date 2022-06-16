@@ -177,7 +177,10 @@ function SearchFlights() {
               max={10000}
             />
           </div>
-          <Button className="mx-2 my-2" variant="contained">
+          <Button className="mx-2 my-2" variant="contained"
+          color="primary"
+          onClick={onShowSnackbar}
+          >
             Search
           </Button>
         </div>
