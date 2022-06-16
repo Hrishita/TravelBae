@@ -12,7 +12,7 @@ const FilterComp = (props) => {
         Filter by
       </Typography>
 
-      {props.filterProperty.filterProperties.map((section) => {
+      {(props.filterProperty.filterProperties.length > 0 ) ? (props.filterProperty.filterProperties.map((section) => {
         return (
           <div>
             <Typography
@@ -37,7 +37,32 @@ const FilterComp = (props) => {
             })}
           </div>
         );
-      })}
+      })) : (props.filterProperty.filterProperties.filterProperty.filterProperties.map((section) => {
+        return (
+          <div>
+            <Typography
+              gutterBottom
+              variant="overline"
+              component="div"
+              sx={{ marginTop: "20px" }}
+              key={section.key}
+            >
+              {section.filterTitle}
+            </Typography>
+            <Divider />
+            {section.filterProperties.map((property) => {
+              return (
+                <FormGroup key={property.key}>
+                  <FormControlLabel
+                    control={<Checkbox />}
+                    label={property.property}
+                  />
+                </FormGroup>
+              );
+            })}
+          </div>
+        );
+      }))}
     </div>
   );
 };

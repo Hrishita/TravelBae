@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Loader from "./components/Loader";
-
+import Write from "./pages/WriteBlog";
 //imports are lazy loaded for better performance and to reduce size of bundle.
 const HomePage = React.lazy(() => import("./pages/HomePage"));
 const RegisterUser = React.lazy(() => import("./containers/Registration"));
@@ -20,11 +20,12 @@ const City = React.lazy(() => import("./pages/Plan/City"));
 const Travel = React.lazy(() => import("./pages/Plan/Travel"));
 const Itinerary = React.lazy(() => import("./pages/Plan/Itinerary"));
 const Destinations = React.lazy(() => import("./pages/Destinations"));
+const Destination = React.lazy(() => import("./pages/Destination"));
 const ThingsToCarryPage = React.lazy(() => import("./pages/ThingsToCarryPage"));
 const Trips = React.lazy(() => import("./pages/UserDashboardTrip"));
 const Blogs = React.lazy(() => import("./pages/UserDashboardBlog"));
-// const WriteBlogs = React.lazy(() => import("./pages/WriteBlog"));
-
+const SearchFlights = React.lazy(() => import("./pages/SearchFlights"));
+const ViewBlog = React.lazy(() => import("./pages/ViewBlog"));
 function Router() {
   return (
     <BrowserRouter>
@@ -119,13 +120,28 @@ function Router() {
               return <Blogs />;
             }}
           />
-          {/* <Route
+          <Route
             exact
-            path="/writeblogs"
+            path="/flights"
             render={() => {
-              return <WriteBlogs />;
+              return <SearchFlights />;
             }}
-          /> */}
+          />
+
+          <Route
+            exact
+            path="/view-blogs"
+            render={() => {
+              return <ViewBlog />;
+            }}
+          />
+           <Route
+            exact
+            path="/write-blog"
+            render={() => {
+              return <Write />;
+            }}
+          />
         </Switch>
       </Suspense>
     </BrowserRouter>
