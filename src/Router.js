@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Loader from "./components/Loader";
-
+import Write from "./pages/WriteBlog";
 //imports are lazy loaded for better performance and to reduce size of bundle.
 const HomePage = React.lazy(() => import("./pages/HomePage"));
 const RegisterUser = React.lazy(() => import("./containers/Registration"));
@@ -25,7 +25,6 @@ const Trips = React.lazy(() => import("./pages/UserDashboardTrip"));
 const Blogs = React.lazy(() => import("./pages/UserDashboardBlog"));
 const SearchFlights = React.lazy(() => import("./pages/SearchFlights"));
 const ViewBlog = React.lazy(() => import("./pages/ViewBlog"));
-const Write = React.lazy(() => import("./pages/WriteBlog"));
 function Router() {
   return (
     <BrowserRouter>
