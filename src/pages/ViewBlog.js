@@ -50,6 +50,7 @@ function ViewBlog() {
           <div>
             <img
               className="img-fluid"
+              alt="image3"
               src="https://images.unsplash.com/photo-1512100254544-47340ba56b5d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=MnwxfDB8MXxyYW5kb218MHx8dHJhdmVsfHx8fHx8MTY1NTMxNjQ0MQ&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1024"
             />
           </div>

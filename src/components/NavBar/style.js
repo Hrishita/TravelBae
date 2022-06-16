@@ -1,7 +1,6 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 export const useStyles = makeStyles({
-    root: {
-      background: '#f7f7f7',
-    },
-   
-  });
+  root: {
+    background: "#f7f7f7",
+  },
+});

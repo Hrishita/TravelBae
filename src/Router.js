@@ -9,6 +9,7 @@ const LoginUser = React.lazy(() => import("./containers/Login"));
 const ItineraryPage = React.lazy(() =>
   import("./pages/Itinerary/ItineraryPage")
 );
+const BucketList = React.lazy(() => import("./pages/BucketList"));
 const DayItineraryPage = React.lazy(() =>
   import("./pages/Itinerary/DayItineraryPage")
 );
@@ -20,13 +21,26 @@ const City = React.lazy(() => import("./pages/Plan/City"));
 const Travel = React.lazy(() => import("./pages/Plan/Travel"));
 const Itinerary = React.lazy(() => import("./pages/Plan/Itinerary"));
 const Destinations = React.lazy(() => import("./pages/Destinations"));
+const Destination = React.lazy(() => import("./pages/Destination"));
 const ThingsToCarryPage = React.lazy(() => import("./pages/ThingsToCarryPage"));
+const AccommodationListPage = React.lazy(() =>
+  import("./pages/AccommodationListPage")
+);
+const AccommodationPage = React.lazy(() => import("./pages/AccommodationPage"));
+const ActivitiesToDoListPage = React.lazy(() =>
+  import("./pages/ActivitiesToDoListPage")
+);
+const ActivitiesToDoMainPage = React.lazy(() =>
+  import("./pages/ActivitiesToDoMainPage")
+);
+
 const Trips = React.lazy(() => import("./pages/UserDashboardTrip"));
 const Blogs = React.lazy(() => import("./pages/UserDashboardBlog"));
 const SearchFlights = React.lazy(() => import("./pages/SearchFlights"));
 const ViewBlog = React.lazy(() => import("./pages/ViewBlog"));
 const BlogList = React.lazy(() => import("./pages/BlogList"));
 
+const Flags = React.lazy(() => import("./pages/UserDashboardFlag"));
 function Router() {
   return (
     <BrowserRouter>
@@ -37,6 +51,13 @@ function Router() {
             path="/"
             render={() => {
               return <HomePage />;
+            }}
+          />
+          <Route
+            exact
+            path="/destination"
+            render={() => {
+              return <Destination />;
             }}
           />
           <Route exact path="/register" component={RegisterUser} />
@@ -105,7 +126,20 @@ function Router() {
               return <ThingsToCarryPage />;
             }}
           />
-
+          <Route
+            exact
+            path="/accommodationlist"
+            render={() => {
+              return <AccommodationListPage />;
+            }}
+          />
+          <Route
+            exact
+            path="/accommodation"
+            render={() => {
+              return <AccommodationPage />;
+            }}
+          />
           <Route
             exact
             path="/userdashbord-trips"
@@ -123,6 +157,21 @@ function Router() {
           />
           <Route
             exact
+            path="/activities"
+            render={() => {
+              return <ActivitiesToDoMainPage />;
+            }}
+          />
+          <Route
+            exact
+            path="/activitylist"
+            render={() => {
+              return <ActivitiesToDoListPage />;
+            }}
+          />
+
+          <Route
+            exact
             path="/flights"
             render={() => {
               return <SearchFlights />;
@@ -136,7 +185,7 @@ function Router() {
               return <ViewBlog />;
             }}
           />
-           <Route
+          <Route
             exact
             path="/write-blog"
             render={() => {
@@ -145,9 +194,30 @@ function Router() {
           />
           <Route
             exact
+            path="/bucket-list"
+            render={() => {
+              return <BucketList />;
+            }}
+          />
+          <Route
+            exact
             path="/blog-list"
             render={() => {
               return <BlogList />;
+            }}
+          />
+          <Route
+            exact
+            path="/destination"
+            render={() => {
+              return <Destination />;
+            }}
+          />
+          <Route
+            exact
+            path="/userdashboard-flags"
+            render={() => {
+              return <Flags />;
             }}
           />
         </Switch>

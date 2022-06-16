@@ -9,7 +9,7 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
-  Select, 
+  Select,
   Slider,
   Snackbar,
   TextField,
@@ -20,7 +20,6 @@ import React, { useState } from "react";
 import NavBar from "../containers/NavBar";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { deepOrange, grey } from "@mui/material/colors";
-import { margin } from "@mui/system";
 
 const fakeData = [
   {
@@ -150,7 +149,7 @@ function SearchFlights() {
               />
             </LocalizationProvider>
           </Box>
-          {tripType == 1 ? (
+          {tripType === 1 ? (
             <Box sx={{ mx: 1, my: 1 }}>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
@@ -173,19 +172,16 @@ function SearchFlights() {
               defaultValue={200}
               aria-label="Default"
               valueLabelDisplay="auto"
-              min={1000}
-              max={10000}
+              min={100}
+              max={200}
             />
           </div>
-          <Button className="mx-2 my-2" variant="contained"
-          color="primary"
-          onClick={onShowSnackbar}
-          >
+          <Button className="mx-2 my-2" variant="contained">
             Search
           </Button>
         </div>
         <div className="card shadow my-3">
-          <Typography className="mx-4 my-3" variant="h5" fontWeight={"600"}>
+          <Typography className="mx-4 my-3" variant="h4" fontWeight={"600"}>
             All flights
           </Typography>
           {fakeData.map((d, index) => {
@@ -220,8 +216,7 @@ function SearchFlights() {
           })}
         </div>
       </div>
-      <Footer/>
-    </Grid>
+   </Grid>
   );
 }
 
