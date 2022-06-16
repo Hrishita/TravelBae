@@ -113,6 +113,26 @@ const filterProperties = [
         property: "Bracelete",
         key: "bracelete",
       },
+      {
+        property: "Make Up KIt",
+        key: "makeup",
+      },
+      {
+        property: "Adaptor",
+        key: "adaptor",
+      },
+      {
+        property: "Laptop",
+        key: "laptop",
+      },
+      {
+        property: "Necklace",
+        key: "necklace",
+      },
+      {
+        property: "Passport",
+        key: "passport",
+      },
     ],
   },
 ];
