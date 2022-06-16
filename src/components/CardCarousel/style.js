@@ -30,10 +30,13 @@ const useStyles = makeStyles({
   },
   cardImgText: {
     position: "absolute",
-    top: "10%",
+    top: "30%",
     left: "50%",
     transform: "translateX(-50%)",
     textAlign: "center",
+    color: "white",
+  },
+  cardImgTextColor: {
     color: "white",
   },
 });
