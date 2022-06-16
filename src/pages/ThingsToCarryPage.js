@@ -1,7 +1,7 @@
 import { Grid, Typography, Box, Divider, CardActions } from "@material-ui/core";
 import Button from "@mui/material/Button";
 
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../containers/NavBar";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -203,17 +203,22 @@ const useStyles = makeStyles((theme) => ({
   root: {
     // maxWidth: 310,
     // height: 200,
+    // display: "flex",
     backgroundSize: "contain",
     transition: "transform 0.15s ease-in-out",
     "&:hover": { transform: "scale3d(1.05, 1.05, 1)" },
     paddingBottom: "1rem",
+    cursor: "pointer",
   },
   media: {
-    display: "flex",
+    // display: "flex",
     objectFit: "scale-down",
     height: "50%",
     alignItems: "center",
     width: "50%",
+  },
+  actionArea: {
+    display: "flex",
   },
   cardFooter: {
     justifyContent: "center",
@@ -222,14 +227,35 @@ const useStyles = makeStyles((theme) => ({
 
 const ThingsToCarryPage = (props) => {
   const classes = useStyles();
+  const [checkedItems, setCheckedItems] = useState([]);
+  console.log("checkedItems........", checkedItems);
+
+  const handleClick = (name) => {
+    console.log("name...", name);
+    const updatedChecklist = [...checkedItems];
+    const position = updatedChecklist.findIndex((item) => item === name);
+    if (position !== -1) {
+      updatedChecklist.splice(position, 1);
+    } else {
+      updatedChecklist.push(name);
+    }
+    setCheckedItems(updatedChecklist);
+  };
+
   const displayCards = (name, image) => {
     return (
-      <Card className={classes.root}>
-        <Typography gutterBottom component="div">
-          <CheckCircleIcon color="success" />
-        </Typography>
+      <Card
+        className={classes.root}
+        key={name}
+        onClick={() => handleClick(name)}
+      >
+        <Box component="div" sx={{ height: "1rem" }}>
+          {checkedItems.indexOf(name) !== -1 && (
+            <CheckCircleIcon color="success" />
+          )}
+        </Box>
         {image && (
-          <CardActionArea>
+          <CardActionArea className={classes.actionArea}>
             <CardMedia
               className={classes.media}
               component="img"
@@ -247,7 +273,7 @@ const ThingsToCarryPage = (props) => {
     );
   };
   return (
-    <Grid container mt={2}>
+    <Grid spacing={2} container mt={2}>
       <Grid item xs={12}>
         <NavBar />
       </Grid>
