@@ -5,7 +5,6 @@ import EditorComp from "../components/Editor";
 import ModalComp from "../components/Modal";
 
 export const Blog = () => {
- 
   return (
     <div className="Blog">
       <EditorComp />
@@ -134,4 +133,3 @@ export const Write = () => {
     </div>
   );
 };
-

@@ -12,7 +12,7 @@ import CardCarousel from "../containers/CardCarousel";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
 import SearchBoxComp from "../components/SearchBox";
-import data from "../containers/CardCont/mockData";
+import { cards } from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
 
 const useStyles = makeStyles((theme) => ({
@@ -68,7 +68,7 @@ const HomePage = () => {
             justifyContent="center"
             spacing={2}
           >
-            {data.map((card) => {
+            {cards.map((card) => {
               return (
                 <Grid
                   item

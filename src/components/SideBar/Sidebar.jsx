@@ -13,7 +13,7 @@ function Sidebar() {
   return (
     <div className="sidebar-container" style={{}}>
       <div className="sidebar-userprofileContainer">
-        <img className="sidebar-userphoto" src={ProfileImage} />
+        <img className="sidebar-userphoto" alt="ProfileImage" src={ProfileImage} />
         <h1 className="sidebar-username">Jenner Joe</h1>
       </div>
       <div className="sidebar-option-container" style={{}}>
@@ -49,7 +49,7 @@ function Sidebar() {
         </u1>
         <div className="sidebar-contact-container" style={{}}>
           <span>Reach us at</span>
-          <a href="#">help@travelbae.com </a>
+          <a href="#">help@travelbae.com</a>
         </div>
       </div>
     </div>
