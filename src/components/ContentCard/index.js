@@ -30,7 +30,7 @@ const ContentCardComp = ({ details }) => {
           >
             <img
               className="destination-image"
-              src="https://live.staticflickr.com/4109/4991929737_4d661d0ff4_b.jpg"
+              src={details.details.img}
             ></img>
           </Box>
         </Grid>
