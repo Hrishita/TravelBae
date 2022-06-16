@@ -20,8 +20,7 @@ const TripPlannerPage = () => {
         <Grid item xs={12}>
           <Box
             sx={{
-              bgcolor: "secondary.light",
-              color: "primary.contrastText",
+              bgcolor: "#e0ffff",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",

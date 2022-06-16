@@ -73,9 +73,9 @@ const DayItineraryPage = () => {
         <Box
           sx={{
             width: "auto",
-            height: 50,
+            height: "auto",
             backgroundColor: "white",
-            marginTop: "1rem",
+            marginTop: "2rem",
           }}
         >
           <Typography variant="h5" align="center">
@@ -83,16 +83,17 @@ const DayItineraryPage = () => {
           </Typography>
           <Box
             sx={{
-              width: "auto",
-              height: "auto%",
-              backgroundColor: "white",
-              marginTop: "1rem",
-              border: 1,
+              backgroundImage: `url(https://cdn.stocksnap.io/img-thumbs/960w/pastel-clouds_H89THM4Y6L.jpg)`,
+              backgroundSize: "cover",
+              color: "white",
+              height: "30rem",
+              alignItems: "center",
+              display: "flex",
             }}
           >
             {weatherData.map((item) => {
               return (
-                <Grid item style={{ textAlign: "center" }}>
+                <Grid item xs={12} style={{ textAlign: "center" }}>
                   <Typography variant="h6">
                     Today: {item.current.temp} °K
                   </Typography>
