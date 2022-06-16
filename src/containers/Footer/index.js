@@ -2,7 +2,6 @@ import { Box, Grid } from "@mui/material";
 import React from "react";
 import FooterComp from "../../components/Footer";
 import { footerData } from "./FooterDummyData";
-import { Divider } from "@mui/material";
 
 function Footer() {
   return (
