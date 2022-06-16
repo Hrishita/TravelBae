@@ -14,6 +14,8 @@ const Travel = React.lazy(() => import("./pages/Plan/Travel"));
 const Itinerary = React.lazy(() => import("./pages/Plan/Itinerary"));
 const Destinations = React.lazy(() => import("./pages/Destinations"));
 const ThingsToCarryPage = React.lazy(() => import("./pages/ThingsToCarryPage"));
+const Trips = React.lazy(() => import("./pages/UserDashboardTrip"));
+const Blogs = React.lazy(() => import("./pages/UserDashboardBlog"));
 
 function Router() {
   return (
@@ -83,6 +85,22 @@ function Router() {
             path="/thingstocarry"
             render={() => {
               return <ThingsToCarryPage />;
+            }}
+          />
+
+          <Route
+            exact
+            path="/userdashbord-trips"
+            render={() => {
+              return <Trips />;
+            }}
+          />
+
+          <Route
+            exact
+            path="/userdashbord-blogs"
+            render={() => {
+              return <Blogs />;
             }}
           />
         </Switch>

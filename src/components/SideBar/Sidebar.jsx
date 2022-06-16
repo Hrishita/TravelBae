@@ -5,7 +5,7 @@ import { AiOutlinePieChart, AiOutlineFlag } from "react-icons/ai";
 
 import { MdOutlineFlight } from "react-icons/md";
 
-import ProfileImage from "./../../assests/profile.jpeg";
+import ProfileImage from "./../../assets/profile.jpg";
 
 import "./Sidebar.css";
 
@@ -25,25 +25,25 @@ function Sidebar() {
           >
             <MdOutlineFlight />
             <h3 style={{ margin: "0", padding: "0" }}>
-              <a href="/Trips">Trips</a>
+              <a href="/userdashbord-trips">Trips</a>
             </h3>
           </li>
           <li className="sidebar-link-to-pages" href="/blogs" style={{}}>
             <RiFileCopyLine />
             <h3 style={{ margin: "0", padding: "0" }}>
-              <a href="/Blogs">Blogs</a>
+              <a href="/userdashbord-blogs">Blogs</a>
             </h3>
           </li>
           <li className="sidebar-link-to-pages" href="/flags">
             <AiOutlineFlag />
             <h3 style={{ margin: "0", padding: "0" }}>
-              <a href="/Flags">Flags</a>
+              <a href="/userdashbord-flags">Flags</a>
             </h3>
           </li>
           <li className="sidebar-link-to-pages">
             <AiOutlinePieChart />
             <h3 style={{ margin: "0", padding: "0" }}>
-              <a href="/Planning">Planning</a>
+              <a href="/userdashbord-planning">Planning</a>
             </h3>
           </li>
         </u1>
