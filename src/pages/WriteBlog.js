@@ -3,7 +3,9 @@ import { Button } from "@mui/material";
 import React, { useState } from "react";
 import EditorComp from "../components/Editor";
 import ModalComp from "../components/Modal";
-
+import NavBar from "../containers/NavBar";
+import Grid from "@mui/material/Grid";
+import Footer from "../containers/Footer";
 export const Blog = () => {
   return (
     <div className="Blog">
@@ -50,7 +52,12 @@ export const Write = () => {
   };
 
   return (
+    <React.Fragment>
+     <Grid item xs={12}>
+        <NavBar />
+      </Grid>
     <div className="container" style={{ marginTop: "5rem" }}>
+      
       <ModalComp
         show={alert.show}
         handleClose={() => {
@@ -133,6 +140,8 @@ export const Write = () => {
         </button>
       </div>
     </div>
+    <Footer/>
+    </React.Fragment>
   );
 };
 

@@ -1,8 +1,10 @@
-// import { Comment } from '@material-ui/icons'
+import { Grid } from "@material-ui/core";
+import { Comment } from "@material-ui/icons";
 import { CommentBank, Send } from "@mui/icons-material";
 import { Avatar, Box, TextField, Typography } from "@mui/material";
 import { deepOrange, grey } from "@mui/material/colors";
 import React, { useState } from "react";
+import Footer from "../containers/Footer";
 import NavBar from "../containers/NavBar";
 
 function SingleComment({ index, comment, name = "John Doe" }) {
@@ -39,8 +41,10 @@ function ViewBlog() {
     setComment("");
   };
   return (
-    <>
-      <NavBar />
+<Grid container spacing={3}>
+       <Grid item xs={12}>
+        <NavBar />
+      </Grid>
       <div className="container p-4">
         <div className="d-flex flex-column justify-content-center align-items-center">
           <div>
@@ -57,7 +61,7 @@ function ViewBlog() {
           </div>
 
           <div className="align-self-start">
-            <Typography variant="h3">Lorem Ipsum Title</Typography>
+            <Typography variant="h4">My Bali Trip</Typography>
           </div>
 
           <div className="my-3">
@@ -66,20 +70,17 @@ function ViewBlog() {
               color={"#292929"}
               style={{ color: "#292929", fontSize: "1.1rem" }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              orci magna, aliquet ac tempor ac, facilisis et eros. Aliquam
-              facilisis, urna id porta sagittis, tortor elit euismod urna,
-              viverra dignissim ante nulla id quam. Morbi efficitur diam eget
-              lacinia cursus. In elementum quam eu ligula hendrerit, in faucibus
-              dolor porta. Aliquam finibus risus vitae justo iaculis, eu
-              venenatis erat imperdiet. Nullam molestie eleifend mi a dapibus.
-              Nulla finibus, nisi luctus bibendum faucibus, tortor tellus rutrum
-              libero, a malesuada ligula ante nec risus. Morbi nec rhoncus
-              lorem. Nullam vel semper urna, non mattis eros. Vivamus sed dolor
-              a turpis aliquet posuere. Sed sed elit sit amet enim bibendum
-              laoreet id eget quam. Cras dictum cursus consequat. Etiam
-              ullamcorper rhoncus lorem, id ullamcorper sem placerat nec. Morbi
-              pulvinar ac lacus in suscipit. Fusce ut massa enim.
+              Going to Bali feels like going on a never-ending adventure–there
+              is an activity to suit every soul! Bali is a popular destination
+              for many people around the world and it’s easy to see why. From
+              its unending idyllic beaches, captivating spiritual energy,
+              terraced rice fields, and exotic sunsets, there is so much to see
+              and experience on this magnificent island paradise! Experience
+              surfing, yoga, meditation, trekking, delicious food or amazing
+              nightlife. Certain areas of Bali have been influenced by tourism,
+              with hubs of insta-worthy cafes, hip bars, and vegan restaurants.
+              But other areas are still quite remote, maintaining their uniquely
+              Balinese beauty and charm.{" "}
             </Typography>
           </div>
 
@@ -89,20 +90,17 @@ function ViewBlog() {
               color={"#292929"}
               style={{ color: "#292929", fontSize: "1.1rem" }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              orci magna, aliquet ac tempor ac, facilisis et eros. Aliquam
-              facilisis, urna id porta sagittis, tortor elit euismod urna,
-              viverra dignissim ante nulla id quam. Morbi efficitur diam eget
-              lacinia cursus. In elementum quam eu ligula hendrerit, in faucibus
-              dolor porta. Aliquam finibus risus vitae justo iaculis, eu
-              venenatis erat imperdiet. Nullam molestie eleifend mi a dapibus.
-              Nulla finibus, nisi luctus bibendum faucibus, tortor tellus rutrum
-              libero, a malesuada ligula ante nec risus. Morbi nec rhoncus
-              lorem. Nullam vel semper urna, non mattis eros. Vivamus sed dolor
-              a turpis aliquet posuere. Sed sed elit sit amet enim bibendum
-              laoreet id eget quam. Cras dictum cursus consequat. Etiam
-              ullamcorper rhoncus lorem, id ullamcorper sem placerat nec. Morbi
-              pulvinar ac lacus in suscipit. Fusce ut massa enim.
+              Going to Bali feels like going on a never-ending adventure–there
+              is an activity to suit every soul! Bali is a popular destination
+              for many people around the world and it’s easy to see why. From
+              its unending idyllic beaches, captivating spiritual energy,
+              terraced rice fields, and exotic sunsets, there is so much to see
+              and experience on this magnificent island paradise! Experience
+              surfing, yoga, meditation, trekking, delicious food or amazing
+              nightlife. Certain areas of Bali have been influenced by tourism,
+              with hubs of insta-worthy cafes, hip bars, and vegan restaurants.
+              But other areas are still quite remote, maintaining their uniquely
+              Balinese beauty and charm.
             </Typography>
           </div>
           <div className="my-3">
@@ -111,20 +109,17 @@ function ViewBlog() {
               color={"#292929"}
               style={{ color: "#292929", fontSize: "1.1rem" }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
-              orci magna, aliquet ac tempor ac, facilisis et eros. Aliquam
-              facilisis, urna id porta sagittis, tortor elit euismod urna,
-              viverra dignissim ante nulla id quam. Morbi efficitur diam eget
-              lacinia cursus. In elementum quam eu ligula hendrerit, in faucibus
-              dolor porta. Aliquam finibus risus vitae justo iaculis, eu
-              venenatis erat imperdiet. Nullam molestie eleifend mi a dapibus.
-              Nulla finibus, nisi luctus bibendum faucibus, tortor tellus rutrum
-              libero, a malesuada ligula ante nec risus. Morbi nec rhoncus
-              lorem. Nullam vel semper urna, non mattis eros. Vivamus sed dolor
-              a turpis aliquet posuere. Sed sed elit sit amet enim bibendum
-              laoreet id eget quam. Cras dictum cursus consequat. Etiam
-              ullamcorper rhoncus lorem, id ullamcorper sem placerat nec. Morbi
-              pulvinar ac lacus in suscipit. Fusce ut massa enim.
+            Going to Bali feels like going on a never-ending adventure–there
+              is an activity to suit every soul! Bali is a popular destination
+              for many people around the world and it’s easy to see why. From
+              its unending idyllic beaches, captivating spiritual energy,
+              terraced rice fields, and exotic sunsets, there is so much to see
+              and experience on this magnificent island paradise! Experience
+              surfing, yoga, meditation, trekking, delicious food or amazing
+              nightlife. Certain areas of Bali have been influenced by tourism,
+              with hubs of insta-worthy cafes, hip bars, and vegan restaurants.
+              But other areas are still quite remote, maintaining their uniquely
+              Balinese beauty and charm.{" "}
             </Typography>
           </div>
           <div style={{ width: "100%" }}>
@@ -158,7 +153,8 @@ function ViewBlog() {
           </div>
         </div>
       </div>
-    </>
+      <Footer/>
+   </Grid>
   );
 }
 

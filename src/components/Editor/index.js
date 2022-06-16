@@ -29,6 +29,55 @@ function EditorComp({ handleSubmit, onChangeText }) {
       [{ list: "ordered" }, { list: "bullet" }],
       ["link"], // note: removed image 'image'
     ],
+<<<<<<< HEAD
+  }
+
+    const ref = useRef()
+   
+    const [text,setText] = useState('');
+    const [image, setImage] = useState();
+    const [title, setTitle] = useState("");
+    const defaultAlertState = { show: false, message: "" };
+    const [alert, setAlert] = useState(defaultAlertState);
+
+    const handleChange= (html)=> {
+      onChangeText(ref.current.getEditor().getText())
+      setText(html);
+    }
+
+        
+        return (
+          <div className="Editor" style={{width: '100%'}}>
+       
+            <Wrapper style={{height: '100%'}}>
+            <WrapperLeft style={{height: '100%'}}>
+            <ReactQuill value={text}
+              ref={ref}
+
+              style={{height: '100%'}}
+              modules={modules}
+              onChange={handleChange} />
+            
+            </WrapperLeft>
+      
+            </Wrapper>
+        
+              </div>
+        );
+      }
+    
+    
+    const formats = [
+      'header', 'font', 'background', 'color', 'code', 'size',
+      'bold', 'italic', 'underline', 'strike', 'blockquote',
+      'list', 'bullet', 'indent', 'script', 'align', 'direction',
+      'link', 'image', 'code-block', 'formula', 'video'
+    ]
+    
+    
+    export default EditorComp;
+    
+=======
   };
   const ref = useRef();
   const [text, setText] = useState("");
@@ -83,3 +132,4 @@ function EditorComp({ handleSubmit, onChangeText }) {
 // ];
 
 export default EditorComp;
+>>>>>>> 9cf20ae68acaf6dec6736fc3b8e76312b8c9e8d8

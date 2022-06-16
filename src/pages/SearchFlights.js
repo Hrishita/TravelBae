@@ -1,4 +1,6 @@
 import { Box, ButtonBase } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
+import Footer from "../containers/Footer";
 import { LocationCity } from "@mui/icons-material";
 import {
   Alert,
@@ -73,8 +75,8 @@ const fakeData = [
 function SearchFlights() {
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
-  // const [from, setFrom] = useState('')
-  // const [end, setEnd] = useState('')
+  const [from, setFrom] = useState("");
+  const [end, setEnd] = useState("");
   const [tripType, setTripType] = useState(0);
   const [showSnackbar, setShowSnackbar] = useState(false);
 
@@ -82,8 +84,8 @@ function SearchFlights() {
     setShowSnackbar(true);
   };
   return (
-    <>
-      <NavBar />
+    <Grid container sx={{margin:'30px'}}>
+   
       <div className="container">
         <div className="card shadow flex-wrap p-3 d-flex justify-content-start align-items-center flex-row my-3">
           <Snackbar
@@ -104,7 +106,7 @@ function SearchFlights() {
             </Alert>
           </Snackbar>
           <FormControl fullWidth className="my-2">
-            <InputLabel id="demo-simple-select-label">Trip Type</InputLabel>
+            <InputLabel id="demo-simple-select-label">Type</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
@@ -115,6 +117,7 @@ function SearchFlights() {
               }}
             >
               <MenuItem value={0}>One Way</MenuItem>
+
               <MenuItem value={1}>Round Trip</MenuItem>
             </Select>
           </FormControl>
@@ -213,7 +216,7 @@ function SearchFlights() {
           })}
         </div>
       </div>
-    </>
+   </Grid>
   );
 }
 
