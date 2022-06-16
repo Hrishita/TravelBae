@@ -1,22 +1,20 @@
+
 import {
   Divider,
-  Grid,
   Link,
-  Typography,
   makeStyles,
   Card,
   CardMedia,
 } from "@material-ui/core";
 import React from "react";
 import NavBar from "../containers/NavBar";
-import { Box } from "@material-ui/core";
+import { Grid, Box, Typography } from "@mui/material";
 import {
   destinationData,
   blogCards,
   accCards,
 } from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
@@ -57,13 +55,11 @@ const Destination = () => {
             </Grid>
           </Grid>
         </Grid>
-
         <Grid item xs={12}>
           <Box pb={4}>
             <Divider />
           </Box>
         </Grid>
-
         <Grid item xs={12}>
           <Grid
             container
@@ -153,5 +149,4 @@ const Destination = () => {
     </Grid>
   );
 };
-
 export default Destination;
