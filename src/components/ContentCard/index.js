@@ -4,9 +4,21 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useHistory } from "react-router-dom";
+
 const ContentCardComp = ({ details }) => {
+  const history = useHistory();
+  const handleListItemClick = (destinationId) => {
+    history.push("/destination");
+  };
   return (
-    <Paper elevation={6} sx={{ height: "150px", width: "90%", margin: "20px" }}>
+    <Paper
+      elevation={6}
+      sx={{ height: "150px", width: "90%", margin: "20px", cursor: "pointer" }}
+      onClick={() => {
+        handleListItemClick();
+      }}
+    >
       <Grid container spacing={5}>
         <Grid item xs={3}>
           <Box
@@ -18,17 +30,15 @@ const ContentCardComp = ({ details }) => {
           >
             <img
               className="destination-image"
-              alt="destination"
-              src="https://live.staticflickr.com/4109/4991929737_4d661d0ff4_b.jpg"
+              src={details.details.img}
             ></img>
           </Box>
         </Grid>
         <Grid item xs={7}>
           <Typography
-            gutterBottom
             variant="h5"
             component="div"
-            sx={{ margin: "20px 10px 2px" }}
+            sx={{ padding: "20px 10px 2px" }}
           >
             {details.details.title}
           </Typography>

@@ -10,12 +10,12 @@ import {
 import React from "react";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
+import { useState } from "react";
 import {
-  destinationData,
-  blogCards,
-  accCards,
+  destinationData
 } from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
+import AlertDialog from "../containers/AlertDialog";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
@@ -38,6 +38,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 const BucketList = () => {
   const classes = useStyles();
+  const [open, setOpen] = useState(false); // for alert box
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   const displayStrip = (title, cards) => {
     const data = cards;
     return (
@@ -105,6 +113,7 @@ const BucketList = () => {
                         size="small"
                         color="primary"
                         className="text-align-center"
+                        onClick={handleOpen}
                       >
                         Remove from bucket list
                       </Button>
@@ -133,6 +142,15 @@ const BucketList = () => {
       </Grid>
       <Grid item xs={12}>
         <Footer />
+      </Grid>
+      <Grid item xs={12}>
+        <AlertDialog
+          open={open}
+          title="Confirm"
+          message="Are you sure you want to remove it from the bucket list ?"
+          handleClose={handleClose}
+          buttons={["Cancel", "Ok"]}
+        />
       </Grid>
     </Grid>
   );
