@@ -12,7 +12,7 @@ import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
 import data from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+import { Button, CardActionArea, CardActions} from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   root: {

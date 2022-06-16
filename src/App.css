@@ -48,3 +48,14 @@
 .text-align-center{
   text-align: center;
 }
+
+.filter-menu button{
+  border: 1px solid #737dbb;
+  color: #737dbb;
+}
+
+.filter-menu button:hover{
+  border: 1px solid #737dbb;
+  background-color: #737dbb;
+  color: #fff;
+}

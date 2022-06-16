@@ -1,5 +1,6 @@
 import { Grid, Box } from "@mui/material";
 import Filter from "../containers/Filter";
+import FilterMenu from "../containers/FilterMenu";
 import { Typography } from "@mui/material";
 import data from "../containers/Filter/mockData";
 import destinationsData from "../containers/ContentCard/mockData";
@@ -32,7 +33,7 @@ const Destinations = () => {
       </Grid>
       <Grid
         item
-        sx={{ display: { xs: "none", sm: "none", md: "block" } }}
+        sx={{ display: { xs: "none", md: "block" } }}
         md={2.5}
         xs={0}
       >
@@ -45,11 +46,20 @@ const Destinations = () => {
           component="h4"
           color="primary"
           paddingTop="0.5em"
-          paddingLeft="17px"
+          className="text-align-center"
         >
           Destinations
         </Typography>
         <SearchCont onEvent={handleEvent}></SearchCont>
+        <Grid
+        item
+        sx={{ display: { xs: "block", md: "none" } }}
+        md={0}
+        xs={12}
+        className="text-align-center"
+      >
+        <FilterMenu filterProperties={data}></FilterMenu>
+      </Grid>
         <Grid container>
           {destinationsData.map((destination) => {
             if (searchInput) {
