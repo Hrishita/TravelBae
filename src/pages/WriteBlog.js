@@ -3,6 +3,7 @@ import { Button } from "@mui/material";
 import React, { useState } from "react";
 import EditorComp from "../components/Editor";
 import ModalComp from "../components/Modal";
+import NavBar from "../containers/NavBar";
 
 export const Blog = () => {
   return (
@@ -50,7 +51,10 @@ export const Write = () => {
   };
 
   return (
+    <React.Fragment>
+    
     <div className="container" style={{ marginTop: "5rem" }}>
+      
       <ModalComp
         show={alert.show}
         handleClose={() => {
@@ -131,6 +135,7 @@ export const Write = () => {
         </button>
       </div>
     </div>
+    </React.Fragment>
   );
 };
 
