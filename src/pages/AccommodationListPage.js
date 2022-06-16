@@ -4,10 +4,12 @@ import CardCarousel from "../containers/CardCarousel";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
 import Footer from "../containers/Footer";
-import AccommodationListHorizontalCards from "../containers/AccommodationListHorizontalCards";
 import Pagination from "../containers/Pagination";
-// import AccommodationSideBarFilter from "../components/AccommodationSideBarFilter";
 import AccommodationSearchBoxComp from "../components/AccommodationSearch";
+import HorizontralCardComp from "../components/HorizontalCard";
+import { hotelList } from "../components/HorizontalCard/hotelLists";
+import Filter from "../containers/Filter";
+import data from "../containers/Filter/mockData";
 
 function AccommodationListPage() {
   return (
@@ -30,12 +32,46 @@ function AccommodationListPage() {
         </Box>
       </Grid>
 
-      {/* <Grid item xs={2}>
-        <AccommodationSideBarFilter />
-      </Grid> */}
+      <Grid item xs={12}>
+        <Grid container justifyContent="center" alignItems="center">
+          <Box
+            component="span"
+            sx={{
+              fontSize: 24,
+              fontFamily: "Arial",
+              fontWeight: "bold",
+              pt: 2,
+            }}
+          >
+            Our top picked hotels for you...
+          </Box>
+        </Grid>
+      </Grid>
 
-      <Grid item xs={12}> 
-        <AccommodationListHorizontalCards />
+      <Grid item xs={2}>
+        <Filter filterProperties={data}></Filter>
+      </Grid>
+
+      <Grid item xs={10}>
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="center"
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+        >
+          {hotelList.map((myVariable) => {
+            return (
+              <HorizontralCardComp
+                name={myVariable.name}
+                address={myVariable.address}
+                image={myVariable.image}
+                price={myVariable.price}
+                desc={myVariable.desc}
+              />
+            );
+          })}
+        </Grid>
       </Grid>
 
       <Grid item xs={12}>

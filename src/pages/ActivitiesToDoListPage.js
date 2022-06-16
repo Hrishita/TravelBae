@@ -5,9 +5,11 @@ import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
 import SearchBoxComp from "../components/SearchBox";
 import Footer from "../containers/Footer";
-import ActivitiesListCard from "../containers/ActivitiesListCard";
 import Pagination from "../containers/Pagination";
 import { activitiesList } from "../containers/ActivitiesListCard/activitiesData";
+import HorizontralCardComp from "../components/HorizontalCard";
+import Filter from "../containers/Filter";
+import data from "../containers/Filter/mockData";
 
 function ActivitiesToDoListPage() {
   return (
@@ -25,25 +27,46 @@ function ActivitiesToDoListPage() {
       </Grid>
 
       <Grid item xs={12}>
-        <Box sx={{ mb: 10 }}>
+        <Box sx={{ mb: 1 }}>
           <Divider />
         </Box>
       </Grid>
-      
-      <Grid item xs={12} style={{ paddingRight: 100, paddingLeft: 100 }}>
-        <Grid container alignItems="center" justifyContent="center" spacing={2}>
-          {activitiesList.map((card) => {
+
+      <Grid item xs={12}>
+        <Grid container justifyContent="center" alignItems="center">
+          <Box
+            component="span"
+            sx={{
+              fontSize: 24,
+              fontFamily: "Arial",
+              fontWeight: "bold",
+            }}
+          >
+            Top Activities to Do...
+          </Box>
+        </Grid>
+      </Grid>
+
+      <Grid item xs={2}>
+        <Filter filterProperties={data}></Filter>
+      </Grid>
+
+      <Grid item xs={10}>
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="center"
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+        >
+          {activitiesList.map((myVariable) => {
             return (
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                md={4}
-                lg={2}
-                style={{ textAlign: "center", m: 5 }}
-              >
-                <ActivitiesListCard image={card.image} title={card.name} />
-              </Grid>
+              <HorizontralCardComp
+                name={myVariable.name}
+                address={myVariable.address}
+                image={myVariable.image}
+                desc={myVariable.desc}
+              />
             );
           })}
         </Grid>

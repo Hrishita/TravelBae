@@ -14,6 +14,10 @@ const Travel = React.lazy(() => import("./pages/Plan/Travel"));
 const Itinerary = React.lazy(() => import("./pages/Plan/Itinerary"));
 const Destinations = React.lazy(() => import("./pages/Destinations"));
 const ThingsToCarryPage = React.lazy(() => import("./pages/ThingsToCarryPage"));
+const AccommodationListPage = React.lazy(() =>import("./pages/AccommodationListPage"));
+const AccommodationPage = React.lazy(() =>import("./pages/AccommodationPage"));
+const ActivitiesToDoListPage = React.lazy(() =>import("./pages/ActivitiesToDoListPage"));
+const ActivitiesToDoMainPage = React.lazy(() =>import("./pages/ActivitiesToDoMainPage"));
 
 function Router() {
   return (
@@ -83,6 +87,34 @@ function Router() {
             path="/thingstocarry"
             render={() => {
               return <ThingsToCarryPage />;
+            }}
+          />
+          <Route
+            exact
+            path="/accommodationlist"
+            render={() => {
+              return <AccommodationListPage />;
+            }}
+          />
+          <Route
+            exact
+            path="/accommodation"
+            render={() => {
+              return <AccommodationPage />;
+            }}
+          />
+          <Route
+            exact
+            path="/activities"
+            render={() => {
+              return <ActivitiesToDoMainPage />;
+            }}
+          />
+          <Route
+            exact
+            path="/activitylist"
+            render={() => {
+              return <ActivitiesToDoListPage />;
             }}
           />
         </Switch>
