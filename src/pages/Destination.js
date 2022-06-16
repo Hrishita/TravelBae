@@ -1,18 +1,14 @@
-import {
-  Grid,
-  Link,
-  Typography,
-  makeStyles,
-  Card,
-  CardMedia,
-} from "@material-ui/core";
+import { Link, makeStyles, Card, CardMedia } from "@material-ui/core";
 import Divider from "@mui/material/Divider";
 import React from "react";
 import NavBar from "../containers/NavBar";
-import { Box } from "@material-ui/core";
-import { cards } from "../containers/CardCont/mockData";
+import { Grid, Box, Typography } from "@mui/material";
+import {
+  destinationData,
+  blogCards,
+  accCards,
+} from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
@@ -33,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Destination = () => {
   const classes = useStyles();
-  const displayStrip = (title) => {
+  const displayStrip = (title, cards) => {
+    const data = cards;
     return (
       <>
         <Grid item xs={12}>
@@ -52,13 +49,11 @@ const Destination = () => {
             </Grid>
           </Grid>
         </Grid>
-
         <Grid item xs={12}>
           <Box pb={4}>
             <Divider />
           </Box>
         </Grid>
-
         <Grid item xs={12}>
           <Grid
             container
@@ -138,10 +133,8 @@ const Destination = () => {
         </Grid>
         <Grid item xs={12}>
           <Box sx={{ padding: "1em 3em" }}>
-            {displayStrip("Activities to do")}
-            {displayStrip("Accomodations")}
-            {displayStrip("Blogs")}
-            {displayStrip("Itinerary")}
+            {displayStrip("Travel Blogs", blogCards)}
+            {displayStrip("Accommodations", accCards)}
           </Box>
         </Grid>
       </Grid>
@@ -151,5 +144,4 @@ const Destination = () => {
     </Grid>
   );
 };
-
 export default Destination;

@@ -10,9 +10,13 @@ import {
 import React from "react";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
-import data from "../containers/CardCont/mockData";
+import {
+  destinationData,
+  blogCards,
+  accCards,
+} from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
-import { Button, CardActionArea, CardActions} from "@mui/material";
+import { Button, CardActionArea, CardActions } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,7 +38,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 const BucketList = () => {
   const classes = useStyles();
-  const displayStrip = (title) => {
+  const displayStrip = (title, cards) => {
+    const data = cards;
     return (
       <>
         <Grid item xs={12}>
@@ -122,8 +127,7 @@ const BucketList = () => {
       <Grid container>
         <Grid item xs={12}>
           <Box sx={{ padding: "1em 3em" }}>
-            {displayStrip("Destinations")}
-            {displayStrip("Activties to do")}
+            {displayStrip("Destinations", destinationData)}
           </Box>
         </Grid>
       </Grid>
