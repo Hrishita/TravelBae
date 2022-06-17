@@ -1,7 +1,7 @@
 import { Delete } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import React, { useState } from "react";
-import EditorComp from "../components/Editor";
+//import EditorComp from "../components/Editor";
 import ModalComp from "../components/Modal";
 import NavBar from "../containers/NavBar";
 import Grid from "@mui/material/Grid";
@@ -9,7 +9,7 @@ import Footer from "../containers/Footer";
 export const Blog = () => {
   return (
     <div className="Blog">
-      <EditorComp />
+      {/* <EditorComp /> */}
     </div>
   );
 };
@@ -125,10 +125,22 @@ export const Write = () => {
           }}
           style={{ zIndex: "0", width: "100%" }}
         />
-        <EditorComp
+          <textarea
+          className="form-control mt-2"
+          type="text"
+          placeholder="Enter Blog content here"
+          style={{ zIndex: "0", height: "100px", width: "100%" }}
+          value={editorData}
+          onChange={(e) => {
+            setEditorData(e.target.value);
+
+          }}
+          
+        />
+        {/* <EditorComp
           handleSubmit={handleSubmit}
           onChangeText={(e) => setEditorData(e)}
-        />
+        /> */}
       </div>
       <div className="d-flex justify-content-center align-items-center">
         <button
