@@ -15,6 +15,12 @@
   }
 }
 
+@media screen and (min-width: 0px) and (max-width: 800px) {
+  .sidebar-container {
+    display: none;
+  }
+}
+
 .sidebar-userprofileContainer {
   align-items: center;
   flex-direction: column;
@@ -56,10 +62,10 @@
 }
 
 .sidebar-contact-container {
-  width: 50%;
+  width: 65%;
   background-color: #dde2eb;
   color: #383030;
-  height: 10%;
+  height: 15%;
   margin: auto auto;
   border-radius: 1rem;
   display: flex;

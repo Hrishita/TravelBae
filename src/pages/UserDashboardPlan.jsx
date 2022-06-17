@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "./../components/UserDashboard/Dashboard.css";
 import NavBar from "../containers/NavBar";
+import AlertDialog from "../containers/AlertDialog";
 import Footer from "../containers/Footer";
 import SideBar from "../components/SideBar/Sidebar";
 import { Grid } from "@material-ui/core";
 import { TbPlaneDeparture } from "react-icons/tb";
+import { Box, Button } from "@mui/material";
 
 function UserDashbordPlan() {
+  const [open, setOpen] = useState(false); // for alert box
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -40,12 +50,14 @@ function UserDashbordPlan() {
                         </h5>
                       </div>
                     </div>
+                    <Box display="inline-flex" mr={2}><Button variant="contained" onClick={handleOpen}>Delete Plan</Button></Box>
+                    <Box display="inline-flex"><Button variant="contained" onClick={handleOpen}>Complete Trip</Button></Box>
 
-                    <li style={{ listStyle: "none" }}>
+                    {/* <li style={{ listStyle: "none" }}>
                       <h5 className="all">
                         <a href="/userdashboard-plans">ReadMore</a>
                       </h5>
-                    </li>
+                    </li> */}
                   </div>
                 </div>
               </div>
@@ -72,12 +84,13 @@ function UserDashbordPlan() {
                         </h5>
                       </div>
                     </div>
-
-                    <li style={{ listStyle: "none" }}>
+                    <Box display="inline-flex" mr={2}><Button variant="contained" onClick={handleOpen}>Delete Plan</Button></Box>
+                    <Box display="inline-flex"><Button variant="contained" onClick={handleOpen}>Complete Trip</Button></Box>
+                    {/* <li style={{ listStyle: "none" }}>
                       <h5 className="all">
                         <a href="/userdashboard-plans">ReadMore</a>
                       </h5>
-                    </li>
+                    </li> */}
                   </div>
                 </div>
               </div>
@@ -87,6 +100,15 @@ function UserDashbordPlan() {
       </Grid>
       <Grid item xs={12}>
         <Footer />
+      </Grid>
+      <Grid item xs={12}>
+        <AlertDialog
+          open={open}
+          title="Confirm"
+          message="API logic required"
+          handleClose={handleClose}
+          buttons={["Cancel", "Ok"]}
+        />
       </Grid>
     </Grid>
   );

@@ -54,8 +54,7 @@ function UserDashbordFlag() {
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Integer nec odio. Praesent libero. Sed cursus ante dapibus
                       diam. Sed nisi. Nulla quis sem at nibh elementum
-                      imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec
-                      tellus sed augue semper porta.
+                      imperdiet. Duis sagittis ipsum. Praesent mauris. 
                     </Typography>
                   </div>
                 </div>
@@ -90,8 +89,7 @@ function UserDashbordFlag() {
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Integer nec odio. Praesent libero. Sed cursus ante dapibus
                       diam. Sed nisi. Nulla quis sem at nibh elementum
-                      imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec
-                      tellus sed augue semper porta.
+                      imperdiet. Duis sagittis ipsum. Praesent mauris. 
                     </Typography>
                   </div>
                 </div>
@@ -104,11 +102,11 @@ function UserDashbordFlag() {
                 component="div"
                 sx={{ paddingTop: "2%" }}
               >
-                <li style={{ listStyle: "none" }}>
+                {/* <li style={{ listStyle: "none" }}>
                   <h5>
                     <a href="/userdashboard-flags">Flag bank of Travel Bae</a>
                   </h5>
-                </li>
+                </li> */}
                 {/* Flag bank of Travel Bae */}
               </Typography>
             </div>

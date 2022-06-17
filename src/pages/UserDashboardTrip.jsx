@@ -47,11 +47,11 @@ function UserDashbordTrip() {
                       </div>
                     </div>
 
-                    <li style={{ listStyle: "none" }}>
+                    {/* <li style={{ listStyle: "none", textAlign: "end" }}>
                       <h5 className="all">
                         <a href="#">LOAD MORE</a>
                       </h5>
-                    </li>
+                    </li> */}
                   </div>
                 </div>
               </div>
@@ -83,11 +83,11 @@ function UserDashbordTrip() {
                         </h5>
                       </div>
                     </div>
-                    <li style={{ listStyle: "none" }}>
+                    {/* <li style={{ listStyle: "none", textAlign: "end" }}>
                       <h5 className="all">
                         <a href="#">LOAD MORE</a>
                       </h5>
-                    </li>
+                    </li> */}
                   </div>
                 </div>
               </div>

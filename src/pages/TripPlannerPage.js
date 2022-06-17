@@ -10,9 +10,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import Fade from "@mui/material/Fade";
 import { Button, Box } from "@mui/material";
 import AlertDialog from "../containers/AlertDialog";
+import { useHistory } from "react-router-dom";
 
 const TripPlannerPage = () => {
   const [open, setOpen] = useState(false); // for alert box
+  const history = useHistory();
 
   const handleOpen = () => {
     setOpen(true);
@@ -20,6 +22,11 @@ const TripPlannerPage = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleClick = () => {
+    history.push("/trip-planner/plan");
+  };
+
   return (
     <Fade in={true}>
       <Grid container alignItems="center" justifyContent="center">
@@ -102,7 +109,7 @@ const TripPlannerPage = () => {
                     alignItems: "center",
                   }}
                 >
-                  <Button variant="contained" href="/trip-planner/plan">
+                  <Button variant="contained" onClick={handleClick}>
                     Start Your Planning
                   </Button>
                 </Box>

@@ -11,7 +11,7 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Logo from "../../assets/logo.jpeg";
 import { useStyles } from "./style";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 //navbar page links
 const pages = [
@@ -76,24 +76,24 @@ const NavBarComp = () => {
           <Box sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}>
             <img src={Logo} alt="travelbae-logo" height="50px" />
           </Box>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            style={{ "&:hover": { color: "primary", cursor: "pointer" } }}
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              textDecoration: "none",
-            }}
-            color="primary"
-          >
-            TRAVEL BAE
-          </Typography>
-
+          <Link to={"/"} style={{ textDecoration: "none" }}>
+            <Typography
+              variant="h6"
+              noWrap
+              style={{ "&:hover": { color: "primary", cursor: "pointer" } }}
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                textDecoration: "none",
+              }}
+              color="primary"
+              textAlign="center"
+            >
+              TRAVEL BAE
+            </Typography>
+          </Link>
           <Box sx={{ flexGrow: 2, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -138,6 +138,7 @@ const NavBarComp = () => {
           <Box sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}>
             <img src={Logo} alt="travelbae-logo" height="35px" />
           </Box>
+          {/* <Link to={"/"} style={{ textDecoration: "none" }}> */}
           <Typography
             variant="h5"
             noWrap
@@ -152,9 +153,11 @@ const NavBarComp = () => {
               textDecoration: "none",
             }}
             color="primary"
+            textAlign="center"
           >
             TRAVEL BAE
           </Typography>
+          {/* </Link> */}
           <Box
             p={2}
             sx={{ flexGrow: 2, display: { xs: "none", md: "flex" } }}

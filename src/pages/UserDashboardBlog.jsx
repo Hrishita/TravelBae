@@ -5,8 +5,14 @@ import Footer from "../containers/Footer";
 import SideBar from "../components/SideBar/Sidebar";
 import { Grid } from "@material-ui/core";
 import { GiStarAltar } from "react-icons/gi";
+import { Button } from "@mui/material";
+import { useHistory } from "react-router-dom";
 
 function UserDashbordBlog() {
+  const history = useHistory();
+  const handleClick = () => {
+    history.push("/write-blog");
+  }
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -18,6 +24,7 @@ function UserDashbordBlog() {
           <div className="dashbord-container">
             <div className="dashbord-subcontainer">
               <h2 className="dashbord-titletext">BLOGS</h2>
+              <Button variant="contained" onClick={handleClick}>Create Blog</Button>
               <div className="dashbord-sectionone">
                 <div className="dashbord-columnone">
                   {/* CLOSED TRIP INFORMATION */}
@@ -32,7 +39,7 @@ function UserDashbordBlog() {
                         alt=""
                       />
                       <div style={{ marginLeft: "1rem" }}>
-                        <h3 className="title">My First Blog in Travel Bea</h3>
+                        <h3 className="title">My First Blog in Travel Bae</h3>
                         <h5 style={{ fontWeight: "300" }}>
                           Lorem ipsum dolor sit amet, consectetuer adipiscing
                           elit. Aenean commodo ligula eget dolor. Aenean massa.
