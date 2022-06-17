@@ -138,3 +138,5 @@ All the images used for this project are royalty free.
 [10] Assignment - 1 Git URL (Nishit Mistry) - https://git.cs.dal.ca/nmistry/csci5709/-/tree/assignment1
 
 - Some part of code is taken from  first individual assignment referenced above. 
+
+[11] -  Blog content is taken from - https://www.theblondeabroad.com/ultimate-bali-travel-guide/
