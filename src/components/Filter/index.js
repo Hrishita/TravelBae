@@ -13,9 +13,6 @@ const FilterComp = (props) => {
 
   const [open, setOpen] = useState(false); // for alert box
 
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // };
   const handleClose = () => {
     setOpen(false);
   };

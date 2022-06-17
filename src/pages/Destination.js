@@ -1,7 +1,7 @@
-import { Divider, Link, makeStyles, Card, CardMedia } from "@material-ui/core";
-import React from "react";
+import { Link, makeStyles, Card, CardMedia } from "@material-ui/core";
+import React, { useState } from "react";
 import NavBar from "../containers/NavBar";
-import { Grid, Box, Typography } from "@mui/material";
+import { Grid, Box, Typography, Divider } from "@mui/material";
 import {
   destinationData,
   blogCards,
@@ -10,6 +10,7 @@ import {
 import Footer from "../containers/Footer";
 import { useHistory } from "react-router-dom";
 import GoogleMap from "./../components/GoogleMap/index";
+import AlertDialog from "../containers/AlertDialog";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,6 +36,14 @@ const Destination = () => {
   const handleListItemClick = (navigationLink) => {
     history.push(navigationLink);
   };
+  const [open, setOpen] = useState(false); // for alert box
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   const displayStrip = (title, cards, navigationLink) => {
     const data = cards;
     return (
@@ -50,7 +59,9 @@ const Destination = () => {
             </Grid>
             <Grid item xs={2}>
               <Box pt={4} pr={2} display="flex" justifyContent="flex-end">
-                <Link color="secondary">View All</Link>
+                <Link color="secondary" onClick={handleOpen}>
+                  View All
+                </Link>
               </Box>
             </Grid>
           </Grid>
@@ -85,10 +96,10 @@ const Destination = () => {
                   >
                     <CardMedia
                       component="img"
-                      alt="Contemplative Reptile"
+                      alt={title}
                       height="300"
                       image={card.img}
-                      title="Contemplative Reptile"
+                      title={title}
                     />
                     <Typography
                       gutterBottom
@@ -162,6 +173,15 @@ const Destination = () => {
       </Grid>
       <Grid item xs={12}>
         <Footer />
+      </Grid>
+      <Grid item xs={12}>
+        <AlertDialog
+          open={open}
+          title="Confirm"
+          message="API logic required to View"
+          handleClose={handleClose}
+          buttons={["Cancel", "Ok"]}
+        />
       </Grid>
     </Grid>
   );
