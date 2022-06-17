@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@mui/material/TextField";
@@ -9,8 +9,17 @@ import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 import Fade from "@mui/material/Fade";
 import { Button, Box } from "@mui/material";
+import AlertDialog from "../containers/AlertDialog";
 
 const TripPlannerPage = () => {
+  const [open, setOpen] = useState(false); // for alert box
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <Fade in={true}>
       <Grid container alignItems="center" justifyContent="center">
@@ -56,6 +65,7 @@ const TripPlannerPage = () => {
                     variant="outlined"
                     type="search"
                     fullWidth
+                    onChange={handleOpen}
                   />
                 </Box>
               </Grid>
@@ -102,6 +112,15 @@ const TripPlannerPage = () => {
         </Grid>
         <Grid item xs={12}>
           <Footer />
+        </Grid>
+        <Grid item xs={12}>
+          <AlertDialog
+            open={open}
+            title="Confirm"
+            message="API logic required to Search"
+            handleClose={handleClose}
+            buttons={["Cancel", "Ok"]}
+          />
         </Grid>
       </Grid>
     </Fade>
