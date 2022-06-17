@@ -13,30 +13,33 @@ import Logo from "../../assets/logo.jpeg";
 import { useStyles } from "./style";
 import { useHistory } from "react-router-dom";
 
-const pages = [{
-  name: "Destinations",
-  link: "/destinations"
-},
-{
-  name: "Activties To Do",
-  link: "/activities"
-},
-{
-  name: "Accommodation",
-  link: "/accommodation"
-},
-{
-  name: "Transport",
-  link: "/flights"
-},
-{
-  name: "Things to Carry",
-  link: "/thingstocarry"
-},
-{
-  name: "Bucket List",
-  link: "/bucket-list"
-}
+//nav bar changes
+
+const pages = [
+  {
+    name: "Destinations",
+    link: "/destinations",
+  },
+  {
+    name: "Activties To Do",
+    link: "/activities",
+  },
+  {
+    name: "Accommodation",
+    link: "/accommodation",
+  },
+  {
+    name: "Transport",
+    link: "/flights",
+  },
+  {
+    name: "Things to Carry",
+    link: "/thingstocarry",
+  },
+  {
+    name: "Bucket List",
+    link: "/bucket-list",
+  },
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -47,7 +50,7 @@ const NavBarComp = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const navigateToPage = (page) => {
     history.push(page);
-  }
+  };
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -121,7 +124,12 @@ const NavBarComp = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center" onClick={() => navigateToPage(page.link)}>{page.name}</Typography>
+                  <Typography
+                    textAlign="center"
+                    onClick={() => navigateToPage(page.link)}
+                  >
+                    {page.name}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
