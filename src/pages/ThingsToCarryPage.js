@@ -1,15 +1,16 @@
-import { Grid, Typography, Box, Divider, CardActions } from "@material-ui/core";
+import { Grid, Typography, Box, CardActions } from "@material-ui/core";
 import Button from "@mui/material/Button";
 
 import React, { useState } from "react";
 import NavBar from "../containers/NavBar";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-import { CardActionArea } from "@mui/material";
+import { CardActionArea, Divider } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
 // import Footer from "../containers/Footer";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Filter from "../containers/Filter";
+import FilterMenu from "../containers/FilterMenu";
 import filterData from "../containers/ThingsToCarry/mockData";
 
 //MockData
@@ -289,11 +290,32 @@ const ThingsToCarryPage = (props) => {
       <Grid item xs={12} sx={{ overflow: "hidden" }}>
         <Grid container justifyContent="center">
           <Grid item xs={12} lg={3}>
-            {/* <Filter /> */}
-            <Filter filterProperties={filterData}></Filter>
+            <Box display="flex" sx={{ display: { xs: "none", lg: "block" } }}>
+              <Filter filterProperties={filterData}></Filter>
+            </Box>
           </Grid>
           <Grid item xs={12} lg={9}>
             <Grid container justifyContent="center" spacing={2}>
+              <Grid item>
+                <Box display="inline-flex">
+                  <Typography variant="h5">Things To Carry</Typography>
+                  <Box
+                    sx={{
+                      display: { xs: "flex", lg: "none" },
+                    }}
+                  >
+                    <FilterMenu filterProperties={filterData}></FilterMenu>
+                  </Box>
+                </Box>
+              </Grid>
+              <Grid item xs={12}>
+                <Box pb={2}>
+                  <Divider
+                    variant="middle"
+                    sx={{ borderBottomWidth: 3, background: "black" }}
+                  />
+                </Box>
+              </Grid>
               {data.map((dataObj) => {
                 return (
                   <>
@@ -303,9 +325,7 @@ const ThingsToCarryPage = (props) => {
                       </Typography>
                     </Grid>
                     <Grid item xs={12}>
-                      {/* <Box paddingBottom={2}> */}
                       <Divider />
-                      {/* </Box> */}
                     </Grid>
                     {dataObj.itemList.map((item) => (
                       <Grid

@@ -12,18 +12,14 @@ import Pagination from "@mui/material/Pagination";
 import NoDataFound from "../components/NoDataFound";
 import Footer from "../containers/Footer";
 
+
 const Destinations = () => {
   const [searchInput, setSearchInput] = useState("");
   let destinationIsEmpty = true;
   let showNoData = false;
-  // const navigate = useNavigate();
 
   let handleEvent = (event) => {
     setSearchInput(event);
-  };
-
-  const handleListItemClick = (destinationId) => {
-    // navigate("/destination", { state: destinationId });
   };
 
   return (
@@ -70,9 +66,7 @@ const Destinations = () => {
               ) {
                 destinationIsEmpty = false;
                 return (
-                  <ContentCardCont details={destination} onClick={() => {
-                    handleListItemClick(destination.id);
-                  }}></ContentCardCont>
+                  <ContentCardCont details={destination}></ContentCardCont>
                 );
               } else {
                 showNoData = true;
@@ -80,15 +74,14 @@ const Destinations = () => {
               }
             } else {
               destinationIsEmpty = false;
-              return <ContentCardCont details={destination} onClick={() => {
-                handleListItemClick(destination.id);
-              }}></ContentCardCont>;
+              return <ContentCardCont details={destination}></ContentCardCont>;
             }
           })}
           <NoDataFound
             display={showNoData}
             message="Destination not present. Please search for another one or select from the list."
             listEmpty={destinationIsEmpty}
+            className="text-align-center"
           ></NoDataFound>
           <Box sx={{ textAlign: "center", width: "100%" }}>
             <Pagination

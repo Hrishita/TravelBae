@@ -18,7 +18,7 @@ function Footer() {
       }}
     >
       <Grid container borderBottom={0.1} sx={{ pb: 2 }}>
-        <Grid item xs={3}>
+        {/* <Grid item xs={3}>
           <Box
             textAlign="center"
             fontFamily="Arial"
@@ -37,11 +37,8 @@ function Footer() {
               Best travel experience with TravelBae...
             </Typography>
           </Box>
-          {/* {footerData.map((myVariable) => {
-            return <FooterComp name={myVariable.name} />;
-          })} */}
-        </Grid>
-        <Grid item xs={3}>
+        </Grid> */}
+        <Grid item xs={4}>
           <Box
             textAlign="center"
             fontFamily="Arial"
@@ -56,7 +53,7 @@ function Footer() {
           <FooterComp name="Trip Planner" />
           <FooterComp name="Travel Blogs" />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={4}>
           <Box
             textAlign="center"
             fontFamily="Arial"
@@ -69,7 +66,7 @@ function Footer() {
           <FooterComp name="Privacy" />
           <FooterComp name="Cookies" />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={4}>
           <Box
             textAlign="center"
             fontFamily="Arial"
@@ -83,18 +80,7 @@ function Footer() {
           <FooterComp name="Cookies" /> */}
 
           <Box display="flex" justifyContent="center">
-            <Typography textAlign="center">1035 South Park Street</Typography>
-          </Box>
-          <Box display="flex" justifyContent="center">
-            <Typography textAlign="center">Halifax, Canada, B3H 2W1</Typography>
-          </Box>
-          <Box display="flex" justifyContent="center">
-            <MailOutlineIcon sx={{ pr: 2 }} />
-            <Typography textAlign="center">grp15@travelbae.com</Typography>
-          </Box>
-          <Box display="flex" justifyContent="center">
-            <PhoneAndroidIcon sx={{ pr: 2 }} />
-            <Typography textAlign="center">+19024122435</Typography>
+            <Typography textAlign="center">1035 South Park Street, Halifax, Canada, B3H 2W1</Typography>
           </Box>
         </Grid>
       </Grid>

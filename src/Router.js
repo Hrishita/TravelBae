@@ -38,6 +38,8 @@ const Trips = React.lazy(() => import("./pages/UserDashboardTrip"));
 const Blogs = React.lazy(() => import("./pages/UserDashboardBlog"));
 const SearchFlights = React.lazy(() => import("./pages/SearchFlights"));
 const ViewBlog = React.lazy(() => import("./pages/ViewBlog"));
+const BlogList = React.lazy(() => import("./pages/BlogList"));
+
 const Flags = React.lazy(() => import("./pages/UserDashboardFlag"));
 const Plans = React.lazy(() => import("./pages/UserDashboardPlan"));
 function Router() {
@@ -50,6 +52,13 @@ function Router() {
             path="/"
             render={() => {
               return <HomePage />;
+            }}
+          />
+          <Route
+            exact
+            path="/destination"
+            render={() => {
+              return <Destination />;
             }}
           />
           <Route exact path="/register" component={RegisterUser} />
@@ -189,6 +198,13 @@ function Router() {
             path="/bucket-list"
             render={() => {
               return <BucketList />;
+            }}
+          />
+          <Route
+            exact
+            path="/blog-list"
+            render={() => {
+              return <BlogList />;
             }}
           />
           <Route

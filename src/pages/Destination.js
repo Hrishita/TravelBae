@@ -1,11 +1,4 @@
-
-import {
-  Divider,
-  Link,
-  makeStyles,
-  Card,
-  CardMedia,
-} from "@material-ui/core";
+import { Divider, Link, makeStyles, Card, CardMedia } from "@material-ui/core";
 import React from "react";
 import NavBar from "../containers/NavBar";
 import { Grid, Box, Typography } from "@mui/material";
@@ -15,6 +8,8 @@ import {
   accCards,
 } from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
+import { useHistory } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
@@ -35,7 +30,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Destination = () => {
   const classes = useStyles();
-  const displayStrip = (title, cards) => {
+  const history = useHistory();
+  const handleListItemClick = (navigationLink) => {
+    history.push(navigationLink);
+  };
+  const displayStrip = (title, cards, navigationLink) => {
     const data = cards;
     return (
       <>
@@ -67,7 +66,7 @@ const Destination = () => {
             justifyContent="center"
             spacing={2}
           >
-            {data.map((card) => {
+            {cards.map((card) => {
               return (
                 <Grid
                   item
@@ -77,7 +76,9 @@ const Destination = () => {
                   lg={3}
                   style={{ textAlign: "center" }}
                 >
-                  <Card className={classes.root}>
+                  <Card className={classes.root} onClick={() => {
+        handleListItemClick(navigationLink);
+      }}>
                     <CardMedia
                       component="img"
                       alt="Contemplative Reptile"
@@ -111,25 +112,34 @@ const Destination = () => {
         <Grid item xs={12}>
           <Box sx={{ padding: "1em 3em" }}>
             <Grid container>
-              <Grid item xs={12} sm={3}>
+              <Grid item sm={12} md={4}>
                 <Box sx={{ height: "20em", marginBottom: "1em" }}>
                   <img
-                    src="https://live.staticflickr.com/4109/4991929737_4d661d0ff4_b.jpg"
+                    src="https://live.staticflickr.com/7105/27035703252_15ee559f5a_b.jpg"
                     height={"100%"}
+                    alt="image4"
                     width={"100%"}
                   ></img>
                 </Box>
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item sm={12} md={5}>
                 <Box sx={{ margin: "0px 10px 20px" }}>
                   <Typography variant="h4" color="primary">
                     Canada
                   </Typography>
                   <Typography variant="body2" color="default">
-                    Dolore aute amet dolore voluptate. Excepteur ut aute officia
-                    fugiat aliqua est dolor ipsum elit dolore sint commodo
-                    velit. Culpa sit dolor amet irure nostrud dolore ipsum
-                    eiusmod eu tempor mollit ad ad.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Ratione aliquam voluptatem esse delectus architecto facere
+                    totam aperiam sapiente aut, eius nisi possimus. Ipsum eius
+                    sapiente molestiae impedit maxime quisquam soluta. Lorem
+                    ipsum dolor sit amet consectetur adipisicing elit. Ratione
+                    aliquam voluptatem esse delectus architecto facere totam
+                    aperiam sapiente aut, eius nisi possimus. Ipsum eius
+                    sapiente molestiae impedit maxime quisquam soluta. Lorem
+                    ipsum dolor sit amet consectetur adipisicing elit. Ratione
+                    aliquam voluptatem esse delectus architecto facere totam
+                    aperiam sapiente aut, eius nisi possimus. Ipsum eius
+                    sapiente molestiae impedit maxime quisquam soluta.
                   </Typography>
                 </Box>
               </Grid>
@@ -138,8 +148,8 @@ const Destination = () => {
         </Grid>
         <Grid item xs={12}>
           <Box sx={{ padding: "1em 3em" }}>
-            {displayStrip("Travel Blogs", blogCards)}
-            {displayStrip("Accommodations", accCards)}
+            {displayStrip("Travel Blogs", blogCards, "/view-blogs")}
+            {displayStrip("Accommodations", accCards, "/accommodationList")}
           </Box>
         </Grid>
       </Grid>

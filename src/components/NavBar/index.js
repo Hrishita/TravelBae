@@ -18,8 +18,8 @@ const pages = [
   "Activities To Do",
   "Accommodation",
   "Transport",
-  "Travel Blogs",
-  "Bucket List"
+  "Things to Carry",
+  "Bucket List",
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -57,6 +57,7 @@ const NavBarComp = () => {
             noWrap
             component="a"
             href="/"
+            style={{ "&:hover": { color: "primary", cursor: "pointer" } }}
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -113,6 +114,7 @@ const NavBarComp = () => {
             noWrap
             component="a"
             href="/"
+            style={{ "&:hover": { color: "primary", cursor: "pointer" } }}
             sx={{
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
