@@ -1,15 +1,16 @@
-import { Grid, Typography, Box, Divider, CardActions } from "@material-ui/core";
+import { Grid, Typography, Box, CardActions } from "@material-ui/core";
 import Button from "@mui/material/Button";
 
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../containers/NavBar";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
-import { CardActionArea } from "@mui/material";
+import { CardActionArea, Divider } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
-import Footer from "../containers/Footer";
+// import Footer from "../containers/Footer";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Filter from "../containers/Filter";
+import FilterMenu from "../containers/FilterMenu";
 import filterData from "../containers/ThingsToCarry/mockData";
 
 //MockData
@@ -58,6 +59,8 @@ import towel from "../assets/clothes/towel.jpg";
 import sunscreen from "../assets/clothes/sunscreen.jpg";
 import toothpaste from "../assets/clothes/toothpaste.jpg";
 import mouthwash from "../assets/clothes/mouthwash.jpg";
+import AlertDialog from "../containers/AlertDialog";
+import Footer from "../containers/Footer";
 
 const data = [
   {
@@ -203,17 +206,22 @@ const useStyles = makeStyles((theme) => ({
   root: {
     // maxWidth: 310,
     // height: 200,
+    // display: "flex",
     backgroundSize: "contain",
     transition: "transform 0.15s ease-in-out",
     "&:hover": { transform: "scale3d(1.05, 1.05, 1)" },
     paddingBottom: "1rem",
+    cursor: "pointer",
   },
   media: {
-    display: "flex",
+    // display: "flex",
     objectFit: "scale-down",
     height: "50%",
     alignItems: "center",
     width: "50%",
+  },
+  actionArea: {
+    display: "flex",
   },
   cardFooter: {
     justifyContent: "center",
@@ -222,14 +230,41 @@ const useStyles = makeStyles((theme) => ({
 
 const ThingsToCarryPage = (props) => {
   const classes = useStyles();
+  const [checkedItems, setCheckedItems] = useState([]);
+  const [open, setOpen] = useState(false); // for alert box
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleClick = (name) => {
+    console.log("name...", name);
+    const updatedChecklist = [...checkedItems];
+    const position = updatedChecklist.findIndex((item) => item === name);
+    if (position !== -1) {
+      updatedChecklist.splice(position, 1);
+    } else {
+      updatedChecklist.push(name);
+    }
+    setCheckedItems(updatedChecklist);
+  };
+
   const displayCards = (name, image) => {
     return (
-      <Card className={classes.root}>
-        <Typography gutterBottom component="div">
-          <CheckCircleIcon color="success" />
-        </Typography>
+      <Card
+        className={classes.root}
+        key={name}
+        onClick={() => handleClick(name)}
+      >
+        <Box component="div" sx={{ height: "1rem" }}>
+          {checkedItems.indexOf(name) !== -1 && (
+            <CheckCircleIcon color="success" />
+          )}
+        </Box>
         {image && (
-          <CardActionArea>
+          <CardActionArea className={classes.actionArea}>
             <CardMedia
               className={classes.media}
               component="img"
@@ -247,7 +282,7 @@ const ThingsToCarryPage = (props) => {
     );
   };
   return (
-    <Grid container mt={2}>
+    <Grid spacing={2} container mt={2}>
       <Grid item xs={12}>
         <NavBar />
       </Grid>
@@ -255,11 +290,32 @@ const ThingsToCarryPage = (props) => {
       <Grid item xs={12} sx={{ overflow: "hidden" }}>
         <Grid container justifyContent="center">
           <Grid item xs={12} lg={3}>
-            {/* <Filter /> */}
-            <Filter filterProperties={filterData}></Filter>
+            <Box display="flex" sx={{ display: { xs: "none", lg: "block" } }}>
+              <Filter filterProperties={filterData}></Filter>
+            </Box>
           </Grid>
           <Grid item xs={12} lg={9}>
             <Grid container justifyContent="center" spacing={2}>
+              <Grid item>
+                <Box display="inline-flex">
+                  <Typography variant="h5">Things To Carry</Typography>
+                  <Box
+                    sx={{
+                      display: { xs: "flex", lg: "none" },
+                    }}
+                  >
+                    <FilterMenu filterProperties={filterData}></FilterMenu>
+                  </Box>
+                </Box>
+              </Grid>
+              <Grid item xs={12}>
+                <Box pb={2}>
+                  <Divider
+                    variant="middle"
+                    sx={{ borderBottomWidth: 3, background: "black" }}
+                  />
+                </Box>
+              </Grid>
               {data.map((dataObj) => {
                 return (
                   <>
@@ -269,9 +325,7 @@ const ThingsToCarryPage = (props) => {
                       </Typography>
                     </Grid>
                     <Grid item xs={12}>
-                      {/* <Box paddingBottom={2}> */}
                       <Divider />
-                      {/* </Box> */}
                     </Grid>
                     {dataObj.itemList.map((item) => (
                       <Grid
@@ -291,7 +345,12 @@ const ThingsToCarryPage = (props) => {
 
               <Grid item xs={12}>
                 <Box display="flex" justifyContent="flex-end" paddingRight={4}>
-                  <Button type="submit" variant="contained" color="primary">
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    onClick={handleOpen}
+                  >
                     Add to Plan
                   </Button>
                 </Box>
@@ -301,9 +360,18 @@ const ThingsToCarryPage = (props) => {
         </Grid>
       </Grid>
 
-      {/* <Grid item xs={12}>
+      <Grid item xs={12}>
         <Footer />
-      </Grid> */}
+      </Grid>
+      <Grid item xs={12}>
+        <AlertDialog
+          open={open}
+          title="Confirm"
+          message="API logic required to Save"
+          handleClose={handleClose}
+          buttons={["Cancel", "Ok"]}
+        />
+      </Grid>
     </Grid>
   );
 };

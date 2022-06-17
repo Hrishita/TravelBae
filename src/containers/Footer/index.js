@@ -1,11 +1,8 @@
 import { Box, Grid } from "@mui/material";
 import React from "react";
 import FooterComp from "../../components/Footer";
-import { footerData } from "./FooterDummyData";
-import { Divider } from "@mui/material";
 import vacation from "../../assets/vac.png";
 import { Typography } from "@material-ui/core";
-import { Label } from "@material-ui/icons";
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
@@ -21,14 +18,14 @@ function Footer() {
       }}
     >
       <Grid container borderBottom={0.1} sx={{ pb: 2 }}>
-        <Grid item xs={3}>
+        {/* <Grid item xs={3}>
           <Box
             textAlign="center"
             fontFamily="Arial"
             fontWeight="bold"
             sx={{ pb: 1 }}
           >
-            <img src={vacation} width="30%" height="30%" />
+            <img src={vacation} alt="vacation" width="30%" height="30%" />
           </Box>
           <Box
             // fontFamily="Arial"
@@ -40,11 +37,8 @@ function Footer() {
               Best travel experience with TravelBae...
             </Typography>
           </Box>
-          {/* {footerData.map((myVariable) => {
-            return <FooterComp name={myVariable.name} />;
-          })} */}
-        </Grid>
-        <Grid item xs={3}>
+        </Grid> */}
+        <Grid item xs={4}>
           <Box
             textAlign="center"
             fontFamily="Arial"
@@ -59,7 +53,7 @@ function Footer() {
           <FooterComp name="Trip Planner" />
           <FooterComp name="Travel Blogs" />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={4}>
           <Box
             textAlign="center"
             fontFamily="Arial"
@@ -72,7 +66,7 @@ function Footer() {
           <FooterComp name="Privacy" />
           <FooterComp name="Cookies" />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={4}>
           <Box
             textAlign="center"
             fontFamily="Arial"
@@ -86,18 +80,7 @@ function Footer() {
           <FooterComp name="Cookies" /> */}
 
           <Box display="flex" justifyContent="center">
-            <Typography textAlign="center">1035 South Park Street</Typography>
-          </Box>
-          <Box display="flex" justifyContent="center">
-            <Typography textAlign="center">Halifax, Canada, B3H 2W1</Typography>
-          </Box>
-          <Box display="flex" justifyContent="center">
-            <MailOutlineIcon sx={{ pr: 2 }} />
-            <Typography textAlign="center">grp15@travelbae.com</Typography>
-          </Box>
-          <Box display="flex" justifyContent="center">
-            <PhoneAndroidIcon sx={{ pr: 2 }} />
-            <Typography textAlign="center">+19024122435</Typography>
+            <Typography textAlign="center">1035 South Park Street, Halifax, Canada, B3H 2W1</Typography>
           </Box>
         </Grid>
       </Grid>

@@ -1,11 +1,12 @@
-import { Grid } from "@mui/material";
-import React, { Fragment } from "react";
+import React from "react";
 import RegisterComp from "../../components/Registration";
 
-function RegisterUser(props) {
-  return <Fragment>
-    <RegisterComp/>
-  </Fragment>;
+function RegisterUser() {
+  return (
+    <>
+      <RegisterComp />
+    </>
+  );
 }
 
 export default RegisterUser;

@@ -1,6 +1,5 @@
-import React from "react";
-import Typography from "@material-ui/core/Typography";
-import { Grid } from "@material-ui/core";
+import React, { useState } from "react";
+import { Grid, Typography } from "@material-ui/core";
 import { Box } from "@mui/material";
 import NavBar from "../../containers/NavBar";
 import Footer from "../../containers/Footer";
@@ -11,6 +10,7 @@ import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { CardActionArea, Avatar } from "@mui/material";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 //https://mui.com/material-ui/material-icons/ ref for icons
 import PersonIcon from "@mui/icons-material/Person";
 import GroupIcon from "@mui/icons-material/Group";
@@ -18,6 +18,60 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import FamilyRestroomIcon from "@mui/icons-material/FamilyRestroom";
 
 const Travel = () => {
+  const [checkedItemsSolo, setCheckedItemsSolo] = useState("");
+  const [checkedItemsCouple, setCheckedItemsCouple] = useState("");
+  const [checkedItemsFamily, setCheckedItemsFamily] = useState("");
+  const [checkedItemsFriends, setCheckedItemsFriends] = useState("");
+  const [marked, setMarked] = useState(false);
+
+  const handleClickSolo = (name) => {
+    if (checkedItemsSolo === name) {
+      setCheckedItemsSolo("");
+      setMarked(false);
+    } else {
+      if (!marked) {
+        setCheckedItemsSolo(name);
+        setMarked(true);
+      }
+    }
+  };
+
+  const handleClickCouple = (name) => {
+    if (checkedItemsCouple === name) {
+      setCheckedItemsCouple("");
+      setMarked(false);
+    } else {
+      if (!marked) {
+        setCheckedItemsCouple(name);
+        setMarked(true);
+      }
+    }
+  };
+
+  const handleClickFamily = (name) => {
+    if (checkedItemsFamily === name) {
+      setCheckedItemsFamily("");
+      setMarked(false);
+    } else {
+      if (!marked) {
+        setCheckedItemsFamily(name);
+        setMarked(true);
+      }
+    }
+  };
+
+  const handleClickFriends = (name) => {
+    if (checkedItemsFriends === name) {
+      setCheckedItemsFriends("");
+      setMarked(false);
+    } else {
+      if (!marked) {
+        setCheckedItemsFriends(name);
+        setMarked(true);
+      }
+    }
+  };
+
   return (
     <Grid container alignItems="center" justifyContent="center">
       <Grid item xs={12}>
@@ -27,8 +81,7 @@ const Travel = () => {
         <Slide direction="left" in={true} mountOnEnter unmountOnExit>
           <Box
             sx={{
-              bgcolor: "secondary.light",
-              color: "primary.contrastText",
+              bgcolor: "#e0ffff",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -65,7 +118,15 @@ const Travel = () => {
                     </Typography>
                   </Box>
                   <Box display="inline-flex">
-                    <Card sx={{ width: 150, mr: "2%" }}>
+                    <Card
+                      sx={{ width: "35%", mr: "2%" }}
+                      onClick={() => handleClickSolo("solo")}
+                    >
+                      <Box component="div" sx={{ height: "1rem" }}>
+                        {checkedItemsSolo !== "" && marked && (
+                          <CheckCircleIcon color="success" />
+                        )}
+                      </Box>
                       <CardActionArea>
                         <Box
                           sx={{
@@ -97,7 +158,15 @@ const Travel = () => {
                         </CardContent>
                       </CardActionArea>
                     </Card>
-                    <Card sx={{ width: 150, mr: "2%" }}>
+                    <Card
+                      sx={{ width: "35%", mr: "2%" }}
+                      onClick={() => handleClickCouple("couple")}
+                    >
+                      <Box component="div" sx={{ height: "1rem" }}>
+                        {checkedItemsCouple !== "" && marked && (
+                          <CheckCircleIcon color="success" />
+                        )}
+                      </Box>
                       <CardActionArea>
                         <Box
                           sx={{
@@ -129,7 +198,15 @@ const Travel = () => {
                         </CardContent>
                       </CardActionArea>
                     </Card>
-                    <Card sx={{ width: 150, mr: "2%" }}>
+                    <Card
+                      sx={{ width: "35%", mr: "2%" }}
+                      onClick={() => handleClickFamily("family")}
+                    >
+                      <Box component="div" sx={{ height: "1rem" }}>
+                        {checkedItemsFamily !== "" && marked && (
+                          <CheckCircleIcon color="success" />
+                        )}
+                      </Box>
                       <CardActionArea>
                         <Box
                           sx={{
@@ -161,7 +238,15 @@ const Travel = () => {
                         </CardContent>
                       </CardActionArea>
                     </Card>
-                    <Card sx={{ width: 150, mr: "2%" }}>
+                    <Card
+                      sx={{ width: "35%", mr: "2%" }}
+                      onClick={() => handleClickFriends("friends")}
+                    >
+                      <Box component="div" sx={{ height: "1rem" }}>
+                        {checkedItemsFriends !== "" && marked && (
+                          <CheckCircleIcon color="success" />
+                        )}
+                      </Box>
                       <CardActionArea>
                         <Box
                           sx={{
@@ -234,6 +319,7 @@ const Travel = () => {
           </Box>
         </Slide>
       </Grid>
+
       <Grid item xs={12}>
         <Footer />
       </Grid>

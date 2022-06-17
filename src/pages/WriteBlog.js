@@ -1,14 +1,15 @@
 import { Delete } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import React, { useState } from "react";
-import EditorComp from "../components/Editor";
+//import EditorComp from "../components/Editor";
 import ModalComp from "../components/Modal";
-
+import NavBar from "../containers/NavBar";
+import Grid from "@mui/material/Grid";
+import Footer from "../containers/Footer";
 export const Blog = () => {
- 
   return (
     <div className="Blog">
-      <EditorComp />
+      {/* <EditorComp /> */}
     </div>
   );
 };
@@ -22,12 +23,12 @@ export const Write = () => {
 
   const handleSubmit = () => {
     console.log(editorData);
-    if (!title || title == "") {
+    if (!title || title === "") {
       setAlert({
         show: true,
         message: "Title cannot be empty",
       });
-    } else if (editorData.trim() == "") {
+    } else if (editorData.trim() === "") {
       setAlert({
         show: true,
         message: "Content cannot be empty",
@@ -51,7 +52,12 @@ export const Write = () => {
   };
 
   return (
+    <React.Fragment>
+     <Grid item xs={12}>
+        <NavBar />
+      </Grid>
     <div className="container" style={{ marginTop: "5rem" }}>
+      
       <ModalComp
         show={alert.show}
         handleClose={() => {
@@ -62,26 +68,33 @@ export const Write = () => {
       <div className="image-upload my-3 d-flex flex-column justify-content-center align-items-center">
         {!image ? (
           <div
-            style={{ height: "20rem", width: "50%" }}
-            className="justify-content-center align-items-center d-flex card shadow"
+            style={{ width: "100%" }}
+            className="justify-content-center align-items-center d-flex flex-column"
           >
-            <div className="input-group d-flex justify-content-center align-items-center">
+            <div className="input-group d-flex justify-content-center align-items-center flex-column">
               <div className="custom-file">
-                <input
-                  type="file"
-                  className="form-control"
-                  id="main_image"
-                  onChange={onImageChange}
+                <img
+                  alt="image1"
+                  src="https://images.unsplash.com/photo-1614094082869-cd4e4b2905c7?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=MnwxfDB8MXxyYW5kb218MHx8dHJhdmVsfHx8fHx8MTY1NTM1NzA1OQ&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1024"
+                  className="mx-2 img-fluid"
                 />
               </div>
+              <input
+                type="file"
+                className="form-control my-3"
+                id="main_image"
+                style={{ width: "100%" }}
+                onChange={onImageChange}
+              />
             </div>
           </div>
         ) : (
-          <div className="d-flex flex-column align-items-center">
-            <div>
+          <div className="d-flex flex-column align-items-center justify-content-center">
+            <div className="d-flex justify-content-center align-items-center">
               <img
                 src={`${image}`}
                 className="mx-2"
+                alt="image2"
                 style={{ width: "50%", maxHeight: "20rem", objectFit: "cover" }}
               />
             </div>
@@ -110,12 +123,24 @@ export const Write = () => {
           onChange={(e) => {
             setTitle(e.target.value);
           }}
-          style={{ zIndex: "0", width: "50%" }}
+          style={{ zIndex: "0", width: "100%" }}
         />
-        <Editor 
+          <textarea
+          className="form-control mt-2"
+          type="text"
+          placeholder="Enter Blog content here"
+          style={{ zIndex: "0", height: "100px", width: "100%" }}
+          value={editorData}
+          onChange={(e) => {
+            setEditorData(e.target.value);
+
+          }}
+          
+        />
+        {/* <EditorComp
           handleSubmit={handleSubmit}
           onChangeText={(e) => setEditorData(e)}
-        />
+        /> */}
       </div>
       <div className="d-flex justify-content-center align-items-center">
         <button
@@ -127,6 +152,9 @@ export const Write = () => {
         </button>
       </div>
     </div>
+    <Footer/>
+    </React.Fragment>
   );
 };
 
+export default Write;

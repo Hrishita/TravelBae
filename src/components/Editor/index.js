@@ -1,34 +1,33 @@
-import styled from 'styled-components';
-import ReactQuill from 'react-quill'; // ES6
-import 'react-quill/dist/quill.snow.css'; // ES6
-import React, {useEffect, useRef, useState} from 'react';
+import styled from "styled-components";
+import ReactQuill from "react-quill"; // ES6
+import "react-quill/dist/quill.snow.css"; // ES6
+// import React, {useEffect, useRef, useState} from 'react';
+import React, { useRef, useState } from "react";
 
 const Wrapper = styled.div`
-margin-top: 16px;
-margin-bottom: 32px;
-display: flex;
-flex-wrap: wrap;
-justify-content: space-around ;
+  margin-top: 16px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 `;
 
 const WrapperLeft = styled.div`
-width: 48%;
-position: relative;
+  width: 48%;
+  position: relative;
 `;
-const WrapperRight = styled.div`
-width: 48%;
-`;
+// const WrapperRight = styled.div`
+//   width: 48%;
+// `;
 
-
-function EditorComp({handleSubmit, onChangeText}){
-
+function EditorComp({ handleSubmit, onChangeText }) {
   const modules = {
     toolbar: [
-      [{ 'header': '1'}, {'header': '2'}],
-      [{ 'color': [] }, { 'background': [] }],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-      [{'list': 'ordered'}, {'list': 'bullet'}], 
-      ['link',], // note: removed image 'image'
+      [{ header: "1" }, { header: "2" }],
+      [{ color: [] }, { background: [] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["link"], // note: removed image 'image'
     ],
   }
 
@@ -52,7 +51,8 @@ function EditorComp({handleSubmit, onChangeText}){
             <Wrapper style={{height: '100%'}}>
             <WrapperLeft style={{height: '100%'}}>
             <ReactQuill value={text}
-            ref={ref}
+              ref={ref}
+
               style={{height: '100%'}}
               modules={modules}
               onChange={handleChange} />
