@@ -93,7 +93,7 @@ const ItineraryPage = () => {
                 lg={2}
                 style={{ textAlign: "center" }}
               >
-                <Link to={"/dayItinerary"} style={{ textDecoration: "none" }}>
+                <Link to={"/cityItinerary"} style={{ textDecoration: "none" }}>
                   <CardCont
                     image={card.img}
                     title={card.title}

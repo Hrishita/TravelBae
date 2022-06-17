@@ -89,6 +89,20 @@ const CardCarouselComp = (props) => {
                 </Typography>
               </Button>
             </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                pt: "10%",
+              }}
+            >
+              <Button variant="contained" color="secondary" href="/itinerary">
+                <Typography className={classes.cardImgTextColor}>
+                  Explore Itineraries
+                </Typography>
+              </Button>
+            </Box>
           </Typography>
         </Box>
       </Card>

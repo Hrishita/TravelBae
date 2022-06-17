@@ -1,5 +1,4 @@
 import {
-  Divider,
   Grid,
   Link,
   Typography,
@@ -7,17 +6,19 @@ import {
   Card,
   CardMedia,
 } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import CardCarousel from "../containers/CardCarousel";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
 import SearchBoxComp from "../components/SearchBox";
+import Divider from "@mui/material/Divider";
 import {
   destinationData,
   blogCards,
   accCards,
 } from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
+import AlertDialog from "../containers/AlertDialog";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,6 +40,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 const HomePage = () => {
   const classes = useStyles();
+  const [open, setOpen] = useState(false); // for alert box
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   const displayStrip = (title, cards) => {
     const data = cards;
     return (
@@ -54,7 +63,7 @@ const HomePage = () => {
             </Grid>
             <Grid item xs={2}>
               <Box pt={4} pr={2} display="flex" justifyContent="flex-end">
-                <Link>View All</Link>
+                <Link onClick={handleOpen}>View All</Link>
               </Box>
             </Grid>
           </Grid>
@@ -128,6 +137,15 @@ const HomePage = () => {
 
       <Grid item xs={12}>
         <Footer />
+      </Grid>
+      <Grid item xs={12}>
+        <AlertDialog
+          open={open}
+          title="Confirm"
+          message="API logic required to Search"
+          handleClose={handleClose}
+          buttons={["Cancel", "Ok"]}
+        />
       </Grid>
     </Grid>
   );
