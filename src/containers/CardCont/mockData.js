@@ -69,6 +69,11 @@ export const cityCards = [
 
 export const blogCards = [
   {
+    img: "https://upload.wikimedia.org/wikipedia/commons/d/da/Taj-Mahal.jpg",
+    title: "India Packing Recommendation",
+    desc: "Dolore aute amet dolore voluptate. Excepteur ut aute officia fugiat aliqua est dolor ipsum elit dolore sint commodo velit. Culpa sit dolor amet irure nostrud dolore ipsum eiusmod eu tempor mollit ad ad.",
+  },
+  {
     img: "https://media-gadventures.global.ssl.fastly.net/media-server/dynamic/blogs/posts/peter-west-carey/2015/11/about_religion.jpg",
     title: "Paris Blog",
     desc: "Dolore aute amet dolore voluptate. Excepteur ut aute officia fugiat aliqua est dolor ipsum elit dolore sint commodo velit. Culpa sit dolor amet irure nostrud dolore ipsum eiusmod eu tempor mollit ad ad.",
@@ -81,11 +86,6 @@ export const blogCards = [
   {
     img: "https://media.gadventures.com/media-server/dynamic/blogs/posts/peter-west-carey/2015/11/Featured_Image_Peter_West_Carey_Bhutan2013feature.jpg",
     title: "Lille Blog",
-    desc: "Dolore aute amet dolore voluptate. Excepteur ut aute officia fugiat aliqua est dolor ipsum elit dolore sint commodo velit. Culpa sit dolor amet irure nostrud dolore ipsum eiusmod eu tempor mollit ad ad.",
-  },
-  {
-    img: "https://blog.savaari.com/wp-content/uploads/2021/12/unnamed-file.jpg",
-    title: "Lyon Blog",
     desc: "Dolore aute amet dolore voluptate. Excepteur ut aute officia fugiat aliqua est dolor ipsum elit dolore sint commodo velit. Culpa sit dolor amet irure nostrud dolore ipsum eiusmod eu tempor mollit ad ad.",
   },
 ];

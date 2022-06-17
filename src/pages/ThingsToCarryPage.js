@@ -10,6 +10,9 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Filter from "../containers/Filter";
 import FilterMenu from "../containers/FilterMenu";
 import filterData from "../containers/ThingsToCarry/mockData";
+import InputAdornment from "@mui/material/InputAdornment";
+import TextField from "@mui/material/TextField";
+import SearchIcon from "@mui/icons-material/Search";
 
 //MockData
 import dress from "../assets/clothes/dress.jpg";
@@ -299,6 +302,35 @@ const ThingsToCarryPage = (props) => {
                     variant="middle"
                     sx={{ borderBottomWidth: 3, background: "black" }}
                   />
+                </Box>
+              </Grid>
+              <Grid item xs={12}>
+                <Box
+                  sx={{
+                    width: "auto",
+                    height: "auto",
+                    backgroundColor: "white",
+                    marginLeft: "2rem",
+                    marginRight: "2rem",
+                  }}
+                >
+                  <Box pl={3} pr={3}>
+                    <TextField
+                      id="search-with-input"
+                      label="Search"
+                      InputProps={{
+                        startAdornment: (
+                          <InputAdornment position="start">
+                            <SearchIcon />
+                          </InputAdornment>
+                        ),
+                      }}
+                      variant="outlined"
+                      type="search"
+                      fullWidth
+                      onChange={handleOpen}
+                    />
+                  </Box>
                 </Box>
               </Grid>
               {data.map((dataObj) => {
