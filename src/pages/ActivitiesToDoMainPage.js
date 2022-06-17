@@ -1,4 +1,4 @@
-import { Divider, Grid} from "@material-ui/core";
+import { Divider, Grid } from "@mui/material";
 import React from "react";
 import CardCarousel from "../containers/CardCarousel";
 import NavBar from "../containers/NavBar";
@@ -10,37 +10,37 @@ import ActivitiesMainPageCard from "../containers/ActivitiesMainPageCard";
 function ActivitiesToDoMainPage() {
   return (
     <Grid container spacing={0.5}>
-    <Grid item xs={12}>
-      <NavBar />
-    </Grid>
-    <Grid item xs={12}>
-      <CardCarousel />
-    </Grid>
-    <Grid item xs={12}>
-      <Box pt={4} pb={4}>
-        <ActivitySearchBoxComp />
-      </Box>
-    </Grid>
+      <Grid item xs={12}>
+        <NavBar />
+      </Grid>
+      <Grid item xs={12}>
+        <CardCarousel />
+      </Grid>
+      <Grid item xs={12}>
+        <Box pt={4} pb={4}>
+          <ActivitySearchBoxComp />
+        </Box>
+      </Grid>
 
-    <Grid item xs={12}>
-      <Box>
-        <Divider />
-      </Box>
-    </Grid>
+      <Grid item xs={12}>
+        <Box>
+          <Divider />
+        </Box>
+      </Grid>
 
-    <Grid item xs={12}>
-      <Grid container alignItems="center" justifyContent="center">
-        <ActivitiesMainPageCard/>
+      <Grid item xs={12}>
+        <Grid container alignItems="center" justifyContent="center">
+          <ActivitiesMainPageCard />
+        </Grid>
+      </Grid>
+
+      <Grid item xs={12}>
+        <Grid container alignItems="center" justifyContent="center">
+          <Footer />
+        </Grid>
       </Grid>
     </Grid>
-
-    <Grid item xs={12}>
-      <Grid container alignItems="center" justifyContent="center">
-        <Footer/>
-      </Grid>
-    </Grid>
-  </Grid>
-  )
+  );
 }
 
-export default ActivitiesToDoMainPage
+export default ActivitiesToDoMainPage;

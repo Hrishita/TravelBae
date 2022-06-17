@@ -1,5 +1,5 @@
-import { Divider, Grid } from "@material-ui/core";
 import React from "react";
+import { Grid, Divider } from "@mui/material";
 import CardCarousel from "../containers/CardCarousel";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";

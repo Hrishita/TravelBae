@@ -1,4 +1,4 @@
-import { Divider, Grid} from "@material-ui/core";
+import { Divider, Grid } from "@mui/material";
 import React from "react";
 import CardCarousel from "../containers/CardCarousel";
 import NavBar from "../containers/NavBar";
@@ -30,13 +30,13 @@ const AccommodationPage = () => {
 
       <Grid item xs={12}>
         <Grid container alignItems="center" justifyContent="center">
-          <AccommodationMainPageCard/>
+          <AccommodationMainPageCard />
         </Grid>
       </Grid>
 
       <Grid item xs={12}>
         <Grid container alignItems="center" justifyContent="center">
-          <Footer/>
+          <Footer />
         </Grid>
       </Grid>
     </Grid>
