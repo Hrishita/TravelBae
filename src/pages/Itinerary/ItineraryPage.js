@@ -1,6 +1,6 @@
 import { Grid } from "@material-ui/core";
 import { Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../../containers/NavBar";
 import Box from "@mui/material/Box";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -11,8 +11,17 @@ import CardCont from "../../containers/CardCont";
 import { cards } from "../../containers/CardCont/mockData";
 import { Link } from "react-router-dom";
 import Footer from "../../containers/Footer";
+import AlertDialog from "../../containers/AlertDialog";
 
 const ItineraryPage = () => {
+  const [open, setOpen] = useState(false); // for alert box
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -52,6 +61,7 @@ const ItineraryPage = () => {
               variant="outlined"
               type="search"
               fullWidth
+              onChange={handleOpen}
             />
           </Box>
         </Box>
@@ -97,6 +107,15 @@ const ItineraryPage = () => {
       </Grid>
       <Grid item xs={12}>
         <Footer />
+      </Grid>
+      <Grid item xs={12}>
+        <AlertDialog
+          open={open}
+          title="Confirm"
+          message="API logic required to Search"
+          handleClose={handleClose}
+          buttons={["Cancel", "Ok"]}
+        />
       </Grid>
     </Grid>
   );
