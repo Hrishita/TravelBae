@@ -36,14 +36,20 @@ function UserDashbordTrip() {
                       <div style={{ marginLeft: "1rem" }}>
                         <h3 className="title">Lahore, Pakistan</h3>
                         <h5 style={{ fontWeight: "300" }}>
-                          13 JUNE 2023 TO 14 JUNE 2023
+                          Lorem ipsum dolor sit amet, consectetuer adipiscing
+                          elit. Aenean commodo ligula eget dolor. Aenean massa.
+                          Cum sociis natoque penatibus et magnis dis parturient
+                          montes, nascetur ridiculus mus. Donec quam felis,
+                          ultricies nec, pellentesque eu, pretium quis, sem.
+                          Nulla consequat massa quis enim. Donec pede justo,
+                          fringilla vel, aliquet nec, vulputate eget, arcu.
                         </h5>
                       </div>
                     </div>
 
                     <li style={{ listStyle: "none" }}>
                       <h5 className="all">
-                        <a href="/Trips">All Upcoming Trips</a>
+                        <a href="#">LOAD MORE</a>
                       </h5>
                     </li>
                   </div>
@@ -67,13 +73,19 @@ function UserDashbordTrip() {
                       <div style={{ marginLeft: "1rem" }}>
                         <h3 className="title">Boston, USA</h3>
                         <h5 style={{ fontWeight: "300" }}>
-                          13 JUNE 2022 TO 14 JUNE 2022
+                          Lorem ipsum dolor sit amet, consectetuer adipiscing
+                          elit. Aenean commodo ligula eget dolor. Aenean massa.
+                          Cum sociis natoque penatibus et magnis dis parturient
+                          montes, nascetur ridiculus mus. Donec quam felis,
+                          ultricies nec, pellentesque eu, pretium quis, sem.
+                          Nulla consequat massa quis enim. Donec pede justo,
+                          fringilla vel, aliquet nec, vulputate eget, arcu.
                         </h5>
                       </div>
                     </div>
                     <li style={{ listStyle: "none" }}>
                       <h5 className="all">
-                        <a href="/Trips">All Completed Trips</a>
+                        <a href="#">LOAD MORE</a>
                       </h5>
                     </li>
                   </div>

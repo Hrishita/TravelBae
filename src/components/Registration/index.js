@@ -177,7 +177,7 @@ function RegisterComp() {
 
     //send data to next page if validation is correct
     history.push({
-      pathname: "/userProfile",
+      pathname: "/userdashboard-trips",
       state: userProfileData,
     });
   };

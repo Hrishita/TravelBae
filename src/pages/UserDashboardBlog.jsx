@@ -25,9 +25,9 @@ function UserDashbordBlog() {
                     <div className="dashbord-info">
                       <GiStarAltar
                         style={{
-                          height: "4rem",
-                          width: "4rem",
-                          borderRadius: "4rem",
+                          height: "8rem",
+                          width: "8rem",
+                          // borderRadius: "4rem",
                         }}
                         alt=""
                       />
@@ -50,7 +50,7 @@ function UserDashbordBlog() {
 
                     <li style={{ listStyle: "none" }}>
                       <h5 className="all">
-                        <a href="/Trips">ReadMore</a>
+                        <a href="/blog-list">All Blog List</a>
                       </h5>
                     </li>
                   </div>
