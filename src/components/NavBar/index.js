@@ -27,11 +27,11 @@ const pages = [{
 },
 {
   name: "Transport",
-  link: "/"
+  link: "/flights"
 },
 {
-  name: "Thing to Carry",
-  link: "/"
+  name: "Things to Carry",
+  link: "/thingstocarry"
 },
 {
   name: "Bucket List",
