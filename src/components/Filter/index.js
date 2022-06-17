@@ -1,21 +1,28 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import { Button } from "@mui/material";
+import AlertDialog from "../AlertDialog";
 
 const FilterComp = (props) => {
   const [clearAll, setClearAll] = React.useState(true);
   const [checkedItems, setCheckedItems] = React.useState([]);
-  console.log("checkeditems...", checkedItems);
-  console.log(
-    "checkeditems find...",
-    checkedItems.find((item) => item === 0)
-  );
+
+  const [open, setOpen] = useState(false); // for alert box
+
+  // const handleOpen = () => {
+  //   setOpen(true);
+  // };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleChange = (index) => {
+    setOpen(true);
+
     const newItems = [...checkedItems];
 
     const position = newItems.findIndex((item) => item === index);
@@ -29,6 +36,7 @@ const FilterComp = (props) => {
   };
   const handleClearAll = () => {
     setClearAll(true);
+    setCheckedItems([]);
   };
 
   return (
@@ -121,6 +129,13 @@ const FilterComp = (props) => {
       <Button variant="contained" onClick={handleClearAll}>
         Clear All
       </Button>
+      <AlertDialog
+        open={open}
+        title="Confirm"
+        message="API Logic Required to Filter"
+        handleClose={handleClose}
+        buttons={["Cancel", "Ok"]}
+      />
     </div>
   );
 };
