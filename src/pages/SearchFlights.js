@@ -1,6 +1,7 @@
 import { Box, ButtonBase } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Footer from "../containers/Footer";
+import AlertDialog from "../containers/AlertDialog";
 import { LocationCity } from "@mui/icons-material";
 import {
   Alert,
@@ -79,7 +80,10 @@ function SearchFlights() {
   const [end, setEnd] = useState("");
   const [tripType, setTripType] = useState(0);
   const [showSnackbar, setShowSnackbar] = useState(false);
-
+ const handleClick = () => {
+    setShowSnackbar(true);
+  }
+ }
   const onShowSnackbar = () => {
     setShowSnackbar(true);
   };
@@ -176,7 +180,7 @@ function SearchFlights() {
               max={200}
             />
           </div>
-          <Button className="mx-2 my-2" variant="contained">
+          <Button className="mx-2 my-2" variant="contained" onClick={handleClick}>
             Search
           </Button>
         </div>
@@ -211,6 +215,23 @@ function SearchFlights() {
                   </Typography>
                 </div>
                 {/* </div> */}
+                <Grid item xs={12}>
+
+<AlertDialog
+
+open={open1}
+
+title="Confirm"
+
+message="API logic required to Save"
+
+handleClose={handleClose1}
+
+buttons={["Cancel", "Ok"]}
+
+/>
+
+</Grid>
               </ButtonBase>
             );
           })}
