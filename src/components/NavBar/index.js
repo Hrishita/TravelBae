@@ -13,12 +13,7 @@ import Logo from "../../assets/logo.jpeg";
 import { useStyles } from "./style";
 import { useHistory } from "react-router-dom";
 
-<<<<<<< HEAD
-//nav bar changes
-
-=======
 // nav bar
->>>>>>> 14de127a8447cb06b954bc1eab62e60f3ba31559
 const pages = [
   {
     name: "Destinations",
@@ -34,19 +29,16 @@ const pages = [
   },
   {
     name: "Transport",
-<<<<<<< HEAD
     link: "/flights",
   },
   {
     name: "Things to Carry",
     link: "/thingstocarry",
-=======
     link: "/",
   },
   {
     name: "Thing to Carry",
     link: "/",
->>>>>>> 14de127a8447cb06b954bc1eab62e60f3ba31559
   },
   {
     name: "Bucket List",
