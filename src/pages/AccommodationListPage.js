@@ -10,6 +10,7 @@ import HorizontralCardComp from "../components/HorizontalCard";
 import { hotelList } from "../components/HorizontalCard/hotelLists";
 import Filter from "../containers/Filter";
 import data from "../containers/Filter/mockData";
+import FilterMenu from "../containers/FilterMenu";
 
 function AccommodationListPage() {
   return (
@@ -23,6 +24,15 @@ function AccommodationListPage() {
       <Grid item xs={12}>
         <Box pt={4} pb={4}>
           <AccommodationSearchBoxComp />
+          <Grid
+            item
+            sx={{ display: { xs: "block", md: "none" } }}
+            md={0}
+            xs={12}
+            className="text-align-center"
+          >
+            <FilterMenu filterProperties={data}></FilterMenu>
+          </Grid>
         </Box>
       </Grid>
 
@@ -48,8 +58,10 @@ function AccommodationListPage() {
         </Grid>
       </Grid>
 
-      <Grid item xs={2}>
-        <Filter filterProperties={data}></Filter>
+      <Grid item>
+        <Box sx={{ display: { xs: "none", md: "block" } }} md={2} xs={0}>
+          <Filter filterProperties={data}></Filter>
+        </Box>
       </Grid>
 
       <Grid item xs={10}>

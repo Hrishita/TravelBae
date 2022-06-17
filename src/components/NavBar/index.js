@@ -13,21 +13,41 @@ import Logo from "../../assets/logo.jpeg";
 import { useStyles } from "./style";
 import { useHistory } from "react-router-dom";
 
-const pages = [
-  "Destinations",
-  "Activities To Do",
-  "Accommodation",
-  "Transport",
-  "Travel Blogs",
-  "Bucket List",
+const pages = [{
+  name: "Destinations",
+  link: "/destinations"
+},
+{
+  name: "Activties To Do",
+  link: "/activities"
+},
+{
+  name: "Accommodation",
+  link: "/accommodation"
+},
+{
+  name: "Transport",
+  link: "/"
+},
+{
+  name: "Thing to Carry",
+  link: "/"
+},
+{
+  name: "Bucket List",
+  link: "/bucket-list"
+}
 ];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const NavBarComp = () => {
   const classes = useStyles();
+  const history = useHistory();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const history = useHistory();
+  const navigateToPage = (page) => {
+    history.push(page);
+  }
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -101,7 +121,7 @@ const NavBarComp = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center" onClick={() => navigateToPage(page.link)}>{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -134,10 +154,10 @@ const NavBarComp = () => {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => navigateToPage(page.link)}
                 sx={{ m: 2, color: "#5a5a5a", display: "block" }}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>

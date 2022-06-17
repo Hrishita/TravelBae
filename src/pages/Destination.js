@@ -122,7 +122,7 @@ const Destination = () => {
                   ></img>
                 </Box>
               </Grid>
-              <Grid item sm={12} md={6}>
+              <Grid item sm={12} md={5}>
                 <Box sx={{ margin: "0px 10px 20px" }}>
                   <Typography variant="h4" color="primary">
                     Canada
