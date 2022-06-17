@@ -39,7 +39,9 @@ function UserDashbordFlag() {
                       component="div"
                       sx={{ paddingTop: "2%" }}
                     >
-                      <h4>Flags not collected from </h4>
+                      <h4 style={{ fontWeight: "bold", color: "#045b52" }}>
+                        Flags not collected from{" "}
+                      </h4>
                     </Typography>
                   </div>
                   <div>
@@ -49,27 +51,11 @@ function UserDashbordFlag() {
                       component="div"
                       sx={{ paddingTop: "2%" }}
                     >
-                      Seoul Trip
-                    </Typography>
-                  </div>
-                  <div>
-                    <Typography
-                      variant="h5"
-                      gutterBottom
-                      component="div"
-                      sx={{ paddingTop: "2%" }}
-                    >
-                      Kathamandu Trip
-                    </Typography>
-                  </div>
-                  <div>
-                    <Typography
-                      variant="h5"
-                      gutterBottom
-                      component="div"
-                      sx={{ paddingTop: "2%" }}
-                    >
-                      Sanfransico Trip
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Integer nec odio. Praesent libero. Sed cursus ante dapibus
+                      diam. Sed nisi. Nulla quis sem at nibh elementum
+                      imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec
+                      tellus sed augue semper porta.
                     </Typography>
                   </div>
                 </div>
@@ -89,7 +75,9 @@ function UserDashbordFlag() {
                       component="div"
                       sx={{ paddingTop: "2%" }}
                     >
-                      <h4>Flags collected from</h4>
+                      <h4 style={{ fontWeight: "bold", color: "#045b52" }}>
+                        Flags collected from
+                      </h4>
                     </Typography>
                   </div>
                   <div>
@@ -99,27 +87,11 @@ function UserDashbordFlag() {
                       component="div"
                       sx={{ paddingTop: "2%" }}
                     >
-                      Lahore Trip
-                    </Typography>
-                  </div>
-                  <div>
-                    <Typography
-                      variant="h5"
-                      gutterBottom
-                      component="div"
-                      sx={{ paddingTop: "2%" }}
-                    >
-                      Halifax Trip
-                    </Typography>
-                  </div>
-                  <div>
-                    <Typography
-                      variant="h5"
-                      gutterBottom
-                      component="div"
-                      sx={{ paddingTop: "2%" }}
-                    >
-                      Toronto Trip
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Integer nec odio. Praesent libero. Sed cursus ante dapibus
+                      diam. Sed nisi. Nulla quis sem at nibh elementum
+                      imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec
+                      tellus sed augue semper porta.
                     </Typography>
                   </div>
                 </div>

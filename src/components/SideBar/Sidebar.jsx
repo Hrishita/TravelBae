@@ -47,7 +47,7 @@ function Sidebar() {
           <li className="sidebar-link-to-pages">
             <AiOutlinePieChart />
             <h3 style={{ margin: "0", padding: "0" }}>
-              <a href="/userdashboard-plans">Whislist</a>
+              <a href="/userdashboard-plans">Plans</a>
             </h3>
           </li>
         </u1>

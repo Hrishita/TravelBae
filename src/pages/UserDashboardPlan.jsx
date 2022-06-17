@@ -17,7 +17,7 @@ function UserDashbordPlan() {
           <SideBar />
           <div className="dashbord-container">
             <div className="dashbord-subcontainer">
-              <h2 className="dashbord-titletext">Whishlist Trips</h2>
+              <h2 className="dashbord-titletext">Plans</h2>
               <div className="dashbord-sectionone">
                 <div className="dashbord-columnone">
                   <div className="dashbord-content">
