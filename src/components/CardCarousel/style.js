@@ -35,6 +35,7 @@ const useStyles = makeStyles({
     transform: "translateX(-50%)",
     textAlign: "center",
     color: "white",
+    maxWidth: "100%",
   },
   cardImgTextColor: {
     color: "white",

@@ -152,6 +152,7 @@ function RegisterComp() {
     return isEmpty;
   };
 
+  //on submit function call
   const handleSubmit = () => {
     if (mandatoryFieldCheck()) {
       return;
