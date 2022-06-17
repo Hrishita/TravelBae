@@ -7,7 +7,7 @@ function FooterComp(props) {
   return (
     <Grid textAlign="center" sx={{ pt: 1 }}>
       <Link to={link} style={{ color: "white", textDecoration: "none" }}>
-        {props.name}
+        {name}
       </Link>
     </Grid>
   );
