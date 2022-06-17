@@ -19,6 +19,7 @@ import {
 } from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
 import AlertDialog from "../containers/AlertDialog";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const HomePage = () => {
   const classes = useStyles();
+  const history = useHistory();
   const [open, setOpen] = useState(false); // for alert box
 
   const handleOpen = () => {
@@ -48,7 +50,12 @@ const HomePage = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  const displayStrip = (title, cards) => {
+
+  const handleClick = (link) => {
+    history.push(link);
+  };
+
+  const displayStrip = (title, cards, link) => {
     const data = cards;
     return (
       <>
@@ -92,13 +99,16 @@ const HomePage = () => {
                   lg={3}
                   style={{ textAlign: "center" }}
                 >
-                  <Card className={classes.root}>
+                  <Card
+                    className={classes.root}
+                    onClick={() => handleClick(link)}
+                  >
                     <CardMedia
                       component="img"
-                      alt="Contemplative Reptile"
+                      alt={title}
                       height="300"
                       image={card.img}
-                      title="Contemplative Reptile"
+                      title={title}
                     />
                     <Typography
                       gutterBottom
@@ -131,9 +141,9 @@ const HomePage = () => {
           <SearchBoxComp />
         </Box>
       </Grid>
-      {displayStrip("Popular Placees", destinationData)}
-      {displayStrip("Travel Blogs", blogCards)}
-      {displayStrip("Accommodations", accCards)}
+      {displayStrip("Popular Places", destinationData, "/destinations")}
+      {displayStrip("Travel Blogs", blogCards, "/view-blogs")}
+      {displayStrip("Accommodations", accCards, "/accommodationList")}
 
       <Grid item xs={12}>
         <Footer />
@@ -142,7 +152,7 @@ const HomePage = () => {
         <AlertDialog
           open={open}
           title="Confirm"
-          message="API logic required to Search"
+          message="API logic required to View"
           handleClose={handleClose}
           buttons={["Cancel", "Ok"]}
         />

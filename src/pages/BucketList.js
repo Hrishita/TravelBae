@@ -1,5 +1,4 @@
 import {
-  Divider,
   Grid,
   Link,
   Typography,
@@ -11,12 +10,10 @@ import React from "react";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
 import { useState } from "react";
-import {
-  destinationData
-} from "../containers/CardCont/mockData";
+import { destinationData } from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
 import AlertDialog from "../containers/AlertDialog";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+import { Button, CardActionArea, CardActions, Divider } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,12 +36,19 @@ const useStyles = makeStyles((theme) => ({
 const BucketList = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false); // for alert box
+  const [vopen, setVopen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
+  };
+  const handlevOpen = () => {
+    setVopen(true);
+  };
+  const handlevClose = () => {
+    setVopen(false);
   };
   const displayStrip = (title, cards) => {
     const data = cards;
@@ -61,7 +65,9 @@ const BucketList = () => {
             </Grid>
             <Grid item xs={2}>
               <Box pt={4} pr={2} display="flex" justifyContent="flex-end">
-                <Link color="secondary">View All</Link>
+                <Link color="secondary" onClick={handlevOpen}>
+                  View All
+                </Link>
               </Box>
             </Grid>
           </Grid>
@@ -94,10 +100,10 @@ const BucketList = () => {
                     <CardActionArea>
                       <CardMedia
                         component="img"
-                        alt="Contemplative Reptile"
+                        alt={title}
                         height="300"
                         image={card.img}
-                        title="Contemplative Reptile"
+                        title={title}
                       />
                       <Typography
                         gutterBottom
@@ -149,6 +155,15 @@ const BucketList = () => {
           title="Confirm"
           message="Are you sure you want to remove it from the bucket list ?"
           handleClose={handleClose}
+          buttons={["Cancel", "Ok"]}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <AlertDialog
+          open={vopen}
+          title="Confirm"
+          message="API logic required to View"
+          handleClose={handlevClose}
           buttons={["Cancel", "Ok"]}
         />
       </Grid>

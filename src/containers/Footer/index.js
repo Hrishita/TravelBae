@@ -20,7 +20,7 @@ const pages = [
     link: "/thingstocarry",
   },
   {
-    name: "Trip Planner",
+    name: "Transport",
     link: "/flights",
   },
   {
