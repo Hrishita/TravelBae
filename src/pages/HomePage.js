@@ -18,7 +18,7 @@ import {
   accCards,
 } from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
-
+// Home page
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",

@@ -40,6 +40,8 @@ const pages = [
     link: "/bucket-list",
   },
 ];
+
+//user profile settings
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const NavBarComp = () => {
