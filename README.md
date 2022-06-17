@@ -1,30 +1,55 @@
-# CSCI5709 - Project
+# CSCI5709 Project | Travel Bae | Group - 15
 
-Web Dev Project - Individual Respository for Smily
+```
+Travel Bae:
+TravelBae is an online travel website that helps customers plan better trips to their favourite destinations. The application keeps track of the best destinations, hotels, and modes of transportation. Other features on the website include activities to do, itinerary management, bucket lists, and much more.
 
-* *Date Created*: 05 Jun 2022
-* *Last Modification Date*: 06 Jun 2022
-* *Git Repository URL for all individual assignments and tutorials*: https://git.cs.dal.ca/smily/smily-csci5709-individual
-* *Git branch URL for assignment1*: https://git.cs.dal.ca/smily/smily-csci5709-individual/-/tree/assignment1
-* *Heroku deployment URL for application 1*: https://smily-assignment1.herokuapp.com/
+The Main Features of our application are:
+- Destinations
+- Bucket Lists
+- Blog Management
+- Transportation Options
+- Accommodation options
+- User Management
+- Profile Management
+- Activities to do
+- Itinerey Management
+- Dashboard
+- Things to carry
+- Trip Planner
+```
+
+## Project Repository, Individual Branch and Deployement URL
+
+* *Date Created*: 16 Jun 2022
+* *Last Modification Date*: 16 Jun 2022
+* *Git Repository URL*: https://git.cs.dal.ca/maurya/csci-5709-project
+* *Heroku deployment URL for application*: https://travel-bae.herokuapp.com/
+* Nishit Mistry: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/nishit-mistry
+* Trushita Maurya: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/trushita-maurya
+* Smily: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/smily
+* Smriti Mishra: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/smriti-mishra
+* Hrishita Mavani: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/hrishita-mavani
+* Sagramsinh More: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/sangramsinh-more
 
 ## Authors
 
-* [Smily](smily@dal.ca) - *(Owner)*
+* [Smily](smily@dal.ca) - *(Maintainer)*
+* [Trushita Maurya](tr711348@dal.ca) - *(Maintainer)*
+* [Nishit Mistry](nishit.mistry@dal.ca) - *(Maintainer)*
+* [Sangramsinh More](sangramsinh.more@dal.ca) - *(Maintainer)*
+* [Hrishita Mavani](hr637632@dal.ca) - *(Maintainer)*
+* [Smriti Mishra](sm689498@dal.ca)- *(Maintainer)*
 
-## Deployment
+# Getting Started
 
-The application has been deployed on Heroku. 
-* The URL is: https://smily-assignment1.herokuapp.com/
-* The task specific url is: https://smily-assignment1.herokuapp.com/destinations
-
-## Built With
+### Built With
 
 * [React](https://reactjs.org/) - The library used for building the front-end.
 * [Material UI](https://mui.com/) - To build responsive User Interface components - navigation bar, pagination and cards layout.
 * [React Router](https://reactrouter.com/) - Used to do the routing in the application (home and destinationsu) since react does not have anything in-built.
 
-## Components Used
+### Components Used
 
 For the completion of this assignment, I have used the components provided by [Material UI](https://mui.com/) 
 The components used are:
@@ -34,34 +59,82 @@ The components used are:
 * Grid
 * Typography
 * Box
-* Form Grooup
+* Form Group
 * Checkbox
 * Icon Button
 * Tool Bar
+* Card
+* Grid
+* Pagination
+* Alert
+* TextField
 
-## Steps to verify the tasks
+### Deployed using
 
-### Task 1 - Display all the destinations
+- [Heroku](https://dashboard.heroku.com/apps) - For deployment
+- The application has been deployed on Heroku. 
 
-* Use the [application link](https://smily-assignment1.herokuapp.com/) to access the deployed application.
-* The system will display a dummy dashboard page.
-* Use the top navigation link "Destinations" to navigate to the destinations page.
-* System will display all the destinations present.
+### Prerequisites
 
-### Task 2 - Search destination using the search box
+To have a local copy of this assingnment up and running on your local machine, following tools and libraries are required.
 
-* Follow the steps in task 1 to navigate to the destinations page or use the [link](https://smily-assignment1.herokuapp.com/destinations) directly.
-* Enter some text in the search box and click the search button.
-* If the destination with the name that matches the text in search box is present, the matched destination will be displayed.
-* If the destination does not exists the system will display a message - "Destination not present. Please search for another one or select from the list."
+- `node`, a server-side javascript implementation
+- `npm`, the javascript package manager
 
-## Important Notes
+### Installing
 
-There are certain components - pagination, add to bucket list (heart), and filter by which are present on the UI but their functionality hasn't been implemented yet. They have been added to match the wireframe for the page and will be covered later in the project development phase.
+To install this project in your local machine following steps need to be performed.
 
-## Acknowledgments
+- `git clone https://git.cs.dal.ca/maurya/csci-5709-project.git`
+- `cd csci-5709-project`
+- `npm install`
+- `npm start`
 
-* [Card Image](https://live.staticflickr.com/4109/4991929737_4d661d0ff4_b.jpg) "Peggy's Cove Sunset" by crowemedia is licensed under CC BY-NC-ND 2.0. To view a copy of this license, visit https://creativecommons.org/licenses/by-nd-nc/2.0/jp/?ref=openverse.
-* The primary color used for the application - #737dbb. It is inspired from the mesmerizing sunsets of Halifax. Since the application is related to travel experiences, having an element of nature gives a meaning to the application.
-* The task completed as a part of this application - Display all the destinations, Search destination using the search box.
-* The components like pagination, filter, favorite are just dummy components. Their functionality has not been implemented as a part of this assignment.
+
+# References
+
+## Images Used
+
+All the images used for this project are royalty free.
+
+- "https://images.trvl-media.com/hotels/24000000/23010000/23003000/23002973/c0a157e9_b.jpg"
+- "https://images.trvl-media.com/hotels/1000000/10000/7900/7803/2a1ea041_b.jpg"
+- "https://images.trvl-media.com/hotels/1000000/60000/53000/52918/a18b3dc8_b.jpg"
+- "https://cdn.pixabay.com/photo/2020/03/01/08/52/sea-4892044_1280.jpg"
+- "https://www.publicdomainpictures.net/pictures/210000/nahled/boat-in-caribbean-1488476201AFb.jpg"
+- "https://cf.bstatic.com/xdata/images/hotel/max1280x900/188927841.jpg?k=7f112dc4aa557f0ffc6f38b93f227154676ddaa247da8f0349042ec3ccb23451&o=",
+-  "https://memberapi.discoverhalifaxns.com/member-images/90558323-afea-461f-b434-9b89a46b036c_profile.jpg",
+-  "https://memberapi.discoverhalifaxns.com/member-images/7e2b2e3e-6ee9-4405-aa83-43edd4f80d00.jpg",
+
+
+## Sources used
+
+[1] "The W3C Markup Validation Service," _Validator.w3.org_ [Online]. Available: https://validator.w3.org/. [Accessed: June 16, 2022].
+
+- Used to check if the deployed app is W3C compliant.
+
+[2] "Cloud Application Platform | Heroku," _Heroku.com_ [Online]. Available: https://www.heroku.com/. [Accessed: June 16, 2022].
+
+- Used Heroku to deploy the application.
+
+[3] "Getting Started – React", Reactjs.org, 2022. [Online]. Available: https://reactjs.org/docs/getting-started.html. [Accessed: 16- Jun- 2022]
+
+- Used React documentation to to learn React.
+
+[4] "Installation - Material UI", Mui.com, 2022. [Online]. Available: https://mui.com/material-ui/getting-started/installation/. [Accessed: 16- Jun- 2022]
+
+- Used Material UI documentation to learn about different material UI components.
+  
+[5] Assignment-1 Git URL (Smily) - https://git.cs.dal.ca/smily/smily-csci5709-individual/-/tree/assignment1
+
+[6] Assignment-1 Git URL (Hrishita Mavani) - https://git.cs.dal.ca/mavani/hrishita-mavani-csci5709/-/tree/assignment-1
+
+[7] Assignement -1 Git URL (Trushita Maurya) - https://git.cs.dal.ca/maurya/csci-5709/-/tree/assignment1
+
+[8] Assignment -1 Git URL (Sangramsingh More) - https://git.cs.dal.ca/smore/csci-5709/-/tree/assignment1
+
+[9] Assignment -1 Git URL (Smriti Mishra) - https://git.cs.dal.ca/smishra/smriti-mishra-csci5709/-/tree/Assignment1
+
+[10] Assignment - 1 Git URL (Nishit Mistry) - https://git.cs.dal.ca/nmistry/csci5709/-/tree/assignment1
+
+- Some part of code is taken from  first individual assignment referenced above. 
