@@ -2,7 +2,21 @@
 
 ```
 Travel Bae:
-Description of Travel Bae
+TravelBae is an online travel website that helps customers plan better trips to their favourite destinations. The application keeps track of the best destinations, hotels, and modes of transportation. Other features on the website include activities to do, itinerary management, bucket lists, and much more.
+
+The Main Features of our application are:
+- Destinations
+- Bucket Lists
+- Blog Management
+- Transportation Options
+- Accommodation options
+- User Management
+- Profile Management
+- Activities to do
+- Itinerey Management
+- Dashboard
+- Things to carry
+- Trip Planner
 ```
 
 ## Project Repository, Individual Branch and Deployement URL
