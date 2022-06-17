@@ -1,13 +1,11 @@
 import { Grid, Typography, Box, CardActions } from "@material-ui/core";
 import Button from "@mui/material/Button";
-
 import React, { useState } from "react";
 import NavBar from "../containers/NavBar";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import { CardActionArea, Divider } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
-// import Footer from "../containers/Footer";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import Filter from "../containers/Filter";
 import FilterMenu from "../containers/FilterMenu";
@@ -23,14 +21,9 @@ import jeans from "../assets/clothes/jeans.jpg";
 import sleepwear from "../assets/clothes/sleepwear.PNG";
 import tshirt from "../assets/clothes/tshirt.jpg";
 import shorts from "../assets/clothes/shorts.jpg";
-
-// import skirt from "../assets/clothes/skirt.png";
 import heels from "../assets/clothes/heels.jpg";
 
-// import trousers from "../assets/icons/trousers.png";
-// import coat from "../assets/icons/coat.png";
-
-//jwellery
+//jewellery
 import ring from "../assets/clothes/ring.jpg";
 import bracelet from "../assets/clothes/bracelet.jpg";
 import earring from "../assets/clothes/earring.jpg";
@@ -41,8 +34,6 @@ import laptop from "../assets/clothes/laptop.jpg";
 import passport from "../assets/clothes/passport.jpg";
 import creditCard from "../assets/clothes/creditCard.jpg";
 
-// import bangles from "../assets/clothes/bangles.png";
-
 //shoes
 import boots from "../assets/clothes/boots.jpg";
 import shoes from "../assets/clothes/shoes.jpg";
@@ -50,9 +41,7 @@ import flipFlops from "../assets/clothes/flip-flop.jpg";
 import sandals from "../assets/clothes/sandals.jpg";
 import hat from "../assets/clothes/hat.jpg";
 
-//Hats
-
-// Tolietery
+// Toiletery
 import shampoo from "../assets/clothes/shampoo.jpg";
 import soap from "../assets/clothes/soap.jpg";
 import towel from "../assets/clothes/towel.jpg";
@@ -204,9 +193,6 @@ const data = [
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // maxWidth: 310,
-    // height: 200,
-    // display: "flex",
     backgroundSize: "contain",
     transition: "transform 0.15s ease-in-out",
     "&:hover": { transform: "scale3d(1.05, 1.05, 1)" },
@@ -214,7 +200,6 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
   },
   media: {
-    // display: "flex",
     objectFit: "scale-down",
     height: "50%",
     alignItems: "center",
@@ -344,15 +329,36 @@ const ThingsToCarryPage = (props) => {
               })}
 
               <Grid item xs={12}>
-                <Box display="flex" justifyContent="flex-end" paddingRight={4}>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    onClick={handleOpen}
+                <Box justifyContent="flex-end" display="flex">
+                  <Box
+                    display="inline-flex"
+                    justifyContent="flex-end"
+                    paddingRight={4}
                   >
-                    Add to Plan
-                  </Button>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      onClick={handleOpen}
+                    >
+                      Add to Plan
+                    </Button>
+                  </Box>
+                  <Box
+                    display="inline-flex"
+                    justifyContent="flex-end"
+                    paddingLeft={2}
+                    paddingRight={2}
+                  >
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="primary"
+                      onClick={handleOpen}
+                    >
+                      Share Checklist
+                    </Button>
+                  </Box>
                 </Box>
               </Grid>
             </Grid>
@@ -367,7 +373,7 @@ const ThingsToCarryPage = (props) => {
         <AlertDialog
           open={open}
           title="Confirm"
-          message="API logic required to Save"
+          message="API logic required"
           handleClose={handleClose}
           buttons={["Cancel", "Ok"]}
         />

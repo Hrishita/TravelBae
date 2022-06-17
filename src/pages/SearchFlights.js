@@ -97,7 +97,7 @@ function SearchFlights() {
         <NavBar />
       </Grid>
       <Grid item xs={12}>
-        <Grid container sx={{ margin: "30px" }}>
+        <Grid container>
           <Grid item xs={12}>
             <div className="card shadow flex-wrap p-3 d-flex justify-content-start align-items-center flex-row my-3">
               <Snackbar
@@ -212,7 +212,6 @@ function SearchFlights() {
                     className="mx-2 my-2 d-flex flex-row justify-content-between align-items-center flex-wrap"
                     style={{ cursor: "pointer" }}
                   >
-                    {/* <div onClick={onShowSnackbar} className='mx-2 my-2 d-flex flex-row justify-content-between align-items-center flex-wrap' style={{cursor: 'pointer'}}> */}
                     <div className="d-flex flex-row justify-content-between align-items-center py-2">
                       <Avatar sx={{ bgcolor: deepOrange[500], mx: 1.4 }}>
                         A
