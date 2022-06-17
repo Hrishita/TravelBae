@@ -6,6 +6,32 @@ import { Typography } from "@material-ui/core";
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
+const pages = [
+  {
+    name: "Accommodation",
+    link: "/accommodation",
+  },
+  {
+    name: "Destinations",
+    link: "/destinations",
+  },
+  {
+    name: "Things to Carry",
+    link: "/thingstocarry",
+  },
+  {
+    name: "Trip Planner",
+    link: "/flights",
+  },
+  {
+    name: "Travel Blogs",
+    link: "/view-blogs",
+  },
+  {
+    name: "Bucket List",
+    link: "/bucket-list",
+  },
+];
 function Footer() {
   return (
     <Box
@@ -47,11 +73,9 @@ function Footer() {
           >
             Quick Links
           </Box>
-          <FooterComp name="Accommodation" />
-          <FooterComp name="Destinations" />
-          <FooterComp name="Things to Carry" />
-          <FooterComp name="Trip Planner" />
-          <FooterComp name="Travel Blogs" />
+          {pages.map((page) => (
+            <FooterComp name={page.name} link={page.link} />
+          ))}
         </Grid>
         <Grid item xs={4}>
           <Box
@@ -80,7 +104,9 @@ function Footer() {
           <FooterComp name="Cookies" /> */}
 
           <Box display="flex" justifyContent="center">
-            <Typography textAlign="center">1035 South Park Street, Halifax, Canada, B3H 2W1</Typography>
+            <Typography textAlign="center">
+              1035 South Park Street, Halifax, Canada, B3H 2W1
+            </Typography>
           </Box>
         </Grid>
       </Grid>

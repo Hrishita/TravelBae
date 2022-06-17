@@ -1,10 +1,12 @@
 import React from "react";
-import { Grid, Link } from "@mui/material";
+import { Grid } from "@mui/material";
+import { Link } from "react-router-dom";
 
 function FooterComp(props) {
+  const { name, link } = props;
   return (
     <Grid textAlign="center" sx={{ pt: 1 }}>
-      <Link href="/" style={{ color: "white", textDecoration: "none" }}>
+      <Link to={link} style={{ color: "white", textDecoration: "none" }}>
         {props.name}
       </Link>
     </Grid>
