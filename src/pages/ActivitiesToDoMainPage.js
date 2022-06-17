@@ -3,7 +3,7 @@ import React from "react";
 import CardCarousel from "../containers/CardCarousel";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
-import SearchBoxComp from "../components/SearchBox";
+import ActivitySearchBoxComp from "../components/ActivitySearch";
 import Footer from "../containers/Footer";
 import ActivitiesMainPageCard from "../containers/ActivitiesMainPageCard";
 
@@ -18,7 +18,7 @@ function ActivitiesToDoMainPage() {
     </Grid>
     <Grid item xs={12}>
       <Box pt={4} pb={4}>
-        <SearchBoxComp />
+        <ActivitySearchBoxComp />
       </Box>
     </Grid>
 

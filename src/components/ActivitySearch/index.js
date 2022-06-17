@@ -4,13 +4,13 @@ import { Box, Grid } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
 // Search box
-const AccommodationSearchBoxComp = () => {
+const ActivitySearchBoxComp = () => {
   let today = new Date().toISOString().slice(0, 10);
 
   const history = useHistory();
 
   const handleClick = () => {
-    history.push("/accommodationlist");
+    history.push("/activitylist");
   };
 
   return (
@@ -75,4 +75,4 @@ const AccommodationSearchBoxComp = () => {
   );
 };
 
-export default AccommodationSearchBoxComp;
+export default ActivitySearchBoxComp;

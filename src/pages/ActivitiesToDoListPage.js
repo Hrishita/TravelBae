@@ -3,13 +3,15 @@ import React from "react";
 import CardCarousel from "../containers/CardCarousel";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
-import SearchBoxComp from "../components/SearchBox";
+import ActivitySearchBoxComp from "../components/ActivitySearch";
 import Footer from "../containers/Footer";
 import Pagination from "../containers/Pagination";
 import { activitiesList } from "../containers/ActivitiesListCard/activitiesData";
 import HorizontralCardComp from "../components/HorizontalCard";
 import Filter from "../containers/Filter";
 import data from "../containers/Filter/mockData";
+import FilterMenu from "../containers/FilterMenu";
+import AccommodationSearchBoxComp from "../components/AccommodationSearch";
 
 function ActivitiesToDoListPage() {
   return (
@@ -22,7 +24,16 @@ function ActivitiesToDoListPage() {
       </Grid>
       <Grid item xs={12}>
         <Box pt={4} pb={4}>
-          <SearchBoxComp />
+          <ActivitySearchBoxComp />
+          <Grid
+            item
+            sx={{ display: { xs: "block", md: "none" } }}
+            md={0}
+            xs={12}
+            className="text-align-center"
+          >
+            <FilterMenu filterProperties={data}></FilterMenu>
+          </Grid>
         </Box>
       </Grid>
 
@@ -47,8 +58,10 @@ function ActivitiesToDoListPage() {
         </Grid>
       </Grid>
 
-      <Grid item xs={2}>
-        <Filter filterProperties={data}></Filter>
+      <Grid item>
+        <Box sx={{ display: { xs: "none", md: "block" } }} md={2} xs={0}>
+          <Filter filterProperties={data}></Filter>
+        </Box>
       </Grid>
 
       <Grid item xs={10}>

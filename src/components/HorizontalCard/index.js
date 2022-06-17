@@ -8,6 +8,8 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import LocationOn from "@mui/icons-material/LocationOn";
+import { Grid } from "@mui/material";
+import AlertDialog from "../../containers/AlertDialog";
 
 const style = {
   position: "absolute",
@@ -26,6 +28,11 @@ function HorizontralCardComp(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [open1, setOpen1] = React.useState(false);
+  const handleOpen1 = () => setOpen1(true);
+  const handleClose1 = () => setOpen1(false);
+
   return (
     <Card sx={{ width: 345, maxWidth: 345, ml: 2, mt: 2 }}>
       <CardMedia
@@ -49,7 +56,7 @@ function HorizontralCardComp(props) {
         <Button onClick={handleOpen} variant="contained" size="small">
           Learn More
         </Button>
-        <Button variant="contained" size="small">
+        <Button onClick={handleOpen1} variant="contained" size="small">
           Add to Trip
         </Button>
         <Modal
@@ -74,6 +81,15 @@ function HorizontralCardComp(props) {
           </Box>
         </Modal>
       </CardActions>
+      <Grid item xs={12}>
+        <AlertDialog
+          open={open1}
+          title="Confirm"
+          message="API logic required to Save"
+          handleClose={handleClose1}
+          buttons={["Cancel", "Ok"]}
+        />
+      </Grid>
     </Card>
   );
 }
