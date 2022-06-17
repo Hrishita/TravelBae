@@ -41,6 +41,7 @@ const ViewBlog = React.lazy(() => import("./pages/ViewBlog"));
 const BlogList = React.lazy(() => import("./pages/BlogList"));
 
 const Flags = React.lazy(() => import("./pages/UserDashboardFlag"));
+const Plans = React.lazy(() => import("./pages/UserDashboardPlan"));
 function Router() {
   return (
     <BrowserRouter>
@@ -142,7 +143,7 @@ function Router() {
           />
           <Route
             exact
-            path="/userdashbord-trips"
+            path="/userdashboard-trips"
             render={() => {
               return <Trips />;
             }}
@@ -150,7 +151,7 @@ function Router() {
 
           <Route
             exact
-            path="/userdashbord-blogs"
+            path="/userdashboard-blogs"
             render={() => {
               return <Blogs />;
             }}
@@ -218,6 +219,13 @@ function Router() {
             path="/userdashboard-flags"
             render={() => {
               return <Flags />;
+            }}
+          />
+          <Route
+            exact
+            path="/userdashboard-plans"
+            render={() => {
+              return <Plans />;
             }}
           />
         </Switch>

@@ -9,6 +9,7 @@ import {
 } from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
 import { useHistory } from "react-router-dom";
+import GoogleMap from "./../components/GoogleMap/index";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -76,9 +77,12 @@ const Destination = () => {
                   lg={3}
                   style={{ textAlign: "center" }}
                 >
-                  <Card className={classes.root} onClick={() => {
-        handleListItemClick(navigationLink);
-      }}>
+                  <Card
+                    className={classes.root}
+                    onClick={() => {
+                      handleListItemClick(navigationLink);
+                    }}
+                  >
                     <CardMedia
                       component="img"
                       alt="Contemplative Reptile"
@@ -142,6 +146,9 @@ const Destination = () => {
                     sapiente molestiae impedit maxime quisquam soluta.
                   </Typography>
                 </Box>
+              </Grid>
+              <Grid item xs={12} sm={3} sx={{ padding: "0em 0.5em" }}>
+                <GoogleMap />
               </Grid>
             </Grid>
           </Box>

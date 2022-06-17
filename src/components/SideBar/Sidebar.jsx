@@ -13,7 +13,11 @@ function Sidebar() {
   return (
     <div className="sidebar-container" style={{}}>
       <div className="sidebar-userprofileContainer">
-        <img className="sidebar-userphoto" alt="ProfileImage" src={ProfileImage} />
+        <img
+          className="sidebar-userphoto"
+          alt="ProfileImage"
+          src={ProfileImage}
+        />
         <h1 className="sidebar-username">Jenner Joe</h1>
       </div>
       <div className="sidebar-option-container" style={{}}>
@@ -25,25 +29,25 @@ function Sidebar() {
           >
             <MdOutlineFlight />
             <h3 style={{ margin: "0", padding: "0" }}>
-              <a href="/userdashbord-trips">Trips</a>
+              <a href="/userdashboard-trips">Trips</a>
             </h3>
           </li>
           <li className="sidebar-link-to-pages" href="/blogs" style={{}}>
             <RiFileCopyLine />
             <h3 style={{ margin: "0", padding: "0" }}>
-              <a href="/userdashbord-blogs">Blogs</a>
+              <a href="/userdashboard-blogs">Blogs</a>
             </h3>
           </li>
           <li className="sidebar-link-to-pages" href="/flags">
             <AiOutlineFlag />
             <h3 style={{ margin: "0", padding: "0" }}>
-              <a href="/userdashbord-flags">Flags</a>
+              <a href="/userdashboard-flags">Flags</a>
             </h3>
           </li>
           <li className="sidebar-link-to-pages">
             <AiOutlinePieChart />
             <h3 style={{ margin: "0", padding: "0" }}>
-              <a href="/userdashbord-planning">Planning</a>
+              <a href="/userdashboard-plans">Whislist</a>
             </h3>
           </li>
         </u1>

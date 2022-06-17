@@ -132,7 +132,12 @@ function UserDashbordFlag() {
                 component="div"
                 sx={{ paddingTop: "2%" }}
               >
-                Flag bank of Travel Bae
+                <li style={{ listStyle: "none" }}>
+                  <h5>
+                    <a href="/userdashboard-flags">Flag bank of Travel Bae</a>
+                  </h5>
+                </li>
+                {/* Flag bank of Travel Bae */}
               </Typography>
             </div>
 
