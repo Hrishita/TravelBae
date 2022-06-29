@@ -10,7 +10,6 @@ import FilterMenu from "../../containers/FilterMenu";
 import filterData from "../../pages/Itinerary/FilterMockData";
 import CardCont from "../../containers/CardCont";
 import { cityCards } from "../../containers/CardCont/mockData";
-import weatherData from "./WeatherMockData";
 import { Link } from "react-router-dom";
 
 const DayItineraryPage = () => {
@@ -24,7 +23,7 @@ const DayItineraryPage = () => {
           <Filter filterProperties={filterData}></Filter>
         </Box>
       </Grid>
-      <Grid item xs={12} lg={6}>
+      <Grid item xs={12} lg={9}>
         <Box
           sx={{
             width: "auto",
@@ -79,58 +78,6 @@ const DayItineraryPage = () => {
               );
             })}
           </Grid>
-        </Box>
-      </Grid>
-      <Grid item xs={12} lg={3}>
-        <Box
-          sx={{
-            width: "auto",
-            height: "auto",
-            backgroundColor: "white",
-            marginTop: "2rem",
-          }}
-        >
-          <Typography variant="h5" align="center">
-            Weather Details
-          </Typography>
-          <Box
-            sx={{
-              backgroundImage: `url(https://cdn.stocksnap.io/img-thumbs/960w/pastel-clouds_H89THM4Y6L.jpg)`,
-              backgroundSize: "cover",
-              color: "white",
-              height: "30rem",
-              alignItems: "center",
-              display: "flex",
-            }}
-          >
-            {weatherData.map((item) => {
-              return (
-                <Grid item xs={12} style={{ textAlign: "center" }}>
-                  <Typography variant="h6">
-                    Today: {item.current.temp} °K
-                  </Typography>
-                  <Typography variant="h6">
-                    Tomorrow: {item.daily.map((data) => data.temp.max)} °K
-                  </Typography>
-                  <Typography variant="h6">
-                    6/18: {item.daily.map((data) => data.temp.max)} °K
-                  </Typography>
-                  <Typography variant="h6">
-                    6/19: {item.daily.map((data) => data.temp.max)} °K
-                  </Typography>
-                  <Typography variant="h6">
-                    6/20: {item.daily.map((data) => data.temp.max)} °K
-                  </Typography>
-                  <Typography variant="h6">
-                    6/21: {item.daily.map((data) => data.temp.max)} °K
-                  </Typography>
-                  <Typography variant="h6">
-                    6/22: {item.daily.map((data) => data.temp.max)} °K
-                  </Typography>
-                </Grid>
-              );
-            })}
-          </Box>
         </Box>
       </Grid>
       <Grid item xs={12}>
