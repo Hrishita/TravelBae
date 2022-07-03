@@ -10,12 +10,13 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
 const userRouter = require("../routers/userRouter");
+const destinationRouter = require("../routers/destinationRouter");
 
 /**
  * Using dotenv package, it reads the .env file provided which contains all the secrets and tokens for
  * mongo and jwt.
  */
-dotenv.config();
+dotenv.config({path : '../.env'});
 
 /**
  * Creating a new express application.
@@ -68,3 +69,4 @@ mongoose.connect(
  * which is being specified.
  */
 app.use("/ui", userRouter);
+app.use("/destination", destinationRouter);
