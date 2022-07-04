@@ -6,12 +6,12 @@ import Footer from "../containers/Footer";
 import Pagination from "../containers/Pagination";
 import AccommodationSearchBoxComp from "../components/AccommodationSearch";
 import HorizontralCardComp from "../components/HorizontalCard";
-import { hotelList } from "../components/HorizontalCard/hotelLists";
 import Filter from "../containers/Filter";
 import data from "../containers/Filter/mockData";
 import FilterMenu from "../containers/FilterMenu";
 import axios from "axios";
 import { BACKEND_URL } from "../config/index";
+import AccommodationSortDropdown from "../components/AccommodationSortDropdown";
 
 function AccommodationListPage() {
   const [allHotels, setAllHotels] = useState([]);
@@ -70,6 +70,9 @@ function AccommodationListPage() {
             }}
           >
             Our top picked hotels for you...
+          </Box>
+          <Box>
+            <AccommodationSortDropdown />
           </Box>
         </Grid>
       </Grid>
