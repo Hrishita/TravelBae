@@ -10,6 +10,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
 const userRouter = require("../routers/userRouter");
+const accommodationRouter = require("../routers/accommodationRouter/index");
 
 /**
  * Using dotenv package, it reads the .env file provided which contains all the secrets and tokens for
@@ -68,3 +69,4 @@ mongoose.connect(
  * which is being specified.
  */
 app.use("/ui", userRouter);
+app.use("/acc", accommodationRouter);

@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, Divider } from "@mui/material";
-import CardCarousel from "../containers/CardCarousel";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
 import Footer from "../containers/Footer";
@@ -11,19 +10,36 @@ import { hotelList } from "../components/HorizontalCard/hotelLists";
 import Filter from "../containers/Filter";
 import data from "../containers/Filter/mockData";
 import FilterMenu from "../containers/FilterMenu";
+import axios from "axios";
+import { BACKEND_URL } from "../config/index";
 
 function AccommodationListPage() {
+  const [allHotels, setAllHotels] = useState([]);
+  let [keyword, setKeyword] = useState("");
+
+  useEffect(() => {
+    axios
+      .post(`${BACKEND_URL}/acc/searchAccommodation`, { hotel_name: keyword })
+      .then((res) => {
+        setAllHotels(res.data.data);
+      });
+  });
+
+  // useEffect(() => {
+  //   axios.post(`${BACKEND_URL}/acc/fetchAllAccommodation`).then((res) => {
+  //     setAllHotels(res.data.data);
+  //   });
+  // });
+
+  console.log(allHotels);
   return (
     <Grid container spacing={0.5}>
       <Grid item xs={12}>
         <NavBar />
       </Grid>
       <Grid item xs={12}>
-        <CardCarousel />
-      </Grid>
-      <Grid item xs={12}>
         <Box pt={4} pb={4}>
-          <AccommodationSearchBoxComp />
+          <AccommodationSearchBoxComp keyword={setKeyword} />
           <Grid
             item
             sx={{ display: { xs: "block", md: "none" } }}
@@ -72,7 +88,7 @@ function AccommodationListPage() {
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 4, sm: 8, md: 12 }}
         >
-          {hotelList.map((myVariable) => {
+          {/* {hotelList.map((myVariable) => {
             return (
               <HorizontralCardComp
                 name={myVariable.name}
@@ -80,6 +96,18 @@ function AccommodationListPage() {
                 image={myVariable.image}
                 price={myVariable.price}
                 desc={myVariable.desc}
+              />
+            );
+          })} */}
+          {allHotels.map((myVariable) => {
+            return (
+              <HorizontralCardComp
+                name={myVariable.hotel_name}
+                address={myVariable.address}
+                image={myVariable.hotel_image}
+                price={myVariable.price}
+                desc={myVariable.hotel_desc}
+                city={myVariable.city}
               />
             );
           })}
