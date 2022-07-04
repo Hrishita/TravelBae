@@ -11,4 +11,9 @@ accommodationRouter.post(
   accommodationService.searchAccommodation
 );
 
+accommodationRouter.post(
+  "/sortAccommodation",
+  accommodationService.searchAccommodation
+);
+
 module.exports = accommodationRouter;
