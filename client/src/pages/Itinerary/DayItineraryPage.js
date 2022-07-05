@@ -15,7 +15,13 @@ import { useLocation } from "react-router-dom";
 const DayItineraryPage = () => {
   const location = useLocation();
   const duration = location.state.duration;
+  const cityLat = location.state.cityLat;
+  const cityLong = location.state.cityLong;
   const [descList, setDescList] = useState([]);
+  const days = [];
+  for (let i = 1; i <= duration; i++) {
+    days.push(i);
+  }
 
   useEffect(() => {
     const fetchURL = `${BACKEND_URL}/dit/fetchDayItinerary`;
@@ -50,34 +56,44 @@ const DayItineraryPage = () => {
             align="center"
             fontWeight="bold"
           >
-            {duration} Itinerary
+            {duration} - Day Itinerary
           </Typography>
-          <Typography
-            variant="h5"
-            paddingTop={1}
-            paddingBottom={1}
-            paddingLeft={1}
-            align="left"
-          >
-            Day 1
-          </Typography>
-          <Grid item xs={12}>
-            <Divider
-              variant="middle"
-              sx={{ borderBottomWidth: 3, background: "black" }}
-            />
-          </Grid>
         </Box>
       </Grid>
       <Grid item xs={12} lg={9}>
         {descList.length &&
-          descList.map((dayItinerary) => {
+          days.map((day) => {
             return (
-              <DescriptionList
-                image={dayItinerary.itinerary_image}
-                title={dayItinerary.itinerary_place}
-                desc={dayItinerary.itinerary_description}
-              />
+              <>
+                <Typography
+                  variant="h5"
+                  paddingTop={1}
+                  paddingBottom={1}
+                  paddingLeft={1}
+                  align="left"
+                >
+                  Day {day}
+                </Typography>
+                <Grid item xs={12}>
+                  <Divider
+                    variant="middle"
+                    sx={{ borderBottomWidth: 3, background: "black" }}
+                  />
+                </Grid>
+                {descList.map((dayItinerary) => {
+                  if (dayItinerary.day === day) {
+                    return (
+                      <DescriptionList
+                        image={dayItinerary.itinerary_image}
+                        title={dayItinerary.itinerary_place}
+                        desc={dayItinerary.itinerary_description}
+                      />
+                    );
+                  } else {
+                    return <></>;
+                  }
+                })}
+              </>
             );
           })}
       </Grid>
@@ -132,45 +148,6 @@ const DayItineraryPage = () => {
             })}
           </Box>
         </Box>
-      </Grid>
-      <Grid item xs={12}>
-        <Box
-          sx={{
-            width: "auto",
-            height: 50,
-            backgroundColor: "white",
-            marginTop: "1rem",
-            marginLeft: "2rem",
-            marginRight: "2rem",
-          }}
-        >
-          <Typography
-            variant="h5"
-            paddingTop={1}
-            paddingBottom={1}
-            paddingLeft={1}
-            align="left"
-          >
-            Day 2
-          </Typography>
-          <Grid item xs={12}>
-            <Divider
-              variant="middle"
-              sx={{ borderBottomWidth: 3, background: "black" }}
-            />
-          </Grid>
-        </Box>
-      </Grid>
-      <Grid item xs={12}>
-        {descList.map((dayItinerary) => {
-          return (
-            <DescriptionList
-              image={dayItinerary.img}
-              title={dayItinerary.title}
-              desc={dayItinerary.desc}
-            />
-          );
-        })}
       </Grid>
       <Grid item xs={12}>
         <Footer />
