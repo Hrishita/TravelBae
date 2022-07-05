@@ -11,9 +11,14 @@ const specificItineraryService = require("../../middleware/specificItineraryServ
  * This API can be tested on Postman
  * with route '/wg/fetchWatchGroupID' at the end of the server_url.
  */
- specificItineraryRouter.post(
+specificItineraryRouter.post(
   "/fetchSpecificItineraries",
   specificItineraryService.fetchSpecificItineraries
+);
+
+specificItineraryRouter.post(
+  "/filterItineraries",
+  specificItineraryService.filterItineraries
 );
 
 /**
