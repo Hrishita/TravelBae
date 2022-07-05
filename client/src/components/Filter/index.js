@@ -18,7 +18,7 @@ const FilterComp = (props) => {
   };
 
   const handleChange = (index) => {
-    setOpen(true);
+    // setOpen(true);
 
     const newItems = [...checkedItems];
 
@@ -30,10 +30,12 @@ const FilterComp = (props) => {
       setClearAll(false);
     }
     setCheckedItems(newItems);
+    props.handleChange(newItems);
   };
   const handleClearAll = () => {
     setClearAll(true);
     setCheckedItems([]);
+    props.handleClearAll();
   };
 
   return (

@@ -5,26 +5,24 @@ const DescriptionListComp = (props) => {
   return (
     <Grid container>
       <Grid item xs={12} lg={4}>
-        <Grid container alignItems="center" justifyContent="center">
-          <Box
-            component="img"
-            sx={{
-              height: 233,
-              width: 350,
-              marginTop: "1rem",
-              marginLeft: "1rem",
-            }}
-            alt={props.title}
-            src={props.image}
-          ></Box>
-        </Grid>
+        <Box
+          component="img"
+          sx={{
+            height: 233,
+            width: 350,
+            marginTop: "1rem",
+            marginLeft: "1rem",
+          }}
+          alt={props.title}
+          src={props.image}
+        ></Box>
       </Grid>
       <Grid item xs={12} lg={8}>
         <Typography
           variant="h5"
           paddingTop={1}
           paddingBottom={1}
-          paddingLeft={1}
+          paddingLeft={4}
           align="left"
           fontWeight="bold"
         >
@@ -34,7 +32,7 @@ const DescriptionListComp = (props) => {
           variant="h5"
           paddingTop={1}
           paddingBottom={1}
-          paddingLeft={1}
+          paddingLeft={4}
           align="left"
         >
           {props.desc}

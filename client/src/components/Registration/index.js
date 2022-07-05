@@ -25,7 +25,6 @@ function RegisterComp() {
 
   const history = useHistory();
 
-  //error handling
   const [error, setError] = useState({
     firstName: "",
     lastName: "",
