@@ -18,6 +18,7 @@ import {
   accCards,
 } from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
+// Home page
 import AlertDialog from "../containers/AlertDialog";
 import { useHistory } from "react-router-dom";
 
