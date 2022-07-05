@@ -16,20 +16,21 @@ import AccommodationSortDropdown from "../components/AccommodationSortDropdown";
 function AccommodationListPage() {
   const [allHotels, setAllHotels] = useState([]);
   let [keyword, setKeyword] = useState("");
+  let [sort, setSort] = useState(0);
 
+
+  // use effect for calling SearchAccommodation Service in Backend. Here, I'm passing hotel name which we are getting from 
+  // search component and Sort which we are getting from AccommodationSortDropdown Component.
   useEffect(() => {
     axios
-      .post(`${BACKEND_URL}/acc/searchAccommodation`, { hotel_name: keyword })
+      .post(`${BACKEND_URL}/acc/searchAccommodation`, {
+        hotel_name: keyword,
+        sort_type: sort,
+      })
       .then((res) => {
         setAllHotels(res.data.data);
       });
   });
-
-  // useEffect(() => {
-  //   axios.post(`${BACKEND_URL}/acc/fetchAllAccommodation`).then((res) => {
-  //     setAllHotels(res.data.data);
-  //   });
-  // });
 
   console.log(allHotels);
   return (
@@ -72,7 +73,7 @@ function AccommodationListPage() {
             Our top picked hotels for you...
           </Box>
           <Box>
-            <AccommodationSortDropdown />
+            <AccommodationSortDropdown sortingType={setSort} />
           </Box>
         </Grid>
       </Grid>

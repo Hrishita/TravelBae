@@ -9,7 +9,7 @@ const accommmodationSchema = new mongoose.Schema({
   hotel_name: { type: String },
   address: { type: String },
   city: { type: String },
-  price: { type: String },
+  price: { type: Number },
   check_in_date: { type: Date, default: Date.now },
   check_out_date: { type: Date, default: Date.now },
   hotel_tags: [

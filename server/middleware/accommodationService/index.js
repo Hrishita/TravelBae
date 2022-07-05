@@ -1,8 +1,4 @@
-const accommodationDB = require("../../data/accommodationDB/index");
-
-exports.fetchAllAccommodation = function (req, res) {
-  accommodationDB.fetchAllAccommodation(req, res);
-};
+const accommodationDB = require("../../data/accommodationDB");
 
 exports.searchAccommodation = function (req, res) {
   accommodationDB.searchAccommodation(req, res);
