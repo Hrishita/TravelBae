@@ -1,10 +1,9 @@
 const blogRouter = require("express").Router();
 const blogService = require("../../middleware/blogService");
 /**
- * This router is to create a API for Transportation Information. This API can be tested on Postman
- * with route '/transportation/fetchAllFlights' at the end of the server_url.
- * Upon passing the source, destination, travel date, it should return all the information related to the flights in the JSON format.
+ * This router is to create a API for Blog . This API can be tested on Postman
  */
+
 blogRouter.post("/createBlog", blogService.createBlog);
 
 blogRouter.post("/fetchAllBlogs", blogService.fetchAllBlogs);

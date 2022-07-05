@@ -1,5 +1,11 @@
 const Transportation = require("../../models/transportationModel/index");
 
+/**
+ * This function does all the operations on transportation collection
+ * @param {*} req : The request passsed as a parameter to the function transportationDB
+ * @returns : The function returns the Transportation model
+ */
+
 exports.fetchAllTransportation = function (req, res) {
   Transportation.find(function (err, Transportation) {
     if (err) return res.json({ success: false, error: err });

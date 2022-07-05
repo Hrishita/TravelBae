@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 
 /**
- * This constant defines the model structure of the blogSchema that is to be stored in MongoDB.
- *  The schema declares the data type and requiurement for each field.
+ * This constant defines the model structure of the blogSchema and commentSchema that is to be stored in MongoDB.
+ * The schema declares the data type and requiurement for each field.
+ * The schema also defines the default value for each field.
+ * The commentSchema is passed to the blogSchema as a sub-document.
  */
 
 const commentSchema = new mongoose.Schema({
@@ -29,11 +31,9 @@ const blogSchema = new mongoose.Schema({
 });
 
 const Blog = mongoose.model("blog", blogSchema);
-// const Comment = mongoose.model("comment", commentSchema);
 
 /**
  * The module is being exported as 'Blog'
  * so that this module can be imported into other modules.
  */
 module.exports = Blog;
-// module.exports = Comment;

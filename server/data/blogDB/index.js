@@ -2,10 +2,8 @@ const Blog = require("../../models/blogModel/index");
 
 /**
  * This function does all the operations on blog collection
- * to find the email that's sent from another function.
- * @param {*} req : The request passsed as a parameter to the function userDB
- * @returns : The function returns the User model
- * associated with the  email foung in the database
+ * @param {*} req : The request passsed as a parameter to the function blogDB
+ * @returns : The function returns the Blog model
  */
 
 exports.fetchAllBlogs = function (req, res) {
