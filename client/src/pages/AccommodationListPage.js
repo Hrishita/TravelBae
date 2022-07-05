@@ -7,8 +7,9 @@ import Pagination from "../containers/Pagination";
 import AccommodationSearchBoxComp from "../components/AccommodationSearch";
 import HorizontralCardComp from "../components/HorizontalCard";
 import Filter from "../containers/Filter";
-import data from "../containers/Filter/mockData";
+// import data from "../containers/Filter/mockData";
 import FilterMenu from "../containers/FilterMenu";
+import accommodationFilter from "../containers/AccommodationFIlters";
 import axios from "axios";
 import { BACKEND_URL } from "../config/index";
 import AccommodationSortDropdown from "../components/AccommodationSortDropdown";
@@ -48,7 +49,7 @@ function AccommodationListPage() {
             xs={12}
             className="text-align-center"
           >
-            <FilterMenu filterProperties={data}></FilterMenu>
+            <FilterMenu filterProperties={accommodationFilter}></FilterMenu>
           </Grid>
         </Box>
       </Grid>
@@ -80,7 +81,7 @@ function AccommodationListPage() {
 
       <Grid item>
         <Box sx={{ display: { xs: "none", md: "block" } }} md={2} xs={0}>
-          <Filter filterProperties={data}></Filter>
+          <Filter filterProperties={accommodationFilter}></Filter>
         </Box>
       </Grid>
 
