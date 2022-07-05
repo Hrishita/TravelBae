@@ -1,13 +1,11 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { Button, Grid } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Grid } from "@mui/material";
 
 export default function VerticalDisplayCardComp(props) {
   return (
     <Grid container>
     <Box sx={{ flexGrow: 1 }}>
-      <Button component={Link}>
       <Grid
         container
         direction="column"
@@ -33,7 +31,6 @@ export default function VerticalDisplayCardComp(props) {
           </Box>
         </Grid>
       </Grid>
-      </Button>
     </Box>
     </Grid>
   );

@@ -12,6 +12,10 @@ const cors = require("cors");
 const userRouter = require("../routers/userRouter");
 const transportationRouter = require("../routers/transportationRouter");
 const blogRouter = require("../routers/blogRouter");
+const accommodationRouter = require("../routers/accommodationRouter/index");
+const itineraryRouter = require("../routers/itineraryRouter");
+const specificItineraryRouter = require("../routers/specificItineraryRouter");
+const dayItineraryRouter = require("../routers/dayItineraryRouter");
 
 /**
  * Using dotenv package, it reads the .env file provided which contains all the secrets and tokens for
@@ -40,9 +44,7 @@ app.use(cookieParser());
 //cors issues middleware
 app.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-    ],
+    origin: ["http://localhost:3000"],
     credentials: true,
   })
 );
@@ -72,3 +74,7 @@ mongoose.connect(
 app.use("/ui", userRouter);
 app.use("/tp", transportationRouter);
 app.use("/bg", blogRouter);
+app.use("/acc", accommodationRouter);
+app.use("/it", itineraryRouter);
+app.use("/sit", specificItineraryRouter);
+app.use("/dit", dayItineraryRouter);
