@@ -14,6 +14,10 @@ exports.fetchRecommendedItineraries = function (req, res) {
   itineraryDB.fetchRecommendedItineraries(req, res);
 };
 
+exports.searchByCity = function (req, res) {
+  itineraryDB.searchByCity(req, res);
+};
+
 /**
  * The module is being exported as userProfileService so that this module can be imported into other modules.
  */

@@ -70,15 +70,16 @@ const DayItineraryPage = () => {
         </Box>
       </Grid>
       <Grid item xs={12} lg={9}>
-        {descList.length && descList.map((dayItinerary) => {
-          return (
-            <DescriptionList
-              image={dayItinerary.itinerary_image}
-              title={dayItinerary.itinerary_place}
-              desc={dayItinerary.itinerary_description}
-            />
-          );
-        })}
+        {descList.length &&
+          descList.map((dayItinerary) => {
+            return (
+              <DescriptionList
+                image={dayItinerary.itinerary_image}
+                title={dayItinerary.itinerary_place}
+                desc={dayItinerary.itinerary_description}
+              />
+            );
+          })}
       </Grid>
       <Grid item xs={12} lg={3}>
         <Box

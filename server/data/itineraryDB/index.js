@@ -10,9 +10,19 @@ const Itinerary = require("../../models/itineraryModel");
 exports.fetchRecommendedItineraries = function (req, res) {
   Itinerary.find({ recommended: true }, function (err, itineraries) {
     if (err) return res.json({ success: false, error: err });
-
-    res.json( itineraries );
+    res.json(itineraries);
   });
+};
+
+exports.searchByCity = function (req, res) {
+  // https://stackoverflow.com/questions/1863399/mongodb-is-it-possible-to-make-a-case-insensitive-query
+  Itinerary.find(
+    { itinerary_city: { $regex: req.body.itinerary_city, $options: "i" } },
+    function (err, itineraries) {
+      if (err) return res.json({ success: false, error: err });
+      res.json(itineraries);
+    }
+  );
 };
 
 /**

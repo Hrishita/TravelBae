@@ -11,12 +11,11 @@ import CardCont from "../../containers/CardCont";
 // import { cards } from "../../containers/CardCont/mockData";
 import { Link } from "react-router-dom";
 import Footer from "../../containers/Footer";
-import AlertDialog from "../../containers/AlertDialog";
 import axios from "axios";
 import { BACKEND_URL } from "../../config";
+import NoDataFound from "../../components/NoDataFound";
 
 const ItineraryPage = () => {
-  const [open, setOpen] = useState(false); // for alert box
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
@@ -29,12 +28,21 @@ const ItineraryPage = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const handleOpen = () => {
-    setOpen(true);
+  const handleChange = (event, type) => {
+    const cityReq = {
+      itinerary_city: event.target.value,
+    };
+    if (event.key === "Enter") {
+      const fetchURL = `${BACKEND_URL}/it/searchByCity`;
+      axios
+        .post(fetchURL, cityReq)
+        .then((res) => {
+          setCards(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
   };
-  const handleClose = () => {
-    setOpen(false);
-  };
+
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -74,7 +82,9 @@ const ItineraryPage = () => {
               variant="outlined"
               type="search"
               fullWidth
-              onChange={handleOpen}
+              onKeyUp={(event) => {
+                handleChange(event);
+              }}
             />
           </Box>
         </Box>
@@ -96,39 +106,54 @@ const ItineraryPage = () => {
       </Grid>
       <Grid item xs={12}>
         <Grid container alignItems="center" justifyContent="center" spacing="2">
-          {cards.length && cards.map((card) => {
-            return (
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                md={4}
-                lg={2}
-                style={{ textAlign: "center" }}
-              >
-                <Link to={{pathname: "/cityItinerary", state: card.itinerary_city}} style={{ textDecoration: "none" }}>
-                  <CardCont
-                    image={card.itinerary_image}
-                    title={card.itinerary_city}
-                    desc={card.itinerary_summary}
-                  />
-                </Link>
-              </Grid>
-            );
-          })}
+          {cards.length === 0 && (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={2}
+              style={{ textAlign: "center" }}
+            >
+              <NoDataFound
+                message="Search Results are Empty"
+                display={true}
+                listEmpty={true}
+                className="text-align-center"
+              />
+            </Grid>
+          )}
+          {cards.length !== 0 &&
+            cards.map((card) => {
+              return (
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={4}
+                  lg={2}
+                  style={{ textAlign: "center" }}
+                >
+                  <Link
+                    to={{
+                      pathname: "/cityItinerary",
+                      state: card.itinerary_city,
+                    }}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <CardCont
+                      image={card.itinerary_image}
+                      title={card.itinerary_city}
+                      desc={card.itinerary_summary}
+                    />
+                  </Link>
+                </Grid>
+              );
+            })}
         </Grid>
       </Grid>
       <Grid item xs={12}>
         <Footer />
-      </Grid>
-      <Grid item xs={12}>
-        <AlertDialog
-          open={open}
-          title="Confirm"
-          message="API logic required to Search"
-          handleClose={handleClose}
-          buttons={["Cancel", "Ok"]}
-        />
       </Grid>
     </Grid>
   );

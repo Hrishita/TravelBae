@@ -8,11 +8,14 @@ const SpecificItinerary = require("../../models/specificItineraryModel");
  */
 
 exports.fetchSpecificItineraries = function (req, res) {
-    SpecificItinerary.find({}, function (err, specificItineraries) {
-    if (err) return res.json({ success: false, error: err });
+  SpecificItinerary.find(
+    { itinerary_place: { $regex: req.body.itinerary_place, $options: "i" } },
+    function (err, specificItineraries) {
+      if (err) return res.json({ success: false, error: err });
 
-    res.json( specificItineraries );
-  });
+      res.json(specificItineraries);
+    }
+  );
 };
 
 /**

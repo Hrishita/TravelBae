@@ -16,21 +16,22 @@ import axios from "axios";
 import { BACKEND_URL } from "../../config";
 
 const CityItineraryPage = () => {
-  // const { state } = props.location;
-  // console.log("props......", props);
   const location = useLocation();
   const cityName = location.state;
   const [cityCards, setCityCards] = useState([]);
 
   useEffect(() => {
     const fetchURL = `${BACKEND_URL}/sit/fetchSpecificItineraries`;
+    const specificCityReq = {
+      itinerary_place: cityName,
+    };
     axios
-      .post(fetchURL)
+      .post(fetchURL, specificCityReq)
       .then((res) => {
         setCityCards(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [cityName]);
 
   return (
     <Grid container>
@@ -83,19 +84,23 @@ const CityItineraryPage = () => {
             justifyContent="center"
             spacing={3}
           >
-            {cityCards.length && cityCards.map((card) => {
-              return (
-                <Grid item style={{ textAlign: "center" }}>
-                  <Link to={{pathname: "/dayItinerary", state: card}} style={{ textDecoration: "none" }}>
-                    <CardCont
-                      image={card.itinerary_image}
-                      title={card.duration}
-                      desc={card.itinerary_summary}
-                    />
-                  </Link>
-                </Grid>
-              );
-            })}
+            {cityCards.length &&
+              cityCards.map((card) => {
+                return (
+                  <Grid item style={{ textAlign: "center" }}>
+                    <Link
+                      to={{ pathname: "/dayItinerary", state: card }}
+                      style={{ textDecoration: "none" }}
+                    >
+                      <CardCont
+                        image={card.itinerary_image}
+                        title={card.duration}
+                        desc={card.itinerary_summary}
+                      />
+                    </Link>
+                  </Grid>
+                );
+              })}
           </Grid>
         </Box>
       </Grid>

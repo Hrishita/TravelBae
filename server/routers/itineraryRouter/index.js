@@ -16,6 +16,11 @@ itineraryRouter.post(
   itineraryService.fetchRecommendedItineraries
 );
 
+itineraryRouter.post(
+  "/searchByCity",
+  itineraryService.searchByCity
+);
+
 /**
  * The module is being exported as router
  * so that this module can be imported into other modules.
