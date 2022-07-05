@@ -81,3 +81,12 @@ exports.fetchBlogComments = function (req, res) {
   });
 };
 
+exports.deleteBlogByID = function (req, res) {
+  const { blog_id } = req.body;
+  Blog.findOneAndDelete({ blog_id }, function (err, blog) {
+    if (err) {
+      res.send(err);
+    }
+    res.json(blog);
+  });
+}
