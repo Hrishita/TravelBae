@@ -138,3 +138,26 @@ All the images used for this project are royalty free.
 [10] Assignment - 1 Git URL (Nishit Mistry) - https://git.cs.dal.ca/nmistry/csci5709/-/tree/assignment1
 
 - Some part of code is taken from  first individual assignment referenced above. 
+
+[11] G. Rai, "Mongoose's find method with $or condition does not work properly", Stack Overflow, 2022. [Online]. Available: https://stackoverflow.com/questions/7382207/mongooses-find-method-with-or-condition-does-not-work-properly. [Accessed: 05- Jul- 2022].
+
+- Used as reference to add or condition in find method
+  
+Code Used:
+
+```
+User.find( { $or:[ {'_id':objId}, {'name':param}, {'nickname':param} ]}, 
+  function(err,docs){
+    if(!err) res.send(docs);
+});
+```
+
+Code Modified:
+
+```
+{ $or:[{source: req.body.source}, {dest_name: req.body.dest_name},{start_date: req.body.start_date},{return_date:req.body.return_date}] },
+
+```
+File : C:\Users\AVuser\Desktop\webProject\csci-5709-project\server\data\transportationDB\index.js
+
+Line: 18
