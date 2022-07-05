@@ -11,7 +11,11 @@ const specificItineraryDB = require("../../data/specificItineraryDB");
 // }
 
 exports.fetchSpecificItineraries = function (req, res) {
-    specificItineraryDB.fetchSpecificItineraries(req, res);
+  specificItineraryDB.fetchSpecificItineraries(req, res);
+};
+
+exports.filterItineraries = function (req, res) {
+  specificItineraryDB.filterItineraries(req, res);
 };
 
 /**
