@@ -1,7 +1,7 @@
 import { Grid } from "@material-ui/core";
 import { Typography } from "@mui/material";
 import Divider from "@mui/material/Divider";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import NavBar from "../../containers/NavBar";
 import Footer from "../../containers/Footer";
@@ -9,10 +9,29 @@ import Filter from "../../containers/Filter";
 import FilterMenu from "../../containers/FilterMenu";
 import filterData from "../../pages/Itinerary/FilterMockData";
 import CardCont from "../../containers/CardCont";
-import { cityCards } from "../../containers/CardCont/mockData";
+// import { cityCards } from "../../containers/CardCont/mockData";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+import { BACKEND_URL } from "../../config";
 
-const DayItineraryPage = () => {
+const CityItineraryPage = () => {
+  // const { state } = props.location;
+  // console.log("props......", props);
+  const location = useLocation();
+  const cityName = location.state;
+  const [cityCards, setCityCards] = useState([]);
+
+  useEffect(() => {
+    const fetchURL = `${BACKEND_URL}/sit/fetchSpecificItineraries`;
+    axios
+      .post(fetchURL)
+      .then((res) => {
+        setCityCards(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -40,7 +59,7 @@ const DayItineraryPage = () => {
               paddingLeft={1}
               align="left"
             >
-              Recommended Itineraries for Paris
+              Recommended Itineraries for {cityName}
             </Typography>
             <Box
               sx={{
@@ -64,14 +83,14 @@ const DayItineraryPage = () => {
             justifyContent="center"
             spacing={3}
           >
-            {cityCards.map((card) => {
+            {cityCards.length && cityCards.map((card) => {
               return (
                 <Grid item style={{ textAlign: "center" }}>
-                  <Link to={"/dayItinerary"} style={{ textDecoration: "none" }}>
+                  <Link to={{pathname: "/dayItinerary", state: card}} style={{ textDecoration: "none" }}>
                     <CardCont
-                      image={card.img}
-                      title={card.title}
-                      desc={card.desc}
+                      image={card.itinerary_image}
+                      title={card.duration}
+                      desc={card.itinerary_summary}
                     />
                   </Link>
                 </Grid>
@@ -87,4 +106,4 @@ const DayItineraryPage = () => {
   );
 };
 
-export default DayItineraryPage;
+export default CityItineraryPage;

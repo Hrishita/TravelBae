@@ -1,6 +1,6 @@
 import { Grid } from "@material-ui/core";
 import { Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../../containers/NavBar";
 import Box from "@mui/material/Box";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -8,13 +8,26 @@ import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import Divider from "@mui/material/Divider";
 import CardCont from "../../containers/CardCont";
-import { cards } from "../../containers/CardCont/mockData";
+// import { cards } from "../../containers/CardCont/mockData";
 import { Link } from "react-router-dom";
 import Footer from "../../containers/Footer";
 import AlertDialog from "../../containers/AlertDialog";
+import axios from "axios";
+import { BACKEND_URL } from "../../config";
 
 const ItineraryPage = () => {
   const [open, setOpen] = useState(false); // for alert box
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    const fetchURL = `${BACKEND_URL}/it/fetchRecommendedItineraries`;
+    axios
+      .post(fetchURL)
+      .then((res) => {
+        setCards(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const handleOpen = () => {
     setOpen(true);
@@ -83,7 +96,7 @@ const ItineraryPage = () => {
       </Grid>
       <Grid item xs={12}>
         <Grid container alignItems="center" justifyContent="center" spacing="2">
-          {cards.map((card) => {
+          {cards.length && cards.map((card) => {
             return (
               <Grid
                 item
@@ -93,11 +106,11 @@ const ItineraryPage = () => {
                 lg={2}
                 style={{ textAlign: "center" }}
               >
-                <Link to={"/cityItinerary"} style={{ textDecoration: "none" }}>
+                <Link to={{pathname: "/cityItinerary", state: card.itinerary_city}} style={{ textDecoration: "none" }}>
                   <CardCont
-                    image={card.img}
-                    title={card.title}
-                    desc={card.desc}
+                    image={card.itinerary_image}
+                    title={card.itinerary_city}
+                    desc={card.itinerary_summary}
                   />
                 </Link>
               </Grid>

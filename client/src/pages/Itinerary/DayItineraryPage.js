@@ -1,15 +1,32 @@
 import { Grid } from "@material-ui/core";
 import { Typography } from "@mui/material";
 import Divider from "@mui/material/Divider";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import NavBar from "../../containers/NavBar";
 import DescriptionList from "../../containers/DescriptionList";
-import descList from "../../containers/DescriptionList/mockData";
+// import descList from "../../containers/DescriptionList/mockData";
 import Footer from "../../containers/Footer";
 import weatherData from "./WeatherMockData";
+import axios from "axios";
+import { BACKEND_URL } from "../../config";
+import { useLocation } from "react-router-dom";
 
 const DayItineraryPage = () => {
+  const location = useLocation();
+  const duration = location.state.duration;
+  const [descList, setDescList] = useState([]);
+
+  useEffect(() => {
+    const fetchURL = `${BACKEND_URL}/dit/fetchDayItinerary`;
+    axios
+      .post(fetchURL)
+      .then((res) => {
+        setDescList(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -33,7 +50,7 @@ const DayItineraryPage = () => {
             align="center"
             fontWeight="bold"
           >
-            5 - Day Itinerary
+            {duration} Itinerary
           </Typography>
           <Typography
             variant="h5"
@@ -53,12 +70,12 @@ const DayItineraryPage = () => {
         </Box>
       </Grid>
       <Grid item xs={12} lg={9}>
-        {descList.map((dayItinerary) => {
+        {descList.length && descList.map((dayItinerary) => {
           return (
             <DescriptionList
-              image={dayItinerary.img}
-              title={dayItinerary.title}
-              desc={dayItinerary.desc}
+              image={dayItinerary.itinerary_image}
+              title={dayItinerary.itinerary_place}
+              desc={dayItinerary.itinerary_description}
             />
           );
         })}
