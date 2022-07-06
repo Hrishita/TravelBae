@@ -10,6 +10,9 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
 const userRouter = require("../routers/userRouter");
+const transportationRouter = require("../routers/transportationRouter");
+const blogRouter = require("../routers/blogRouter");
+const accommodationRouter = require("../routers/accommodationRouter/index");
 const itineraryRouter = require("../routers/itineraryRouter");
 const specificItineraryRouter = require("../routers/specificItineraryRouter");
 const dayItineraryRouter = require("../routers/dayItineraryRouter");
@@ -69,6 +72,9 @@ mongoose.connect(
  * which is being specified.
  */
 app.use("/ui", userRouter);
+app.use("/tp", transportationRouter);
+app.use("/bg", blogRouter);
+app.use("/acc", accommodationRouter);
 app.use("/it", itineraryRouter);
 app.use("/sit", specificItineraryRouter);
 app.use("/dit", dayItineraryRouter);
