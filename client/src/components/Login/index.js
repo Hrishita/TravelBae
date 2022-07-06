@@ -11,6 +11,7 @@ import {
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Link } from "@material-ui/core";
 import AlertDialog from "../../containers/AlertDialog";
+import filterProperties from "../../pages/Itinerary/FilterMockData";
 
 function LoginComp() {
   const [email, setEmail] = useState("");
@@ -97,7 +98,10 @@ function LoginComp() {
     if (errorObj.email || errorObj.password) {
       return;
     }
-    setOpen(true);
+
+    const userData = { email, password };
+    // setOpen(true);
+    props.handleLogin(userData)
   };
 
   return (
