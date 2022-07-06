@@ -11,7 +11,7 @@ import HorizontralCardComp from "../components/HorizontalCard";
 import Filter from "../containers/Filter";
 import data from "../containers/Filter/mockData";
 import FilterMenu from "../containers/FilterMenu";
-import AccommodationSearchBoxComp from "../components/AccommodationSearch";
+// import AccommodationSearchBoxComp from "../components/AccommodationSearch";
 
 function ActivitiesToDoListPage() {
   return (

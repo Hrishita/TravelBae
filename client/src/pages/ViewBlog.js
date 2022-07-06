@@ -1,5 +1,5 @@
 import { Grid } from "@material-ui/core";
-import { Comment } from "@material-ui/icons";
+// import { Comment } from "@material-ui/icons";
 import { CommentBank, Send } from "@mui/icons-material";
 import { Avatar, Box, TextField, Typography } from "@mui/material";
 import { deepOrange, grey } from "@mui/material/colors";
@@ -41,8 +41,8 @@ function ViewBlog() {
     setComment("");
   };
   return (
-<Grid container spacing={3}>
-       <Grid item xs={12}>
+    <Grid container spacing={3}>
+      <Grid item xs={12}>
         <NavBar />
       </Grid>
       <div className="container p-4">
@@ -109,7 +109,7 @@ function ViewBlog() {
               color={"#292929"}
               style={{ color: "#292929", fontSize: "1.1rem" }}
             >
-            Going to Bali feels like going on a never-ending adventure–there
+              Going to Bali feels like going on a never-ending adventure–there
               is an activity to suit every soul! Bali is a popular destination
               for many people around the world and it’s easy to see why. From
               its unending idyllic beaches, captivating spiritual energy,
@@ -153,8 +153,8 @@ function ViewBlog() {
           </div>
         </div>
       </div>
-      <Footer/>
-   </Grid>
+      <Footer />
+    </Grid>
   );
 }
 

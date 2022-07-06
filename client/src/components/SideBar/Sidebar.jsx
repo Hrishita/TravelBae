@@ -53,7 +53,7 @@ function Sidebar() {
         </u1>
         <div className="sidebar-contact-container" style={{}}>
           <span>Reach us at</span>
-          <a href="#">help@travelbae.com</a>
+          <a href="/">help@travelbae.com</a>
         </div>
       </div>
     </div>

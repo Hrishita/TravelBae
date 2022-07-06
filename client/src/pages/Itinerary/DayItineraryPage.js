@@ -7,9 +7,11 @@ import NavBar from "../../containers/NavBar";
 import DescriptionList from "../../containers/DescriptionList";
 // import descList from "../../containers/DescriptionList/mockData";
 import Footer from "../../containers/Footer";
-import weatherData from "./WeatherMockData";
+// import weatherData from "./WeatherMockData";
 import axios from "axios";
+import moment from "moment";
 import { BACKEND_URL } from "../../config";
+import { Weather_API } from "../../config";
 import { useLocation } from "react-router-dom";
 
 const DayItineraryPage = () => {
@@ -18,6 +20,7 @@ const DayItineraryPage = () => {
   const cityLat = location.state.cityLat;
   const cityLong = location.state.cityLong;
   const [descList, setDescList] = useState([]);
+  const [weatherData, setWeatherData] = useState([]);
   const days = [];
   for (let i = 1; i <= duration; i++) {
     days.push(i);
@@ -32,6 +35,34 @@ const DayItineraryPage = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  useEffect(() => {
+    const weatherURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${cityLat}&lon=${cityLong}&appid=${Weather_API}`;
+    axios
+      .get(weatherURL)
+      .then((res) => {
+        setWeatherData(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, [cityLat, cityLong]);
+
+  const dates =
+    weatherData &&
+    weatherData.list &&
+    weatherData.list.map((item) => {
+      return {
+        epochDate: item.dt,
+        // https://stackoverflow.com/questions/40752287/use-moment-js-to-convert-unix-epoch-time-to-human-readable-time
+        formattedDate: moment.unix(item.dt).format("MMM DD YYYY"),
+      };
+    });
+
+  //https://yagisanatode.com/2021/07/03/get-a-unique-list-of-objects-in-an-array-of-object-in-javascript/
+  let uniqueDates = [
+    ...new Map(
+      dates && dates.map((item) => [item["formattedDate"], item])
+    ).values(),
+  ];
 
   return (
     <Grid container>
@@ -114,38 +145,31 @@ const DayItineraryPage = () => {
               backgroundImage: `url(https://cdn.stocksnap.io/img-thumbs/960w/pastel-clouds_H89THM4Y6L.jpg)`,
               backgroundSize: "cover",
               color: "white",
-              height: "30rem",
+              height: "20rem",
               alignItems: "center",
               display: "flex",
             }}
           >
-            {weatherData.map((item) => {
-              return (
-                <Grid item xs={12} style={{ textAlign: "center" }}>
-                  <Typography variant="h6">
-                    Today: {item.current.temp} °K
-                  </Typography>
-                  <Typography variant="h6">
-                    Tomorrow: {item.daily.map((data) => data.temp.max)} °K
-                  </Typography>
-                  <Typography variant="h6">
-                    6/18: {item.daily.map((data) => data.temp.max)} °K
-                  </Typography>
-                  <Typography variant="h6">
-                    6/19: {item.daily.map((data) => data.temp.max)} °K
-                  </Typography>
-                  <Typography variant="h6">
-                    6/20: {item.daily.map((data) => data.temp.max)} °K
-                  </Typography>
-                  <Typography variant="h6">
-                    6/21: {item.daily.map((data) => data.temp.max)} °K
-                  </Typography>
-                  <Typography variant="h6">
-                    6/22: {item.daily.map((data) => data.temp.max)} °K
-                  </Typography>
-                </Grid>
-              );
-            })}
+            <Grid item xs={12} style={{ textAlign: "center" }}>
+              {uniqueDates.map((d) => {
+                return (
+                  weatherData &&
+                  weatherData.list &&
+                  weatherData.list.map((item) => {
+                    if (d.epochDate === item.dt) {
+                      return (
+                        <Typography variant="h6">
+                          {d.formattedDate}:{" "}
+                          {Math.round(item.main.feels_like - 273.15)}°C
+                        </Typography>
+                      );
+                    } else {
+                      return <></>;
+                    }
+                  })
+                );
+              })}
+            </Grid>
           </Box>
         </Box>
       </Grid>
