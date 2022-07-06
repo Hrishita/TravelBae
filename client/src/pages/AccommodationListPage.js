@@ -19,21 +19,34 @@ function AccommodationListPage() {
   let [keyword, setKeyword] = useState("");
   let [sort, setSort] = useState(0);
 
+  const [filtering, setFiltering] = useState({});
 
-  // use effect for calling SearchAccommodation Service in Backend. Here, I'm passing hotel name which we are getting from 
+  const handleChange = (checkedItems) => {
+    setFiltering({
+      tags: checkedItems,
+    });
+  };
+
+  const handleClearAll = () => {
+    const specificCityReq = {};
+  };
+
+  // use effect for calling SearchAccommodation Service in Backend. Here, I'm passing hotel name which we are getting from
   // search component and Sort which we are getting from AccommodationSortDropdown Component.
   useEffect(() => {
     axios
       .post(`${BACKEND_URL}/acc/searchAccommodation`, {
         hotel_name: keyword,
         sort_type: sort,
+        tags: filtering
       })
       .then((res) => {
         setAllHotels(res.data.data);
       });
   });
+ 
 
-  console.log(allHotels);
+  // console.log(allHotels);
   return (
     <Grid container spacing={0.5}>
       <Grid item xs={12}>
@@ -81,7 +94,11 @@ function AccommodationListPage() {
 
       <Grid item>
         <Box sx={{ display: { xs: "none", md: "block" } }} md={2} xs={0}>
-          <Filter filterProperties={accommodationFilter}></Filter>
+          <Filter
+            filterProperties={accommodationFilter}
+            handleChange={handleChange}
+            handleClearAll={handleClearAll}
+          ></Filter>
         </Box>
       </Grid>
 
@@ -104,9 +121,10 @@ function AccommodationListPage() {
               />
             );
           })} */}
-          {allHotels.map((myVariable) => {
+          {allHotels.map((myVariable, index) => {
             return (
               <HorizontralCardComp
+                key={index}
                 name={myVariable.hotel_name}
                 address={myVariable.address}
                 image={myVariable.hotel_image}
