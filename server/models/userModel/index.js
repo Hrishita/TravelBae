@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true },
   fName: { type: String, required: true },
   lName: { type: String, required: true },
-  pwd: {type:String,required:true},
+  password: {type:String,required:true},
   plannedTrips:[{
     dest_name: String
   }],
