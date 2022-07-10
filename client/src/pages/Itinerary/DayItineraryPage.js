@@ -19,6 +19,7 @@ const DayItineraryPage = () => {
   const duration = location.state.duration;
   const cityLat = location.state.cityLat;
   const cityLong = location.state.cityLong;
+  const cityName = location.state.cityName;
   const [descList, setDescList] = useState([]);
   const [weatherData, setWeatherData] = useState([]);
   const days = [];
@@ -28,13 +29,16 @@ const DayItineraryPage = () => {
 
   useEffect(() => {
     const fetchURL = `${BACKEND_URL}/dit/fetchDayItinerary`;
+    const cityReq = {
+      itinerary_city: cityName,
+    };
     axios
-      .post(fetchURL)
+      .post(fetchURL, cityReq)
       .then((res) => {
         setDescList(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [cityName]);
 
   useEffect(() => {
     const weatherURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${cityLat}&lon=${cityLong}&appid=${Weather_API}`;

@@ -124,7 +124,7 @@ const CityItineraryPage = () => {
                     <Link
                       to={{
                         pathname: "/dayItinerary",
-                        state: { ...card, cityLat, cityLong },
+                        state: { ...card, cityLat, cityLong, cityName },
                       }}
                       style={{ textDecoration: "none" }}
                     >
