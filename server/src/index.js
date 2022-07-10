@@ -68,7 +68,7 @@ mongoose.connect(
  * The below app.use() function is used to mount the specified router function at the path
  * which is being specified.
  */
-app.use("/ui", userRouter);
+app.use("/user", userRouter);
 app.use("/it", itineraryRouter);
 app.use("/sit", specificItineraryRouter);
 app.use("/dit", dayItineraryRouter);
