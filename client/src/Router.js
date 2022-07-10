@@ -282,7 +282,7 @@ function Router() {
 
             <Route
               exact
-              path="/view-blogs"
+              path="/view-blogs/:id"
               render={() => {
                 return <ViewBlog />;
               }}

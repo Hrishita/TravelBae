@@ -19,8 +19,7 @@ function SingleComment({ index, comment, name = "John Doe" }) {
       className="d-flex flex-row justify-content-start align-items-start my-3 align-items-start"
     >
       <Box component={'div'}>
-        <Avatar sx={{ bgcolor: deepOrange[500], mx: 1.4 }}>{comment.author_id[0]}</Avatar>
-      </Box>
+      <Avatar sx={{ bgcolor: deepOrange[500], mx: 1.4 }}>{(comment && comment.author_id) ? comment.author_id[0] : ''}</Avatar>      </Box>
       <Box component={'div'} className="d-flex flex-column">
         <Box component={'div'} className="d-flex flex-column">
           <Typography variant={"p"} fontSize={"1rem"} color={"#292929"}>
@@ -59,7 +58,12 @@ function ViewBlog() {
   }, [])
 
   const handleSubmit = async () => {
-    let newComments = [...comments, comment];
+    let newComments = [...comments, {
+      comment_id: Math.random() * 50000,
+        blog_id: blog.blog_id,
+        comment_text: comment,
+        author_id: 'hrishitamavani@gmail.com'
+    }];
     await axios({
       method: 'POST',
       url: 'http://localhost:8000/bg/addComment',
