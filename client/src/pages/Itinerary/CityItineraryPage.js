@@ -33,6 +33,33 @@ const CityItineraryPage = () => {
       .catch((err) => console.log(err));
   }, [cityName]);
 
+  const handleChange = (checkedItems) => {
+    const fetchURL = `${BACKEND_URL}/sit/filterItineraries`;
+    const filtering = {
+      tags: checkedItems,
+      itinerary_place: cityName,
+    };
+    axios
+      .post(fetchURL, filtering)
+      .then((res) => {
+        setCityCards(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleClearAll = () => {
+    const fetchURL = `${BACKEND_URL}/sit/fetchSpecificItineraries`;
+    const specificCityReq = {
+      itinerary_place: cityName,
+    };
+    axios
+      .post(fetchURL, specificCityReq)
+      .then((res) => {
+        setCityCards(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -40,7 +67,11 @@ const CityItineraryPage = () => {
       </Grid>
       <Grid item lg={3}>
         <Box display="flex" sx={{ display: { xs: "none", lg: "block" } }}>
-          <Filter filterProperties={filterData}></Filter>
+          <Filter
+            filterProperties={filterData}
+            handleChange={handleChange}
+            handleClearAll={handleClearAll}
+          ></Filter>
         </Box>
       </Grid>
       <Grid item xs={12} lg={9}>
