@@ -12,9 +12,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Link } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
-function RegisterComp() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+function RegisterComp(props) {
+  const [fName, setfName] = useState("");
+  const [lName, setlName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cnfPassword, setcnfPassword] = useState("");
@@ -23,42 +23,41 @@ function RegisterComp() {
     backgroundSize: "cover",
   };
 
-  const history = useHistory();
 
   const [error, setError] = useState({
-    firstName: "",
-    lastName: "",
+    fName: "",
+    lName: "",
     email: "",
     password: "",
     cnfPassword: "",
   });
 
   //first name validation
-  const handleFirstNameChange = (value) => {
-    setFirstName(value);
+  const handlefNameChange = (value) => {
+    setfName(value);
     let pattern = new RegExp(/^[a-zA-Z]+$/);
     let errorObj = Object.assign({}, error);
     if (!pattern.test(value)) {
-      errorObj.firstName = "Enter only alphabets";
+      errorObj.fName = "Enter only alphabets";
       setError(errorObj);
       return false;
     }
-    errorObj.firstName = "";
+    errorObj.fName = "";
     setError(errorObj);
     return true;
   };
 
   //last name validation
-  const handleLastNameChange = (value) => {
-    setLastName(value);
+  const handlelNameChange = (value) => {
+    setlName(value);
     let pattern = new RegExp(/^[a-zA-Z]+$/);
     let errorObj = Object.assign({}, error);
     if (!pattern.test(value)) {
-      errorObj.lastName = "Enter only alphabets";
+      errorObj.lName = "Enter only alphabets";
       setError(errorObj);
       return false;
     }
-    errorObj.lastName = "";
+    errorObj.lName = "";
     setError(errorObj);
     return true;
   };
@@ -119,14 +118,14 @@ function RegisterComp() {
 
     let isEmpty = false;
 
-    if (firstName === "") {
-      errorObj.firstName = "First Name is required";
+    if (fName === "") {
+      errorObj.fName = "First Name is required";
       setError(errorObj);
       isEmpty = true;
     }
 
-    if (lastName === "") {
-      errorObj.lastName = "Last Name is required";
+    if (lName === "") {
+      errorObj.lName = "Last Name is required";
       setError(errorObj);
       isEmpty = true;
     }
@@ -160,8 +159,8 @@ function RegisterComp() {
     let errorObj = Object.assign({}, error);
 
     if (
-      errorObj.firstName ||
-      errorObj.lastName ||
+      errorObj.fName ||
+      errorObj.lName ||
       errorObj.email ||
       errorObj.password ||
       errorObj.cnfPassword
@@ -170,16 +169,18 @@ function RegisterComp() {
     }
 
     const userProfileData = {
-      firstName: firstName,
-      lastName: lastName,
+      fName: fName,
+      lName: lName,
       email: email,
+      password: password
     };
 
+      props.handleSignUp(userProfileData)
     //send data to next page if validation is correct
-    history.push({
-      pathname: "/userdashboard-trips",
-      state: userProfileData,
-    });
+    // history.push({
+    //   pathname: "/userdashboard-trips",
+    //   state: userProfileData,
+    // });
   };
 
   return (
@@ -217,31 +218,31 @@ function RegisterComp() {
                 <TextField
                   required
                   fullWidth
-                  id="firstName"
+                  id="fName"
                   label="First Name"
-                  name="firstName"
-                  value={firstName}
-                  onChange={(e) => handleFirstNameChange(e.target.value)}
-                  autoComplete="firstName"
+                  name="fName"
+                  value={fName}
+                  onChange={(e) => handlefNameChange(e.target.value)}
+                  autoComplete="fName"
                   color="secondary"
                   autoFocus
-                  error={error.firstName !== ""}
-                  helperText={error.firstName}
+                  error={error.fName !== ""}
+                  helperText={error.fName}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
-                  id="lastName"
+                  id="lName"
                   label="Last Name"
-                  name="lastName"
-                  value={lastName}
-                  onChange={(e) => handleLastNameChange(e.target.value)}
+                  name="lName"
+                  value={lName}
+                  onChange={(e) => handlelNameChange(e.target.value)}
                   color="secondary"
-                  autoComplete="lastName"
-                  error={error.lastName !== ""}
-                  helperText={error.lastName}
+                  autoComplete="lName"
+                  error={error.lName !== ""}
+                  helperText={error.lName}
                 />
               </Grid>
               <Grid item xs={12}>

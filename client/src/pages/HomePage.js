@@ -1,3 +1,4 @@
+import React, { useContext,useState } from 'react';
 import {
   Grid,
   Link,
@@ -6,7 +7,6 @@ import {
   Card,
   CardMedia,
 } from "@material-ui/core";
-import React, { useState } from "react";
 import CardCarousel from "../containers/CardCarousel";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
@@ -21,6 +21,8 @@ import Footer from "../containers/Footer";
 // Home page
 import AlertDialog from "../containers/AlertDialog";
 import { useHistory } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,6 +46,9 @@ const HomePage = () => {
   const classes = useStyles();
   const history = useHistory();
   const [open, setOpen] = useState(false); // for alert box
+  const auth = useContext(AuthContext);
+
+  console.log("userId....",auth.userId);
 
   const handleOpen = () => {
     setOpen(true);
