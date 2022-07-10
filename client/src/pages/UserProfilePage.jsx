@@ -19,14 +19,14 @@ const UserProfile = () => {
     setOpen(true);
   };
 
-  console.log("res....",res);
+  // console.log("res....",res);
   const handleSubmit = (pwdObj) => {
-    const url = `${BACKEND_URL}/user/changePassword`;
-    axios.post(url,pwdObj).then(res => {
-      setResData(res);
-    }).catch(e => {
-        console.error(e)
-  });
+  //   const url = `${BACKEND_URL}/user/changePassword`;
+  //   axios.post(url,pwdObj).then(res => {
+  //     setResData(res);
+  //   }).catch(e => {
+  //       console.error(e)
+  // });
   };
 
   const handleClose = () => {
@@ -102,9 +102,7 @@ const UserProfile = () => {
               </Grid>
             </Box>
           </Box>
-          <Box>
-            <FormDialogComp />
-          </Box>
+         
         </Paper>
       </Grid>
       <Grid item xs={12}>

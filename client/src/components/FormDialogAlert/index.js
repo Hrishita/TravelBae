@@ -43,12 +43,26 @@ export default function FormDialogComp(props) {
 
     //password validation
 
-    const pwdValidate = passwordValidator(inputPwdValues.nPassword, "password");
-    if (!pwdValidate.isValid) {
-      errors.errorMsg = pwdValidate.errorMsg;
+    const pwdCurrentValidate = passwordValidator(inputPwdValues.nPassword, "password");
+    const pwdNewValidate = passwordValidator(inputPwdValues.nPassword, "password");
+
+    if (!pwdCurrentValidate.isValid) {
+      errors.errorMsg = pwdCurrentValidate.errorMsg;
+      return false;
     } else {
       errors.errorMsg = "";
     }
+    if (pwdNewValidate.isValid) {
+      errors.errorMsg = pwdNewValidate.errorMsg;
+      return false;
+    } else {
+      errors.errorMsg = "";
+    }
+
+
+    //password validation
+
+
 
 
     setValidation(errors);
@@ -66,8 +80,8 @@ export default function FormDialogComp(props) {
           <Typography variant='body2'>Current Password</Typography>
           <TextField
             autoFocus
-            id="nPassword"
-            name='nPassword'
+            id="cPassword"
+            name='cPassword'
             type="password"
             fullWidth
             variant="standard"
@@ -78,8 +92,8 @@ export default function FormDialogComp(props) {
         <Box pt={3} pl={2} pr={2}>
           <Typography variant='body2'>New Password</Typography>
           <TextField
-            id="cPassword"
-            name="cPassword"
+            id="nPassword"
+            name="nPassword"
             type="password"
             fullWidth
             variant="standard"
