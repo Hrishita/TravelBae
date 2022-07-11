@@ -11,8 +11,9 @@ import {
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Link } from "@material-ui/core";
 import AlertDialog from "../../containers/AlertDialog";
+import filterProperties from "../../pages/Itinerary/FilterMockData";
 
-function LoginComp() {
+function LoginComp(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [open, setOpen] = useState(false); // for alert box
@@ -97,7 +98,10 @@ function LoginComp() {
     if (errorObj.email || errorObj.password) {
       return;
     }
-    setOpen(true);
+
+    const userData = { email, password };
+    // setOpen(true);
+    props.handleLogin(userData)
   };
 
   return (
