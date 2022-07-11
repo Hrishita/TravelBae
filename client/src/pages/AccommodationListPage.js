@@ -3,7 +3,7 @@ import { Grid, Divider } from "@mui/material";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
 import Footer from "../containers/Footer";
-import Pagination from "../containers/Pagination";
+// import Pagination from "../containers/Pagination";
 import AccommodationSearchBoxComp from "../components/AccommodationSearch";
 import HorizontralCardComp from "../components/HorizontalCard";
 import Filter from "../containers/Filter";
@@ -13,9 +13,13 @@ import accommodationFilter from "../containers/AccommodationFIlters";
 import axios from "axios";
 import { BACKEND_URL } from "../config/index";
 import AccommodationSortDropdown from "../components/AccommodationSortDropdown";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+import usePagination from "../containers/UsePagination";
 
 function AccommodationListPage() {
   const [allHotels, setAllHotels] = useState([]);
+
   let [keyword, setKeyword] = useState("");
   let [sort, setSort] = useState(0);
 
@@ -38,13 +42,25 @@ function AccommodationListPage() {
       .post(`${BACKEND_URL}/acc/searchAccommodation`, {
         hotel_name: keyword,
         sort_type: sort,
-        tags: filtering
+        tags: filtering,
       })
       .then((res) => {
         setAllHotels(res.data.data);
       });
-  });
- 
+  },[allHotels]);
+
+  const [page, setPage] = useState(1);
+  const PER_PAGE = 9;
+  const count = Math.ceil(allHotels.length / PER_PAGE);
+
+  const handleChange1 = (e, p) => {
+    setPage(p);
+    _DATA.jump(p);
+  };
+
+  const _DATA = usePagination(allHotels, PER_PAGE);
+
+  console.log(page);
 
   // console.log(allHotels);
   return (
@@ -86,10 +102,14 @@ function AccommodationListPage() {
           >
             Our top picked hotels for you...
           </Box>
-          <Box>
-            <AccommodationSortDropdown sortingType={setSort} />
-          </Box>
         </Grid>
+      </Grid>
+
+      <Grid container>
+        <Box sx={{flexGrow:1}}></Box>
+        <Box sx={{pr:20}}>
+          <AccommodationSortDropdown sortingType={setSort} />
+        </Box>
       </Grid>
 
       <Grid item>
@@ -121,7 +141,7 @@ function AccommodationListPage() {
               />
             );
           })} */}
-          {allHotels.map((myVariable, index) => {
+          {_DATA.currentData().map((myVariable, index) => {
             return (
               <HorizontralCardComp
                 key={index}
@@ -139,7 +159,18 @@ function AccommodationListPage() {
 
       <Grid item xs={12}>
         <Grid container alignItems="center" justifyContent="center">
-          <Pagination />
+          <Grid container justifyContent="center" sx={{ mt: 3, mb: 2 }}>
+            <Stack spacing={2}>
+              <Pagination
+                count={count}
+                color="primary"
+                page={page}
+                variant="outlined"
+                shape="rounded"
+                onChange={handleChange1}
+              />
+            </Stack>
+          </Grid>
         </Grid>
       </Grid>
 
