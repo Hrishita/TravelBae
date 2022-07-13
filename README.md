@@ -1,163 +1,154 @@
-# CSCI5709 Project | Travel Bae | Group - 15
+# Itinerary Management
 
-```
-Travel Bae:
-TravelBae is an online travel website that helps customers plan better trips to their favourite destinations. The application keeps track of the best destinations, hotels, and modes of transportation. Other features on the website include activities to do, itinerary management, bucket lists, and much more.
-
-The Main Features of our application are:
-- Destinations
-- Bucket Lists
-- Blog Management
-- Transportation Options
-- Accommodation options
-- User Management
-- Profile Management
-- Activities to do
-- Itinerey Management
-- Dashboard
-- Things to carry
-- Trip Planner
-```
-
-## Project Repository, Individual Branch and Deployement URL
-
-* *Date Created*: 16 Jun 2022
-* *Last Modification Date*: 16 Jun 2022
-* *Git Repository URL*: https://git.cs.dal.ca/maurya/csci-5709-project
-* *Heroku deployment URL for application*: https://travel-bae.herokuapp.com/
-* Nishit Mistry: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/nishit-mistry
-* Trushita Maurya: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/trushita-maurya
-* Smily: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/smily
-* Smriti Mishra: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/smriti-mishra
-* Hrishita Mavani: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/hrishita-mavani
-* Sagramsinh More: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/sangramsinh-more
+- _Name_: Nishit Mistry (B00911296)
+- _Date Created_: 13 July 2022
+- _Last Modification Date_: 13 July 2022
+- _Git Course Repository_: https://git.cs.dal.ca/nmistry/csci5709
+- _Git Project Branch - Nishit Mistry_: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/nishit-mistry
+- _Heroku deployment URL for application_: https://travel-bae.herokuapp.com/
 
 ## Authors
 
-* [Smily](smily@dal.ca) - *(Maintainer)*
-* [Trushita Maurya](tr711348@dal.ca) - *(Maintainer)*
-* [Nishit Mistry](nishit.mistry@dal.ca) - *(Maintainer)*
-* [Sangramsinh More](sangramsinh.more@dal.ca) - *(Maintainer)*
-* [Hrishita Mavani](hr637632@dal.ca) - *(Maintainer)*
-* [Smriti Mishra](sm689498@dal.ca)- *(Maintainer)*
+- [Nishit Mistry](nishit.mistry@dal.ca) - (Maintainer)
 
 # Getting Started
 
-### Built With
+### Preqrequisites
 
-* [React](https://reactjs.org/) - The library used for building the front-end.
-* [Material UI](https://mui.com/) - To build responsive User Interface components - navigation bar, pagination and cards layout.
-* [React Router](https://reactrouter.com/) - Used to do the routing in the application (home and destinationsu) since react does not have anything in-built.
+To run this assignment on your local machine, you need the following software / libraries installed.
 
-### Components Used
+```
+NodeJS
+npm - Node Package Manager
+```
 
-For the completion of this assignment, I have used the components provided by [Material UI](https://mui.com/) 
-The components used are:
-
-* App Bar 
-* Theming
-* Grid
-* Typography
-* Box
-* Form Group
-* Checkbox
-* Icon Button
-* Tool Bar
-* Card
-* Grid
-* Pagination
-* Alert
-* TextField
-
-### Deployed using
-
-- [Heroku](https://dashboard.heroku.com/apps) - For deployment
-- The application has been deployed on Heroku. 
-
-### Prerequisites
-
-To have a local copy of this assingnment up and running on your local machine, following tools and libraries are required.
-
-- `node`, a server-side javascript implementation
-- `npm`, the javascript package manager
+Clone the repo, and run the following commands for installing the dependencies.
 
 ### Installing
 
-To install this project in your local machine following steps need to be performed.
+```
+npm install
+```
 
-- `git clone https://git.cs.dal.ca/maurya/csci-5709-project.git`
-- `cd csci-5709-project`
-- `npm install`
-- `npm start`
+The following command will run the application on your localhost.
 
+### Starting the application
 
-# References
+```
+npm start
+```
 
-## Images Used
+## Built With
 
-All the images used for this project are royalty free.
+- [ReactJS](https://reactjs.org/) - ReactJS Library Used
+- [MaterialUI](https://mui.com/) - Material UI Library Used for Styling
+- [NodeJS](https://nodejs.org/en/) - NodeJS Used as Back-End (Server Side) Framework
+- [ExpressJS](https://expressjs.com/) - ExpressJS Used for Routing Purposes
+- [Heroku](https://www.heroku.com/) - Heroku Used for Deploying Code
 
-- "https://images.trvl-media.com/hotels/24000000/23010000/23003000/23002973/c0a157e9_b.jpg"
-- "https://images.trvl-media.com/hotels/1000000/10000/7900/7803/2a1ea041_b.jpg"
-- "https://images.trvl-media.com/hotels/1000000/60000/53000/52918/a18b3dc8_b.jpg"
-- "https://cdn.pixabay.com/photo/2020/03/01/08/52/sea-4892044_1280.jpg"
-- "https://www.publicdomainpictures.net/pictures/210000/nahled/boat-in-caribbean-1488476201AFb.jpg"
-- "https://cf.bstatic.com/xdata/images/hotel/max1280x900/188927841.jpg?k=7f112dc4aa557f0ffc6f38b93f227154676ddaa247da8f0349042ec3ccb23451&o=",
--  "https://memberapi.discoverhalifaxns.com/member-images/90558323-afea-461f-b434-9b89a46b036c_profile.jpg",
--  "https://memberapi.discoverhalifaxns.com/member-images/7e2b2e3e-6ee9-4405-aa83-43edd4f80d00.jpg",
+## Feature Developed and Tasks Completed
 
+Itinerary Management -
 
-## Sources used
+- Weather Integration.
+- Search Itinerary.
+- Itinerary Recommendation.
+- Filter Itinerary.
 
-[1] "The W3C Markup Validation Service," _Validator.w3.org_ [Online]. Available: https://validator.w3.org/. [Accessed: June 16, 2022].
+## Files and Folders Created for Completing the Feature
 
-- Used to check if the deployed app is W3C compliant.
+**Folder created -**
 
-[2] "Cloud Application Platform | Heroku," _Heroku.com_ [Online]. Available: https://www.heroku.com/. [Accessed: June 16, 2022].
+- client\src\pages\Itinerary
+- server\routers\dayItineraryRouter
+- server\routers\itineraryRouter
+- server\routers\specificItineraryRouter
+- server\middleware\dayItineraryService
+- server\middleware\itineraryService
+- server\middleware\specificItineraryService
+- server\data\dayItineraryDB
+- server\data\itineraryDB
+- server\data\specificItineraryDB
+- server\models\dayItineraryModel
+- server\models\itineraryModel
+- server\models\specificItineraryModel
+
+**Files created -**
+
+- client\src\pages\Itinerary\CityItineraryPage.js
+- client\src\pages\Itinerary\DayItineraryPage.js
+- client\src\pages\Itinerary\ItineraryPage.js
+- client\src\pages\Itinerary\FilterMockData.js
+- client\src\containers\CardCont\index.js
+- client\src\containers\DescriptionList\index.js
+- client\src\components\Card\index.js
+- client\src\components\DescriptionList\index.js
+- client\src\config\index.js
+- server\routers\dayItineraryRouter\index.js
+- server\routers\itineraryRouter\index.js
+- server\routers\specificItineraryRouter\index.js
+- server\middleware\dayItineraryService\index.js
+- server\middleware\itineraryService\index.js
+- server\middleware\specificItineraryService\index.js
+- server\data\dayItineraryDB\index.js
+- server\data\itineraryDB\index.js
+- server\data\specificItineraryDB\index.js
+- server\models\dayItineraryModel\index.js
+- server\models\itineraryModel\index.js
+- server\models\specificItineraryModel\index.js
+
+**Folder Structure Explanation -**
+
+- Divided the code into "client" and "server" for good code practices.
+- The package.json consists of all the libraries required to be installed.
+- Containers contain the business logic for the code and components contain the front-end UI for the website.
+- Routers will route the API call to the different URLs.
+- Models consists of the MongoDB schema, and middleware consists of the services to be created for an API call.
+
+For Integration, pushed small updates to my Git branch and raised a Merge Request (MR) to the develop branch.
+If there were any conflicts, resolved those conflicts locally and pushed the updates to the MR again.
+
+## Boilerplate Code
+
+- Used "npx create-react-app" command to generate boilerplate code for ReactJS.
+
+# Sources Used
+
+[1]
+
+Code Used -
+
+```
+
+```
+
+Code Modified -
+
+Line number:
+
+File:
+
+```
+
+```
+
+- The code was implemented by []().
+- []()'s Code was used because it helped to generate random unique IDs.
+- []()'s Code was modified by [Nishit Mistry](nishit.mistry@dal.ca).
+
+[3] "Cloud Application Platform | Heroku," _Heroku.com_ [Online]. Available: https://www.heroku.com/. [Accessed: June 24, 2022].
 
 - Used Heroku to deploy the application.
 
-[3] "Getting Started – React", Reactjs.org, 2022. [Online]. Available: https://reactjs.org/docs/getting-started.html. [Accessed: 16- Jun- 2022]
+## Project Group
 
-- Used React documentation to to learn React.
+Group Number - 15
 
-[4] "Installation - Material UI", Mui.com, 2022. [Online]. Available: https://mui.com/material-ui/getting-started/installation/. [Accessed: 16- Jun- 2022]
+### Individual Branches for each Team Member -
 
-- Used Material UI documentation to learn about different material UI components.
-  
-[5] Assignment-1 Git URL (Smily) - https://git.cs.dal.ca/smily/smily-csci5709-individual/-/tree/assignment1
-
-[6] Assignment-1 Git URL (Hrishita Mavani) - https://git.cs.dal.ca/mavani/hrishita-mavani-csci5709/-/tree/assignment-1
-
-[7] Assignement -1 Git URL (Trushita Maurya) - https://git.cs.dal.ca/maurya/csci-5709/-/tree/assignment1
-
-[8] Assignment -1 Git URL (Sangramsingh More) - https://git.cs.dal.ca/smore/csci-5709/-/tree/assignment1
-
-[9] Assignment -1 Git URL (Smriti Mishra) - https://git.cs.dal.ca/smishra/smriti-mishra-csci5709/-/tree/Assignment1
-
-[10] Assignment - 1 Git URL (Nishit Mistry) - https://git.cs.dal.ca/nmistry/csci5709/-/tree/assignment1
-
-- Some part of code is taken from  first individual assignment referenced above. 
-
-[11] G. Rai, "Mongoose's find method with $or condition does not work properly", Stack Overflow, 2022. [Online]. Available: https://stackoverflow.com/questions/7382207/mongooses-find-method-with-or-condition-does-not-work-properly. [Accessed: 05- Jul- 2022].
-
-- Used as reference to add or condition in find method
-  
-Code Used:
-
-```
-User.find( { $or:[ {'_id':objId}, {'name':param}, {'nickname':param} ]}, 
-  function(err,docs){
-    if(!err) res.send(docs);
-});
-```
-
-Code Modified:
-
-```
-{ $or:[{source: req.body.source}, {dest_name: req.body.dest_name},{start_date: req.body.start_date},{return_date:req.body.return_date}] },
-
-```
-File : C:\Users\AVuser\Desktop\webProject\csci-5709-project\server\data\transportationDB\index.js
-
-Line: 18
+- _Git Project Individual Branch - Nishit Mistry_: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/nishit-mistry
+- _Git Project Individual Branch - Trushita Maurya_: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/trushita-maurya
+- _Git Project Individual Branch - Sangramsinh More_: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/sangramsinh-more
+- _Git Project Individual Branch - Hrishita Mavani_: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/hrishita-mavani
+- _Git Project Individual Branch - Smriti Mishra_: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/smriti-mishra
+- _Git Project Individual Branch - Smily_: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/smily
