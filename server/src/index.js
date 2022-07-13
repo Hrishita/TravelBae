@@ -74,7 +74,7 @@ mongoose.connect(
  */
 app.use("/user", userRouter);
 app.use("/tp", transportationRouter);
-app.use("/bg", blogRouter);
+app.use("/bg", blogRouter); 
 app.use("/acc", accommodationRouter);
 app.use("/act", activityRouter);
 app.use("/it", itineraryRouter);

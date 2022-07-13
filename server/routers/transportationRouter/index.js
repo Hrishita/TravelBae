@@ -7,6 +7,7 @@ const transportationService = require("../../middleware/transportationService/in
  transportationRouter.post("/fetchTransporationByDestination", transportationService.searchTransportation);
 
  transportationRouter.post("/fetchAllTransporation", transportationService.fetchAllTransportation);
- 
 
+    transportationRouter.post("/fetchTransporationByPrice", transportationService.fetchTransporationByID);
+ 
 module.exports = transportationRouter;

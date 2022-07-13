@@ -11,7 +11,7 @@ const transportationSchema = new mongoose.Schema({
     start_date: { type: Date, required: true },
     return_date: { type: Date},
     trip_type: { type: String, required: true },
-    price: { type: String},
+    price: { type: Number},
     trip_duration: { type: String},
     flight_company_logo: { type: String}
 });
