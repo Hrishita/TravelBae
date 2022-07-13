@@ -1,10 +1,10 @@
 import { Box, Grid } from "@mui/material";
 import React from "react";
 import FooterComp from "../../components/Footer";
-import vacation from "../../assets/vac.png";
+// import vacation from "../../assets/vac.png";
 import { Typography } from "@material-ui/core";
-import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
+// import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
+// import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
 const pages = [
   {

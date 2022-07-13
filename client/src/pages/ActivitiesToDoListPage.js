@@ -102,8 +102,8 @@ function ActivitiesToDoListPage() {
         </Grid>
       </Grid>
       <Grid container>
-        <Box sx={{flexGrow:1}}></Box>
-        <Box sx={{pr:20}}>
+        <Box sx={{ flexGrow: 1 }}></Box>
+        <Box sx={{ pr: 20 }}>
           <AccommodationSortDropdown sortingType={setSort} />
         </Box>
       </Grid>

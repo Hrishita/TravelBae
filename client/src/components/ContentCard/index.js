@@ -41,7 +41,11 @@ const ContentCardComp = ({ details }) => {
               margin: "20px",
             }}
           >
-            <img className="destination-image" src={details.details.img}></img>
+            <img
+              className="destination-image"
+              src={details.details.img}
+              alt="details"
+            ></img>
           </Box>
         </Grid>
         <Grid
@@ -79,14 +83,14 @@ const ContentCardComp = ({ details }) => {
           />
         </Grid>
         <Grid item xs={12}>
-        <AlertDialog
-          open={open}
-          title="Confirm"
-          message="Are you sure you want to add it to the bucket list ?"
-          handleClose={handleClose}
-          buttons={["Cancel", "Ok"]}
-        />
-      </Grid>
+          <AlertDialog
+            open={open}
+            title="Confirm"
+            message="Are you sure you want to add it to the bucket list ?"
+            handleClose={handleClose}
+            buttons={["Cancel", "Ok"]}
+          />
+        </Grid>
       </Grid>
     </Paper>
   );

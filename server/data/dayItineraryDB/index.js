@@ -8,11 +8,14 @@ const DayItinerary = require("../../models/dayItineraryModel");
  */
 
 exports.fetchDayItinerary = function (req, res) {
-    DayItinerary.find({}, function (err, dayItineraries) {
-    if (err) return res.json({ success: false, error: err });
+  DayItinerary.find(
+    { itinerary_city: { $regex: req.body.itinerary_city, $options: "i" } },
+    function (err, dayItineraries) {
+      if (err) return res.json({ success: false, error: err });
 
-    res.json( dayItineraries );
-  });
+      res.json(dayItineraries);
+    }
+  );
 };
 
 /**
