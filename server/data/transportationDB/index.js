@@ -13,6 +13,13 @@ exports.fetchAllTransportation = function (req, res) {
   });
 };
 
+exports.fetchTrasportationByPrice = function (req, res) {
+  Transportation.find({ price: { price: req.body.price } }, function (err, Transportation) {
+    if (err) return res.json({ success: false, error: err });
+    res.json({ data: Transportation });
+  });
+}
+
 exports.searchTransportation = function (req, res) {
    // if both source and destination are entered
   if (req.body.source && req.body.dest_name) {
