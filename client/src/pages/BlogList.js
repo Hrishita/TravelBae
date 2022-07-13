@@ -185,7 +185,6 @@ function BlogList() {
         <Footer />
       </Grid>
     </Grid>
-  
   );
 }
 

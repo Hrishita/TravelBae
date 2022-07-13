@@ -137,7 +137,7 @@ const ItineraryPage = () => {
                   <Link
                     to={{
                       pathname: "/cityItinerary",
-                      state: card.itinerary_city,
+                      state: card,
                     }}
                     style={{ textDecoration: "none" }}
                   >

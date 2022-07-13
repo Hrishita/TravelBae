@@ -1,20 +1,23 @@
 import { Button, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { Box, Grid } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
 // Search box
-const ActivitySearchBoxComp = () => {
+const ActivitySearchBoxComp = (props) => {
   let today = new Date().toISOString().slice(0, 10);
 
   const history = useHistory();
 
-  const handleClick = () => {
+  const [searchKeyword, setSearchKeyword] = useState("");
+
+  const handleClick = (e) => {
+    props.keyword(searchKeyword);
     history.push("/activitylist");
   };
 
   return (
-    <Box marginLeft={4} marginRight={4}>
+    <Box paddingLeft={4} paddingRight={4}>
       <Grid container spacing={4} alignItems="center">
         <Grid item lg={2} md={2} xs={12}>
           <Typography variant="h5" textAlign="center">
@@ -24,10 +27,13 @@ const ActivitySearchBoxComp = () => {
         <Grid item lg={3} md={2} xs={12}>
           <Box justify="center" display="flex" justifyContent="center">
             <TextField
+              id="searchKeyword"
+              name="searchKeyword"
               placeholder="Destination"
               size="medium"
               type="search"
               color="secondary"
+              onChange={(v) => setSearchKeyword(v.target.value)}
               fullWidth
             />
           </Box>

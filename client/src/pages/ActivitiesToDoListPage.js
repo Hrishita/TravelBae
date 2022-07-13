@@ -1,30 +1,74 @@
 import { Divider, Grid } from "@mui/material";
-import React from "react";
-import CardCarousel from "../containers/CardCarousel";
+import React, { useEffect, useState } from "react";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
 import ActivitySearchBoxComp from "../components/ActivitySearch";
 import Footer from "../containers/Footer";
-import Pagination from "../containers/Pagination";
 import { activitiesList } from "../containers/ActivitiesListCard/activitiesData";
 import HorizontralCardComp from "../components/HorizontalCard";
 import Filter from "../containers/Filter";
-import data from "../containers/Filter/mockData";
 import FilterMenu from "../containers/FilterMenu";
-import AccommodationSearchBoxComp from "../components/AccommodationSearch";
+import axios from "axios";
+import { BACKEND_URL } from "../config/index";
+import AccommodationSortDropdown from "../components/AccommodationSortDropdown";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+import usePagination from "../containers/UsePagination";
 
 function ActivitiesToDoListPage() {
+  const [allHotels, setAllHotels] = useState([]);
+
+  let [keyword, setKeyword] = useState("");
+  let [sort, setSort] = useState(0);
+
+  const [filtering, setFiltering] = useState({});
+
+  const handleChange = (checkedItems) => {
+    setFiltering({
+      tags: checkedItems,
+    });
+  };
+
+  const handleClearAll = () => {
+    setFiltering({
+      tags: {},
+    });
+  };
+
+  // use effect for calling SearchAccommodation Service in Backend. Here, I'm passing hotel name which we are getting from
+  // search component and Sort which we are getting from AccommodationSortDropdown Component.
+  useEffect(() => {
+    axios
+      .post(`${BACKEND_URL}/act/searchActivity`, {
+        hotel_name: keyword,
+        sort_type: sort,
+        tags: filtering,
+      })
+      .then((res) => {
+        setAllHotels(res.data.data);
+      });
+  }, [allHotels]);
+
+  const [page, setPage] = useState(1);
+  const PER_PAGE = 9;
+  const count = Math.ceil(allHotels.length / PER_PAGE);
+
+  const handleChange1 = (e, p) => {
+    setPage(p);
+    _DATA.jump(p);
+  };
+
+  const _DATA = usePagination(allHotels, PER_PAGE);
+
+  console.log(page);
   return (
     <Grid container spacing={0.5}>
       <Grid item xs={12}>
         <NavBar />
       </Grid>
       <Grid item xs={12}>
-        <CardCarousel />
-      </Grid>
-      <Grid item xs={12}>
         <Box pt={4} pb={4}>
-          <ActivitySearchBoxComp />
+          <ActivitySearchBoxComp keyword={setKeyword} />
           <Grid
             item
             sx={{ display: { xs: "block", md: "none" } }}
@@ -32,7 +76,7 @@ function ActivitiesToDoListPage() {
             xs={12}
             className="text-align-center"
           >
-            <FilterMenu filterProperties={data}></FilterMenu>
+            <FilterMenu filterProperties={activitiesList}></FilterMenu>
           </Grid>
         </Box>
       </Grid>
@@ -57,10 +101,20 @@ function ActivitiesToDoListPage() {
           </Box>
         </Grid>
       </Grid>
+      <Grid container>
+        <Box sx={{ flexGrow: 1 }}></Box>
+        <Box sx={{ pr: 20 }}>
+          <AccommodationSortDropdown sortingType={setSort} />
+        </Box>
+      </Grid>
 
       <Grid item>
         <Box sx={{ display: { xs: "none", md: "block" } }} md={2} xs={0}>
-          <Filter filterProperties={data}></Filter>
+          <Filter
+            filterProperties={activitiesList}
+            handleChange={handleChange}
+            handleClearAll={handleClearAll}
+          ></Filter>
         </Box>
       </Grid>
 
@@ -72,13 +126,16 @@ function ActivitiesToDoListPage() {
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 4, sm: 8, md: 12 }}
         >
-          {activitiesList.map((myVariable) => {
+          {_DATA.currentData().map((myVariable, index) => {
             return (
               <HorizontralCardComp
-                name={myVariable.name}
-                address={myVariable.address}
-                image={myVariable.image}
-                desc={myVariable.desc}
+                key={index}
+                name={myVariable.activity_name}
+                address={myVariable.activity_address}
+                image={myVariable.activity_image}
+                desc={myVariable.activity_desc}
+                city={myVariable.dest_name}
+                price={myVariable.price}
               />
             );
           })}
@@ -87,7 +144,18 @@ function ActivitiesToDoListPage() {
 
       <Grid item xs={12}>
         <Grid container alignItems="center" justifyContent="center">
-          <Pagination />
+          <Grid container justifyContent="center" sx={{ mt: 3, mb: 2 }}>
+            <Stack spacing={2}>
+              <Pagination
+                count={count}
+                color="primary"
+                page={page}
+                variant="outlined"
+                shape="rounded"
+                onChange={handleChange1}
+              />
+            </Stack>
+          </Grid>
         </Grid>
       </Grid>
 

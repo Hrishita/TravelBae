@@ -1,49 +1,5 @@
 const accommodationFilter = [
   {
-    filterTitle: "Travel Experience",
-    key: "TE",
-    filterProperties: [
-      {
-        property: "Business-Friendly",
-        key: "bf",
-      },
-      {
-        property: "Family-Friendly",
-        key: "ff",
-      },
-      {
-        property: "LGBTQ Welcoming",
-        key: "LGBTQ",
-      },
-    ],
-  },
-  {
-    filterTitle: "Property Type",
-    key: "PT",
-    filterProperties: [
-      {
-        property: "Hotel",
-        key: "ht",
-      },
-      {
-        property: "Motel",
-        key: "mt",
-      },
-      {
-        property: "Apartment",
-        key: "ap",
-      },
-      {
-        property: "Cottage",
-        key: "ct",
-      },
-      {
-        property: "House",
-        key: "ho",
-      },
-    ],
-  },
-  {
     filterTitle: "Rating",
     key: "rat",
     filterProperties: [

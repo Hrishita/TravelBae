@@ -26,6 +26,7 @@ function UserDashbordFlag() {
               <div style={{ height: "70%", display: "flex" }}>
                 <div style={{ width: "50%", marginLeft: "20%" }}>
                   <img
+                  alt="gif"
                     src={gif2}
                     style={{
                       height: "14rem",
@@ -61,6 +62,7 @@ function UserDashbordFlag() {
 
                 <div style={{ width: "50%", marginLeft: "20%" }}>
                   <img
+                  alt="gif"
                     src={gif1}
                     style={{
                       height: "14rem",
