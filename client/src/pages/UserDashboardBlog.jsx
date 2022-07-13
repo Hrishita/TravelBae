@@ -35,7 +35,6 @@ function UserDashbordBlog() {
   const theme = useTheme();
   
   const handleDelete = async (id) => {
-    // @Todo backend logic to delete blog
     let res = await axios({
       method: 'post',
       url: 'http://localhost:8000/bg/deleteBlogByID',

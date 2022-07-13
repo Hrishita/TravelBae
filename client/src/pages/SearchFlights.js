@@ -33,6 +33,7 @@ function SearchFlights() {
   const [tripType, setTripType] = useState(0);
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [flights, setFlights] = useState([])
+  const [price, setPrice] = useState()
 
   const fetchRecommendedFlights = async () => {
     let res = await axios({
@@ -42,7 +43,22 @@ function SearchFlights() {
     console.log("RESULT", res.data)
     setFlights(res.data.data)
   }
+  const fetchFlightsByPrice = async () => {
+    let res = await axios({
+      method: "POST",
+      url: 'http://localhost:8000/tp/fetchTransporationByPrice',
+      data: {
+        price: price
+      }
+    })
+    console.log("RESULT", res.data)
+    setFlights(res.data.data)
 
+  }
+    
+  useEffect(() => {
+    fetchFlightsByPrice()
+  }, [])
   useEffect(() => {
     fetchRecommendedFlights()
   }, [])
@@ -164,11 +180,14 @@ function SearchFlights() {
                   Price
                 </Typography>
                 <Slider
-                  defaultValue={200}
+                  defaultValue={3000}
                   aria-label="Default"
                   valueLabelDisplay="auto"
-                  min={100}
-                  max={200}
+                  value={price} 
+                  onChange={(price)=>{setPrice(price)}} 
+                  min={1000}
+                  max={10000}
+                  
                 />
               </Box>
               <Button

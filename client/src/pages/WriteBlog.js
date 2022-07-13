@@ -41,7 +41,7 @@ export const Write = () => {
         method: 'POST',
         url: 'http://localhost:8000/bg/createBlog',
         data: {
-          blog_id: Math.random() * 1000000,
+          blog_id: Math.floor(Math.random() * 100000),
           author_id: 'hrishitamavani@gmail.com',
           title: title,
           content: editorData,
