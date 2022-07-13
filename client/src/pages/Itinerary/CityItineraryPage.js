@@ -1,7 +1,7 @@
 import { Grid } from "@material-ui/core";
 import { Typography } from "@mui/material";
 import Divider from "@mui/material/Divider";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import NavBar from "../../containers/NavBar";
 import Footer from "../../containers/Footer";
@@ -9,11 +9,57 @@ import Filter from "../../containers/Filter";
 import FilterMenu from "../../containers/FilterMenu";
 import filterData from "../../pages/Itinerary/FilterMockData";
 import CardCont from "../../containers/CardCont";
-import { cityCards } from "../../containers/CardCont/mockData";
-import weatherData from "./WeatherMockData";
+// import { cityCards } from "../../containers/CardCont/mockData";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+import { BACKEND_URL } from "../../config";
 
-const DayItineraryPage = () => {
+const CityItineraryPage = () => {
+  const location = useLocation();
+  const cityName = location.state;
+  const [cityCards, setCityCards] = useState([]);
+
+  useEffect(() => {
+    const fetchURL = `${BACKEND_URL}/sit/fetchSpecificItineraries`;
+    const specificCityReq = {
+      itinerary_place: cityName,
+    };
+    axios
+      .post(fetchURL, specificCityReq)
+      .then((res) => {
+        setCityCards(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, [cityName]);
+
+  const handleChange = (checkedItems) => {
+    const fetchURL = `${BACKEND_URL}/sit/filterItineraries`;
+    const filtering = {
+      tags: checkedItems,
+      itinerary_place: cityName,
+    };
+    axios
+      .post(fetchURL, filtering)
+      .then((res) => {
+        setCityCards(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleClearAll = () => {
+    const fetchURL = `${BACKEND_URL}/sit/fetchSpecificItineraries`;
+    const specificCityReq = {
+      itinerary_place: cityName,
+    };
+    axios
+      .post(fetchURL, specificCityReq)
+      .then((res) => {
+        setCityCards(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -21,10 +67,14 @@ const DayItineraryPage = () => {
       </Grid>
       <Grid item lg={3}>
         <Box display="flex" sx={{ display: { xs: "none", lg: "block" } }}>
-          <Filter filterProperties={filterData}></Filter>
+          <Filter
+            filterProperties={filterData}
+            handleChange={handleChange}
+            handleClearAll={handleClearAll}
+          ></Filter>
         </Box>
       </Grid>
-      <Grid item xs={12} lg={6}>
+      <Grid item xs={12} lg={9}>
         <Box
           sx={{
             width: "auto",
@@ -41,7 +91,7 @@ const DayItineraryPage = () => {
               paddingLeft={1}
               align="left"
             >
-              Recommended Itineraries for Paris
+              Recommended Itineraries for {cityName}
             </Typography>
             <Box
               sx={{
@@ -65,72 +115,24 @@ const DayItineraryPage = () => {
             justifyContent="center"
             spacing={3}
           >
-            {cityCards.map((card) => {
-              return (
-                <Grid item style={{ textAlign: "center" }}>
-                  <Link to={"/dayItinerary"} style={{ textDecoration: "none" }}>
-                    <CardCont
-                      image={card.img}
-                      title={card.title}
-                      desc={card.desc}
-                    />
-                  </Link>
-                </Grid>
-              );
-            })}
+            {cityCards.length &&
+              cityCards.map((card) => {
+                return (
+                  <Grid item style={{ textAlign: "center" }}>
+                    <Link
+                      to={{ pathname: "/dayItinerary", state: card }}
+                      style={{ textDecoration: "none" }}
+                    >
+                      <CardCont
+                        image={card.itinerary_image}
+                        title={card.duration}
+                        desc={card.itinerary_summary}
+                      />
+                    </Link>
+                  </Grid>
+                );
+              })}
           </Grid>
-        </Box>
-      </Grid>
-      <Grid item xs={12} lg={3}>
-        <Box
-          sx={{
-            width: "auto",
-            height: "auto",
-            backgroundColor: "white",
-            marginTop: "2rem",
-          }}
-        >
-          <Typography variant="h5" align="center">
-            Weather Details
-          </Typography>
-          <Box
-            sx={{
-              backgroundImage: `url(https://cdn.stocksnap.io/img-thumbs/960w/pastel-clouds_H89THM4Y6L.jpg)`,
-              backgroundSize: "cover",
-              color: "white",
-              height: "30rem",
-              alignItems: "center",
-              display: "flex",
-            }}
-          >
-            {weatherData.map((item) => {
-              return (
-                <Grid item xs={12} style={{ textAlign: "center" }}>
-                  <Typography variant="h6">
-                    Today: {item.current.temp} °K
-                  </Typography>
-                  <Typography variant="h6">
-                    Tomorrow: {item.daily.map((data) => data.temp.max)} °K
-                  </Typography>
-                  <Typography variant="h6">
-                    6/18: {item.daily.map((data) => data.temp.max)} °K
-                  </Typography>
-                  <Typography variant="h6">
-                    6/19: {item.daily.map((data) => data.temp.max)} °K
-                  </Typography>
-                  <Typography variant="h6">
-                    6/20: {item.daily.map((data) => data.temp.max)} °K
-                  </Typography>
-                  <Typography variant="h6">
-                    6/21: {item.daily.map((data) => data.temp.max)} °K
-                  </Typography>
-                  <Typography variant="h6">
-                    6/22: {item.daily.map((data) => data.temp.max)} °K
-                  </Typography>
-                </Grid>
-              );
-            })}
-          </Box>
         </Box>
       </Grid>
       <Grid item xs={12}>
@@ -140,4 +142,4 @@ const DayItineraryPage = () => {
   );
 };
 
-export default DayItineraryPage;
+export default CityItineraryPage;

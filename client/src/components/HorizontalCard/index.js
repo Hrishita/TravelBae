@@ -46,12 +46,12 @@ function HorizontralCardComp(props) {
           {props.name}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          <LocationOn /> {props.address}
+          <LocationOn /> {props.address}, {props.city}
         </Typography>
       </CardContent>
       <CardActions sx={{ ml: 2 }}>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          {props.price}
+          ${props.price}
         </Typography>
         <Button onClick={handleOpen} variant="contained" size="small">
           Learn More
