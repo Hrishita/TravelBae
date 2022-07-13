@@ -25,75 +25,6 @@ import AlertDialog from "../containers/AlertDialog";
 import { Sort } from "@material-ui/icons";
 import axios from "axios";
 
-const fakeData = [
-  {
-    id: 1,
-    startTime: "9:30 P.M.",
-    endTime: "11:30 P.M.",
-    source: 'Ahmedabad',
-    dest: 'Halifax',
-    totalTime: "37 Hours 25 min",
-    flightCompany: "Air Canada",
-    tripType: 'roundtrip',
-    price: "$1000",
-  },
-  {
-    id: 2,
-    startTime: "9:30 P.M.",
-    endTime: "11:30 P.M.",
-    source: 'Ahmedabad',
-    tripType: 'roundtrip',
-    dest: 'Halifax',
-    totalTime: "37 Hours 25 min",
-    flightCompany: "Air Canada",
-    price: "$1000",
-  },
-  {
-    id: 3,
-    startTime: "9:30 P.M.",
-    source: 'Ahmedabad',
-    dest: 'Halifax',
-    endTime: "11:30 P.M.",
-    totalTime: "37 Hours 25 min",
-    tripType: 'roundtrip',
-    flightCompany: "Air Canada",
-    price: "$1000",
-  },
-  {
-    id: 4,
-    startTime: "9:30 P.M.",
-    endTime: "11:30 P.M.",
-    source: 'Ahmedabad',
-    dest: 'Halifax',
-    totalTime: "37 Hours 25 min",
-    tripType: 'roundtrip',
-    flightCompany: "Air Canada",
-    price: "$1000",
-  },
-  {
-    id: 5,
-    startTime: "9:30 P.M.",
-    endTime: "11:30 P.M.",
-    source: 'Ahmedabad',
-    dest: 'Halifax',
-    totalTime: "37 Hours 25 min",
-    flightCompany: "Air Canada",
-    tripType: 'roundtrip',
-    price: "$1000",
-  },
-  {
-    id: 6,
-    startTime: "9:30 P.M.",
-    endTime: "11:30 P.M.",
-    source: 'Ahmedabad',
-    dest: 'Halifax',
-    tripType: 'roundtrip',
-    totalTime: "37 Hours 25 min",
-    flightCompany: "Air Canada",
-    price: "$1000",
-  },
-];
-
 function SearchFlights() {
   const [startDate, setStartDate] = useState();
   const [source, setSource] = useState();
@@ -125,10 +56,10 @@ function SearchFlights() {
       method: 'POST',
       url: 'http://localhost:8000/tp/fetchTransporationByDestination',
       data: {
-        source: source,
-        dest_name: dest,
-        start_date: startDate,
-        return_date: endDate
+        source: source ? source : null,
+        dest_name: dest ? dest : null,
+        start_date: startDate ? startDate : null,
+        return_date: endDate ? endDate : null,
       }
     })
     console.log("RESULTS", res.data.data)
