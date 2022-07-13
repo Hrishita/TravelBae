@@ -9,3 +9,19 @@ const destinationDB = require("../../data/destinationDB");
 exports.insertDestination = function(req, res) {
     destinationDB.insertDestination(req, res);
 };
+
+exports.fetchAllDestinations = function(req, res){
+    destinationDB.fetchAllDestinations(req, res);
+}
+
+exports.fetchDestinationByCode = function(req, res){
+    destinationDB.fetchDestinationByCode(req, res);
+}
+
+exports.fetchDestinationsBySearchText = function(req, res){
+    destinationDB.fetchDestinationsBySearchText(req, res);
+}
+
+exports.updateDestinationByCode = function(req, res){
+    destinationDB.updateDestinationByCode(req, res);
+}

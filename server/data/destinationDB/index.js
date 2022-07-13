@@ -17,7 +17,6 @@ exports.insertDestination = function(req, res) {
     country_name,
     img,
   } = req.body;
-  console.log(req.body);
   (insertDestinationData.dest_name = dest_name),
   (insertDestinationData.dest_desc = dest_desc),
   (insertDestinationData.dest_code = dest_code),
@@ -33,3 +32,31 @@ exports.insertDestination = function(req, res) {
     return res.json({success: true});
   })
 };
+
+exports.fetchAllDestinations = function(req,res){
+  Destination.find({}, function(err, destinationsList){
+    if(err) return res.json({success: false, error: err});
+    return res.json({success: true, destinations: destinationsList});
+  }).select('dest_name dest_desc dest_code img country_name');
+};
+
+exports.fetchDestinationByCode = function(req, res){
+  Destination.find({dest_code: req.params.dest_code}, function(err, destinationsList){
+    if(err) return res.json({success: false, error: err});
+    return res.json({success: true, destinations: destinationsList});
+  });
+}
+
+exports.fetchDestinationsBySearchText = function(req, res){
+  Destination.find({dest_name: {$regex: req.params.dest_name, $options: "i"}}, function(err, destinationsList){
+    if(err) return res.json({success: false, error: err});
+    return res.json({success: true, destinations: destinationsList});
+  });
+}
+
+exports.updateDestinationByCode = function(req, res){
+  Destination.findOneAndUpdate({dest_code: req.params.dest_code},{blogs: req.body.blog}, function(err, destinationsList){
+    if(err) return res.json({success: false, error: err});
+    return res.json({success: true, destinations: destinationsList});
+  })
+}

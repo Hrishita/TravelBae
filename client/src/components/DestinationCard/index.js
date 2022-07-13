@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 import AlertDialog from "../../containers/AlertDialog";
 import { useState } from "react";
 
-const ContentCardComp = ({ details }) => {
+const DestinationCardComp = ({ details }) => {
   const history = useHistory();
   const handleListItemClick = () => {
     history.push("/destination");
@@ -91,4 +91,4 @@ const ContentCardComp = ({ details }) => {
     </Paper>
   );
 };
-export default ContentCardComp;
+export default DestinationCardComp;

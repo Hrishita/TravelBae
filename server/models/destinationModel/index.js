@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const destinationSchema = new mongoose.Schema({
   dest_name: { type: String, required: true },
   dest_desc: { type: String, required: true },
-  dest_code: { type: String, required: true },
+  dest_code: { type: String, required: true, unique: true },
   latitude: { type: String, required: true },
   longitude: { type: String, required: true },
   blogs: [{

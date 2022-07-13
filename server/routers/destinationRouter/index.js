@@ -6,4 +6,12 @@ const destinationService = require("../../middleware/destinationService");
  */
  destinationRouter.post("/insertDestination", destinationService.insertDestination);
 
+ destinationRouter.get("/fetchAllDestinations", destinationService.fetchAllDestinations);
+
+ destinationRouter.get("/fetchDestinationByCode/:dest_code", destinationService.fetchDestinationByCode);
+
+ destinationRouter.get("/fetchDestinationsBySearchText/:dest_name", destinationService.fetchDestinationsBySearchText);
+
+ destinationRouter.put("/updateDestinationByCode", destinationService.updateDestinationByCode);
+
 module.exports = destinationRouter;
