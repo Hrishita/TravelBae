@@ -12,14 +12,10 @@ const accommmodationSchema = new mongoose.Schema({
   price: { type: Number },
   check_in_date: { type: Date, default: Date.now },
   check_out_date: { type: Date, default: Date.now },
-  hotel_tags: [
-    {
-      travel_exp: String,
-      property_type: String,
-      rating: String
-    },
-  ],
-  hotel_image: { type: String }
+  hotel_image: { type: String },
+  property_type: { type: String },
+  travel_exp: { type: String },
+  Rating: { type: String },
 });
 
 /**
@@ -27,7 +23,11 @@ const accommmodationSchema = new mongoose.Schema({
  * the third param is the collection name.
  */
 
-const accommodation = mongoose.model("accommodation", accommmodationSchema, "accommodation");
+const accommodation = mongoose.model(
+  "accommodation",
+  accommmodationSchema,
+  "accommodation"
+);
 /**
  * The module is being exported as 'accommodation'
  * so that this module can be imported into other modules.

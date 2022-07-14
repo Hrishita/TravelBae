@@ -3,7 +3,7 @@ import { Grid, Divider } from "@mui/material";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
 import Footer from "../containers/Footer";
-import Pagination from "../containers/Pagination";
+// import Pagination from "../containers/Pagination";
 import AccommodationSearchBoxComp from "../components/AccommodationSearch";
 import HorizontralCardComp from "../components/HorizontalCard";
 import Filter from "../containers/Filter";
@@ -13,27 +13,56 @@ import accommodationFilter from "../containers/AccommodationFIlters";
 import axios from "axios";
 import { BACKEND_URL } from "../config/index";
 import AccommodationSortDropdown from "../components/AccommodationSortDropdown";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+import usePagination from "../containers/UsePagination";
 
 function AccommodationListPage() {
   const [allHotels, setAllHotels] = useState([]);
+
   let [keyword, setKeyword] = useState("");
   let [sort, setSort] = useState(0);
 
+  const [filtering, setFiltering] = useState({});
 
-  // use effect for calling SearchAccommodation Service in Backend. Here, I'm passing hotel name which we are getting from 
+  const handleChange = (checkedItems) => {
+    setFiltering({
+      tags: checkedItems,
+    });
+  };
+
+  const handleClearAll = () => {
+    const specificCityReq = {};
+  };
+
+  // use effect for calling SearchAccommodation Service in Backend. Here, I'm passing hotel name which we are getting from
   // search component and Sort which we are getting from AccommodationSortDropdown Component.
   useEffect(() => {
     axios
       .post(`${BACKEND_URL}/acc/searchAccommodation`, {
         hotel_name: keyword,
         sort_type: sort,
+        tags: filtering,
       })
       .then((res) => {
         setAllHotels(res.data.data);
       });
-  });
+  },[allHotels]);
 
-  console.log(allHotels);
+  const [page, setPage] = useState(1);
+  const PER_PAGE = 9;
+  const count = Math.ceil(allHotels.length / PER_PAGE);
+
+  const handleChange1 = (e, p) => {
+    setPage(p);
+    _DATA.jump(p);
+  };
+
+  const _DATA = usePagination(allHotels, PER_PAGE);
+
+  console.log(page);
+
+  // console.log(allHotels);
   return (
     <Grid container spacing={0.5}>
       <Grid item xs={12}>
@@ -73,15 +102,23 @@ function AccommodationListPage() {
           >
             Our top picked hotels for you...
           </Box>
-          <Box>
-            <AccommodationSortDropdown sortingType={setSort} />
-          </Box>
         </Grid>
+      </Grid>
+
+      <Grid container>
+        <Box sx={{flexGrow:1}}></Box>
+        <Box sx={{pr:20}}>
+          <AccommodationSortDropdown sortingType={setSort} />
+        </Box>
       </Grid>
 
       <Grid item>
         <Box sx={{ display: { xs: "none", md: "block" } }} md={2} xs={0}>
-          <Filter filterProperties={accommodationFilter}></Filter>
+          <Filter
+            filterProperties={accommodationFilter}
+            handleChange={handleChange}
+            handleClearAll={handleClearAll}
+          ></Filter>
         </Box>
       </Grid>
 
@@ -104,9 +141,10 @@ function AccommodationListPage() {
               />
             );
           })} */}
-          {allHotels.map((myVariable) => {
+          {_DATA.currentData().map((myVariable, index) => {
             return (
               <HorizontralCardComp
+                key={index}
                 name={myVariable.hotel_name}
                 address={myVariable.address}
                 image={myVariable.hotel_image}
@@ -121,7 +159,18 @@ function AccommodationListPage() {
 
       <Grid item xs={12}>
         <Grid container alignItems="center" justifyContent="center">
-          <Pagination />
+          <Grid container justifyContent="center" sx={{ mt: 3, mb: 2 }}>
+            <Stack spacing={2}>
+              <Pagination
+                count={count}
+                color="primary"
+                page={page}
+                variant="outlined"
+                shape="rounded"
+                onChange={handleChange1}
+              />
+            </Stack>
+          </Grid>
         </Grid>
       </Grid>
 

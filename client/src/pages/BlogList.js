@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
+// import AppBar from "@material-ui/core/AppBar";
+// import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Container from "@material-ui/core/Container";
@@ -13,9 +13,9 @@ import CardActions from "@material-ui/core/CardActions";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Avatar from "@material-ui/core/Avatar";
-import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
+// import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import Pagination from "@material-ui/lab/Pagination";
-import NavBar from "../containers/NavBar";
+// import NavBar from "../containers/NavBar";
 import { useHistory } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   hero: {
@@ -66,79 +66,78 @@ const useStyles = makeStyles((theme) => ({
 function BlogList() {
   const classes = useStyles();
   const history = useHistory();
-  const handleClick=(e)=>{
+  const handleClick = (e) => {
     history.push("view-blogs");
-  }
+  };
   return (
     <Grid container spacing={3}>
-    
-    <Grid >
-      <Grid className="bloglist">
-      
-      <Box className={classes.hero}>
-        <Box>
-          <Typography gutterBottom variant="h1" component="h2">
-            Blogs
-          </Typography>
-        </Box>
-      </Box>
-      <Container maxWidth="lg" className={classes.blogsContainer}>
-        <Grid container spacing={3}>
-          
-          <Grid item xs={12} sm={6} md={4}>
-            <Card className={classes.card} onClick={handleClick}>
-              <CardActionArea>
-                <CardMedia
-                  className={classes.media}
-                  image="https://images.pexels.com/photos/6965273/pexels-photo-6965273.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  title="Bali"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    My Bali Trip
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    Going to Bali feels like going on a never-ending
-                    adventure–there is an activity to suit every soul! Bali is a
-                    popular destination for many people around the world and
-                    it’s easy to see why.
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions className={classes.cardActions} >
-                <Box className={classes.author}>
-                  <Avatar src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
-                  <Box ml={2}>
-                    <Typography variant="subtitle2" gutterBottom component="p">
-                      Guy Clemons
-                    </Typography>
-                    <Typography
-                      variant="subtitle2"
-                      color="textSecondary"
-                      component="p"
-                    >
-                      May 14, 2020
-                    </Typography>
-                  </Box>
-                </Box>
-              </CardActions>
-            </Card>
-          </Grid>
-               
-         </Grid>
-        <Box my={4} className={classes.paginationContainer}>
-          <Pagination count={10} />
-        </Box>
-      </Container>
+      <Grid>
+        <Grid className="bloglist">
+          <Box className={classes.hero}>
+            <Box>
+              <Typography gutterBottom variant="h1" component="h2">
+                Blogs
+              </Typography>
+            </Box>
+          </Box>
+          <Container maxWidth="lg" className={classes.blogsContainer}>
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={6} md={4}>
+                <Card className={classes.card} onClick={handleClick}>
+                  <CardActionArea>
+                    <CardMedia
+                      className={classes.media}
+                      image="https://images.pexels.com/photos/6965273/pexels-photo-6965273.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                      title="Bali"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        My Bali Trip
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                      >
+                        Going to Bali feels like going on a never-ending
+                        adventure–there is an activity to suit every soul! Bali
+                        is a popular destination for many people around the
+                        world and it’s easy to see why.
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions className={classes.cardActions}>
+                    <Box className={classes.author}>
+                      <Avatar src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
+                      <Box ml={2}>
+                        <Typography
+                          variant="subtitle2"
+                          gutterBottom
+                          component="p"
+                        >
+                          Guy Clemons
+                        </Typography>
+                        <Typography
+                          variant="subtitle2"
+                          color="textSecondary"
+                          component="p"
+                        >
+                          May 14, 2020
+                        </Typography>
+                      </Box>
+                    </Box>
+                  </CardActions>
+                </Card>
+              </Grid>
+            </Grid>
+            <Box my={4} className={classes.paginationContainer}>
+              <Pagination count={10} />
+            </Box>
+          </Container>
+        </Grid>
+        <Footer />
       </Grid>
-      </Grid>
-      <Footer/>
     </Grid>
-  
   );
 }
 

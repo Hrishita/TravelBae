@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import NavBar from "../containers/NavBar";
 import { Grid, Box, Typography, Divider } from "@mui/material";
 import {
-  destinationData,
+  // destinationData,
   blogCards,
   accCards,
 } from "../containers/CardCont/mockData";
@@ -45,7 +45,7 @@ const Destination = () => {
     setOpen(false);
   };
   const displayStrip = (title, cards, navigationLink) => {
-    const data = cards;
+    // const data = cards;
     return (
       <>
         <Grid item xs={12}>

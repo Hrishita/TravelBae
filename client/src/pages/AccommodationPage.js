@@ -5,7 +5,7 @@ import { Box } from "@material-ui/core";
 import AccommodationSearchBoxComp from "../components/AccommodationSearch";
 import Footer from "../containers/Footer";
 import AccommodationMainPageCard from "../containers/AccommodationMainPageCard";
-import VerticalDisplayCardComp from "../components/AccommodationVerticalDisplayCard";
+// import VerticalDisplayCardComp from "../components/AccommodationVerticalDisplayCard";
 
 const AccommodationPage = () => {
   return (
@@ -14,18 +14,18 @@ const AccommodationPage = () => {
         <NavBar />
       </Grid>
       <Grid item xs={12}>
-            <Box
-              component="img"
-              sx={{
-                height: 600,
-                width: "100%", 
-                borderRadius: 2,
-                p:4
-              }}
-              title="main image accommodation"
-              alt="The house from the offer."
-              src="https://images.pexels.com/photos/594077/pexels-photo-594077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            />
+        <Box
+          component="img"
+          sx={{
+            height: 600,
+            width: "100%",
+            borderRadius: 2,
+            p: 4,
+          }}
+          title="main image accommodation"
+          alt="The house from the offer."
+          src="https://images.pexels.com/photos/594077/pexels-photo-594077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        />
       </Grid>
       <Grid item xs={12}>
         <Box pt={4} pb={4}>
