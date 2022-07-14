@@ -42,7 +42,7 @@ export const Write = () => {
         url: 'http://localhost:8000/bg/createBlog',
         data: {
           blog_id: Math.floor(Math.random() * 100000),
-          author_id: 'hrishitamavani@gmail.com',
+          author_id: 'To be passed',
           title: title,
           content: editorData,
           image: image,
@@ -174,10 +174,7 @@ export const Write = () => {
           }}
           
         />
-        {/* <EditorComp
-          handleSubmit={handleSubmit}
-          onChangeText={(e) => setEditorData(e)}
-        /> */}
+
       </Box>
       <Box component={'div'} className="d-flex justify-content-center align-items-center">
         <Box

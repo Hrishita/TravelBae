@@ -14,6 +14,4 @@ exports.searchTransportation = function (req, res) {
   transportationDB.searchTransportation(req, res);
 };
 
-exports.fetchTrasportationByPrice = function (req, res) {
-  transportationDB.fetchTrasportationByPrice(req, res);
-};
+
