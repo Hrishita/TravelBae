@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Avatar,
   Box,
@@ -12,12 +12,15 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Link } from "@material-ui/core";
 import AlertDialog from "../../containers/AlertDialog";
 import filterProperties from "../../pages/Itinerary/FilterMockData";
+import { AuthContext } from "../../context/AuthContext";
 
 function LoginComp(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [open, setOpen] = useState(false); // for alert box
 
+  const auth = useContext(AuthContext);
+  const userId = auth.userId;
   const handleClose = () => {
     setOpen(false);
   };
@@ -101,7 +104,7 @@ function LoginComp(props) {
 
     const userData = { email, password };
     // setOpen(true);
-    props.handleLogin(userData)
+    props.handleLogin(userData);
   };
 
   return (
