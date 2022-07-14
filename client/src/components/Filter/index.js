@@ -18,8 +18,6 @@ const FilterComp = (props) => {
   };
 
   const handleChange = (index) => {
-    // setOpen(true);
-
     const newItems = [...checkedItems];
 
     const position = newItems.findIndex((item) => item === index);
