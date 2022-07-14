@@ -1,114 +1,132 @@
-import React, { useState } from "react";
+import React from "react";
 import "./../components/UserDashboard/Dashboard.css";
 import NavBar from "../containers/NavBar";
-import AlertDialog from "../containers/AlertDialog";
 import Footer from "../containers/Footer";
 import SideBar from "../components/SideBar/Sidebar";
 import { Grid } from "@material-ui/core";
-import { TbPlaneDeparture } from "react-icons/tb";
-import { Box, Button } from "@mui/material";
+import {
+  Box,
+  Button,
+  CssBaseline,
+  Divider,
+  Paper,
+  Typography,
+  useTheme,
+} from "@mui/material";
+import { useHistory } from "react-router-dom";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { planData } from "../containers/CardCont/mockData";
+import { completedPlanData } from "../containers/CardCont/mockData";
 
 function UserDashbordPlan() {
-  const [open, setOpen] = useState(false); // for alert box
+  const history = useHistory();
+  const handleClick = () => {
+    history.push("/write-plan");
+  };
+  const theme = useTheme();
 
-  const handleOpen = () => {
-    setOpen(true);
+  const handleDelete = () => {
+    // @Todo backend logic to delete plan
   };
-  const handleClose = () => {
-    setOpen(false);
+
+  const displayCard = (plan) => {
+    return (
+      <Grid item xs={12}>
+        <Paper sx={{ display: "flex" }}>
+          <Box sx={{ display: "flex" }} onClick={handleClick}>
+            <img
+              src={plan.img}
+              width="200rem"
+              alt="Plan Image"
+              onClick={handleClick}
+            />
+          </Box>
+
+          <Box
+            sx={{ display: "flex", flexDirection: "column", padding: 2 }}
+            onClick={handleClick}
+          >
+            <Typography component="div" variant="h5">
+              {plan.title}
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              color="text.secondary"
+              component="div"
+            >
+              Jenner Joe
+            </Typography>
+            <Typography>{plan.desc}</Typography>
+          </Box>
+          <Box>
+            <DeleteIcon color="primary" onClick={handleDelete} />
+          </Box>
+        </Paper>
+      </Grid>
+    );
   };
+
   return (
     <Grid container>
+      <CssBaseline />
       <Grid item xs={12}>
         <NavBar />
       </Grid>
-      <Grid item xs={12}>
-        <div className="main-container">
-          <SideBar />
-          <div className="dashbord-container">
-            <div className="dashbord-subcontainer">
-              <h2 className="dashbord-titletext">Plans</h2>
-              <div className="dashbord-sectionone">
-                <div className="dashbord-columnone">
-                  <div className="dashbord-content">
-                    <div className="dashbord-info">
-                      <TbPlaneDeparture
-                        style={{
-                          height: "4rem",
-                          width: "4rem",
-                          borderRadius: "4rem",
-                        }}
-                        alt=""
-                      />
-                      <div style={{ marginLeft: "1rem" }}>
-                        <h3 className="title">Kathmandu, Nepal</h3>
-                        <h5 style={{ fontWeight: "300" }}>
-                          Lorem ipsum dolor sit amet, consectetuer adipiscing
-                          elit. Aenean commodo ligula eget dolor. Aenean massa.
-                          Cum sociis natoque penatibus et magnis dis parturient
-                          montes, nascetur ridiculus mus. Donec quam felis,
-                        </h5>
-                      </div>
-                    </div>
-                    <Box display="inline-flex" mr={2}><Button variant="contained" onClick={handleOpen}>Delete Plan</Button></Box>
-                    <Box display="inline-flex"><Button variant="contained" onClick={handleOpen}>Complete Trip</Button></Box>
-
-                    {/* <li style={{ listStyle: "none" }}>
-                      <h5 className="all">
-                        <a href="/userdashboard-plans">ReadMore</a>
-                      </h5>
-                    </li> */}
-                  </div>
-                </div>
-              </div>
-              {/* Stuu */}
-              <div className="dashbord-sectionone">
-                <div className="dashbord-columnone">
-                  <div className="dashbord-content">
-                    <div className="dashbord-info">
-                      <TbPlaneDeparture
-                        style={{
-                          height: "4rem",
-                          width: "4rem",
-                          borderRadius: "4rem",
-                        }}
-                        alt=""
-                      />
-                      <div style={{ marginLeft: "1rem" }}>
-                        <h3 className="title">Paris, France</h3>
-                        <h5 style={{ fontWeight: "300" }}>
-                          Lorem ipsum dolor sit amet, consectetuer adipiscing
-                          elit. Aenean commodo ligula eget dolor. Aenean massa.
-                          Cum sociis natoque penatibus et magnis dis parturient
-                          montes, nascetur ridiculus mus. Donec quam felis,
-                        </h5>
-                      </div>
-                    </div>
-                    <Box display="inline-flex" mr={2}><Button variant="contained" onClick={handleOpen}>Delete Plan</Button></Box>
-                    <Box display="inline-flex"><Button variant="contained" onClick={handleOpen}>Complete Trip</Button></Box>
-                    {/* <li style={{ listStyle: "none" }}>
-                      <h5 className="all">
-                        <a href="/userdashboard-plans">ReadMore</a>
-                      </h5>
-                    </li> */}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <Grid item xs={12} lg={3}>
+        <SideBar />
       </Grid>
+      <Grid item xs={12} lg={8}>
+        <Box pl={3} mt={4} pb={3} display="flex">
+          <Paper>
+            <Grid container>
+              <Grid item lg={6}>
+                <Box pt={2} pl={4}>
+                  <Typography variant="h4" component="span">
+                    My Plans
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid item lg={6}>
+                <Box pt={2} pr={4} display="flex" justifyContent="flex-end">
+                  <Button variant="outlined" color="primary">
+                    Create Plan
+                  </Button>
+                </Box>
+              </Grid>
+            </Grid>
+            <Box pl={2} pt={2} pb={2} pr={2}>
+              <Divider />
+            </Box>
+            <Box ml={2} pl={2} pt={3} pb={3} mr={3}>
+              <Grid container flexDirection="column" spacing={2}>
+                {planData.map((blog) => {
+                  return displayCard(blog);
+                })}
+              </Grid>
+            </Box>
+            <Grid item lg={6}>
+              <Box pt={2} pl={4}>
+                <Typography variant="h4" component="span">
+                  Plans Completed
+                </Typography>
+              </Box>
+            </Grid>
+            <Box pl={2} pt={2} pb={2} pr={2}>
+              <Divider />
+            </Box>
+            <Box ml={2} pl={2} pt={3} pb={3} mr={3}>
+              <Grid container flexDirection="column" spacing={2}>
+                {completedPlanData.map((blog) => {
+                  return displayCard(blog);
+                })}
+              </Grid>
+            </Box>
+          </Paper>
+        </Box>
+      </Grid>
+
       <Grid item xs={12}>
         <Footer />
-      </Grid>
-      <Grid item xs={12}>
-        <AlertDialog
-          open={open}
-          title="Confirm"
-          message="API logic required"
-          handleClose={handleClose}
-          buttons={["Cancel", "Ok"]}
-        />
       </Grid>
     </Grid>
   );
