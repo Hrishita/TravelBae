@@ -2,7 +2,7 @@ import { Grid, Box } from "@mui/material";
 import Filter from "../containers/Filter";
 import FilterMenu from "../containers/FilterMenu";
 import { Typography } from "@mui/material";
-import data from "../containers/Filter/mockData";
+import data from "../containers/DestinationCard/destinationsFilterData";
 import NavBar from "../containers/NavBar";
 import ContentCardCont from "../containers/ContentCard";
 import SearchCont from "../containers/Search";
@@ -43,13 +43,44 @@ const Destinations = () => {
   const _DATA = usePagination(destinationsData, PER_PAGE);
 
   let handleEvent = (event) => {
-    console.log(event);
     setSearchInput(event);
-    const fetchDestinationsBySearchURL = `${BACKEND_URL}/destination/fetchDestinationsBySearchText/${event}`;
-    axios.get(fetchDestinationsBySearchURL).then((res) => {
-      setDestinationsData(res.data.destinations);
-      setPage(1);
-      _DATA.jump(1);
+    axios
+      .post(`${BACKEND_URL}/destination/fetchFilteredDestinations`, {
+        tags: filtering,
+        dest_name: event,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setDestinationsData(res.data.destinations);
+        setPage(1);
+        _DATA.jump(1);
+      });
+  };
+
+  const [filtering, setFiltering] = useState({});
+
+  const handleFilterChange = (checkedItems) => {
+    setFiltering({
+      tags: checkedItems,
+    });
+    axios
+      .post(`${BACKEND_URL}/destination/fetchFilteredDestinations`, {
+        tags: {
+          tags: checkedItems,
+        },
+        dest_name: searchInput,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setDestinationsData(res.data.destinations);
+        setPage(1);
+        _DATA.jump(1);
+      });
+  };
+
+  const handleFilterClearAll = () => {
+    setFiltering({
+      tags: {},
     });
   };
 
@@ -59,7 +90,11 @@ const Destinations = () => {
         <NavBar></NavBar>
       </Grid>
       <Grid item sx={{ display: { xs: "none", md: "block" } }} md={2.5} xs={0}>
-        <Filter filterProperties={data}></Filter>
+        <Filter
+          filterProperties={data}
+          handleChange={handleFilterChange}
+          handleClearAll={handleFilterClearAll}
+        ></Filter>
       </Grid>
       <Grid item xs={12} md={9.2}>
         <Typography
@@ -85,6 +120,7 @@ const Destinations = () => {
         <Grid container>
           {_DATA.currentData() &&
             _DATA.currentData().map((destination) => {
+              console.log(destination);
               return <ContentCardCont details={destination}></ContentCardCont>;
             })}
           <NoDataFound
