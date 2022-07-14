@@ -24,6 +24,7 @@ function RegisterComp(props) {
   };
 
 
+  //error handling
   const [error, setError] = useState({
     fName: "",
     lName: "",
