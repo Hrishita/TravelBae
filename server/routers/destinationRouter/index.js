@@ -12,6 +12,8 @@ const destinationService = require("../../middleware/destinationService");
 
  destinationRouter.get("/fetchDestinationsBySearchText/:dest_name", destinationService.fetchDestinationsBySearchText);
 
+ destinationRouter.get("/fetchDestinationsBySearchText", destinationService.fetchDestinationsBySearchText);
+
  destinationRouter.put("/updateDestinationByCode", destinationService.updateDestinationByCode);
 
 module.exports = destinationRouter;

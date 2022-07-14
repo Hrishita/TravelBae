@@ -10,9 +10,10 @@ import React, { useState, useEffect } from "react";
 import Pagination from "@mui/material/Pagination";
 import NoDataFound from "../components/NoDataFound";
 import Footer from "../containers/Footer";
+import Stack from "@mui/material/Stack";
+import usePagination from "../containers/UsePagination";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
-
 
 const Destinations = () => {
   const [destinationsData, setDestinationsData] = useState("");
@@ -22,15 +23,34 @@ const Destinations = () => {
 
   useEffect(() => {
     const fetchDestinationsURL = `${BACKEND_URL}/destination/fetchAllDestinations`;
-    axios.get(fetchDestinationsURL).then((res)=> {
-      setDestinationsData(res.data.destinations);
-      
-    }).catch((err) => console.log(err));
-
+    axios
+      .get(fetchDestinationsURL)
+      .then((res) => {
+        setDestinationsData(res.data.destinations);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
+  const [page, setPage] = useState(1);
+  const PER_PAGE = 5;
+  const count = Math.ceil(destinationsData.length / PER_PAGE);
+
+  const handlePaginationChange = (e, p) => {
+    setPage(p);
+    _DATA.jump(p);
+  };
+
+  const _DATA = usePagination(destinationsData, PER_PAGE);
+
   let handleEvent = (event) => {
+    console.log(event);
     setSearchInput(event);
+    const fetchDestinationsBySearchURL = `${BACKEND_URL}/destination/fetchDestinationsBySearchText/${event}`;
+    axios.get(fetchDestinationsBySearchURL).then((res) => {
+      setDestinationsData(res.data.destinations);
+      setPage(1);
+      _DATA.jump(1);
+    });
   };
 
   return (
@@ -38,12 +58,7 @@ const Destinations = () => {
       <Grid item xs={12}>
         <NavBar></NavBar>
       </Grid>
-      <Grid
-        item
-        sx={{ display: { xs: "none", md: "block" } }}
-        md={2.5}
-        xs={0}
-      >
+      <Grid item sx={{ display: { xs: "none", md: "block" } }} md={2.5} xs={0}>
         <Filter filterProperties={data}></Filter>
       </Grid>
       <Grid item xs={12} md={9.2}>
@@ -59,35 +74,43 @@ const Destinations = () => {
         </Typography>
         <SearchCont onEvent={handleEvent}></SearchCont>
         <Grid
-        item
-        sx={{ display: { xs: "block", md: "none" } }}
-        md={0}
-        xs={12}
-        className="text-align-center"
-      >
-        <FilterMenu filterProperties={data}></FilterMenu>
-      </Grid>
-      <Grid container>
-          {destinationsData && destinationsData.map((destination) => {
-            return <ContentCardCont details={destination}></ContentCardCont>
-          })}
+          item
+          sx={{ display: { xs: "block", md: "none" } }}
+          md={0}
+          xs={12}
+          className="text-align-center"
+        >
+          <FilterMenu filterProperties={data}></FilterMenu>
+        </Grid>
+        <Grid container>
+          {_DATA.currentData() &&
+            _DATA.currentData().map((destination) => {
+              return <ContentCardCont details={destination}></ContentCardCont>;
+            })}
           <NoDataFound
             display={showNoData}
             message="Destination not present. Please search for another one or select from the list."
             listEmpty={destinationIsEmpty}
             className="text-align-center"
           ></NoDataFound>
-          <Box sx={{ textAlign: "center", width: "100%" }}>
-            <Pagination
-              count={2}
-              color="primary"
-              sx={{
-                display: { xs: "inline-block", marginBottom: "2em" },
-              }}
-            />
-          </Box>
         </Grid>
-      
+
+        <Grid item xs={12}>
+          <Grid container alignItems="center" justifyContent="center">
+            <Grid container justifyContent="center" sx={{ mt: 3, mb: 2 }}>
+              <Stack spacing={2}>
+                <Pagination
+                  count={count}
+                  color="primary"
+                  page={page}
+                  variant="outlined"
+                  shape="rounded"
+                  onChange={handlePaginationChange}
+                />
+              </Stack>
+            </Grid>
+          </Grid>
+        </Grid>
       </Grid>
       <Grid item xs={12}>
         <Footer></Footer>
