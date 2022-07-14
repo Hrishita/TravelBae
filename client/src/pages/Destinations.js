@@ -3,20 +3,31 @@ import Filter from "../containers/Filter";
 import FilterMenu from "../containers/FilterMenu";
 import { Typography } from "@mui/material";
 import data from "../containers/Filter/mockData";
-import destinationsData from "../containers/ContentCard/mockData";
 import NavBar from "../containers/NavBar";
 import ContentCardCont from "../containers/ContentCard";
 import SearchCont from "../containers/Search";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Pagination from "@mui/material/Pagination";
 import NoDataFound from "../components/NoDataFound";
 import Footer from "../containers/Footer";
+import axios from "axios";
+import { BACKEND_URL } from "../config";
 
 
 const Destinations = () => {
+  const [destinationsData, setDestinationsData] = useState("");
   const [searchInput, setSearchInput] = useState("");
   let destinationIsEmpty = true;
   let showNoData = false;
+
+  useEffect(() => {
+    const fetchDestinationsURL = `${BACKEND_URL}/destination/fetchAllDestinations`;
+    axios.get(fetchDestinationsURL).then((res)=> {
+      setDestinationsData(res.data.destinations);
+      
+    }).catch((err) => console.log(err));
+
+  }, []);
 
   let handleEvent = (event) => {
     setSearchInput(event);
@@ -56,26 +67,9 @@ const Destinations = () => {
       >
         <FilterMenu filterProperties={data}></FilterMenu>
       </Grid>
-        <Grid container>
-          {destinationsData.map((destination) => {
-            if (searchInput) {
-              if (
-                destination.title
-                  .toLowerCase()
-                  .includes(searchInput.toLowerCase())
-              ) {
-                destinationIsEmpty = false;
-                return (
-                  <ContentCardCont details={destination}></ContentCardCont>
-                );
-              } else {
-                showNoData = true;
-                return false;
-              }
-            } else {
-              destinationIsEmpty = false;
-              return <ContentCardCont details={destination}></ContentCardCont>;
-            }
+      <Grid container>
+          {destinationsData && destinationsData.map((destination) => {
+            return <ContentCardCont details={destination}></ContentCardCont>
           })}
           <NoDataFound
             display={showNoData}
@@ -93,6 +87,7 @@ const Destinations = () => {
             />
           </Box>
         </Grid>
+      
       </Grid>
       <Grid item xs={12}>
         <Footer></Footer>

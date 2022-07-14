@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 import AlertDialog from "../../containers/AlertDialog";
 import { useState } from "react";
 
-const ContentCardComp = ({ details }) => {
+const DestinationCardComp = ({ details }) => {
   const history = useHistory();
   const handleListItemClick = () => {
     history.push("/destination");
@@ -41,11 +41,7 @@ const ContentCardComp = ({ details }) => {
               margin: "20px",
             }}
           >
-            <img
-              className="destination-image"
-              src={details.details.img}
-              alt="details"
-            ></img>
+            <img className="destination-image" src={details.details.img}></img>
           </Box>
         </Grid>
         <Grid
@@ -83,16 +79,16 @@ const ContentCardComp = ({ details }) => {
           />
         </Grid>
         <Grid item xs={12}>
-          <AlertDialog
-            open={open}
-            title="Confirm"
-            message="Are you sure you want to add it to the bucket list ?"
-            handleClose={handleClose}
-            buttons={["Cancel", "Ok"]}
-          />
-        </Grid>
+        <AlertDialog
+          open={open}
+          title="Confirm"
+          message="Are you sure you want to add it to the bucket list ?"
+          handleClose={handleClose}
+          buttons={["Cancel", "Ok"]}
+        />
+      </Grid>
       </Grid>
     </Paper>
   );
 };
-export default ContentCardComp;
+export default DestinationCardComp;
