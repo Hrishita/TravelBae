@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const path = require("path");
 
 const userRouter = require("../routers/userRouter");
 const destinationRouter = require("../routers/destinationRouter");
@@ -23,8 +24,8 @@ const dayItineraryRouter = require("../routers/dayItineraryRouter");
  * Using dotenv package, it reads the .env file provided which contains all the secrets and tokens for
  * mongo and jwt.
  */
-dotenv.config({path : '../.env'});
-
+// dotenv.config({ path: "../.env" });
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
 /**
  * Creating a new express application.
  */
@@ -77,7 +78,7 @@ app.use("/ui", userRouter);
 app.use("/destination", destinationRouter);
 app.use("/user", userRouter);
 app.use("/tp", transportationRouter);
-app.use("/bg", blogRouter); 
+app.use("/bg", blogRouter);
 app.use("/acc", accommodationRouter);
 app.use("/act", activityRouter);
 app.use("/it", itineraryRouter);
