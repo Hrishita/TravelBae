@@ -8,7 +8,6 @@ import { AuthContext } from "../context/AuthContext";
 import { Box, CssBaseline, Divider, Paper, Typography } from "@mui/material";
 import { AiOutlineSetting } from "react-icons/ai";
 import FormDialogAlert from "../containers/FormDialogAlert";
-import { SettingsRemoteSharp } from "@mui/icons-material";
 
 const UserProfile = () => {
   const auth = useContext(AuthContext);
@@ -21,62 +20,93 @@ const UserProfile = () => {
 
   // console.log("res....",res);
   const handleSubmit = (pwdObj) => {
-  //   const url = `${BACKEND_URL}/user/changePassword`;
-  //   axios.post(url,pwdObj).then(res => {
-  //     setResData(res);
-  //   }).catch(e => {
-  //       console.error(e)
-  // });
+    //   const url = `${BACKEND_URL}/user/changePassword`;
+    //   axios.post(url,pwdObj).then(res => {
+    //     setResData(res);
+    //   }).catch(e => {
+    //       console.error(e)
+    // });
   };
 
   const handleClose = () => {
     setOpen(false);
   };
   if (!auth.userProfileData.length) {
-    auth.loadUserProfile()
+    auth.loadUserProfile();
   }
   const userData = auth.userProfileData.length ? auth.userProfileData[0] : {};
 
   const displayUserInfo = () => {
     if (Object.keys(userData).length !== 0)
-      return (<>
-        <CssBaseline />
+      return (
+        <>
+          <CssBaseline />
 
-        <Grid item xs={6} lg={6}>
-          <Box display="flex" justifyContent="center" alignItem="center" pt={2} >
-            <Typography alignItems="center"> Name </Typography>
-          </Box>
-        </Grid>
-        <Grid item xs={6} lg={6}>
-          <Box display="flex" pt={2} >
-            <Typography alignItems="center">{userData.fName} {userData.lName}</Typography>
-          </Box>
-        </Grid>
-        <Grid item xs={6} lg={6}>
-          <Box display="flex" justifyContent="center" alignItem="center" pt={2} >
-            <Typography alignItems="center">Email Id</Typography>
-          </Box>
-        </Grid>
-        <Grid item xs={6} lg={6}>
-          <Box display="flex" pt={2} >
-            <Typography alignItems="center">{userData.email}</Typography>
-          </Box>
-        </Grid>
-        <Grid item xs={6} lg={6}>
-          <Box display="flex" justifyContent="center" alignItem="center" pt={2} >
-            <Typography alignItems="center">Password</Typography>
-          </Box>
-        </Grid>
-        <Grid item xs={6} lg={6}>
-          <Box display="flex" pt={2} pb={5} >
-            <Typography component="a" sx={{ textDecoration: "none", cursor: "pointer" }} alignItems="center" onClick={handleClick}>change password</Typography>
-          </Box>
-        </Grid>
-        <Grid item xs={12}>
-          <FormDialogAlert open={open} handleClose={handleClose} handleSubmitForm={handleSubmit} isUserPopUp={true} />
-        </Grid>
-      </>)
-  }
+          <Grid item xs={6} lg={6}>
+            <Box
+              display="flex"
+              justifyContent="center"
+              alignItem="center"
+              pt={2}
+            >
+              <Typography alignItems="center"> Name </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={6} lg={6}>
+            <Box display="flex" pt={2}>
+              <Typography alignItems="center">
+                {userData.fName} {userData.lName}
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={6} lg={6}>
+            <Box
+              display="flex"
+              justifyContent="center"
+              alignItem="center"
+              pt={2}
+            >
+              <Typography alignItems="center">Email Id</Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={6} lg={6}>
+            <Box display="flex" pt={2}>
+              <Typography alignItems="center">{userData.email}</Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={6} lg={6}>
+            <Box
+              display="flex"
+              justifyContent="center"
+              alignItem="center"
+              pt={2}
+            >
+              <Typography alignItems="center">Password</Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={6} lg={6}>
+            <Box display="flex" pt={2} pb={5}>
+              <Typography
+                component="a"
+                sx={{ textDecoration: "none", cursor: "pointer" }}
+                alignItems="center"
+                onClick={handleClick}
+              >
+                change password
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12}>
+            <FormDialogAlert
+              open={open}
+              handleClose={handleClose}
+              handleSubmitForm={handleSubmit}
+              isUserPopUp={true}
+            />
+          </Grid>
+        </>
+      );
+  };
 
   return (
     <Grid container>
@@ -89,20 +119,27 @@ const UserProfile = () => {
       <Grid item xs={12} lg={8}>
         <Paper elevation={1} sx={{ marginLeft: "2rem" }}>
           <Box display="flex" flexDirection="column" mt={3}>
-            <Box display="flex" justifyContent="center" alignItem="center" pt={2} >
-              <Typography variant="h5" alignItems="center">Account Settings</Typography>
-              <Box display="inline-flex" ml={2}> <AiOutlineSetting size={30} /> </Box>
+            <Box
+              display="flex"
+              justifyContent="center"
+              alignItem="center"
+              pt={2}
+            >
+              <Typography variant="h5" alignItems="center">
+                Account Settings
+              </Typography>
+              <Box display="inline-flex" ml={2}>
+                {" "}
+                <AiOutlineSetting size={30} />{" "}
+              </Box>
             </Box>
             <Box ml={3} mr={3} mb={3}>
               <Divider />
             </Box>
             <Box display="flex" justifyContent="center" alignItem="center">
-              <Grid container>
-                {displayUserInfo()}
-              </Grid>
+              <Grid container>{displayUserInfo()}</Grid>
             </Box>
           </Box>
-         
         </Paper>
       </Grid>
       <Grid item xs={12}>
@@ -110,6 +147,6 @@ const UserProfile = () => {
       </Grid>
     </Grid>
   );
-}
+};
 
 export default UserProfile;

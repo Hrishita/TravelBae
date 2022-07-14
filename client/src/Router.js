@@ -65,12 +65,9 @@ function Router() {
   const [userId, setUserId] = useState(null);
   const [userProfileData, setUserProfileData] = useState([]);
 
-  // const [isLoading, setIsloading] = useState(true)
-
   const login = useCallback((uid, token, expirationDate) => {
     setToken(token);
     setUserId(uid);
-    // setIsloading(false)
     const tokenExpirationDate =
       expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60);
     setTokenExpirationDate(tokenExpirationDate);
