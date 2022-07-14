@@ -43,22 +43,7 @@ function SearchFlights() {
     console.log("RESULT", res.data)
     setFlights(res.data.data)
   }
-  const fetchFlightsByPrice = async () => {
-    let res = await axios({
-      method: "POST",
-      url: 'http://localhost:8000/tp/fetchTransporationByPrice',
-      data: {
-        price: price
-      }
-    })
-    console.log("RESULT", res.data)
-    setFlights(res.data.data)
-
-  }
-    
-  useEffect(() => {
-    fetchFlightsByPrice()
-  }, [])
+ 
   useEffect(() => {
     fetchRecommendedFlights()
   }, [])
@@ -76,6 +61,7 @@ function SearchFlights() {
         dest_name: dest ? dest : null,
         start_date: startDate ? startDate : null,
         return_date: endDate ? endDate : null,
+        price: price ? price : null,
       }
     })
     console.log("RESULTS", res.data.data)

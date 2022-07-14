@@ -25,9 +25,7 @@ function SingleComment({ index, comment, name = "John Doe" }) {
           <Typography variant={"p"} fontSize={"1rem"} color={"#292929"}>
             {comment.author_id}
           </Typography>
-          {/* <Typography variant={"p"} fontSize={"0.8rem"} color={grey[500]}>
-            12 January 2020, 16:30 IST
-          </Typography> */}
+       
         </Box>
         <Typography className="my-2">{comment.comment_text}</Typography>
       </Box>
