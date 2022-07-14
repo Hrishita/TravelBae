@@ -150,7 +150,7 @@ function Router() {
             />
             <Route
               exact
-              path="/destination"
+              path="/destination/:code"
               render={() => {
                 return <Destination />;
               }}
@@ -310,7 +310,7 @@ function Router() {
             />
             <Route
               exact
-              path="/destination"
+              path="/destination/:code"
               render={() => {
                 return <Destination />;
               }}

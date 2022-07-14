@@ -41,17 +41,24 @@ exports.fetchAllDestinations = function(req,res){
 };
 
 exports.fetchDestinationByCode = function(req, res){
-  Destination.find({dest_code: req.params.dest_code}, function(err, destinationsList){
+  Destination.findOne({dest_code: req.params.dest_code}, function(err, destinationsList){
     if(err) return res.json({success: false, error: err});
     return res.json({success: true, destinations: destinationsList});
   });
 }
 
 exports.fetchDestinationsBySearchText = function(req, res){
-  Destination.find({dest_name: {$regex: req.params.dest_name, $options: "i"}}, function(err, destinationsList){
-    if(err) return res.json({success: false, error: err});
-    return res.json({success: true, destinations: destinationsList});
-  });
+  if(req.params.dest_name){
+    Destination.find({dest_name: {$regex: req.params.dest_name, $options: "i"}}, function(err, destinationsList){
+      if(err) return res.json({success: false, error: err});
+      return res.json({success: true, destinations: destinationsList});
+    }).select('dest_name dest_desc dest_code img country_name');
+  } else {
+    Destination.find({}, function(err, destinationsList){
+      if(err) return res.json({success: false, error: err});
+      return res.json({success: true, destinations: destinationsList});
+    }).select('dest_name dest_desc dest_code img country_name');
+  }
 }
 
 exports.updateDestinationByCode = function(req, res){

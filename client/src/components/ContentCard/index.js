@@ -11,7 +11,7 @@ import { useState } from "react";
 const ContentCardComp = ({ details }) => {
   const history = useHistory();
   const handleListItemClick = () => {
-    history.push("/destination");
+    history.push("/destination/" + details.details.dest_code);
   };
   const [open, setOpen] = useState(false); // for alert box
 
