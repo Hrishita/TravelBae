@@ -47,7 +47,6 @@ const Destination = () => {
   useEffect(() => {
     const fetchDestinationURL = `${BACKEND_URL}/destination/fetchDestinationByCode/${params.code}`;
     axios.get(fetchDestinationURL).then((res)=> {
-      console.log(res.data.destinations.dest_name);
       setDestinationName(res.data.destinations.dest_name);
       setDestinationDescription(res.data.destinations.dest_desc);
       setDestinationImage(res.data.destinations.img);

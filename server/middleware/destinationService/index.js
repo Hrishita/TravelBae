@@ -18,10 +18,9 @@ exports.fetchDestinationByCode = function(req, res){
     destinationDB.fetchDestinationByCode(req, res);
 }
 
-exports.fetchDestinationsBySearchText = function(req, res){
-    destinationDB.fetchDestinationsBySearchText(req, res);
-}
-
 exports.updateDestinationByCode = function(req, res){
     destinationDB.updateDestinationByCode(req, res);
+}
+exports.fetchFilteredDestinations = function(req, res){
+    destinationDB.fetchFilteredDestinations(req, res);
 }
