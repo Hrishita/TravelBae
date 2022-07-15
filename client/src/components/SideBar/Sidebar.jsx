@@ -23,7 +23,7 @@ const Sidebar = (props) => {
   return (
     <Paper elevation={3}>
       <Box
-        mt={theme.spacing(0.25)}
+        mt={theme.spacing(4)}
         display="flex"
         flexDirection="column"
         justifyContent="center"

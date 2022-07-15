@@ -20,11 +20,12 @@ import { planData } from "../containers/CardCont/mockData";
 import { completedPlanData } from "../containers/CardCont/mockData";
 import { AuthContext } from "../context/AuthContext";
 import { BACKEND_URL } from "../config";
+import Checkbox from "@mui/material/Checkbox";
 
 function UserDashbordPlan() {
   const auth = useContext(AuthContext);
 
-  console.log(auth);
+  // console.log(auth);
   let id = null;
 
   if (auth && auth.isLoggedIn == true && auth.userId != null) {
@@ -33,16 +34,40 @@ function UserDashbordPlan() {
     id = "test@gmail.com";
   }
 
-  const handleDelete = () => {
-    // @Todo backend logic to delete plan
-  };
-
   const history = useHistory();
   const [UpcomingPlanTrip, setUpcomingPlanTrip] = React.useState([]);
   const [CompletedPlanTrip, setCompletedPlanTrip] = React.useState([]);
 
+  const handleDelete = (id) => {
+    axios({
+      method: "post",
+      url: "http://localhost:8000/pt/deletePlanTripByID",
+      data: {
+        plan_id: id,
+      },
+    })
+      .then((res) => {
+        fetchAllPlanTrips();
+      })
+      .catch((error) => console.log(error));
+  };
+
   const handleClick = () => {
     history.push("/");
+  };
+
+  const handleComplete = (id) => {
+    axios({
+      method: "post",
+      url: "http://localhost:8000/pt/updatePlanTripByID",
+      data: {
+        plan_id: id,
+      },
+    })
+      .then((res) => {
+        fetchAllPlanTrips();
+      })
+      .catch((error) => console.log(error));
   };
 
   const fetchAllPlanTrips = async () => {
@@ -60,8 +85,8 @@ function UserDashbordPlan() {
     let finalUpcomingData = Array();
     let finalCompletedData = Array();
 
-    let _ = res.data.map((cities) => {
-      console.log(cities);
+    res.data.map((cities) => {
+      // console.log(cities);
       for (let i = 0; i < locData.data.destinations.length; i++) {
         if (locData.data.destinations[i].dest_name === cities.city) {
           if (cities.is_completed === false) {
@@ -80,7 +105,7 @@ function UserDashbordPlan() {
     setUpcomingPlanTrip(finalUpcomingData);
     setCompletedPlanTrip(finalCompletedData);
 
-    console.log(res.data);
+    // console.log(res.data);
   };
 
   useEffect(() => {
@@ -101,7 +126,6 @@ function UserDashbordPlan() {
               onClick={handleClick}
             />
           </Box>
-
           <Box
             sx={{ display: "flex", flexDirection: "column", padding: 2 }}
             onClick={handleClick}
@@ -114,13 +138,32 @@ function UserDashbordPlan() {
               color="text.secondary"
               component="div"
             >
-              {/* Jenner Joe */}
               {plan.res.start_date + " - " + plan.res.end_date}
             </Typography>
             <Typography>{plan.dest_desc}</Typography>
           </Box>
+
           <Box>
-            <DeleteIcon color="primary" onClick={handleDelete} />
+            <DeleteIcon
+              color="primary"
+              cursor="pointer"
+              onClick={() => {
+                handleDelete(plan.res.plan_id);
+              }}
+            />
+            {/* {if(plan.res.is_completed===true)} */}
+            {/* <Checkbox
+              onClick={() => {
+                handleComplete(plan.res.plan_id);
+              }}
+            /> */}
+            {/* <Grid item lg={9}>
+              <Box pt={2} pr={4} display="flex" justifyContent="flex-end">
+                <Button variant="outlined" color="primary">
+                  Completed
+                </Button>
+              </Box>
+            </Grid> */}
           </Box>
         </Paper>
       </Grid>
@@ -147,13 +190,13 @@ function UserDashbordPlan() {
                   </Typography>
                 </Box>
               </Grid>
-              <Grid item lg={6}>
+              {/* <Grid item lg={6}>
                 <Box pt={2} pr={4} display="flex" justifyContent="flex-end">
                   <Button variant="outlined" color="primary">
                     Create Plan
                   </Button>
                 </Box>
-              </Grid>
+              </Grid> */}
             </Grid>
             <Box pl={2} pt={2} pb={2} pr={2}>
               <Divider />
