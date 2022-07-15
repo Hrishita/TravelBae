@@ -19,18 +19,12 @@ import { BACKEND_URL } from "../config";
 
 const Destinations = () => {
   const auth = React.useContext(AuthContext);
-  const userID = auth.userId;
+  const userID = auth && auth.userId;
 
   const [destinationsData, setDestinationsData] = useState("");
   const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
-    if (!auth.userProfileData.length) {
-      auth.loadUserProfile();
-    }
-    const userData = auth.userProfileData.length ? auth.userProfileData[0] : {};
-    console.log(userData);
-
     const fetchDestinationsURL = `${BACKEND_URL}/destination/fetchAllDestinations`;
     axios
       .get(fetchDestinationsURL)
