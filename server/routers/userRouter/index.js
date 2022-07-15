@@ -12,6 +12,11 @@ const User = require("../../models/userModel");
 
 userRouter.post("/userProfile", userService.fetchUserProfile);
 
+userRouter.post(
+  "/addDestToBucketList",
+  userService.addDestToBucketList
+);
+
 userRouter.post("/changePassword", userService.updatePassword);
 
 //Authentication Logic begins here

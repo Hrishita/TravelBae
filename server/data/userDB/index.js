@@ -64,6 +64,20 @@ exports.updatePassword = function (req, res) {
   }
 };
 
+exports.addDestToBucketList = function (req, res) {
+  const { dest_name, dest_code, img } = req.body.bucket_list;
+  const userID = req.body.email;
+  User.findOne({ email: userID }, function(err, user){
+    if(err){
+      console.log(err);
+    } else{
+      user.bucket_list.push({ dest_name, dest_code, img });
+      user.save();
+      return res.json({success: true, user: user});;
+    }
+  })
+};
+
 /**
  * The module is being exported as userDB so that
  * this module can be imported into other modules.
