@@ -5,7 +5,7 @@ import FilterMenu from "../containers/FilterMenu";
 import { Typography } from "@mui/material";
 import data from "../containers/DestinationCard/destinationsFilterData";
 import NavBar from "../containers/NavBar";
-import ContentCardCont from "../containers/ContentCard";
+import DestinationCardCont from "../containers/DestinationCard";
 import SearchCont from "../containers/Search";
 import React, { useState, useEffect } from "react";
 import Pagination from "@mui/material/Pagination";
@@ -152,7 +152,7 @@ const Destinations = () => {
           {_DATA.currentData() &&
             _DATA.currentData().map((destination) => {
               console.log(destination);
-              return <ContentCardCont details={destination}></ContentCardCont>;
+              return <DestinationCardCont details={destination}></DestinationCardCont>;
             })}
           <NoDataFound
             display={showNoData}
