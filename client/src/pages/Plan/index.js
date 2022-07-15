@@ -36,21 +36,21 @@ const displayPaper = (title, data, icon) => {
           {title === data.plan_name.toUpperCase() && (
             <>
               <Box display={"inline-flex"} width="100%" pb={1} pt={1}>
-                <Typography variant="h5" fontWeight={550}>
+                <Typography variant="h5" fontWeight={600}>
                   Plan Name:
                 </Typography>
                 <Typography variant="h5">&nbsp;</Typography>
                 <Typography variant="h5">{data.plan_name}</Typography>
               </Box>
               <Box display={"inline-flex"} width="100%" pb={1}>
-                <Typography variant="h5" fontWeight={550}>
+                <Typography variant="h5" fontWeight={600}>
                   Location:
                 </Typography>
                 <Typography variant="h5">&nbsp;</Typography>
                 <Typography variant="h5">{data.city}</Typography>
               </Box>
               <Box display={"inline-flex"} width="100%" pb={1}>
-                <Typography variant="h5" fontWeight={550}>
+                <Typography variant="h5" fontWeight={600}>
                   Travel Partner:
                 </Typography>
                 <Typography variant="h5">&nbsp;</Typography>
@@ -230,19 +230,22 @@ const MyPlan = (props) => {
           data,
           <TravelExploreIcon fontSize="large" color="secondary" />
         )}
-      {data.accommodation.length !== 0 &&
+      {Object.keys(data).length !== 0 &&
+        data.accommodation.length !== 0 &&
         displayPaper(
           "ACCOMMODATION",
           data,
           <VillaIcon fontSize="large" color="secondary" />
         )}
-      {data.activity.length !== 0 &&
+      {Object.keys(data).length !== 0 &&
+        data.activity.length !== 0 &&
         displayPaper(
           "ACTIVITIES TO DO",
           data,
           <HikingIcon fontSize="large" color="secondary" />
         )}
-      {data.transportation.length !== 0 &&
+      {Object.keys(data).length !== 0 &&
+        data.transportation.length !== 0 &&
         displayPaper(
           "TRANSPORTATION",
           data,
