@@ -48,7 +48,7 @@ function ActivitiesToDoListPage() {
       .then((res) => {
         setAllHotels(res.data.data);
       });
-  }, [allHotels]);
+  }, [keyword, filtering, sort ]);
 
   const [page, setPage] = useState(1);
   const PER_PAGE = 9;
