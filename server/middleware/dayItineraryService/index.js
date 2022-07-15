@@ -1,20 +1,16 @@
+/**
+ * Author: Nishit Mistry
+ * Feature: Itinerary Management
+ * Task: Weather Integration
+ */
 const dayItineraryDB = require("../../data/dayItineraryDB");
 
 /**
- * This function is used to return the data of userDB. Whenever this function is called,
- * the user data will be fetched from the mongo and will be returned in json format.
+ * This function is used to return the data of dayItineraryDB. Whenever this function is called,
+ * the day itinerary data will be fetched from MongoDB and will be returned in json format.
  * @param {*} req
- * @returns
+ * @param {*} res
  */
-// function itineraryService(req) {
-//   return itineraryDB(req);
-// }
-
 exports.fetchDayItinerary = function (req, res) {
-    dayItineraryDB.fetchDayItinerary(req, res);
+  dayItineraryDB.fetchDayItinerary(req, res);
 };
-
-/**
- * The module is being exported as userProfileService so that this module can be imported into other modules.
- */
-// module.exports = itineraryService;

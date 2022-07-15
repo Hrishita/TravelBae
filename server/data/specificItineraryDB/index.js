@@ -1,12 +1,17 @@
-const SpecificItinerary = require("../../models/specificItineraryModel");
 /**
- * This function does all the operations on users collection
- * to find the email that's sent from another function.
- * @param {*} req : The request passsed as a parameter to the function userDB
- * @returns : The function returns the User model
- * associated with the  email foung in the database
+ * Author: Nishit Mistry
+ * Feature: Itinerary Management
+ * Task: Filter Itinerary
  */
+const SpecificItinerary = require("../../models/specificItineraryModel");
 
+/**
+ * This function does all the operations on specific itineraries collection. It will fetch the content of the
+ * itinerary city that's sent from the front-end and ignore the case of the city name and also filter's the
+ * itineraries based on tags stored in MongoDB.
+ * @param {*} req
+ * @param {*} res
+ */
 exports.fetchSpecificItineraries = function (req, res) {
   SpecificItinerary.find(
     { itinerary_place: { $regex: req.body.itinerary_place, $options: "i" } },
@@ -18,7 +23,6 @@ exports.fetchSpecificItineraries = function (req, res) {
   );
 };
 
-// https://stackoverflow.com/questions/26985908/mongoose-query-with-array-parameter
 exports.filterItineraries = function (req, res) {
   console.log(req.body.tags);
   SpecificItinerary.find(
@@ -37,9 +41,3 @@ exports.filterItineraries = function (req, res) {
     }
   );
 };
-
-/**
- * The module is being exported as userDB so that
- * this module can be imported into other modules.
- */
-// module.exports = itineraryDB;
