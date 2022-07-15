@@ -51,6 +51,8 @@ const BlogList = React.lazy(() => import("./pages/BlogList"));
 const Flags = React.lazy(() => import("./pages/UserDashboardFlag"));
 const Plans = React.lazy(() => import("./pages/UserDashboardPlan"));
 
+const MyPlan = React.lazy(() => import("./pages/Plan/index"));
+
 let logoutTimer;
 
 function Router() {
@@ -198,6 +200,13 @@ function Router() {
               path="/trip-planner"
               render={() => {
                 return <TripPlannerPage />;
+              }}
+            />
+            <Route
+              exact
+              path="/myPlan"
+              render={() => {
+                return <MyPlan />;
               }}
             />
             <Route
