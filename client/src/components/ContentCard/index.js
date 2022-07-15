@@ -9,9 +9,10 @@ import AlertDialog from "../../containers/AlertDialog";
 import { useState } from "react";
 
 const ContentCardComp = ({ details }) => {
+  console.log(details)
   const history = useHistory();
   const handleListItemClick = () => {
-    history.push("/destination");
+    history.push("/destination/" + details.details.dest_code);
   };
   const [open, setOpen] = useState(false); // for alert box
 
@@ -29,7 +30,7 @@ const ContentCardComp = ({ details }) => {
       <Grid container spacing={5}>
         <Grid
           item
-          xs={3}
+          xs={4} md={3}
           onClick={() => {
             handleListItemClick();
           }}
@@ -50,7 +51,7 @@ const ContentCardComp = ({ details }) => {
         </Grid>
         <Grid
           item
-          xs={7}
+          xs={6} md={7}
           onClick={() => {
             handleListItemClick();
           }}
@@ -58,7 +59,7 @@ const ContentCardComp = ({ details }) => {
           <Typography
             variant="h5"
             component="div"
-            sx={{ padding: "20px 10px 2px" }}
+            sx={{ padding: "20px 0px 2px" }}
           >
             {details.details.dest_name}
           </Typography>

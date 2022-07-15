@@ -41,17 +41,32 @@ exports.fetchAllDestinations = function(req,res){
 };
 
 exports.fetchDestinationByCode = function(req, res){
-  Destination.find({dest_code: req.params.dest_code}, function(err, destinationsList){
+  Destination.findOne({dest_code: req.params.dest_code}, function(err, destinationsList){
     if(err) return res.json({success: false, error: err});
     return res.json({success: true, destinations: destinationsList});
   });
 }
 
-exports.fetchDestinationsBySearchText = function(req, res){
-  Destination.find({dest_name: {$regex: req.params.dest_name, $options: "i"}}, function(err, destinationsList){
+exports.fetchFilteredDestinations = function(req, res){
+  var tag = req.body.tags.tags;
+  var searchText = req.body.dest_name;
+  
+  if (tag == undefined || tag.length == 0 || Object.keys(tag).length === 0) {
+    tag = ["India", "Canada", "France", "Thailand", "UK", "USA"];
+  }
+  if (searchText == undefined){
+    searchText = "";
+  }
+
+  Destination.find({
+    $and: [
+      {country_name: { $in: tag }},
+      {dest_name: {$regex: req.body.dest_name, $options: "i"}}
+    ]
+  }, function(err, destinationsList){
     if(err) return res.json({success: false, error: err});
     return res.json({success: true, destinations: destinationsList});
-  });
+  }).select('dest_name dest_desc dest_code img country_name');;
 }
 
 exports.updateDestinationByCode = function(req, res){

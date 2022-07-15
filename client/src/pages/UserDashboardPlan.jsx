@@ -1,114 +1,192 @@
-import React, { useState } from "react";
+import React, { useEffect, useContext } from "react";
 import "./../components/UserDashboard/Dashboard.css";
 import NavBar from "../containers/NavBar";
-import AlertDialog from "../containers/AlertDialog";
 import Footer from "../containers/Footer";
 import SideBar from "../components/SideBar/Sidebar";
 import { Grid } from "@material-ui/core";
-import { TbPlaneDeparture } from "react-icons/tb";
-import { Box, Button } from "@mui/material";
+import axios from "axios";
+import {
+  Box,
+  Button,
+  CssBaseline,
+  Divider,
+  Paper,
+  Typography,
+  useTheme,
+} from "@mui/material";
+import { useHistory } from "react-router-dom";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { planData } from "../containers/CardCont/mockData";
+import { completedPlanData } from "../containers/CardCont/mockData";
+import { AuthContext } from "../context/AuthContext";
 
 function UserDashbordPlan() {
-  const [open, setOpen] = useState(false); // for alert box
+  const auth = useContext(AuthContext);
 
-  const handleOpen = () => {
-    setOpen(true);
+  console.log(auth);
+  let id = null;
+
+  if (auth && auth.isLoggedIn == true && auth.userId != null) {
+    id = auth.userId;
+  } else {
+    id = "test@gmail.com";
+  }
+
+  const handleDelete = () => {
+    // @Todo backend logic to delete plan
   };
-  const handleClose = () => {
-    setOpen(false);
+
+  const history = useHistory();
+  const [UpcomingPlanTrip, setUpcomingPlanTrip] = React.useState([]);
+  const [CompletedPlanTrip, setCompletedPlanTrip] = React.useState([]);
+
+  const handleClick = () => {
+    history.push("/");
   };
+
+  const fetchAllPlanTrips = async () => {
+    // console.log("fetching the data");
+    let res = await axios({
+      method: "POST",
+      url: "http://localhost:8000/pt/findPlanTripByUserID/" + id,
+    });
+
+    let locData = await axios({
+      method: "GET",
+      url: "http://localhost:8000/destination/fetchAllDestinations",
+    });
+
+    let finalUpcomingData = Array();
+    let finalCompletedData = Array();
+
+    let _ = res.data.map((cities) => {
+      console.log(cities);
+      for (let i = 0; i < locData.data.destinations.length; i++) {
+        if (locData.data.destinations[i].dest_name === cities.city) {
+          if (cities.is_completed === false) {
+            locData.data.destinations[i].res = cities;
+            finalUpcomingData.push(locData.data.destinations[i]);
+            return true;
+          } else {
+            locData.data.destinations[i].res = cities;
+            finalCompletedData.push(locData.data.destinations[i]);
+            return true;
+          }
+        }
+      }
+    });
+
+    setUpcomingPlanTrip(finalUpcomingData);
+    setCompletedPlanTrip(finalCompletedData);
+
+    console.log(res.data);
+  };
+
+  useEffect(() => {
+    fetchAllPlanTrips();
+  }, []);
+
+  const theme = useTheme();
+
+  const displayCard = (plan) => {
+    return (
+      <Grid item xs={12}>
+        <Paper sx={{ display: "flex" }}>
+          <Box sx={{ display: "flex" }} onClick={handleClick}>
+            <img
+              src={plan.img}
+              width="200rem"
+              alt="Plan Image"
+              onClick={handleClick}
+            />
+          </Box>
+
+          <Box
+            sx={{ display: "flex", flexDirection: "column", padding: 2 }}
+            onClick={handleClick}
+          >
+            <Typography component="div" variant="h5">
+              {plan.dest_name}
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              color="text.secondary"
+              component="div"
+            >
+              {/* Jenner Joe */}
+              {plan.res.start_date + " - " + plan.res.end_date}
+            </Typography>
+            <Typography>{plan.dest_desc}</Typography>
+          </Box>
+          <Box>
+            <DeleteIcon color="primary" onClick={handleDelete} />
+          </Box>
+        </Paper>
+      </Grid>
+    );
+  };
+
   return (
     <Grid container>
+      <CssBaseline />
       <Grid item xs={12}>
         <NavBar />
       </Grid>
-      <Grid item xs={12}>
-        <div className="main-container">
-          <SideBar />
-          <div className="dashbord-container">
-            <div className="dashbord-subcontainer">
-              <h2 className="dashbord-titletext">Plans</h2>
-              <div className="dashbord-sectionone">
-                <div className="dashbord-columnone">
-                  <div className="dashbord-content">
-                    <div className="dashbord-info">
-                      <TbPlaneDeparture
-                        style={{
-                          height: "4rem",
-                          width: "4rem",
-                          borderRadius: "4rem",
-                        }}
-                        alt=""
-                      />
-                      <div style={{ marginLeft: "1rem" }}>
-                        <h3 className="title">Kathmandu, Nepal</h3>
-                        <h5 style={{ fontWeight: "300" }}>
-                          Lorem ipsum dolor sit amet, consectetuer adipiscing
-                          elit. Aenean commodo ligula eget dolor. Aenean massa.
-                          Cum sociis natoque penatibus et magnis dis parturient
-                          montes, nascetur ridiculus mus. Donec quam felis,
-                        </h5>
-                      </div>
-                    </div>
-                    <Box display="inline-flex" mr={2}><Button variant="contained" onClick={handleOpen}>Delete Plan</Button></Box>
-                    <Box display="inline-flex"><Button variant="contained" onClick={handleOpen}>Complete Trip</Button></Box>
-
-                    {/* <li style={{ listStyle: "none" }}>
-                      <h5 className="all">
-                        <a href="/userdashboard-plans">ReadMore</a>
-                      </h5>
-                    </li> */}
-                  </div>
-                </div>
-              </div>
-              {/* Stuu */}
-              <div className="dashbord-sectionone">
-                <div className="dashbord-columnone">
-                  <div className="dashbord-content">
-                    <div className="dashbord-info">
-                      <TbPlaneDeparture
-                        style={{
-                          height: "4rem",
-                          width: "4rem",
-                          borderRadius: "4rem",
-                        }}
-                        alt=""
-                      />
-                      <div style={{ marginLeft: "1rem" }}>
-                        <h3 className="title">Paris, France</h3>
-                        <h5 style={{ fontWeight: "300" }}>
-                          Lorem ipsum dolor sit amet, consectetuer adipiscing
-                          elit. Aenean commodo ligula eget dolor. Aenean massa.
-                          Cum sociis natoque penatibus et magnis dis parturient
-                          montes, nascetur ridiculus mus. Donec quam felis,
-                        </h5>
-                      </div>
-                    </div>
-                    <Box display="inline-flex" mr={2}><Button variant="contained" onClick={handleOpen}>Delete Plan</Button></Box>
-                    <Box display="inline-flex"><Button variant="contained" onClick={handleOpen}>Complete Trip</Button></Box>
-                    {/* <li style={{ listStyle: "none" }}>
-                      <h5 className="all">
-                        <a href="/userdashboard-plans">ReadMore</a>
-                      </h5>
-                    </li> */}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <Grid item xs={12} lg={3}>
+        <SideBar />
       </Grid>
+      <Grid item xs={12} lg={8}>
+        <Box pl={3} mt={4} pb={3} display="flex">
+          <Paper>
+            <Grid container>
+              <Grid item lg={6}>
+                <Box pt={2} pl={4}>
+                  <Typography variant="h4" component="span">
+                    Upcoming Plans
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid item lg={6}>
+                <Box pt={2} pr={4} display="flex" justifyContent="flex-end">
+                  <Button variant="outlined" color="primary">
+                    Create Plan
+                  </Button>
+                </Box>
+              </Grid>
+            </Grid>
+            <Box pl={2} pt={2} pb={2} pr={2}>
+              <Divider />
+            </Box>
+            <Box ml={2} pl={2} pt={3} pb={3} mr={3}>
+              <Grid container flexDirection="column" spacing={2}>
+                {UpcomingPlanTrip.map((plan) => {
+                  return displayCard(plan);
+                })}
+              </Grid>
+            </Box>
+            <Grid item lg={6}>
+              <Box pt={2} pl={4}>
+                <Typography variant="h4" component="span">
+                  Plans Completed
+                </Typography>
+              </Box>
+            </Grid>
+            <Box pl={2} pt={2} pb={2} pr={2}>
+              <Divider />
+            </Box>
+            <Box ml={2} pl={2} pt={3} pb={3} mr={3}>
+              <Grid container flexDirection="column" spacing={2}>
+                {CompletedPlanTrip.map((plan) => {
+                  return displayCard(plan);
+                })}
+              </Grid>
+            </Box>
+          </Paper>
+        </Box>
+      </Grid>
+
       <Grid item xs={12}>
         <Footer />
-      </Grid>
-      <Grid item xs={12}>
-        <AlertDialog
-          open={open}
-          title="Confirm"
-          message="API logic required"
-          handleClose={handleClose}
-          buttons={["Cancel", "Ok"]}
-        />
       </Grid>
     </Grid>
   );
