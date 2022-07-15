@@ -7,25 +7,30 @@ import { Grid } from "@material-ui/core";
 import { AuthContext } from "../context/AuthContext";
 import { Box, CssBaseline, Divider, Paper, Typography } from "@mui/material";
 import { AiOutlineSetting } from "react-icons/ai";
-import FormDialogAlert from "../containers/FormDialogAlert";
+import { BACKEND_URL } from "../config";
+import axios from "axios";
+import FormDialogComp from "../components/FormDialogAlert";
 
 const UserProfile = () => {
   const auth = useContext(AuthContext);
   const [open, setOpen] = React.useState(false);
   const [resData, setResData] = React.useState(false);
-
+  console.log("resData.....", resData);
   const handleClick = () => {
     setOpen(true);
   };
 
-  // console.log("res....",res);
   const handleSubmit = (pwdObj) => {
-    //   const url = `${BACKEND_URL}/user/changePassword`;
-    //   axios.post(url,pwdObj).then(res => {
-    //     setResData(res);
-    //   }).catch(e => {
-    //       console.error(e)
-    // });
+    const url = `${BACKEND_URL}/user/changePassword`;
+    const userUpdate = { ...pwdObj, userID: userData.email };
+    axios
+      .post(url, userUpdate)
+      .then((res) => {
+        setResData(res);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
   };
 
   const handleClose = () => {
@@ -41,7 +46,6 @@ const UserProfile = () => {
       return (
         <>
           <CssBaseline />
-
           <Grid item xs={6} lg={6}>
             <Box
               display="flex"
@@ -97,7 +101,7 @@ const UserProfile = () => {
             </Box>
           </Grid>
           <Grid item xs={12}>
-            <FormDialogAlert
+            <FormDialogComp
               open={open}
               handleClose={handleClose}
               handleSubmitForm={handleSubmit}

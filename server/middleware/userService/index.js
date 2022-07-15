@@ -18,6 +18,10 @@ exports.updatePassword = function (req, res) {
   userDB.updatePassword(req, res);
 };
 
+exports.addDestToBucketList = function (req, res) {
+  userDB.addDestToBucketList(req, res);
+}
+
 
 /**
  * The module is being exported as userProfileService so that this module can be imported into other modules. 

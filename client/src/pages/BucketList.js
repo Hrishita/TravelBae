@@ -2,39 +2,42 @@ import {
   Grid,
   Link,
   Typography,
-  makeStyles,
   Card,
   CardMedia,
-} from "@material-ui/core";
+} from "@mui/material";
 import React from "react";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
 import { useState } from "react";
-import { destinationData } from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
 import AlertDialog from "../containers/AlertDialog";
+import { AuthContext } from "../context/AuthContext";
 import { Button, CardActionArea, CardActions, Divider } from "@mui/material";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    position: "relative",
-    width: "100%",
-    transition: "transform 0.15s ease-in-out",
-    "&:hover": { transform: "scale3d(1.05, 1.05, 1)", cursor: "pointer" },
-    marginBottom: "10%",
-  },
-  font: {
-    position: "absolute",
-    top: "80%",
-    left: "10%",
-    color: "white",
-    backgroundColor: "none",
-    fontFamily: "Comic Sans MS",
-    textAlign: "center",
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     position: "relative",
+//     width: "100%",
+//     transition: "transform 0.15s ease-in-out",
+//     "&:hover": { transform: "scale3d(1.05, 1.05, 1)", cursor: "pointer" },
+//     marginBottom: "10%",
+//   },
+//   font: {
+//     position: "absolute",
+//     top: "80%",
+//     left: "10%",
+//     color: "white",
+//     backgroundColor: "none",
+//     fontFamily: "Comic Sans MS",
+//     textAlign: "center",
+//   },
+// }));
 const BucketList = () => {
-  const classes = useStyles();
+  const auth = React.useContext(AuthContext);
+  const userID = auth.userId;
+  const bucketList = auth.userProfileData[0].bucket_list;
+
+  
   const [open, setOpen] = useState(false); // for alert box
   const [vopen, setVopen] = useState(false);
 
@@ -56,19 +59,17 @@ const BucketList = () => {
       <>
         <Grid item xs={12}>
           <Grid container>
-            <Grid item xs={10}>
-              <Box pl={2} pt={4}>
-                <Typography fontFamily="Nothing You Could Do" variant="h5">
-                  {title}
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={2}>
-              <Box pt={4} pr={2} display="flex" justifyContent="flex-end">
-                <Link color="secondary" onClick={handlevOpen}>
-                  View All
-                </Link>
-              </Box>
+            <Grid item xs={12}>
+              <Typography
+                gutterBottom
+                variant="h4"
+                component="h4"
+                color="primary"
+                paddingTop="0.5em"
+                className="text-align-center"
+              >
+                Your Bucket List
+              </Typography>
             </Grid>
           </Grid>
         </Grid>
@@ -96,7 +97,7 @@ const BucketList = () => {
                   lg={3}
                   style={{ textAlign: "center" }}
                 >
-                  <Card className={classes.root}>
+                  <Card>
                     <CardActionArea>
                       <CardMedia
                         component="img"
@@ -108,10 +109,18 @@ const BucketList = () => {
                       <Typography
                         gutterBottom
                         variant="h6"
-                        component="h6"
-                        className={classes.font}
+                        
+                        sx={{
+                          position: "absolute",
+                          top: "80%",
+                          left: "10%",
+                          color: "white",
+                          backgroundColor: "none",
+                          fontFamily: "Comic Sans MS",
+                          textAlign: "center",
+                        }}
                       >
-                        {card.title}
+                        {card.dest_name}
                       </Typography>
                     </CardActionArea>
                     <CardActions sx={{ display: "inline-block" }}>
@@ -142,7 +151,7 @@ const BucketList = () => {
       <Grid container>
         <Grid item xs={12}>
           <Box sx={{ padding: "1em 3em" }}>
-            {displayStrip("Destinations", destinationData)}
+            {displayStrip("Your Bucket List", bucketList)}
           </Box>
         </Grid>
       </Grid>

@@ -5,7 +5,7 @@ import FilterMenu from "../containers/FilterMenu";
 import { Typography } from "@mui/material";
 import data from "../containers/DestinationCard/destinationsFilterData";
 import NavBar from "../containers/NavBar";
-import ContentCardCont from "../containers/ContentCard";
+import DestinationCardCont from "../containers/DestinationCard";
 import SearchCont from "../containers/Search";
 import React, { useState, useEffect } from "react";
 import Pagination from "@mui/material/Pagination";
@@ -14,19 +14,35 @@ import Footer from "../containers/Footer";
 import Stack from "@mui/material/Stack";
 import usePagination from "../containers/UsePagination";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
 import { BACKEND_URL } from "../config";
 
 const Destinations = () => {
+  const auth = React.useContext(AuthContext);
+  const userID = auth.userId;
+
   const [destinationsData, setDestinationsData] = useState("");
   const [searchInput, setSearchInput] = useState("");
-  let destinationIsEmpty = true;
-  let showNoData = false;
+
 
   useEffect(() => {
     const fetchDestinationsURL = `${BACKEND_URL}/destination/fetchAllDestinations`;
     axios
       .get(fetchDestinationsURL)
       .then((res) => {
+        if (userID && auth.userProfileData.length > 0) {
+          const bucketList = auth.userProfileData[0].bucket_list;
+          res.data.destinations.forEach((dest) => {
+            let index = bucketList.findIndex((item) => {
+              return item.dest_code === dest.dest_code;
+            });
+            if (index >= 0) {
+              dest.isFavorite = true;
+            } else {
+              dest.isFavorite = false;
+            }
+          });
+        }
         setDestinationsData(res.data.destinations);
       })
       .catch((err) => console.log(err));
@@ -132,17 +148,20 @@ const Destinations = () => {
           <FilterMenu filterProperties={data}></FilterMenu>
         </Grid>
         <Grid container>
-          {_DATA.currentData() &&
+          {_DATA.currentData() ? (
             _DATA.currentData().map((destination) => {
-              console.log(destination);
-              return <ContentCardCont details={destination}></ContentCardCont>;
-            })}
-          <NoDataFound
-            display={showNoData}
-            message="Destination not present. Please search for another one or select from the list."
-            listEmpty={destinationIsEmpty}
-            className="text-align-center"
-          ></NoDataFound>
+              return (
+                <DestinationCardCont
+                  details={destination}
+                ></DestinationCardCont>
+              );
+            })
+          ) : (
+            <NoDataFound
+              message="Destination not present. Please search for another one or select from the list."
+              className="text-align-center"
+            ></NoDataFound>
+          )}
         </Grid>
 
         <Grid item xs={12}>
