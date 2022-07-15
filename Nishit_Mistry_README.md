@@ -6,7 +6,7 @@
 - _Git Course Repository_: https://git.cs.dal.ca/nmistry/csci5709
 - _Git Project Branch - Nishit Mistry_: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/nishit-mistry
 - _Heroku deployment URL for application_: https://travel-bae.herokuapp.com/
-- Pages Developed for Assignment:
+- _Pages Developed for Assignment_:
   - https://travel-bae.herokuapp.com/itinerary
   - https://travel-bae.herokuapp.com/cityItinerary (Must select or search a city from the first page)
   - https://travel-bae.herokuapp.com/dayItinerary (Must click on an itinerary from the cityItinerary Page)
@@ -50,7 +50,7 @@ npm start
 - [ExpressJS](https://expressjs.com/) - ExpressJS Used for Routing Purposes
 - [Heroku](https://www.heroku.com/) - Heroku Used for Deploying Code
 
-# Images Used
+## Images Used
 
 Used images from http://search.creativecommons.org/.
 
@@ -264,7 +264,7 @@ Code Used -
 
 - Used the W3C Validator website to check the validation for the React App deployed on Heroku.
 
-[5] "Cloud Application Platform | Heroku," _Heroku.com_ [Online]. Available: https://www.heroku.com/. [Accessed: July 15, 2022].
+[8] "Cloud Application Platform | Heroku," _Heroku.com_ [Online]. Available: https://www.heroku.com/. [Accessed: July 15, 2022].
 
 - Used Heroku to deploy the application.
 
