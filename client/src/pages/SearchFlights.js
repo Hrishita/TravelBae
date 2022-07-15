@@ -61,6 +61,14 @@ function SearchFlights() {
   const auth = useContext(AuthContext);
   const userId = auth.userId ? auth.userId : "";
 
+  useEffect(() => {
+    axios
+      .post(`${BACKEND_URL}/pt/findPlanTripByUserID/${userId}`)
+      .then((res) => {
+        setTrips(res.data);
+      });
+  }, []);
+
   const fetchRecommendedFlights = async () => {
     let res = await axios({
       method: "POST",
@@ -73,8 +81,7 @@ function SearchFlights() {
   const handleChange = (event) => {
     setSelectTrip(event.target.value);
   };
-
-  useEffect(() => {
+   useEffect(() => {
     fetchRecommendedFlights();
   }, []);
 
@@ -416,10 +423,11 @@ function SearchFlights() {
                       label="Select a Trip"
                       onChange={handleChange}
                     >
-                      {trips?.map((myVariable, index) => {
+                    {trips?.map((myVariable, index) => {
                         return (
-                     
-                          <MenuItem key={index} value={myVariable.plan_id}>{myVariable.plan_name} - {myVariable.city}</MenuItem>
+                          <MenuItem key={index} value={myVariable.plan_id}>
+                            {myVariable.plan_name} - {myVariable.city}
+                          </MenuItem>
                         );
                       })}
                   
@@ -430,8 +438,13 @@ function SearchFlights() {
             </Grid>
             <Grid container sx={{ pt: 2 }}>
               <Box sx={{ flexGrow: 1 }}></Box>
-              <Button sx={{ minWidth: 120 }} variant="contained" onClick={() => {planTripHandler(d)}}>
-                Add 
+              <Button
+                sx={{ minWidth: 120 }}
+                variant="contained"
+                onClick={() => {planTripHandler(d)}}
+
+              >
+                Add
               </Button>
             </Grid>
           </Box>
