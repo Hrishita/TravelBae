@@ -1,4 +1,6 @@
 import { Box, ButtonBase, Pagination, Stack } from "@mui/material";
+import Modal from "@mui/material/Modal";
+import { Divider } from "@mui/material";
 import { Grid } from "@mui/material";
 import Footer from "../containers/Footer";
 import { LocationCity } from "@mui/icons-material";
@@ -27,6 +29,18 @@ import ModalComp from "../components/Modal";
 import { BACKEND_URL } from "../config";
 import { AuthContext } from "../context/AuthContext";
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
 function SearchFlights() {
   const [startDate, setStartDate] = useState();
   const [source, setSource] = useState("");
@@ -34,6 +48,11 @@ function SearchFlights() {
   const [endDate, setEndDate] = useState();
   const [tripType, setTripType] = useState(0);
   const [showSnackbar, setShowSnackbar] = useState(false);
+  const [open1, setOpen1] = React.useState(false);
+  const handleOpen1 = () => setOpen1(true);
+  const handleClose1 = () => setOpen1(false);
+  const [selectTrip, setSelectTrip] = React.useState("");
+  const [trips, setTrips] = React.useState([{}]);
 
   const [flights, setFlights] = useState([]);
   const [filteredFlights, setFilteredFlights] = useState([]);
@@ -41,6 +60,7 @@ function SearchFlights() {
   const [show, setShow] = useState(false);
   const auth = useContext(AuthContext);
   const userId = auth.userId ? auth.userId : "";
+
   const fetchRecommendedFlights = async () => {
     let res = await axios({
       method: "POST",
@@ -49,6 +69,9 @@ function SearchFlights() {
     });
     setFlights(res.data.data);
     setFilteredFlights(res.data.data);
+  };
+  const handleChange = (event) => {
+    setSelectTrip(event.target.value);
   };
 
   useEffect(() => {
@@ -145,7 +168,7 @@ function SearchFlights() {
   const planTripHandler = async (data) => {
     let res = await axios({
       method: "POST",
-      url: `${BACKEND_URL}/pt/createPlanTrip`,
+      url: `${BACKEND_URL}/pt/updatePlan`,
       transportation: {
         ...data,
         plan_id: Math.random() * 1000000,
@@ -340,16 +363,82 @@ function SearchFlights() {
                         component={"div"}
                         className="d-flex flex-column justify-content-center align-items-center mx-2"
                       >
-                        <Typography variant={"h5"}>
-                          {" "}
-                          {d.dest_name}
-                          {/* {d.startTime} - {d.endTime}{" "} */}
-                        </Typography>
+                        <Typography variant={"h5"}> {d.dest_name}</Typography>
                         <Typography variant={"body1"}>
                           {" "}
                           {new Date(d.return_date).toLocaleString()}
                         </Typography>
                       </Box>
+                      <Modal
+                        open={open1}
+                        onClose={handleClose1}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <Box sx={style}>
+                          <Typography
+                            id="modal-modal-title"
+                            variant="h5"
+                            component="h2"
+                            sx={{ mb: 2 }}
+                          >
+                            Add to trip:
+                          </Typography>
+                          <Divider />
+                          <Grid container sx={{ pt: 2 }}>
+                            <Box sx={{ flexGrow: 1 }}>
+                              {" "}
+                              <Typography
+                                id="modal-modal-title"
+                                variant="h6"
+                                component="h2"
+                              >
+                                Select a plan:
+                              </Typography>
+                            </Box>
+                            <Box>
+                              <Box sx={{ minWidth: 120 }}>
+                                <FormControl fullWidth>
+                                  <InputLabel id="demo-simple-select-label">
+                                    Age
+                                  </InputLabel>
+                                  <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={selectTrip}
+                                    label="Select a Trip"
+                                    onChange={handleChange}
+                                  >
+                                    {trips?.map((myVariable, index) => {
+                                      return (
+                                        <MenuItem
+                                          key={index}
+                                          value={myVariable.plan_id}
+                                        >
+                                          {myVariable.plan_name} -{" "}
+                                          {myVariable.city}
+                                        </MenuItem>
+                                      );
+                                    })}
+                                  </Select>
+                                </FormControl>
+                              </Box>
+                            </Box>
+                          </Grid>
+                          <Grid container sx={{ pt: 2 }}>
+                            <Box sx={{ flexGrow: 1 }}></Box>
+                            <Button
+                              sx={{ minWidth: 120 }}
+                              variant="contained"
+                              onClick={() => {
+                                planTripHandler(d);
+                              }}
+                            >
+                              Add
+                            </Button>
+                          </Grid>
+                        </Box>
+                      </Modal>
                     </Box>
 
                     <Box component={"div"} className="mx-4 py-2">
@@ -366,9 +455,7 @@ function SearchFlights() {
 
                     <Box component={"div"} className="mx-4 py-2">
                       <Button
-                        onClick={() => {
-                          planTripHandler(d);
-                        }}
+                        onClick={handleOpen1}
                         style={{ zIndex: 99 }}
                         variant={"contained"}
                       >
@@ -379,6 +466,7 @@ function SearchFlights() {
                 );
               })}
             </Box>
+
             <Grid item xs={12}>
               <Grid container alignItems="center" justifyContent="center">
                 <Grid container justifyContent="center" sx={{ mt: 3, mb: 2 }}>

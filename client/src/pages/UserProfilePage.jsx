@@ -34,7 +34,6 @@ const UserProfile = () => {
   };
 
   const handleClose = () => {
-    console.log("close........");
     setOpen(false);
   };
   if (!auth.userProfileData.length) {
