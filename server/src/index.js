@@ -8,8 +8,10 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const path = require("path");
 
 const userRouter = require("../routers/userRouter");
+const destinationRouter = require("../routers/destinationRouter");
 const transportationRouter = require("../routers/transportationRouter");
 const blogRouter = require("../routers/blogRouter");
 const accommodationRouter = require("../routers/accommodationRouter");
@@ -17,13 +19,14 @@ const activityRouter = require("../routers/activityRouter");
 const itineraryRouter = require("../routers/itineraryRouter");
 const specificItineraryRouter = require("../routers/specificItineraryRouter");
 const dayItineraryRouter = require("../routers/dayItineraryRouter");
+const planTripRouter = require("../routers/planTripRouter");
 
 /**
  * Using dotenv package, it reads the .env file provided which contains all the secrets and tokens for
  * mongo and jwt.
  */
-dotenv.config();
-
+// dotenv.config({ path: "../.env" });
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
 /**
  * Creating a new express application.
  */
@@ -72,6 +75,8 @@ mongoose.connect(
  * The below app.use() function is used to mount the specified router function at the path
  * which is being specified.
  */
+app.use("/ui", userRouter);
+app.use("/destination", destinationRouter);
 app.use("/user", userRouter);
 app.use("/tp", transportationRouter);
 app.use("/bg", blogRouter);
@@ -80,3 +85,4 @@ app.use("/act", activityRouter);
 app.use("/it", itineraryRouter);
 app.use("/sit", specificItineraryRouter);
 app.use("/dit", dayItineraryRouter);
+app.use("/pt", planTripRouter);

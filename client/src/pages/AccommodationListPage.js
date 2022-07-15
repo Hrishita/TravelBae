@@ -20,7 +20,11 @@ import usePagination from "../containers/UsePagination";
 function AccommodationListPage() {
   const [allHotels, setAllHotels] = useState([]);
 
-  let [keyword, setKeyword] = useState("");
+  let [keyword, setKeyword] = useState({
+    keyword:"",
+    cinDate:"",
+    coutDate:""
+  });
   let [sort, setSort] = useState(0);
 
   const [filtering, setFiltering] = useState({});
@@ -32,7 +36,6 @@ function AccommodationListPage() {
   };
 
   const handleClearAll = () => {
-    const specificCityReq = {};
   };
 
   // use effect for calling SearchAccommodation Service in Backend. Here, I'm passing hotel name which we are getting from
@@ -40,14 +43,16 @@ function AccommodationListPage() {
   useEffect(() => {
     axios
       .post(`${BACKEND_URL}/acc/searchAccommodation`, {
-        hotel_name: keyword,
+        hotel_name: keyword.keyword,
+        cin: keyword.cinDate,
+        cout: keyword.coutDate,
         sort_type: sort,
         tags: filtering,
       })
       .then((res) => {
         setAllHotels(res.data.data);
       });
-  },[allHotels]);
+  },[filtering,keyword,sort]);
 
   const [page, setPage] = useState(1);
   const PER_PAGE = 9;
@@ -60,13 +65,24 @@ function AccommodationListPage() {
 
   const _DATA = usePagination(allHotels, PER_PAGE);
 
-  console.log(page);
-
-  // console.log(allHotels);
   return (
     <Grid container spacing={0.5}>
       <Grid item xs={12}>
         <NavBar />
+      </Grid>
+      <Grid item xs={12}>
+            <Box
+              component="img"
+              sx={{
+                height: 600,
+                width: "100%", 
+                borderRadius: 2,
+                p:4
+              }}
+              title="main image accommodation"
+              alt="The house from the offer."
+              src="https://images.pexels.com/photos/594077/pexels-photo-594077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            />
       </Grid>
       <Grid item xs={12}>
         <Box pt={4} pb={4}>

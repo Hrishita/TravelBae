@@ -1,34 +1,51 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./../components/UserDashboard/Dashboard.css";
 import NavBar from "../containers/NavBar";
 import Footer from "../containers/Footer";
 import SideBar from "../components/SideBar/Sidebar";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import { Grid } from "@material-ui/core";
 import { Box, Button, CardActionArea, CssBaseline, Divider, Paper, Typography, useTheme } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
-import { blogCards } from "../containers/CardCont/mockData";
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import axios from "axios";
+import { BACKEND_URL } from "../../config";
 
 function UserDashbordBlog() {
   const history = useHistory();
+  const [blogs, setBlogs] = React.useState([]);
+
   const handleClick = () => {
     history.push("/write-blog");
   }
+  const fetchAllBlogs = async () => {
+    let res = await axios({
+      method: "post",
+      url: `${BACKEND_URL}/bg/fetchAllBlogs`,
+    })
+    setBlogs(res.data);
+    console.log(res.data);
+  }
+  useEffect(() => { 
+    fetchAllBlogs();
+  }, [])
   const theme = useTheme();
   
-  const handleDelete = () => {
-    // @Todo backend logic to delete blog
+  const handleDelete = async (id) => {
+    let res = await axios({
+      method: 'post',
+      url:  `${BACKEND_URL}/bg/deleteBlogByID`,
+      data: {
+        blog_id: id
+      }
+    })
+    console.log(res.data)
   }
 
   const displayCard = (blog) => {
     return (<Grid item xs={12}>
       <Paper sx={{ display: 'flex' }} >
         <Box sx={{ display: 'flex' }} onClick={handleClick}>
-          <img src={blog.img} width="200rem" alt="Blog Image" onClick={handleClick} />
+          <img src={blog.image} width="200rem" alt="Blog Image" onClick={handleClick} />
         </Box>
 
         <Box sx={{ display: 'flex', flexDirection: 'column', padding: 2 }} onClick={handleClick}>
@@ -39,11 +56,11 @@ function UserDashbordBlog() {
             Jenner Joe
           </Typography>
           <Typography>
-            {blog.desc}
+            {blog.content.substring(0, 10)}
           </Typography>
         </Box>
         <Box>
-          <DeleteIcon color="primary" onClick={handleDelete} />
+          <DeleteIcon color="primary" onClick={() => {handleDelete(blog.blog_id)}} />
         </Box>
       </Paper>
     </Grid>)
@@ -78,7 +95,7 @@ function UserDashbordBlog() {
             </Box>
             <Box ml={2} pl={2} pt={3} pb={3} mr={3}>
               <Grid container flexDirection="column" spacing={2}>
-                {blogCards.map(blog => {
+                {blogs.map(blog => {
                   return displayCard(blog)
                 })}
               </Grid>

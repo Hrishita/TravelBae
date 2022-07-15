@@ -32,28 +32,3 @@
     transform: rotate(360deg);
   }
 } */
-.card-overflow-ellipsis{
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  
-}
-.destination-image{
-  height: 110px;
-  width: 100%;
-  object-fit: fill;
-}
-.text-align-center{
-  text-align: center;
-}
-.filter-menu button{
-  border: 1px solid #737dbb;
-  color: #737dbb;
-}
-.filter-menu button:hover{
-  border: 1px solid #737dbb;
-  background-color: #737dbb;
-  color: #fff;
-}

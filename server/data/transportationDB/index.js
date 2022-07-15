@@ -14,11 +14,34 @@ exports.fetchAllTransportation = function (req, res) {
 };
 
 exports.searchTransportation = function (req, res) {
-  Transportation.find(  
-    { $or:[{source: req.body.source}, {dest_name: req.body.dest_name},{start_date: req.body.start_date},{return_date:req.body.return_date}] },
-    function (err, transportation) {
-      if (err) return res.json({ success: false, error: err });
-      res.json({ data: transportation });
-    }
-  );
-};
+
+  // if round trip
+  if (req.body.return_date)  {
+    Transportation.find(
+      {
+        source: req.body.source.toLowerCase(),
+        dest_name: req.body.dest_name.toLowerCase(),
+        start_date : {$gte: req.body.start_date},
+        return_date: {$lt: req.body.return_date},
+      },
+      function (err, Transportation) {
+        console.log(err, Transportation)
+        if (err) return res.json({ success: false, error: err });
+        res.json({ data: Transportation });
+      }
+    );
+  } else { // one way trip
+    Transportation.find(
+      {
+        source: req.body.source.toLowerCase(),
+        dest_name: req.body.dest_name.toLowerCase(),
+        start_date : {$gte: req.body.start_date}
+      },
+      function (err, Transportation) {
+        if (err) return res.json({ success: false, error: err });
+        res.json({ data: Transportation });
+      }
+    );
+  }
+
+}

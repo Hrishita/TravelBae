@@ -13,3 +13,5 @@ exports.fetchAllTransportation = function (req, res) {
 exports.searchTransportation = function (req, res) {
   transportationDB.searchTransportation(req, res);
 };
+
+
