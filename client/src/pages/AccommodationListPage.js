@@ -17,6 +17,7 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import usePagination from "../containers/UsePagination";
 import { useParams } from "react-router-dom";
+import NoDataFound from "../components/NoDataFound";
 
 function AccommodationListPage() {
   const [allHotels, setAllHotels] = useState([]);
@@ -28,12 +29,11 @@ function AccommodationListPage() {
   });
 
   const params = useParams();
-  
+
   if (params.code !== undefined) {
-    debugger
-    keyword.keyword=params.code;
+    keyword.keyword = params.code;
   }
-  console.log("san",keyword.keyword);
+  console.log("san", keyword.keyword);
 
   let [sort, setSort] = useState(0);
 
@@ -46,7 +46,7 @@ function AccommodationListPage() {
   };
 
   const handleClearAll = () => {
-    setFiltering={};
+    setFiltering({});
   };
 
   useEffect(() => {
@@ -113,20 +113,46 @@ function AccommodationListPage() {
           <Divider />
         </Box>
       </Grid>
-
       <Grid item xs={12}>
         <Grid container justifyContent="center" alignItems="center">
-          <Box
-            component="span"
-            sx={{
-              fontSize: 24,
-              fontFamily: "Arial",
-              fontWeight: "bold",
-              pt: 2,
-            }}
-          >
-            Our top picked hotels for you...
-          </Box>
+          {allHotels.length === 0 && (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={2}
+              style={{ textAlign: "center" }}
+            >
+              <NoDataFound
+                message="Search Results are Empty"
+                display={true}
+                listEmpty={true}
+                className="text-align-center"
+              />
+            </Grid>
+          )}
+          {allHotels.length !== 0 && (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={2}
+              style={{ textAlign: "center" }}
+            >
+              <Box
+                component="span"
+                sx={{
+                  fontSize: 24,
+                  fontFamily: "Arial",
+                  fontWeight: "bold",
+                }}
+              >
+                Where do you want to go?
+              </Box>
+            </Grid>
+          )}
         </Grid>
       </Grid>
 
