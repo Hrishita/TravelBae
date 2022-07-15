@@ -57,6 +57,7 @@ function UserDashbordPlan() {
   };
 
   const handleComplete = (id) => {
+    debugger;
     axios({
       method: "post",
       url: "http://localhost:8000/pt/updatePlanTripByID",
@@ -128,7 +129,7 @@ function UserDashbordPlan() {
           </Box>
           <Box
             sx={{ display: "flex", flexDirection: "column", padding: 2 }}
-            onClick={handleClick}
+            // onClick={handleClick}
           >
             <Typography component="div" variant="h5">
               {plan.dest_name}
@@ -141,6 +142,20 @@ function UserDashbordPlan() {
               {plan.res.start_date + " - " + plan.res.end_date}
             </Typography>
             <Typography>{plan.dest_desc}</Typography>
+
+            <Box>
+              {plan.res.is_completed === false && (
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  onClick={() => {
+                    handleComplete(plan.res.plan_id);
+                  }}
+                >
+                  Completed
+                </Button>
+              )}
+            </Box>
           </Box>
 
           <Box>
