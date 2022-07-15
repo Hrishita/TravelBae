@@ -41,7 +41,7 @@ function UserDashbordPlan() {
   const handleDelete = (id) => {
     axios({
       method: "post",
-      url: "http://localhost:8000/pt/deletePlanTripByID",
+      url: `${BACKEND_URL}/pt/deletePlanTripByID`,
       data: {
         plan_id: id,
       },
@@ -53,14 +53,17 @@ function UserDashbordPlan() {
   };
 
   const handleClick = () => {
-    history.push("/");
+    history.push({
+      pathname: "/myPlan",
+      state: {plan_id:1},
+    });
   };
 
   const handleComplete = (id) => {
     debugger;
     axios({
       method: "post",
-      url: "http://localhost:8000/pt/updatePlanTripByID",
+      url: `${BACKEND_URL}/pt/updatePlanTripByID`,
       data: {
         plan_id: id,
       },
