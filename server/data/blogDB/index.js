@@ -90,3 +90,13 @@ exports.deleteBlogByID = function (req, res) {
     res.json(blog);
   });
 }
+
+exports.fetchBlogByID = function (req, res) {
+  const { blog_id } = req.body;
+  Blog.find({ blog_id }, function (err, blog) {
+    if (err) {
+      res.send(err);
+    }
+    res.json(blog);
+  });
+}

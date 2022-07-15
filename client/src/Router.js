@@ -1,10 +1,16 @@
-import React, { Suspense, useState, useCallback, useEffect, useMemo } from 'react';
+import React, {
+  Suspense,
+  useState,
+  useCallback,
+  useEffect,
+  useMemo,
+} from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Loader from "./components/Loader";
 import Write from "./pages/WriteBlog";
-import { AuthContext } from './context/AuthContext';
-import axios, { Axios } from 'axios';
-import { BACKEND_URL } from './config';
+import { AuthContext } from "./context/AuthContext";
+import axios, { Axios } from "axios";
+import { BACKEND_URL } from "./config";
 
 //imports are lazy loaded for better performance and to reduce size of bundle.
 const HomePage = React.lazy(() => import("./pages/HomePage"));
@@ -51,12 +57,14 @@ const BlogList = React.lazy(() => import("./pages/BlogList"));
 const Flags = React.lazy(() => import("./pages/UserDashboardFlag"));
 const Plans = React.lazy(() => import("./pages/UserDashboardPlan"));
 
+const MyPlan = React.lazy(() => import("./pages/Plan/index"));
+
 let logoutTimer;
 
 function Router() {
   const [token, setToken] = useState(false);
   const [tokenExpirationDate, setTokenExpirationDate] = useState();
-  const [userId, setUserId] = useState(false);
+  const [userId, setUserId] = useState(null);
   const [userProfileData, setUserProfileData] = useState([]);
 
   // const [isLoading, setIsloading] = useState(true)
@@ -69,47 +77,51 @@ function Router() {
       expirationDate || new Date(new Date().getTime() + 1000 * 60 * 60);
     setTokenExpirationDate(tokenExpirationDate);
     localStorage.setItem(
-      'userData',
+      "userData",
       JSON.stringify({
         userId: uid,
         token: token,
-        expiration: tokenExpirationDate.toISOString()
+        expiration: tokenExpirationDate.toISOString(),
       })
     );
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }, []);
 
   const fetchUserProfile = async (email) => {
-   const res = await axios.post(`${BACKEND_URL}/user/userProfile`, { email: email });
-   setUserProfileData(res.data)
-   setUserId(email);
-   return res.data
-  }
+    const res = await axios.post(`${BACKEND_URL}/user/userProfile`, {
+      email: email,
+    });
+    setUserProfileData(res.data);
+    setUserId(email);
+    return res.data;
+  };
 
-  const loadUserProfile = useCallback((id) => {
-    console.log("uuuuuuuuu",userId)
-    if (!id) {
-      let user = JSON.parse(localStorage.getItem('userData'))
-      console.log("userId", user.userId)
-      fetchUserProfile(user.userId)
-    }
-  }, [userId]);
-
+  const loadUserProfile = useCallback(
+    (id) => {
+      console.log("uuuuuuuuu", userId);
+      if (!id) {
+        let user = JSON.parse(localStorage.getItem("userData"));
+        console.log("userId", user.userId);
+        fetchUserProfile(user.userId);
+      }
+    },
+    [userId]
+  );
 
   const logout = useCallback(() => {
     setToken(null);
     setTokenExpirationDate(null);
     setUserId(null);
-    localStorage.removeItem('userData');
-    localStorage.removeItem('profileData');
-    let token = null
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    localStorage.removeItem("userData");
+    localStorage.removeItem("profileData");
+    let token = null;
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }, []);
 
   useEffect(() => {
     if (token && tokenExpirationDate) {
-      const remainingTime = tokenExpirationDate.getTime() - new Date().getTime();
+      const remainingTime =
+        tokenExpirationDate.getTime() - new Date().getTime();
       logoutTimer = setTimeout(logout, remainingTime);
     } else {
       clearTimeout(logoutTimer);
@@ -117,27 +129,33 @@ function Router() {
   }, [token, logout, tokenExpirationDate]);
 
   useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem('userData'));
+    const storedData = JSON.parse(localStorage.getItem("userData"));
     // setIsloading(false)
     if (
       storedData &&
       storedData.token &&
       new Date(storedData.expiration) > new Date()
     ) {
-      login(storedData.userId, storedData.token, new Date(storedData.expiration));
+      login(
+        storedData.userId,
+        storedData.token,
+        new Date(storedData.expiration)
+      );
     }
   }, [login]);
 
   return (
-    <AuthContext.Provider value={{
-      isLoggedIn: !!token,
-      token: token,
-      userId: userId,
-      login: login,
-      logout: logout,
-      loadUserProfile: loadUserProfile,
-      userProfileData: userProfileData
-    }}>
+    <AuthContext.Provider
+      value={{
+        isLoggedIn: !!token,
+        token: token,
+        userId: userId,
+        login: login,
+        logout: logout,
+        loadUserProfile: loadUserProfile,
+        userProfileData: userProfileData,
+      }}
+    >
       <BrowserRouter>
         <Suspense fallback={<Loader />}>
           <Switch>
@@ -150,7 +168,7 @@ function Router() {
             />
             <Route
               exact
-              path="/destination"
+              path="/destination/:code"
               render={() => {
                 return <Destination />;
               }}
@@ -191,6 +209,13 @@ function Router() {
               path="/trip-planner"
               render={() => {
                 return <TripPlannerPage />;
+              }}
+            />
+            <Route
+              exact
+              path="/myPlan"
+              render={() => {
+                return <MyPlan />;
               }}
             />
             <Route
@@ -282,7 +307,7 @@ function Router() {
 
             <Route
               exact
-              path="/view-blogs"
+              path="/view-blogs/:id"
               render={() => {
                 return <ViewBlog />;
               }}
@@ -310,7 +335,7 @@ function Router() {
             />
             <Route
               exact
-              path="/destination"
+              path="/destination/:code"
               render={() => {
                 return <Destination />;
               }}
@@ -333,7 +358,6 @@ function Router() {
         </Suspense>
       </BrowserRouter>
     </AuthContext.Provider>
-
   );
 }
 

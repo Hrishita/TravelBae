@@ -4,9 +4,10 @@ const transportationService = require("../../middleware/transportationService/in
  * This router is to create a API for Transportation Information. This API can be tested on Postman
  * with route '/tp/' at the end of the server_url.
  */
- transportationRouter.post("/fetchTransporationByDestination", transportationService.searchTransportation);
+//  transportationRouter.post("/fetchTransporationByDestination", transportationService.searchTransportation);
 
- transportationRouter.post("/fetchAllTransporation", transportationService.fetchAllTransportation);
+//  transportationRouter.post("/fetchAllTransporation", transportationService.fetchAllTransportation);
+
+//     transportationRouter.post("/fetchTransporationByPrice", transportationService.fetchTransporationByID);
  
-
 module.exports = transportationRouter;

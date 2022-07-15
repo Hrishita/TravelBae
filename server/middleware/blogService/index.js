@@ -31,6 +31,10 @@ exports.addComment = function(req,res){
     blogDB.addComment(req,res);
 }
 
+exports.fetchBlogByID = function(req,res){
+    blogDB.fetchBlogByID(req,res);
+}
+
 /**
  * The module is being exported as blogService so that this module can be imported into other modules. 
  */
