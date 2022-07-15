@@ -16,5 +16,10 @@ planTripRouter.post(
 );
 
 planTripRouter.post("/deletePlanTripByID", planTripService.deletePlanTripByID);
+planTripRouter.post("/updatePlanTripByID", planTripService.updatePlanTripByID);
+planTripRouter.post(
+  "/findPlanTripByPlanID",
+  planTripService.findPlanTripByPlanID
+);
 
 module.exports = planTripRouter;

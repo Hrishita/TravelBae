@@ -19,48 +19,44 @@ exports.fetchUserProfile = function (req, res) {
 };
 
 exports.updatePassword = function (req, res) {
-  const { currentPassword, newPassword, confirmNewPassword } = req.body;
-  const userID = req.user.id;
+  const { userID, cPassword, nPassword, confPassword } = req.body;
+  console.log("request............", req);
   let errors = [];
-  //Check required fields
-  if (!currentPassword || !newPassword || !confirmNewPassword) {
-    errors.push({ msg: "Please fill in all fields." });
-  }
 
   //Check passwords match
-  if (newPassword !== confirmNewPassword) {
+  if (nPassword !== confPassword) {
     errors.push({ msg: "New passwords do not match." });
   }
 
   if (errors.length > 0) {
-    res.render("changepassword", {
-      errors,
-      name: req.user.name,
+    res.json({
+      error: "New passwords do not match",
     });
   } else {
-    //VALIDATION PASSED
+    //VALIDATION SUCCESSFUL
     //Ensure current password submitted matches
-    User.findOne({ _id: userID }).then((user) => {
+    User.findOne({ email: userID }).then((user) => {
       //encrypt newly submitted password
-      bcrypt.compare(currentPassword, user.password, (err, isMatch) => {
+      bcrypt.compare(cPassword, user.password, (err, isMatch) => {
         if (err) throw err;
         if (isMatch) {
           //Update password for user with new password
           bcrypt.genSalt(10, (err, salt) =>
-            bcrypt.hash(newPassword, salt, (err, hash) => {
+            bcrypt.hash(nPassword, salt, (err, hash) => {
               if (err) throw err;
               user.password = hash;
               user.save();
             })
           );
-          req.flash("success_msg", "Password successfully updated!");
-          res.redirect("/dashboard");
+
+          res.json({
+            error: "",
+            message: "Password successfully updated!",
+          });
+          res.redirect("/userdashboard");
         } else {
-          //Password does not match
-          errors.push({ msg: "Current password is not a match." });
-          res.render("changepassword", {
-            errors,
-            name: req.user.name,
+          res.json({
+            error: "Current password is not a match.",
           });
         }
       });

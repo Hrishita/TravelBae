@@ -37,7 +37,7 @@ export const passwordValidator = (value) => {
     isValid = false;
   } else {
     errorMsg = "";
-    isValid = false;
+    isValid = true;
   }
   pwdValidation.errorMsg = errorMsg;
   pwdValidation.isValid = isValid;
