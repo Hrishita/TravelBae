@@ -1,5 +1,4 @@
 import { Grid } from "@material-ui/core";
-import { Comment, Image } from "@material-ui/icons";
 import { CommentBank, Send } from "@mui/icons-material";
 import { Box, TextField } from "@material-ui/core";
 import { deepOrange, grey } from "@mui/material/colors";

@@ -137,6 +137,15 @@ function SearchFlights() {
     _DATA.jump(p);
   };
 
+  const planTripHandler = async (data) => {
+    let res = await axios({
+      method: "POST",
+      url: `${BACKEND_URL}/pt/createPlanTrip`,
+      transportation: {...data, plan_id: Math.random() * 1000000, city: data.dest_name, emailid: 'testing@gmail.com', country: "temp"},
+    })
+    console.log("response", res)
+  }
+
   const _DATA = usePagination(filteredFlights, PER_PAGE);
 
   return (
@@ -330,6 +339,12 @@ function SearchFlights() {
                       <Typography variant="body1" color={grey[700]}>
                         {d.trip_type}
                       </Typography>
+                    </Box>
+
+                    <Box component={'div'} className='mx-4 py-2'>
+                      <Button onClick={() => {planTripHandler(d)}} style={{zIndex: 99}} variant={'contained'}>
+                        Add to planned trip
+                      </Button>
                     </Box>
                   </ButtonBase>
                 );
