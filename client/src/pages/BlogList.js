@@ -48,7 +48,8 @@ const useStyles = makeStyles((theme) => ({
   card: {
     maxWidth: "100%",
     width: 'auto',
-    marginLeft: '20px'
+    marginLeft: '20px',
+    width: '18rem'
   },
   media: {
     height: 240,
@@ -71,7 +72,7 @@ function BlogList() {
   const classes = useStyles();
   const history = useHistory();
   const handleClick=(e, id)=>{
-    history.push("view-blogs/"+id);   
+    history.push("view-blogs/"+id);
   }
   const [blogs, setBlogs] = useState([])
   const [filtered, setFiltered] = useState([])
@@ -147,7 +148,7 @@ function BlogList() {
                             color="textSecondary"
                             component="p"
                           >
-                            {blog.content}
+                            {blog.content.substring(0, 10)}
                           </Typography>
                         </CardContent>
                       </CardActionArea>
