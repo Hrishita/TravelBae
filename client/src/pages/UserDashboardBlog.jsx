@@ -1,4 +1,4 @@
-import React, { useEffect,useState, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import "./../components/UserDashboard/Dashboard.css";
 import NavBar from "../containers/NavBar";
 import Footer from "../containers/Footer";
@@ -11,19 +11,21 @@ import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { AuthContext } from "../context/AuthContext";
 
-
 function UserDashbordBlog() {
   const history = useHistory();
-  const [showSnackbar, setShowSnackbar] = useState(false)
-
   const [blogs, setBlogs] = React.useState([]);
   const auth = useContext(AuthContext);
+  const [showSnackbar, setShowSnackbar] = useState(false)
+
+
+  if (!auth.userProfileData.length) {
+    auth.loadUserProfile(); 
+  }
+  const userData = auth.userProfileData.length ? auth.userProfileData[0] : {};
+ 
 
   const handleClick = () => {
     history.push("/write-blog");
-  }
-  const goToBlog = id => {
-    history.push(`/view-blog/${id}`);
   }
   const fetchAllBlogs = async () => {
     let res = await axios({
@@ -33,18 +35,12 @@ function UserDashbordBlog() {
     setBlogs(res.data);
     console.log(res.data);
   }
-  if (!auth.userProfileData.length) {
-    auth.loadUserProfile(); 
-  }
-  const userData = auth.userProfileData.length ? auth.userProfileData[0] : {};
   useEffect(() => { 
     fetchAllBlogs();
   }, [])
   const theme = useTheme();
   
   const handleDelete = async (id) => {
-
-    console.log("deleted the blog");
     let res = await axios({
       method: 'post',
       url:  `${BACKEND_URL}/bg/deleteBlogByID`,
@@ -52,20 +48,25 @@ function UserDashbordBlog() {
         blog_id: id
       }
     })
-    console.log(res.data)
     setShowSnackbar(true)
-    fetchAllBlogs()
+    console.log(res.data)
+
+   
   }
+  const goToBlog = id => {
+    console.log("blog id is"+ id);
 
-
+    history.push(`/view-blog/${id}`);
+  }
   const displayCard = (blog) => {
-    return (<Grid item xs={12} onClick={() => goToBlog(blog.id)}>
-          <Box component={'div'} className="card shadow flex-wrap p-3 d-flex justify-content-start align-items-center flex-row my-3">
+    return (<Grid item xs={12} >
+  <Box component={'div'} className="card shadow flex-wrap p-3 d-flex justify-content-start align-items-center flex-row my-3">
         <Snackbar
             open={showSnackbar}
             autoHideDuration={6000}
             onClose={() => {
               setShowSnackbar(false);
+              fetchAllBlogs()
             }}
           >
             <Alert
@@ -80,16 +81,16 @@ function UserDashbordBlog() {
           </Snackbar>
         </Box>
       <Paper sx={{ display: 'flex' }} >
-        <Box sx={{ display: 'flex' }} >
-          <img src={blog.image} width="200rem" alt="Blog Image" />
+        <Box sx={{ display: 'flex' }} onClick={() => goToBlog(blog.blog_id)}>
+          <img src={blog.image} width="200rem" alt="Blog Image"  />
         </Box>
 
-        <Box sx={{ display: 'flex', flexDirection: 'column', padding: 2 }} >
+        <Box sx={{ display: 'flex', flexDirection: 'column', padding: 2 }} onClick={() => goToBlog(blog.blog_id)}>
           <Typography component="div" variant="h5">
             {blog.title}
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" component="div">
-           {userData.flname}{userData}
+            {userData.fname} {userData.lname}
           </Typography>
           <Typography>
             {blog.content.substring(0, 10)}
