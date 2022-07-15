@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { Box } from "@mui/system";
 // import { useState } from "react";
 
 const StyledMenu = styled((props) => (
@@ -69,7 +70,7 @@ export default function AccommodationSortDropdown(props) {
   };
 
   return (
-    <div>
+    <Box>
       <Button
         id="demo-customized-button"
         aria-controls={open ? "demo-customized-menu" : undefined}
@@ -98,6 +99,6 @@ export default function AccommodationSortDropdown(props) {
           High-To-Low
         </MenuItem>
       </StyledMenu>
-    </div>
+    </Box>
   );
 }
