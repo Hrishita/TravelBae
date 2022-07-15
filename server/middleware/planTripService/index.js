@@ -27,6 +27,10 @@ exports.updatePlanTripByID = function (req, res) {
   planTripDB.updatePlanTripByID(req, res);
 };
 
+exports.findPlanTripByPlanID = function (req, res) {
+  planTripDB.findPlanTripByPlanID(req, res);
+};
+
 /**
  * The module is being exported as planTripService so that this module can be imported into other modules.
  */
