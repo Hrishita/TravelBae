@@ -10,6 +10,8 @@ import Footer from "../containers/Footer";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
+import { deepOrange } from "@mui/material/colors";
+
 import Avatar from "@material-ui/core/Avatar";
 import NavBar from "../containers/NavBar";
 import { useHistory } from "react-router-dom";
@@ -133,7 +135,7 @@ function BlogList() {
             />
           </Box>
           <Container maxWidth="lg" className={classes.blogsContainer}>
-            <Grid container spacing={3}>
+            <Grid container spacing={2}>
               <Box item xs={12} sm={6} md={4} className="d-flex flex-row flex-wrap justify-content-center align-items-center my-3"> 
                 {filtered.map((blog, index) => {
                   return (
@@ -170,7 +172,8 @@ function BlogList() {
                       </CardActionArea>
                       <CardActions className={classes.cardActions}>
                         <Box className={classes.author}>
-                          <Avatar src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
+                        <Avatar sx={{ bgcolor: deepOrange[500], mx: 1.4 }}>{(blog && blog.author_id) ? blog.author_id[0] : ''}</Avatar>  
+
                           <Box ml={2}>
                             <Typography
                               variant="subtitle2"
@@ -184,7 +187,7 @@ function BlogList() {
                               color="textSecondary"
                               component="p"
                             >
-                              May 14, 2020
+                              {blog.date}
                             </Typography>
                           </Box>
                         </Box>

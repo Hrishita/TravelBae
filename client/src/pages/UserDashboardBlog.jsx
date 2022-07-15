@@ -31,6 +31,7 @@ function UserDashbordBlog() {
   const theme = useTheme();
   
   const handleDelete = async (id) => {
+    console.log("deleted the blog");
     let res = await axios({
       method: 'post',
       url:  `${BACKEND_URL}/bg/deleteBlogByID`,
@@ -86,7 +87,7 @@ function UserDashbordBlog() {
               </Grid>
               <Grid item lg={6}>
                 <Box pt={2} pr={4} display="flex" justifyContent="flex-end">
-                  <Button variant="outlined" color="primary">Create Blog</Button>
+                  <Button variant="outlined" color="primary" onClick={handleClick}>Create Blog</Button>
                 </Box>
               </Grid>
             </Grid>
