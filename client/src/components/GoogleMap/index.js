@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {
   GoogleMap,
-  InfoWindow,
+  // InfoWindow,
   LoadScript,
   Marker,
 } from "@react-google-maps/api";
@@ -29,7 +29,7 @@ const MapComponent = () => {
   return (
     <LoadScript googleMapsApiKey="AIzaSyDrFm6nEA7UkiQLBQ3sCwhIJy-jdqj2NmM">
       <GoogleMap
-        mapContainerStyle={{ width: "100%", height: "400px" }}
+        mapContainerStyle={{ width: "100%", height: "15em" }}
         center={{ lat: 44.62, lng: -63.57 }}
         zoom={15}
       >

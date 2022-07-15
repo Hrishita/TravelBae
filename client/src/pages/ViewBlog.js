@@ -1,128 +1,116 @@
 import { Grid } from "@material-ui/core";
-import { Comment } from "@material-ui/icons";
+import { Comment, Image } from "@material-ui/icons";
 import { CommentBank, Send } from "@mui/icons-material";
-import { Avatar, Box, TextField, Typography } from "@mui/material";
+import { Box, TextField } from "@material-ui/core";
 import { deepOrange, grey } from "@mui/material/colors";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../containers/Footer";
 import NavBar from "../containers/NavBar";
+import { Typography, Avatar } from "@mui/material";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 function SingleComment({ index, comment, name = "John Doe" }) {
+  
   return (
-    <div
+    <Box
       key={index}
+      component={'div'}
       className="d-flex flex-row justify-content-start align-items-start my-3 align-items-start"
     >
-      <div>
-        <Avatar sx={{ bgcolor: deepOrange[500], mx: 1.4 }}>N</Avatar>
-      </div>
-      <div className="d-flex flex-column">
-        <div className="d-flex flex-column">
+      <Box component={'div'}>
+      <Avatar sx={{ bgcolor: deepOrange[500], mx: 1.4 }}>{(comment && comment.author_id) ? comment.author_id[0] : ''}</Avatar>      </Box>
+      <Box component={'div'} className="d-flex flex-column">
+        <Box component={'div'} className="d-flex flex-column">
           <Typography variant={"p"} fontSize={"1rem"} color={"#292929"}>
-            {name}
+            {comment.author_id}
           </Typography>
-          <Typography variant={"p"} fontSize={"0.8rem"} color={grey[500]}>
-            12 January 2020, 16:30 IST
-          </Typography>
-        </div>
-        <Typography className="my-2">{comment}</Typography>
-      </div>
-    </div>
+       
+        </Box>
+        <Typography className="my-2">{comment.comment_text}</Typography>
+      </Box>
+    </Box>
   );
 }
 
 function ViewBlog() {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
+  const [blog, setBlog] = useState()
 
-  const handleSubmit = () => {
-    let newComments = [...comments, comment];
+  let params = useParams()
+  const fetchBlog = async () => {
+    let res = await axios({
+      method: "POST",
+      url: 'http://localhost:8000/bg/fetchBlogByID',
+      data: {
+        blog_id: params['id']
+      }
+    })
+    console.log("result", res.data)
+    setBlog(res.data[0])
+    setComments(res.data[0].comments)
+  }
+  useEffect(() => {
+    fetchBlog()
+  }, [])
+
+  const handleSubmit = async () => {
+    let newComments = [...comments, {
+      comment_id: Math.random() * 50000,
+        blog_id: blog.blog_id,
+        comment_text: comment,
+        author_id: 'hrishitamavani@gmail.com'
+    }];
+    await axios({
+      method: 'POST',
+      url: 'http://localhost:8000/bg/addComment',
+      data: {
+        comment_id: Math.random() * 50000,
+        blog_id: blog.blog_id,
+        comment_text: comment,
+        author_id: 'hrishitamavani@gmail.com'
+      }
+    })
     setComments(newComments);
     setComment("");
   };
   return (
-<Grid container spacing={3}>
+    <Grid container spacing={3}>
        <Grid item xs={12}>
         <NavBar />
       </Grid>
-      <div className="container p-4">
-        <div className="d-flex flex-column justify-content-center align-items-center">
-          <div>
-            <img
-              className="img-fluid"
+      <Box component={'div'} className="container p-4">
+        <Box component={'div'} className="d-flex flex-column justify-content-center align-items-center">
+          <Box>
+            <Box
+              component={'img'}
+              className={'className="img-fluid"'}
               alt="image3"
-              src="https://images.unsplash.com/photo-1512100254544-47340ba56b5d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=500&ixid=MnwxfDB8MXxyYW5kb218MHx8dHJhdmVsfHx8fHx8MTY1NTMxNjQ0MQ&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1024"
+              src={blog ? blog.image : ""}
             />
-          </div>
-          <div>
+          </Box>
+          <Box>
             <Typography variant="body1" fontWeight={"600"} color={grey[700]}>
-              Author: Hrishita Mavani
+              Author: {blog? blog.author_id : ''}
             </Typography>
-          </div>
+          </Box>
 
-          <div className="align-self-start">
-            <Typography variant="h4">My Bali Trip</Typography>
-          </div>
+          <Box className="align-self-start" component={'div'}>
+            <Typography variant="h4">{blog ? blog.title : ""}</Typography>
+          </Box>
 
-          <div className="my-3">
+          <Box component={'div'} className="my-3">
             <Typography
               variant="p"
               color={"#292929"}
               style={{ color: "#292929", fontSize: "1.1rem" }}
             >
-              Going to Bali feels like going on a never-ending adventure–there
-              is an activity to suit every soul! Bali is a popular destination
-              for many people around the world and it’s easy to see why. From
-              its unending idyllic beaches, captivating spiritual energy,
-              terraced rice fields, and exotic sunsets, there is so much to see
-              and experience on this magnificent island paradise! Experience
-              surfing, yoga, meditation, trekking, delicious food or amazing
-              nightlife. Certain areas of Bali have been influenced by tourism,
-              with hubs of insta-worthy cafes, hip bars, and vegan restaurants.
-              But other areas are still quite remote, maintaining their uniquely
-              Balinese beauty and charm.{" "}
+              {blog ? blog.content : ''}
             </Typography>
-          </div>
+          </Box>
 
-          <div className="my-3">
-            <Typography
-              variant="p"
-              color={"#292929"}
-              style={{ color: "#292929", fontSize: "1.1rem" }}
-            >
-              Going to Bali feels like going on a never-ending adventure–there
-              is an activity to suit every soul! Bali is a popular destination
-              for many people around the world and it’s easy to see why. From
-              its unending idyllic beaches, captivating spiritual energy,
-              terraced rice fields, and exotic sunsets, there is so much to see
-              and experience on this magnificent island paradise! Experience
-              surfing, yoga, meditation, trekking, delicious food or amazing
-              nightlife. Certain areas of Bali have been influenced by tourism,
-              with hubs of insta-worthy cafes, hip bars, and vegan restaurants.
-              But other areas are still quite remote, maintaining their uniquely
-              Balinese beauty and charm.
-            </Typography>
-          </div>
-          <div className="my-3">
-            <Typography
-              variant="p"
-              color={"#292929"}
-              style={{ color: "#292929", fontSize: "1.1rem" }}
-            >
-            Going to Bali feels like going on a never-ending adventure–there
-              is an activity to suit every soul! Bali is a popular destination
-              for many people around the world and it’s easy to see why. From
-              its unending idyllic beaches, captivating spiritual energy,
-              terraced rice fields, and exotic sunsets, there is so much to see
-              and experience on this magnificent island paradise! Experience
-              surfing, yoga, meditation, trekking, delicious food or amazing
-              nightlife. Certain areas of Bali have been influenced by tourism,
-              with hubs of insta-worthy cafes, hip bars, and vegan restaurants.
-              But other areas are still quite remote, maintaining their uniquely
-              Balinese beauty and charm.{" "}
-            </Typography>
-          </div>
-          <div style={{ width: "100%" }}>
+          <Box style={{ width: "100%" }}>
             <Box sx={{ display: "flex", alignItems: "flex-end" }}>
               <CommentBank sx={{ color: "action.active", mr: 1, my: 0.5 }} />
               <TextField
@@ -145,14 +133,14 @@ function ViewBlog() {
                 }}
               />
             </Box>
-          </div>
-          <div className="align-self-start my-3">
+          </Box>
+          <Box component={'div'} className="align-self-start my-3">
             {comments.map((comment, index) => {
               return <SingleComment comment={comment} index={index} />;
             })}
-          </div>
-        </div>
-      </div>
+          </Box>
+        </Box>
+      </Box>
       <Footer/>
    </Grid>
   );

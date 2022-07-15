@@ -8,11 +8,13 @@ const dayItinerarySchema = new mongoose.Schema({
   itinerary_image: { type: String, required: true },
   day: { type: Number, required: true },
   itinerary_place: { type: String, required: true },
-  itinerary_summary: { type: String, required: true },
-  tags: [String],
 });
 
-const DayItinerary = mongoose.model("DayItinerary", dayItinerarySchema, "dayItinerary");
+const DayItinerary = mongoose.model(
+  "DayItinerary",
+  dayItinerarySchema,
+  "dayItinerary"
+);
 
 /**
  * The module is being exported as 'User'

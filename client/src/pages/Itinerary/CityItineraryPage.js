@@ -17,7 +17,9 @@ import { BACKEND_URL } from "../../config";
 
 const CityItineraryPage = () => {
   const location = useLocation();
-  const cityName = location.state;
+  const cityName = location.state.itinerary_city;
+  const cityLat = location.state.latitude;
+  const cityLong = location.state.longitude;
   const [cityCards, setCityCards] = useState([]);
 
   useEffect(() => {
@@ -120,12 +122,15 @@ const CityItineraryPage = () => {
                 return (
                   <Grid item style={{ textAlign: "center" }}>
                     <Link
-                      to={{ pathname: "/dayItinerary", state: card }}
+                      to={{
+                        pathname: "/dayItinerary",
+                        state: { ...card, cityLat, cityLong, cityName },
+                      }}
                       style={{ textDecoration: "none" }}
                     >
                       <CardCont
                         image={card.itinerary_image}
-                        title={card.duration}
+                        title={`${card.duration} - Day Itinerary`}
                         desc={card.itinerary_summary}
                       />
                     </Link>

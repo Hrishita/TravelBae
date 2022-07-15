@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { useState } from "react";
+// import { useState } from "react";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -54,7 +54,7 @@ export default function AccommodationSortDropdown(props) {
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);  
+    setAnchorEl(event.currentTarget);
   };
   const handleClose1 = () => {
     props.sortingType(1);

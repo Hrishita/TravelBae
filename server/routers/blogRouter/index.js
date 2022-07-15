@@ -14,6 +14,8 @@ blogRouter.post("/fetchBlogComments", blogService.fetchBlogComments);
 
 blogRouter.post("/deleteBlogByID", blogService.deleteBlogByID);
 
+blogRouter.post("/fetchBlogByID", blogService.fetchBlogByID);
+
 blogRouter.post("/addComment", blogService.addComment);
 
 module.exports = blogRouter;

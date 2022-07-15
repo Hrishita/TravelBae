@@ -36,4 +36,5 @@ const Blog = mongoose.model("blog", blogSchema);
  * The module is being exported as 'Blog'
  * so that this module can be imported into other modules.
  */
+
 module.exports = Blog;
