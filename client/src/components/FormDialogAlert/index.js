@@ -14,7 +14,7 @@ import {
 } from "../../utils/validations";
 
 export default function FormDialogComp(props) {
-  const { open, handleClose, handleSubmitForm, isUserPopUp } = props;
+  const { open, handleClose, handleSubmitForm, isUserPopUp, alertMsg } = props;
   const [inputPwdValues, setInputPwdValue] = useState({
     cPassword: "",
     nPassword: "",
@@ -25,15 +25,20 @@ export default function FormDialogComp(props) {
     errorMsg: "",
   });
 
+  const clearAll = () => {
+    setInputPwdValue({ cPassword: "", nPassword: "", confPassword: "" });
+  };
+
   const handleCloseForm = (formName) => {
     setValidation({ errorMsg: "" });
     handleClose();
   };
 
   const handleSubmit = (formName) => {
-    console.log("..........", checkValidation());
-    if (checkValidation() && formName === "pwdForm")
+    if (checkValidation() && formName === "pwdForm") {
       handleSubmitForm(inputPwdValues);
+      clearAll();
+    }
     return;
   };
 
@@ -149,6 +154,18 @@ export default function FormDialogComp(props) {
               <Alert severity="error">{validation.errorMsg}</Alert>
             </Box>
           )}
+
+          {alertMsg.error && (
+            <Box pb={4}>
+              <Alert severity="error">{alertMsg.error}</Alert>
+            </Box>
+          )}
+          {alertMsg.message && (
+            <Box pb={4}>
+              <Alert severity="success">{alertMsg.message}</Alert>
+            </Box>
+          )}
+
           {displayDialog()}
         </DialogContent>
         <DialogActions>
