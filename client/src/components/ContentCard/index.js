@@ -6,10 +6,13 @@ import Grid from "@mui/material/Grid";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useHistory } from "react-router-dom";
 import AlertDialog from "../../containers/AlertDialog";
+import { AuthContext } from "../../context/AuthContext";
 import { useState } from "react";
 
 const ContentCardComp = ({ details }) => {
-  console.log(details)
+  const auth = React.useContext(AuthContext);
+  const userId = auth.userId;
+
   const history = useHistory();
   const handleListItemClick = () => {
     history.push("/destination/" + details.details.dest_code);
@@ -27,7 +30,9 @@ const ContentCardComp = ({ details }) => {
       elevation={6}
       sx={{ height: "150px", width: "90%", margin: "20px", cursor: "pointer" }}
     >
-      <Grid container spacing={5}>
+    {
+      userId ? (
+        <Grid container spacing={5}>
         <Grid
           item
           xs={4} md={3}
@@ -93,6 +98,55 @@ const ContentCardComp = ({ details }) => {
           />
         </Grid>
       </Grid>
+      ) : (
+        <Grid container spacing={5}>
+        <Grid
+          item
+          xs={4} md={3}
+          onClick={() => {
+            handleListItemClick();
+          }}
+        >
+          <Box
+            sx={{
+              height: "110px",
+              width: "100%",
+              margin: "20px",
+            }}
+          >
+            <img
+              className="destination-image"
+              src={details.details.img}
+              alt="details"
+            ></img>
+          </Box>
+        </Grid>
+        <Grid
+          item
+          xs={8} md={9}
+          onClick={() => {
+            handleListItemClick();
+          }}
+        >
+          <Typography
+            variant="h5"
+            component="div"
+            sx={{ padding: "20px 0px 2px" }}
+          >
+            {details.details.dest_name}
+          </Typography>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ paddingRight: "20px" }}
+            className="card-overflow-ellipsis"
+          >
+            {details.details.dest_desc}
+          </Typography>
+        </Grid>
+      </Grid>
+      )
+    }
     </Paper>
   );
 };
