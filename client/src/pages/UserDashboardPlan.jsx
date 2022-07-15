@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import "./../components/UserDashboard/Dashboard.css";
 import NavBar from "../containers/NavBar";
 import Footer from "../containers/Footer";
 import SideBar from "../components/SideBar/Sidebar";
 import { Grid } from "@material-ui/core";
+import axios from "axios";
 import {
   Box,
   Button,
@@ -17,17 +18,75 @@ import { useHistory } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { planData } from "../containers/CardCont/mockData";
 import { completedPlanData } from "../containers/CardCont/mockData";
+import { AuthContext } from "../context/AuthContext";
 
 function UserDashbordPlan() {
-  const history = useHistory();
-  const handleClick = () => {
-    history.push("/write-plan");
-  };
-  const theme = useTheme();
+  const auth = useContext(AuthContext);
+
+  console.log(auth);
+  let id = null;
+
+  if (auth && auth.isLoggedIn == true && auth.userId != null) {
+    id = auth.userId;
+  } else {
+    id = "test@gmail.com";
+  }
 
   const handleDelete = () => {
     // @Todo backend logic to delete plan
   };
+
+  const history = useHistory();
+  const [UpcomingPlanTrip, setUpcomingPlanTrip] = React.useState([]);
+  const [CompletedPlanTrip, setCompletedPlanTrip] = React.useState([]);
+
+  const handleClick = () => {
+    history.push("/");
+  };
+
+  const fetchAllPlanTrips = async () => {
+    // console.log("fetching the data");
+    let res = await axios({
+      method: "POST",
+      url: `${BACKEND_URL}/pt/findPlanTripByUserID/` + id,
+    });
+
+    let locData = await axios({
+      method: "GET",
+      url: `${BACKEND_URL}/destination/fetchAllDestinations`,
+    });
+
+    let finalUpcomingData = Array();
+    let finalCompletedData = Array();
+
+    let _ = res.data.map((cities) => {
+      console.log(cities);
+      for (let i = 0; i < locData.data.destinations.length; i++) {
+        if (locData.data.destinations[i].dest_name === cities.city) {
+          if (cities.is_completed === false) {
+            locData.data.destinations[i].res = cities;
+            finalUpcomingData.push(locData.data.destinations[i]);
+            return true;
+          } else {
+            locData.data.destinations[i].res = cities;
+            finalCompletedData.push(locData.data.destinations[i]);
+            return true;
+          }
+        }
+      }
+    });
+
+    setUpcomingPlanTrip(finalUpcomingData);
+    setCompletedPlanTrip(finalCompletedData);
+
+    console.log(res.data);
+  };
+
+  useEffect(() => {
+    fetchAllPlanTrips();
+  }, []);
+
+  const theme = useTheme();
 
   const displayCard = (plan) => {
     return (
@@ -47,16 +106,17 @@ function UserDashbordPlan() {
             onClick={handleClick}
           >
             <Typography component="div" variant="h5">
-              {plan.title}
+              {plan.dest_name}
             </Typography>
             <Typography
               variant="subtitle1"
               color="text.secondary"
               component="div"
             >
-              Jenner Joe
+              {/* Jenner Joe */}
+              {plan.res.start_date + " - " + plan.res.end_date}
             </Typography>
-            <Typography>{plan.desc}</Typography>
+            <Typography>{plan.dest_desc}</Typography>
           </Box>
           <Box>
             <DeleteIcon color="primary" onClick={handleDelete} />
@@ -82,7 +142,7 @@ function UserDashbordPlan() {
               <Grid item lg={6}>
                 <Box pt={2} pl={4}>
                   <Typography variant="h4" component="span">
-                    My Plans
+                    Upcoming Plans
                   </Typography>
                 </Box>
               </Grid>
@@ -99,8 +159,8 @@ function UserDashbordPlan() {
             </Box>
             <Box ml={2} pl={2} pt={3} pb={3} mr={3}>
               <Grid container flexDirection="column" spacing={2}>
-                {planData.map((blog) => {
-                  return displayCard(blog);
+                {UpcomingPlanTrip.map((plan) => {
+                  return displayCard(plan);
                 })}
               </Grid>
             </Box>
@@ -116,8 +176,8 @@ function UserDashbordPlan() {
             </Box>
             <Box ml={2} pl={2} pt={3} pb={3} mr={3}>
               <Grid container flexDirection="column" spacing={2}>
-                {completedPlanData.map((blog) => {
-                  return displayCard(blog);
+                {CompletedPlanTrip.map((plan) => {
+                  return displayCard(plan);
                 })}
               </Grid>
             </Box>
