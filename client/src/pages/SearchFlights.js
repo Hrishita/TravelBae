@@ -26,6 +26,7 @@ import { Sort } from "@material-ui/icons";
 import axios from "axios";
 import usePagination from "../containers/UsePagination";
 import ModalComp from "../components/Modal";
+import { BACKEND_URL } from "../config";
 
 function SearchFlights() {
   const [startDate, setStartDate] = useState();
@@ -42,7 +43,8 @@ function SearchFlights() {
   const fetchRecommendedFlights = async () => {
     let res = await axios({
       method: "POST",
-      url: 'http://localhost:8000/tp/fetchAllTransporation',
+
+      url: `${BACKEND_URL}/tp/fetchAllTransporation`,
     })
     setFlights(res.data.data)
     setFilteredFlights(res.data.data)
@@ -72,27 +74,35 @@ function SearchFlights() {
         d.setHours(0)
         d.setSeconds(0)
         d.setMinutes(0)
-        console.log(d.toISOString())
         let res = await axios({
           method: 'POST',
-          url: 'http://localhost:8000/tp/fetchTransporationByDestination',
+          url: `${BACKEND_URL}/tp/fetchTransporationByDestination`,
           data: {
             source: source ? source : null,
             dest_name: dest ? dest : null,
-            start_date: startDate ? startDate : null,
+            start_date: startDate ? d.getTime() : null,
           }
         })
         setFlights(res.data.data)
         setFilteredFlights(res.data.data) 
       } else { //round trip
+        let d1 = new Date(startDate)
+        d1.setHours(0)
+        d1.setSeconds(0)
+        d1.setMinutes(0)
+        let d2 = new Date(endDate)
+        d2.setHours(0)
+        d2.setSeconds(0)
+        d2.setMinutes(0)
+        console.log(d1.getTime(), d2.getTime())
         let res = await axios({
           method: 'POST',
-          url: 'http://localhost:8000/tp/fetchTransporationByDestination',
+          url: `${BACKEND_URL}/tp/fetchTransporationByDestination`,
           data: {
             source: source ? source : null,
             dest_name: dest ? dest : null,
-            start_date: startDate ? startDate : null,
-            return_date: endDate ? endDate : null,
+            start_date: startDate ? d1.getTime() : null,
+            return_date: endDate ? d2.getTime() : null,
           }
         })
         setFlights(res.data.data)
@@ -281,15 +291,12 @@ function SearchFlights() {
                         <Typography variant={"h5"}>
                           {" "}
                           {d.source}
-                          {/* {d.startTime} - {d.endTime}{" "} */}
                         </Typography>
                         <Typography variant={"body1"}>
                           {" "}
                           {new Date(d.start_date).toLocaleString()}
                         </Typography>
-                        {/* <Typography color={grey[700]}>
-                          {d.flightCompany}
-                        </Typography> */}
+                   
                       </Box>
                       <Box component={'div'} className='mx-3'>
                         <Box component={'div'}>
@@ -309,14 +316,10 @@ function SearchFlights() {
                           {" "}
                           {new Date(d.return_date).toLocaleString()}
                         </Typography>
-                        {/* <Typography color={grey[700]}>
-                          {d.flightCompany}
-                        </Typography> */}
+          
                       </Box>
                     </Box>
-                    {/* <div className="mx-4 py-2">
-                      <Typography variant="subtitle1">{d.totalTime}</Typography>
-                    </div> */}
+
                     <Box component={'div'} className="mx-4 py-2">
                       <Typography variant="body1" color={grey[700]}>
                         {d.flight_company}
@@ -328,7 +331,6 @@ function SearchFlights() {
                         {d.trip_type}
                       </Typography>
                     </Box>
-                    {/* </div> */}
                   </ButtonBase>
                 );
               })}
