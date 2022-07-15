@@ -22,7 +22,6 @@ function UserDashbordBlog() {
     auth.loadUserProfile(); 
   }
   const userData = auth.userProfileData.length ? auth.userProfileData[0] : {};
- 
 
   const handleClick = () => {
     history.push("/write-blog");
@@ -56,11 +55,11 @@ function UserDashbordBlog() {
   const goToBlog = id => {
     console.log("blog id is"+ id);
 
-    history.push(`/view-blog/${id}`);
+    history.push(`/view-blogs/${id}`);
   }
   const displayCard = (blog) => {
     return (<Grid item xs={12} >
-  <Box component={'div'} className="card shadow flex-wrap p-3 d-flex justify-content-start align-items-center flex-row my-3">
+   <Box component={'div'} >
         <Snackbar
             open={showSnackbar}
             autoHideDuration={6000}
@@ -79,7 +78,7 @@ function UserDashbordBlog() {
               Deleted Successfully
             </Alert>
           </Snackbar>
-        </Box>
+        </Box> 
       <Paper sx={{ display: 'flex' }} >
         <Box sx={{ display: 'flex' }} onClick={() => goToBlog(blog.blog_id)}>
           <img src={blog.image} width="200rem" alt="Blog Image"  />
