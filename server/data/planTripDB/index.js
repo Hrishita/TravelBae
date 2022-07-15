@@ -58,11 +58,11 @@ exports.fetchAllPlanTrips = function (req, res) {
 };
 
 exports.findPlanTripByUserID = function (req, res) {
-  let { emailid } = req.body;
-  if (emailid === undefined) {
-    emailid = req.params.id;
+  let { userID } = req.body;
+  if (userID === undefined) {
+    userID = req.params.id;
   }
-  planTrip.find({ emailid }, function (err, planTrip) {
+  planTrip.find({ userID }, function (err, planTrip) {
     if (err) {
       res.send(err);
     }
