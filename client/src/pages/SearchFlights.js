@@ -21,12 +21,12 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../containers/NavBar";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { deepOrange, grey } from "@mui/material/colors";
-import AlertDialog from "../containers/AlertDialog";
 import { Sort } from "@material-ui/icons";
 import axios from "axios";
 import usePagination from "../containers/UsePagination";
 import ModalComp from "../components/Modal";
 import { BACKEND_URL } from "../config";
+import { AuthContext } from "../context/AuthContext";
 
 function SearchFlights() {
   const [startDate, setStartDate] = useState();
@@ -35,11 +35,13 @@ function SearchFlights() {
   const [endDate, setEndDate] = useState();
   const [tripType, setTripType] = useState(0);
   const [showSnackbar, setShowSnackbar] = useState(false);
+
   const [flights, setFlights] = useState([])
   const [filteredFlights, setFilteredFlights] = useState([])
   const [price, setPrice] = useState()
   const [show, setShow] = useState(false)
-
+  const auth = useContext(AuthContext);
+  const userId = auth.userId ? auth.userId : "";
   const fetchRecommendedFlights = async () => {
     let res = await axios({
       method: "POST",
@@ -141,7 +143,7 @@ function SearchFlights() {
     let res = await axios({
       method: "POST",
       url: `${BACKEND_URL}/pt/createPlanTrip`,
-      transportation: {...data, plan_id: Math.random() * 1000000, city: data.dest_name, emailid: 'testing@gmail.com', country: "temp"},
+      transportation: {...data, plan_id: Math.random() * 1000000, city: data.dest_name, emailid: userID, country: "temp"},
     })
     console.log("response", res)
   }
