@@ -71,7 +71,7 @@ function BlogList() {
   const classes = useStyles();
   const history = useHistory();
   const handleClick=(e, id)=>{
-    history.push("view-blogs/"+id);
+    history.push("view-blogs/"+id);   
   }
   const [blogs, setBlogs] = useState([])
   const [filtered, setFiltered] = useState([])
