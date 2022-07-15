@@ -8,6 +8,7 @@ import { Box, Button, CardActionArea, CssBaseline, Divider, Paper, Typography, u
 import { useHistory } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from "axios";
+import { BACKEND_URL } from "../../config";
 
 function UserDashbordBlog() {
   const history = useHistory();
@@ -19,7 +20,7 @@ function UserDashbordBlog() {
   const fetchAllBlogs = async () => {
     let res = await axios({
       method: "post",
-      url: 'http://localhost:8000/bg/fetchAllBlogs',
+      url: `${BACKEND_URL}/bg/fetchAllBlogs`,
     })
     setBlogs(res.data);
     console.log(res.data);
@@ -32,7 +33,7 @@ function UserDashbordBlog() {
   const handleDelete = async (id) => {
     let res = await axios({
       method: 'post',
-      url: 'http://localhost:8000/bg/deleteBlogByID',
+      url:  `${BACKEND_URL}/bg/deleteBlogByID`,
       data: {
         blog_id: id
       }
