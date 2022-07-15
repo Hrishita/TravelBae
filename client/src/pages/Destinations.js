@@ -21,16 +21,16 @@ const Destinations = () => {
   const auth = React.useContext(AuthContext);
   const userID = auth.userId;
 
-  if (!auth.userProfileData.length) {
-    auth.loadUserProfile();
-    debugger;
-  }
-
   const [destinationsData, setDestinationsData] = useState("");
   const [searchInput, setSearchInput] = useState("");
 
-
   useEffect(() => {
+    if (!auth.userProfileData.length) {
+      auth.loadUserProfile();
+    }
+    const userData = auth.userProfileData.length ? auth.userProfileData[0] : {};
+    console.log(userData);
+
     const fetchDestinationsURL = `${BACKEND_URL}/destination/fetchAllDestinations`;
     axios
       .get(fetchDestinationsURL)
@@ -73,9 +73,10 @@ const Destinations = () => {
       })
       .then((res) => {
         console.log(res.data);
-        setDestinationsData(res.data.destinations);
+        
         setPage(1);
-        _DATA.jump(1);
+        // _DATA.jump(1);
+        setDestinationsData(res.data.destinations);
       });
   };
 
@@ -153,22 +154,25 @@ const Destinations = () => {
           <FilterMenu filterProperties={data}></FilterMenu>
         </Grid>
         <Grid container>
-          {_DATA.currentData() ? (
+          {_DATA.currentData() && _DATA.currentData().length > 0 ? (
             _DATA.currentData().map((destination) => {
               return (
-                <DestinationCardCont
-                  details={destination}
-                ></DestinationCardCont>
+                <Grid container>
+                  <DestinationCardCont
+                    details={destination}
+                  ></DestinationCardCont>
+                </Grid>
               );
             })
           ) : (
-            <NoDataFound
-              message="Destination not present. Please search for another one or select from the list."
-              className="text-align-center"
-            ></NoDataFound>
+            <Grid container alignItems="center" justifyContent="center" sx={{mt: 2}}>
+              <NoDataFound
+                message="Destination not present. Please search for another one or select from the list."
+                className="text-align-center"
+              ></NoDataFound>
+            </Grid>
           )}
         </Grid>
-
         <Grid item xs={12}>
           <Grid container alignItems="center" justifyContent="center">
             <Grid container justifyContent="center" sx={{ mt: 3, mb: 2 }}>
