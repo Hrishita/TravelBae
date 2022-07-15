@@ -80,7 +80,7 @@ export default function AccommodationSortDropdown(props) {
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
       >
-        Sort
+        Sort by Price
       </Button>
       <StyledMenu
         id="demo-customized-menu"

@@ -31,15 +31,9 @@ const Itinerary = React.lazy(() => import("./pages/Plan/Itinerary"));
 const Destinations = React.lazy(() => import("./pages/Destinations"));
 const Destination = React.lazy(() => import("./pages/Destination"));
 const ThingsToCarryPage = React.lazy(() => import("./pages/ThingsToCarryPage"));
-const AccommodationListPage = React.lazy(() =>
-  import("./pages/AccommodationListPage")
-);
-const AccommodationPage = React.lazy(() => import("./pages/AccommodationPage"));
-const ActivitiesToDoListPage = React.lazy(() =>
-  import("./pages/ActivitiesToDoListPage")
-);
+const AccommodationPage = React.lazy(() => import("./pages/AccommodationListPage"));
 const ActivitiesToDoMainPage = React.lazy(() =>
-  import("./pages/ActivitiesToDoMainPage")
+  import("./pages/ActivitiesToDoListPage")
 );
 
 const UserProfile = React.lazy(() => import("./pages/UserProfilePage"));
@@ -223,13 +217,6 @@ function Router() {
             />
             <Route
               exact
-              path="/accommodationlist"
-              render={() => {
-                return <AccommodationListPage />;
-              }}
-            />
-            <Route
-              exact
               path="/accommodation"
               render={() => {
                 return <AccommodationPage />;
@@ -264,14 +251,6 @@ function Router() {
                 return <ActivitiesToDoMainPage />;
               }}
             />
-            <Route
-              exact
-              path="/activitylist"
-              render={() => {
-                return <ActivitiesToDoListPage />;
-              }}
-            />
-
             <Route
               exact
               path="/flights"

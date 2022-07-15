@@ -10,10 +10,17 @@ const AccommodationSearchBoxComp = (props) => {
   const history = useHistory();
 
   const [searchKeyword, setSearchKeyword] = useState("");
+  const [checkInDate, setCheckInDate] = useState("");
+  const [checkOutDate, setCheckOutDate] = useState("");
   
   const handleClick = (e) => {
-    props.keyword(searchKeyword);
-    history.push("/accommodationlist");
+    const sendData={
+      keyword:searchKeyword,
+      cinDate:checkInDate,
+      coutDate:checkOutDate
+    }
+    props.keyword(sendData);
+    // history.push("/accommodationlist");
   };
 
   return (
@@ -49,6 +56,7 @@ const AccommodationSearchBoxComp = (props) => {
             InputLabelProps={{
               shrink: true,
             }}
+            onChange={(v) => setCheckInDate(v.target.value) }
           />
         </Grid>
         <Grid item lg={2} md={2} xs={12}>
@@ -62,6 +70,7 @@ const AccommodationSearchBoxComp = (props) => {
             InputLabelProps={{
               shrink: true,
             }}
+            onChange={(v) => setCheckOutDate(v.target.value) }
           />
         </Grid>
         <Grid
