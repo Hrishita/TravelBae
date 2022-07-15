@@ -10,15 +10,13 @@ const bcrypt = require("bcrypt");
  * associated with the  email foung in the database
  */
 
-
- exports.fetchUserProfile = function (req, res) {
+exports.fetchUserProfile = function (req, res) {
   const email = req.body.email;
   User.find({ email: email }, function (err, user) {
     if (err) return res.json({ success: false, error: err });
     res.json(user);
   });
 };
-
 
 exports.updatePassword = function (req, res) {
   const { currentPassword, newPassword, confirmNewPassword } = req.body;
@@ -42,7 +40,7 @@ exports.updatePassword = function (req, res) {
   } else {
     //VALIDATION PASSED
     //Ensure current password submitted matches
-    User.findOne({ _id: userID }).then(user => {
+    User.findOne({ _id: userID }).then((user) => {
       //encrypt newly submitted password
       bcrypt.compare(currentPassword, user.password, (err, isMatch) => {
         if (err) throw err;
@@ -70,7 +68,20 @@ exports.updatePassword = function (req, res) {
   }
 };
 
-
+exports.addDestToBucketList = function (req, res) {
+  const { dest_name, dest_code, img } = req.body.bucket_list;
+  const userID = req.body.email;
+  console.log(userID);
+  User.findOne({ email: userID }, function(err, user){
+    if(err){
+      console.log(err);
+    } else{
+      user.bucket_list.push({ dest_name, dest_code, img });
+      user.save();
+      return res.json({success: true, user: user});;
+    }
+  })
+};
 
 /**
  * The module is being exported as userDB so that

@@ -14,9 +14,13 @@ import Footer from "../containers/Footer";
 import Stack from "@mui/material/Stack";
 import usePagination from "../containers/UsePagination";
 import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
 import { BACKEND_URL } from "../config";
 
 const Destinations = () => {
+  const auth = React.useContext(AuthContext);
+  const userID = auth.userId;
+
   const [destinationsData, setDestinationsData] = useState("");
   const [searchInput, setSearchInput] = useState("");
   let destinationIsEmpty = true;
@@ -27,6 +31,19 @@ const Destinations = () => {
     axios
       .get(fetchDestinationsURL)
       .then((res) => {
+        if(userID && auth.userProfileData.length > 0){
+          const bucketList = auth.userProfileData[0].bucket_list;
+          res.data.destinations.forEach((dest) =>{
+            let index = bucketList.findIndex((item) => {
+              return item.dest_code === dest.dest_code
+            });
+            if(index >= 0){
+              dest.isFavorite = true;
+            } else{
+              dest.isFavorite = false;
+            }
+        });
+        }
         setDestinationsData(res.data.destinations);
       })
       .catch((err) => console.log(err));

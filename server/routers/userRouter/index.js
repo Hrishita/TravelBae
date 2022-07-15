@@ -15,6 +15,11 @@ userRouter.post(
   userService.fetchUserProfile
 );
 
+userRouter.post(
+  "/addDestToBucketList",
+  userService.addDestToBucketList
+);
+
 
 userRouter.post(
   "/userProfile",
