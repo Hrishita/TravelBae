@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import { Grid } from "@material-ui/core";
+import { Stack } from "@mui/material";
 import Card from "@material-ui/core/Card";
 import Footer from "../containers/Footer";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -46,7 +47,9 @@ const useStyles = makeStyles((theme) => ({
   card: {
     maxWidth: "100%",
     width: "auto",
-    marginLeft: "20px",
+    marginLeft: "2rem",
+    marginRight: "2rem",
+    marginTop: "2rem",
     width: "18rem",
   },
   media: {
@@ -96,9 +99,9 @@ function BlogList() {
       );
     } else {
       setFiltered(blogs);
-    }
+    } 
   };
-  useEffect(() => {
+  useEffect(() =>  {
     fetchAllBlogs();
   }, []);
   return (
@@ -131,7 +134,7 @@ function BlogList() {
           </Box>
           <Container maxWidth="lg" className={classes.blogsContainer}>
             <Grid container spacing={3}>
-              <Box item xs={12} sm={6} md={4} className="d-flex flex-row">
+              <Box item xs={12} sm={6} md={4} className="d-flex flex-row flex-wrap justify-content-center align-items-center my-3"> 
                 {filtered.map((blog, index) => {
                   return (
                     <Card
@@ -191,11 +194,24 @@ function BlogList() {
                 })}
               </Box>
             </Grid>
-            <Box my={4} className={classes.paginationContainer}>
+            {/* <Grid container justifyContent="center" sx={{ mt: 3, mb: 2 }}>
+                <Stack spacing={2}>
+                  <Pagination
+                    count={count}
+                    color="primary"
+                    page={page}
+                    variant="outlined"
+                    shape="rounded"
+                    onChange={handleChange1}
+                  />
+                </Stack>
+              </Grid> */}
+            {/* <Box my={4} className={classes.paginationContainer}>
               <Pagination count={10} />
-            </Box>
+            </Box> */}
           </Container>
         </Grid>
+      
       </Grid>
       <Grid item xs={12}>
         <Footer />
@@ -205,3 +221,4 @@ function BlogList() {
 }
 
 export default BlogList;
+

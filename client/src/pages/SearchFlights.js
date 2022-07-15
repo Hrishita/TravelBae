@@ -151,7 +151,7 @@ function SearchFlights() {
       return f.price <= price
     })
     setFilteredFlights(newFlightsList)
-  }
+  } 
 
   const [page, setPage] = useState(1);
   const PER_PAGE = 9;
@@ -313,12 +313,12 @@ function SearchFlights() {
               </Box>
               {_DATA.currentData().map((d, index) => {
                 return (
-                  <ButtonBase
-                    onClick={onShowSnackbar}
+                  <Box
+                   
                     className="mx-2 my-2 d-flex flex-row justify-content-between align-items-center flex-wrap"
                     style={{ cursor: "pointer" }}
                   >
-                    <Box component={'div'} className="d-flex flex-row justify-content-between align-items-center py-2">
+                    <Box  onClick={onShowSnackbar}component={'div'} className="d-flex flex-row justify-content-between align-items-center py-2">
                       <Avatar sx={{ bgcolor: deepOrange[500], mx: 1.4 }}>
                       {d.flight_company_logo}
                       </Avatar>
@@ -352,7 +352,23 @@ function SearchFlights() {
                         </Typography>
           
                       </Box>
-                      <Modal
+                      
+                    </Box>
+
+                    <Box component={'div'} className="mx-4 py-2">
+                      <Typography variant="body1" color={grey[700]}>
+                        {d.flight_company}
+                      </Typography>
+                      <Typography variant="h5" color={grey[700]}>
+                        {d.price} CAD
+                      </Typography>
+                      <Typography variant="body1" color={grey[700]}>
+                        {d.trip_type}
+                      </Typography>
+                    </Box>
+
+                    <Box component={'div'} className='mx-4 py-2'>
+                    <Modal
           open={open1}
           onClose={handleClose1}
           aria-labelledby="modal-modal-title"
@@ -378,7 +394,7 @@ function SearchFlights() {
               <Box>
                 <Box sx={{ minWidth: 120 }}>
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                    <InputLabel id="demo-simple-select-label">Select a plan</InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
@@ -401,31 +417,16 @@ function SearchFlights() {
             <Grid container sx={{ pt: 2 }}>
               <Box sx={{ flexGrow: 1 }}></Box>
               <Button sx={{ minWidth: 120 }} variant="contained" onClick={() => {planTripHandler(d)}}>
-                Add
+                Add 
               </Button>
             </Grid>
           </Box>
         </Modal>
-                    </Box>
-
-                    <Box component={'div'} className="mx-4 py-2">
-                      <Typography variant="body1" color={grey[700]}>
-                        {d.flight_company}
-                      </Typography>
-                      <Typography variant="h5" color={grey[700]}>
-                        {d.price} CAD
-                      </Typography>
-                      <Typography variant="body1" color={grey[700]}>
-                        {d.trip_type}
-                      </Typography>
-                    </Box>
-
-                    <Box component={'div'} className='mx-4 py-2'>
                       <Button onClick={handleOpen1} style={{zIndex: 99}} variant={'contained'}>
                         Add to planned trip
                       </Button>
                     </Box>
-                  </ButtonBase>
+                  </Box>
                   
                 );
               })}
@@ -458,3 +459,4 @@ function SearchFlights() {
 }
 
 export default SearchFlights;
+
