@@ -25,7 +25,7 @@ exports.searchAccommodation = async function (req, res) {
   accommodation
     .find(
       {
-        hotel_name: { $regex: req.body.hotel_name, $options: "i" },
+        city: { $regex: req.body.hotel_name, $options: "i" },
         Rating: { $in: tag },
         check_in_date: {
           $gte: cin,

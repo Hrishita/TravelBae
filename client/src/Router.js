@@ -246,6 +246,13 @@ function Router() {
             />
             <Route
               exact
+              path="/accommodation/:code"
+              render={() => {
+                return <AccommodationPage />;
+              }}
+            />
+            <Route
+              exact
               path="/userdashboard"
               render={() => {
                 return <UserProfile />;
