@@ -1,4 +1,5 @@
-import { Grid, Box } from "@mui/material";
+import { Grid } from "@mui/material";
+import "./../components/DestinationCard/Destination.css";
 import Filter from "../containers/Filter";
 import FilterMenu from "../containers/FilterMenu";
 import { Typography } from "@mui/material";
@@ -82,6 +83,19 @@ const Destinations = () => {
     setFiltering({
       tags: {},
     });
+    axios
+      .post(`${BACKEND_URL}/destination/fetchFilteredDestinations`, {
+        tags: {
+          tags: [],
+        },
+        dest_name: searchInput,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setDestinationsData(res.data.destinations);
+        setPage(1);
+        _DATA.jump(1);
+      });
   };
 
   return (
@@ -89,14 +103,14 @@ const Destinations = () => {
       <Grid item xs={12}>
         <NavBar></NavBar>
       </Grid>
-      <Grid item sx={{ display: { xs: "none", md: "block" } }} md={2.5} xs={0}>
+      <Grid item sx={{ display: { xs: "none", md: "block" } }} md={2} xs={0}>
         <Filter
           filterProperties={data}
           handleChange={handleFilterChange}
           handleClearAll={handleFilterClearAll}
         ></Filter>
       </Grid>
-      <Grid item xs={12} md={9.2}>
+      <Grid item xs={12} md={9}>
         <Typography
           gutterBottom
           variant="h4"

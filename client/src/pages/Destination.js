@@ -147,8 +147,9 @@ const Destination = () => {
         <Grid item xs={12}>
           <Box sx={{ padding: "1em 3em" }}>
             <Grid container>
-              <Grid item sm={12} md={4}>
-                <Box sx={{ height: "20em", marginBottom: "1em" }}>
+            
+              <Grid item sm={12}>
+                <Box sx={{ height: "25em", marginBottom: "1em" }}>
                   <img
                     src= {destinationImage}
                     height={"100%"}
@@ -157,7 +158,7 @@ const Destination = () => {
                   ></img>
                 </Box>
               </Grid>
-              <Grid item sm={12} md={5}>
+              <Grid item sm={12} md={9}>
                 <Box sx={{ margin: "0px 10px 20px" }}>
                   <Typography variant="h4" color="primary">
                     {destinationName}
@@ -167,7 +168,7 @@ const Destination = () => {
                   </Typography>
                 </Box>
               </Grid>
-              <Grid item xs={12} sm={3} sx={{ padding: "0em 0.5em" }}>
+              <Grid item xs={12} md={3} sx={{ padding: "0em 0.5em" }}>
                 <GoogleMap />
               </Grid>
             </Grid>
