@@ -21,6 +21,11 @@ const Destinations = () => {
   const auth = React.useContext(AuthContext);
   const userID = auth.userId;
 
+  if (!auth.userProfileData.length) {
+    auth.loadUserProfile();
+    debugger;
+  }
+
   const [destinationsData, setDestinationsData] = useState("");
   const [searchInput, setSearchInput] = useState("");
 

@@ -53,8 +53,13 @@ const Destination = () => {
 
   }, []);
 
-  const handleListItemClick = (navigationLink) => {
-    history.push(navigationLink);
+  const handleListItemClick = (navigationLink, type) => {
+    if(type === "accommodation"){
+      history.push(navigationLink);
+    }
+    if(type === "blogs"){
+      history.push(navigationLink);
+    }
   };
 
   const handleOpen = () => {
@@ -63,7 +68,7 @@ const Destination = () => {
   const handleClose = () => {
     setOpen(false);
   };
-  const displayStrip = (title, cards, navigationLink) => {
+  const displayStrip = (title, cards, navigationLink, type) => {
     // const data = cards;
     return (
       <>
@@ -110,7 +115,7 @@ const Destination = () => {
                   <Card
                     className={classes.root}
                     onClick={() => {
-                      handleListItemClick(navigationLink);
+                      handleListItemClick(`${navigationLink}/${card.city}`, type);
                     }}
                   >
                     <CardMedia
@@ -176,7 +181,7 @@ const Destination = () => {
         <Grid item xs={12}>
           <Box sx={{ padding: "1em 3em" }}>
             {displayStrip("Travel Blogs", blogCards, "/view-blogs")}
-            {displayStrip("Accommodations", accCards, "/accommodationList")}
+            {displayStrip("Accommodations", accCards, "/accommodation", "accommodation")}
           </Box>
         </Grid>
       </Grid>
