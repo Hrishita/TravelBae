@@ -1,36 +1,41 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import Alert from '@mui/material/Alert';
-import { Box, Divider, Typography } from '@mui/material';
-import { useState } from 'react';
-import { passwordValidator } from '../../utils/validations';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import Alert from "@mui/material/Alert";
+import { Box, Divider, Typography } from "@mui/material";
+import { useState } from "react";
+import {
+  confirmPwdValidator,
+  passwordValidator,
+} from "../../utils/validations";
 
 export default function FormDialogComp(props) {
-  const { open, handleClose, handleSubmit, isUserPopUp } = props;
+  const { open, handleClose, handleSubmitForm, isUserPopUp } = props;
   const [inputPwdValues, setInputPwdValue] = useState({
     cPassword: "",
     nPassword: "",
+    confPassword: "",
   });
-  const [isSuccess , setIsSuccess] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const [validation, setValidation] = useState({
     errorMsg: "",
   });
 
   const handleCloseForm = (formName) => {
-    setValidation({errorMsg:""});
+    setValidation({ errorMsg: "" });
     handleClose();
-  }
+  };
 
-  const handleSubmitForm = (formName) => {
+  const handleSubmit = (formName) => {
+    console.log("..........", checkValidation());
     if (checkValidation() && formName === "pwdForm")
-      props.handleSubmit(inputPwdValues)
+      handleSubmitForm(inputPwdValues);
     return;
-  }
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -43,27 +48,39 @@ export default function FormDialogComp(props) {
 
     //password validation
 
-    const pwdCurrentValidate = passwordValidator(inputPwdValues.nPassword, "password");
-    const pwdNewValidate = passwordValidator(inputPwdValues.nPassword, "password");
+    const pwdCurrentValidate = passwordValidator(inputPwdValues.cPassword);
+    const pwdNewValidate = passwordValidator(inputPwdValues.nPassword);
 
     if (!pwdCurrentValidate.isValid) {
       errors.errorMsg = pwdCurrentValidate.errorMsg;
+      setValidation(errors);
       return false;
     } else {
       errors.errorMsg = "";
     }
-    if (pwdNewValidate.isValid) {
+    if (!pwdNewValidate.isValid) {
       errors.errorMsg = pwdNewValidate.errorMsg;
+      setValidation(errors);
       return false;
     } else {
       errors.errorMsg = "";
     }
 
+    //confirm password validation
 
-    //password validation
+    const pwdConfValidate = confirmPwdValidator(
+      inputPwdValues.confPassword,
+      inputPwdValues.nPassword
+    );
 
+    if (!pwdConfValidate.isValid) {
+      errors.errorMsg = pwdConfValidate.errorMsg;
+      // return false;
+    } else {
+      errors.errorMsg = "";
+    }
 
-
+    console.log(" error....", errors);
 
     setValidation(errors);
     if (Object.values(errors).every((value) => value === "")) {
@@ -75,51 +92,72 @@ export default function FormDialogComp(props) {
 
   const displayDialog = () => {
     if (isUserPopUp) {
-      return <>
-        <Box pl={2} pr={2}>
-          <Typography variant='body2'>Current Password</Typography>
-          <TextField
-            autoFocus
-            id="cPassword"
-            name='cPassword'
-            type="password"
-            fullWidth
-            variant="standard"
-            values={inputPwdValues.cPassword}
-            onChange={(e) => handleChange(e)}
-          />
-        </Box>
-        <Box pt={3} pl={2} pr={2}>
-          <Typography variant='body2'>New Password</Typography>
-          <TextField
-            id="nPassword"
-            name="nPassword"
-            type="password"
-            fullWidth
-            variant="standard"
-            values={inputPwdValues.nPassword}
-            onChange={(e) => handleChange(e)}
-          />
-        </Box>
-      </>
+      return (
+        <>
+          <Box pl={2} pr={2}>
+            <Typography variant="body2">Current Password</Typography>
+            <TextField
+              autoFocus
+              id="cPassword"
+              name="cPassword"
+              type="password"
+              fullWidth
+              variant="standard"
+              values={inputPwdValues.cPassword}
+              onChange={(e) => handleChange(e)}
+            />
+          </Box>
+          <Box pt={3} pl={2} pr={2}>
+            <Typography variant="body2">New Password</Typography>
+            <TextField
+              id="nPassword"
+              name="nPassword"
+              type="password"
+              fullWidth
+              variant="standard"
+              values={inputPwdValues.nPassword}
+              onChange={(e) => handleChange(e)}
+            />
+          </Box>
+
+          <Box pt={3} pl={2} pr={2}>
+            <Typography variant="body2">Confirm New Password</Typography>
+            <TextField
+              id="confPassword"
+              name="confPassword"
+              type="password"
+              fullWidth
+              variant="standard"
+              values={inputPwdValues.confPassword}
+              onChange={(e) => handleChange(e)}
+            />
+          </Box>
+        </>
+      );
     }
-  }
+  };
   return (
-    <Box >
+    <Box>
       <Dialog fullWidth="70%" open={open} onClose={handleClose}>
         <DialogTitle>Update Password</DialogTitle>
         <DialogContent>
           <Box pb={2}>
             <Divider />
           </Box>
-          {validation.errorMsg && <Box pb={4}>
-            <Alert severity="error">{validation.errorMsg}</Alert></Box>}
+          {validation.errorMsg && (
+            <Box pb={4}>
+              <Alert severity="error">{validation.errorMsg}</Alert>
+            </Box>
+          )}
           {displayDialog()}
-         
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseForm} variant="contained">Cancel</Button>
-          <Button onClick={(e) => handleSubmitForm("pwdForm")} variant="contained">Submit</Button>
+          <Button onClick={handleCloseForm} variant="contained">
+            Cancel
+          </Button>
+          <Button onClick={(e) => handleSubmit("pwdForm")} variant="contained">
+            Submit
+          </Button>
         </DialogActions>
       </Dialog>
     </Box>
