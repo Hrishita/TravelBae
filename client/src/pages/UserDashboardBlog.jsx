@@ -1,21 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState, useContext } from "react";
 import "./../components/UserDashboard/Dashboard.css";
 import NavBar from "../containers/NavBar";
 import Footer from "../containers/Footer";
 import SideBar from "../components/SideBar/Sidebar";
-import { Grid } from "@material-ui/core";
-import { Box, Button, CardActionArea, CssBaseline, Divider, Paper, Typography, useTheme } from "@mui/material";
+import { Grid, Snackbar } from "@material-ui/core";
+import {Alert, Box, Button, CardActionArea, CssBaseline, Divider, Paper, Typography, useTheme } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+import { AuthContext } from "../context/AuthContext";
+
 
 function UserDashbordBlog() {
   const history = useHistory();
+  const [showSnackbar, setShowSnackbar] = useState(false)
+
   const [blogs, setBlogs] = React.useState([]);
+  const auth = useContext(AuthContext);
 
   const handleClick = () => {
     history.push("/write-blog");
+  }
+  const goToBlog = id => {
+    history.push(`/view-blog/${id}`);
   }
   const fetchAllBlogs = async () => {
     let res = await axios({
@@ -25,12 +33,17 @@ function UserDashbordBlog() {
     setBlogs(res.data);
     console.log(res.data);
   }
+  if (!auth.userProfileData.length) {
+    auth.loadUserProfile(); 
+  }
+  const userData = auth.userProfileData.length ? auth.userProfileData[0] : {};
   useEffect(() => { 
     fetchAllBlogs();
   }, [])
   const theme = useTheme();
   
   const handleDelete = async (id) => {
+
     console.log("deleted the blog");
     let res = await axios({
       method: 'post',
@@ -40,21 +53,43 @@ function UserDashbordBlog() {
       }
     })
     console.log(res.data)
+    setShowSnackbar(true)
+    fetchAllBlogs()
   }
 
+
   const displayCard = (blog) => {
-    return (<Grid item xs={12}>
+    return (<Grid item xs={12} onClick={() => goToBlog(blog.id)}>
+          <Box component={'div'} className="card shadow flex-wrap p-3 d-flex justify-content-start align-items-center flex-row my-3">
+        <Snackbar
+            open={showSnackbar}
+            autoHideDuration={6000}
+            onClose={() => {
+              setShowSnackbar(false);
+            }}
+          >
+            <Alert
+              onClose={() => {
+                setShowSnackbar(false);
+              }}
+              severity="success"
+              sx={{ width: "100%" }}
+            >
+              Deleted Successfully
+            </Alert>
+          </Snackbar>
+        </Box>
       <Paper sx={{ display: 'flex' }} >
-        <Box sx={{ display: 'flex' }} onClick={handleClick}>
-          <img src={blog.image} width="200rem" alt="Blog Image" onClick={handleClick} />
+        <Box sx={{ display: 'flex' }} >
+          <img src={blog.image} width="200rem" alt="Blog Image" />
         </Box>
 
-        <Box sx={{ display: 'flex', flexDirection: 'column', padding: 2 }} onClick={handleClick}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', padding: 2 }} >
           <Typography component="div" variant="h5">
             {blog.title}
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" component="div">
-            Jenner Joe
+           {userData.flname}{userData}
           </Typography>
           <Typography>
             {blog.content.substring(0, 10)}
