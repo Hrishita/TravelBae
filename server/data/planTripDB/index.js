@@ -12,7 +12,7 @@ exports.createPlanTrip = function (req, res) {
   const {
     plan_id,
     plan_name,
-    emailid,
+    userID,
     city,
     country,
     start_date,
@@ -21,13 +21,15 @@ exports.createPlanTrip = function (req, res) {
     travel_partner,
     recommended_itineraries,
     accommodation,
+    transportation,
+    activity,
   } = req.body;
 
   console.log(req.body);
 
   (insertPlanTripData.plan_id = plan_id),
     (insertPlanTripData.plan_name = plan_name),
-    (insertPlanTripData.emailid = emailid),
+    (insertPlanTripData.userID = userID),
     (insertPlanTripData.city = city),
     (insertPlanTripData.country = country),
     (insertPlanTripData.start_date = start_date),
@@ -36,6 +38,8 @@ exports.createPlanTrip = function (req, res) {
     (insertPlanTripData.travel_partner = travel_partner),
     (insertPlanTripData.recommended_itineraries = recommended_itineraries),
     (insertPlanTripData.accommodation = accommodation),
+    (insertPlanTripData.transportation = transportation),
+    (insertPlanTripData.activity = activity),
     insertPlanTripData.save(function (err, planTrip) {
       if (err) {
         res.send(err);

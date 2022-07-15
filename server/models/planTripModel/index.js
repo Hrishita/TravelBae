@@ -10,7 +10,7 @@ const mongoose = require("mongoose");
 const plannedTripSchema = new mongoose.Schema({
   plan_id: { type: String, required: true },
   plan_name: { type: String, default: "FunTrip" },
-  emailid: { type: String, required: true },
+  userID: { type: String, required: true },
   city: { type: String, required: true },
   country: { type: String, required: true },
   start_date: { type: String, require: true },
@@ -19,6 +19,8 @@ const plannedTripSchema = new mongoose.Schema({
   travel_partner: [{ type: String }],
   recommended_itineraries: [{ type: String }],
   accommodation: [{ type: String }],
+  activity: [{ String }],
+  transportation: [{ String }],
 });
 
 const PlanTrip = mongoose.model("planTrip", plannedTripSchema);
