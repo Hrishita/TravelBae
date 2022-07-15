@@ -14,6 +14,7 @@ import AccommodationSortDropdown from "../components/AccommodationSortDropdown";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import usePagination from "../containers/UsePagination";
+import NoDataFound from "../components/NoDataFound";
 
 function ActivitiesToDoListPage() {
   const [allHotels, setAllHotels] = useState([]);
@@ -47,7 +48,7 @@ function ActivitiesToDoListPage() {
       .then((res) => {
         setAllHotels(res.data.data);
       });
-  }, [allHotels]);
+  }, [keyword, filtering, sort ]);
 
   const [page, setPage] = useState(1);
   const PER_PAGE = 9;
@@ -103,16 +104,44 @@ function ActivitiesToDoListPage() {
 
       <Grid item xs={12}>
         <Grid container justifyContent="center" alignItems="center">
-          <Box
-            component="span"
-            sx={{
-              fontSize: 24,
-              fontFamily: "Arial",
-              fontWeight: "bold",
-            }}
-          >
-            Top Activities to Do...
-          </Box>
+          {allHotels.length === 0 && (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={2}
+              style={{ textAlign: "center" }}
+            >
+              <NoDataFound
+                message="Search Results are Empty"
+                display={true}
+                listEmpty={true}
+                className="text-align-center"
+              />
+            </Grid>
+          )}
+          {allHotels.length !== 0 && (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={2}
+              style={{ textAlign: "center" }}
+            >
+              <Box
+                component="span"
+                sx={{
+                  fontSize: 24,
+                  fontFamily: "Arial",
+                  fontWeight: "bold",
+                }}
+              >
+                Top Activities to Do...
+              </Box>
+            </Grid>
+          )}
         </Grid>
       </Grid>
       <Grid container>

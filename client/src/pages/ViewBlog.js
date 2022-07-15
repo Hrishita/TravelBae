@@ -59,7 +59,10 @@ function ViewBlog() {
   }, [])
 
   const handleSubmit = async () => {
+    console.log("comment"+userId)
+
     let newComments = [...comments, {
+
       comment_id: Math.random() * 50000,
         blog_id: blog.blog_id,
         comment_text: comment,

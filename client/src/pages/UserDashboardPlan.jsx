@@ -21,7 +21,7 @@ import { completedPlanData } from "../containers/CardCont/mockData";
 import { AuthContext } from "../context/AuthContext";
 import { BACKEND_URL } from "../config";
 import Checkbox from "@mui/material/Checkbox";
-
+import { BACKEND_URL } from "../config";
 function UserDashbordPlan() {
   const auth = useContext(AuthContext);
 
