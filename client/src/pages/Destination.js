@@ -1,12 +1,13 @@
+/**
+ * Author: Smily Ms
+ * Feature: Destionation Information System
+ * Task: Display all destinations
+ */
 import { Link, makeStyles, Card, CardMedia } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import NavBar from "../containers/NavBar";
-import { Grid, Box, Typography, Divider } from "@mui/material";
-import {
-  blogCards,
-  accCards,
-} from "../containers/CardCont/mockData";
+import { Grid, Box, Typography, Divider, Button} from "@mui/material";
 import Footer from "../containers/Footer";
 import { useHistory } from "react-router-dom";
 import GoogleMap from "./../components/GoogleMap/index";
@@ -33,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+/**
+ * 
+ * @returns 
+ */
 const Destination = () => {
   const classes = useStyles();
   const history = useHistory();
@@ -42,22 +47,31 @@ const Destination = () => {
   const [destinationName, setDestinationName] = useState("");
   const [destinationDescription, setDestinationDescription] = useState("");
   const [destinationImage, setDestinationImage] = useState("");
+  const [blogCards, setBlogCards] = useState("");
 
   useEffect(() => {
     const fetchDestinationURL = `${BACKEND_URL}/destination/fetchDestinationByCode/${params.code}`;
-    axios.get(fetchDestinationURL).then((res)=> {
-      setDestinationName(res.data.destinations.dest_name);
-      setDestinationDescription(res.data.destinations.dest_desc);
-      setDestinationImage(res.data.destinations.img);
-    }).catch((err) => console.log(err));
+    axios
+      .get(fetchDestinationURL)
+      .then((res) => {
+        setDestinationName(res.data.destinations.dest_name);
+        setDestinationDescription(res.data.destinations.dest_desc);
+        setDestinationImage(res.data.destinations.img);
+      })
+      .catch((err) => console.log(err));
 
+      const fetchBlogsURL = `${BACKEND_URL}/bg/fetchBlogByDestination`;
+      axios.post(fetchBlogsURL, {
+        'destination_tag' : params.code
+      }).then((res) => {
+          setBlogCards(res.data);
+          console.log(res.data);
+      })
   }, []);
 
   const handleListItemClick = (navigationLink, type) => {
-    if(type === "accommodation"){
-      history.push(navigationLink);
-    }
-    if(type === "blogs"){
+    if (type === "blogs") {
+      debugger
       history.push(navigationLink);
     }
   };
@@ -68,6 +82,9 @@ const Destination = () => {
   const handleClose = () => {
     setOpen(false);
   };
+  const handleViewAccomodation = () => {
+    history.push("/accommodation/" + destinationName);
+  }
   const displayStrip = (title, cards, navigationLink, type) => {
     // const data = cards;
     return (
@@ -79,13 +96,6 @@ const Destination = () => {
                 <Typography fontFamily="Nothing You Could Do" variant="h5">
                   {title}
                 </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={2}>
-              <Box pt={4} pr={2} display="flex" justifyContent="flex-end">
-                <Link color="secondary" onClick={handleOpen}>
-                  View All
-                </Link>
               </Box>
             </Grid>
           </Grid>
@@ -102,7 +112,7 @@ const Destination = () => {
             justifyContent="center"
             spacing={2}
           >
-            {cards.map((card) => {
+            {cards && cards.map((card) => {
               return (
                 <Grid
                   item
@@ -115,14 +125,17 @@ const Destination = () => {
                   <Card
                     className={classes.root}
                     onClick={() => {
-                      handleListItemClick(`${navigationLink}/${card.city}`, type);
+                      handleListItemClick(
+                        `${navigationLink}/${card.blog_id}`,
+                        "blogs"
+                      );
                     }}
                   >
                     <CardMedia
                       component="img"
                       alt={title}
                       height="300"
-                      image={card.img}
+                      image={card.image}
                       title={title}
                     />
                     <Typography
@@ -151,11 +164,10 @@ const Destination = () => {
         <Grid item xs={12}>
           <Box sx={{ padding: "1em 3em" }}>
             <Grid container>
-            
               <Grid item sm={12}>
                 <Box sx={{ height: "25em", marginBottom: "1em" }}>
                   <img
-                    src= {destinationImage}
+                    src={destinationImage}
                     height={"100%"}
                     alt="image4"
                     width={"100%"}
@@ -170,6 +182,9 @@ const Destination = () => {
                   <Typography variant="body2" color="default">
                     {destinationDescription}
                   </Typography>
+                  <Button variant="contained" onClick={handleViewAccomodation} sx={{height: "3em", marginTop: "1em"}}>
+                    <Typography p={1}>View Accommodations</Typography>
+                  </Button>
                 </Box>
               </Grid>
               <Grid item xs={12} md={3} sx={{ padding: "0em 0.5em" }}>
@@ -180,8 +195,7 @@ const Destination = () => {
         </Grid>
         <Grid item xs={12}>
           <Box sx={{ padding: "1em 3em" }}>
-            {displayStrip("Travel Blogs", blogCards, "/view-blogs")}
-            {displayStrip("Accommodations", accCards, "/accommodation", "accommodation")}
+            {blogCards.length > 0 ? (displayStrip("Travel Blogs", blogCards, "/view-blogs")) : (<></>)}
           </Box>
         </Grid>
       </Grid>

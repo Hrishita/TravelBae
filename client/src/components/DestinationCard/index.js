@@ -16,7 +16,7 @@ const DestinationCardComp = ({ details }) => {
 
   const history = useHistory();
   const handleListItemClick = () => {
-    history.push("/destination/" + details.details.dest_code);
+    history.push("/destination/" + details.details.dest_name);
   };
   const [open, setOpen] = useState(false); // for alert box
 
