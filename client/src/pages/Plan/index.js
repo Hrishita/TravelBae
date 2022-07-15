@@ -1,11 +1,13 @@
 import { Box, Grid, Paper, Typography } from "@mui/material";
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 import NavBar from "../../containers/NavBar";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import VillaIcon from "@mui/icons-material/Villa";
 import HikingIcon from "@mui/icons-material/Hiking";
 import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
-import data from "./mockData";
+import axios from "axios";
+import { BACKEND_URL } from "../../config";
+// import data from "./mockData";
 
 const displayPaper = (title, data, icon) => {
   // @Todo: Take data from mockdata and print in grid item
@@ -186,6 +188,22 @@ const displayPaper = (title, data, icon) => {
 };
 
 const MyPlan = (props) => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchURL = `${BACKEND_URL}/pt/findPlanTripByPlanID`;
+    const planIDReq = {
+      plan_id: props.plan_id,
+    };
+    axios
+      .post(fetchURL, planIDReq)
+      .then((res) => {
+        setData(res.data);
+        console.log("data....", data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <Grid container>
       <Grid item xs={12}>
@@ -204,27 +222,27 @@ const MyPlan = (props) => {
         />
       </Grid>
       {/* @Todo: Take data from mockdata and print in grid item */}
-      {data &&
+      {data.length &&
         displayPaper(
           data.plan_name.toUpperCase(),
           data,
           <TravelExploreIcon fontSize="large" color="secondary" />
         )}
-      {data &&
+      {data.length &&
         data.accommodation.length !== 0 &&
         displayPaper(
           "ACCOMMODATION",
           data,
           <VillaIcon fontSize="large" color="secondary" />
         )}
-      {data &&
+      {data.length &&
         data.activity.length !== 0 &&
         displayPaper(
           "ACTIVITIES TO DO",
           data,
           <HikingIcon fontSize="large" color="secondary" />
         )}
-      {data &&
+      {data.length &&
         data.transportation.length !== 0 &&
         displayPaper(
           "TRANSPORTATION",

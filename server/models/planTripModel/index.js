@@ -13,17 +13,17 @@ const plannedTripSchema = new mongoose.Schema({
   userID: { type: String, required: true },
   city: { type: String, required: true },
   country: { type: String, required: true },
-  start_date: { type: String, require: true },
-  end_date: { type: String, require: true },
+  start_date: { type: String, required: true },
+  end_date: { type: String, required: true },
   is_completed: { type: Boolean, Default: false },
-  travel_partner: [{ type: String }],
-  recommended_itineraries: [{ type: String }],
-  accommodation: [{ type: String }],
+  travel_partner: [String],
+  recommended_itineraries: [{ String }],
+  accommodation: [{ String }],
   activity: [{ String }],
   transportation: [{ String }],
 });
 
-const PlanTrip = mongoose.model("planTrip", plannedTripSchema);
+const PlanTrip = mongoose.model("PlanTrip", plannedTripSchema, "plantrips");
 
 /**
  * The module is being exported as 'PlanTrip'
