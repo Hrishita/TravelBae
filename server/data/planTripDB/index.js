@@ -96,8 +96,8 @@ exports.updatePlanTripByID = function (req, res) {
 };
 
 exports.findPlanTripByPlanID = function (req, res) {
-  let { planID } = req.body;
-  planTrip.find({ planID }, function (err, planTrip) {
+  let { plan_id } = req.body;
+  planTrip.find({ plan_id }, function (err, planTrip) {
     if (err) {
       res.send(err);
     }
