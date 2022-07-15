@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import NavBar from "../containers/NavBar";
 import { Grid, Box, Typography, Divider } from "@mui/material";
 import {
-  // destinationData,
   blogCards,
   accCards,
 } from "../containers/CardCont/mockData";

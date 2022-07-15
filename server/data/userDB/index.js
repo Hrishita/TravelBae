@@ -71,7 +71,6 @@ exports.updatePassword = function (req, res) {
 exports.addDestToBucketList = function (req, res) {
   const { dest_name, dest_code, img } = req.body.bucket_list;
   const userID = req.body.email;
-  console.log(userID);
   User.findOne({ email: userID }, function(err, user){
     if(err){
       console.log(err);

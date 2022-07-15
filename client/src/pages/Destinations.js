@@ -23,26 +23,25 @@ const Destinations = () => {
 
   const [destinationsData, setDestinationsData] = useState("");
   const [searchInput, setSearchInput] = useState("");
-  let destinationIsEmpty = true;
-  let showNoData = false;
+
 
   useEffect(() => {
     const fetchDestinationsURL = `${BACKEND_URL}/destination/fetchAllDestinations`;
     axios
       .get(fetchDestinationsURL)
       .then((res) => {
-        if(userID && auth.userProfileData.length > 0){
+        if (userID && auth.userProfileData.length > 0) {
           const bucketList = auth.userProfileData[0].bucket_list;
-          res.data.destinations.forEach((dest) =>{
+          res.data.destinations.forEach((dest) => {
             let index = bucketList.findIndex((item) => {
-              return item.dest_code === dest.dest_code
+              return item.dest_code === dest.dest_code;
             });
-            if(index >= 0){
+            if (index >= 0) {
               dest.isFavorite = true;
-            } else{
+            } else {
               dest.isFavorite = false;
             }
-        });
+          });
         }
         setDestinationsData(res.data.destinations);
       })
@@ -149,17 +148,20 @@ const Destinations = () => {
           <FilterMenu filterProperties={data}></FilterMenu>
         </Grid>
         <Grid container>
-          {_DATA.currentData() &&
+          {_DATA.currentData() ? (
             _DATA.currentData().map((destination) => {
-              console.log(destination);
-              return <DestinationCardCont details={destination}></DestinationCardCont>;
-            })}
-          <NoDataFound
-            display={showNoData}
-            message="Destination not present. Please search for another one or select from the list."
-            listEmpty={destinationIsEmpty}
-            className="text-align-center"
-          ></NoDataFound>
+              return (
+                <DestinationCardCont
+                  details={destination}
+                ></DestinationCardCont>
+              );
+            })
+          ) : (
+            <NoDataFound
+              message="Destination not present. Please search for another one or select from the list."
+              className="text-align-center"
+            ></NoDataFound>
+          )}
         </Grid>
 
         <Grid item xs={12}>
