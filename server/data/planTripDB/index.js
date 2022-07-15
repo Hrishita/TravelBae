@@ -67,6 +67,7 @@ exports.findPlanTripByUserID = function (req, res) {
 };
 
 exports.deletePlanTripByID = function (req, res) {
+  console.log("Deleting the data");
   const { plan_id } = req.body;
   planTrip.findOneAndDelete({ plan_id }, function (err, planTrip) {
     if (err) {
@@ -74,4 +75,19 @@ exports.deletePlanTripByID = function (req, res) {
     }
     res.json(planTrip);
   });
+};
+
+exports.updatePlanTripByID = function (req, res) {
+  console.log("Updating the paln status");
+  const { plan_id } = req.body;
+  planTrip.findOneAndUpdate(
+    { plan_id },
+    { is_completed: true },
+    function (err, planTrip) {
+      if (err) {
+        res.send(err);
+      }
+      res.json(planTrip);
+    }
+  );
 };
