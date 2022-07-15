@@ -8,7 +8,7 @@ import { Box, Button, CardActionArea, CssBaseline, Divider, Paper, Typography, u
 import { useHistory } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from "axios";
-import { BACKEND_URL } from "../../config";
+import { BACKEND_URL } from "../config";
 
 function UserDashbordBlog() {
   const history = useHistory();
