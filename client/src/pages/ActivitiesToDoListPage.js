@@ -67,6 +67,20 @@ function ActivitiesToDoListPage() {
         <NavBar />
       </Grid>
       <Grid item xs={12}>
+        <Box
+          component="img"
+          sx={{
+            height: 600,
+            width: "100%",
+            borderRadius: 2,
+            p: 4,
+          }}
+          title="main image accommodation"
+          alt="The house from the offer."
+          src="https://assets-eu-01.kc-usercontent.com/bcd02f72-b50c-0179-8b4b-5e44f5340bd4/6349a86b-0fff-41ec-a230-41fc427ed203/Outdoor-activties-header.jpg"
+        />
+      </Grid>
+      <Grid item xs={12}>
         <Box pt={4} pb={4}>
           <ActivitySearchBoxComp keyword={setKeyword} />
           <Grid

@@ -15,7 +15,8 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import axios from "axios";
 import { BACKEND_URL } from "../../config";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 const style = {
   position: "absolute",
@@ -35,6 +36,9 @@ function HorizontralCardComp(props) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const auth = useContext(AuthContext);
+  const userId = auth.userId ? auth.userId : "";
+
   const [open1, setOpen1] = React.useState(false);
   const handleOpen1 = () => setOpen1(true);
   const handleClose1 = () => setOpen1(false);
@@ -45,17 +49,32 @@ function HorizontralCardComp(props) {
     setSelectTrip(event.target.value);
   };
 
+  const addToTrip = () => {
+    axios
+      .post(`${BACKEND_URL}/pt/updatePlan`, {
+        accommodation: {
+          hotel_id: props.id,
+          hotel_name: props.name,
+          address: props.address,
+          city: props.city,
+          price: props.price,
+          country: props.country,
+        },
+      })
+      .then((res) => {
+        setTrips(res.data);
+      });
+  };
+
   const [trips, setTrips] = React.useState([{}]);
 
   useEffect(() => {
     axios
-      .post(`${BACKEND_URL}/pt/findPlanTripByUserID/test@gmail.com`)
+      .post(`${BACKEND_URL}/pt/findPlanTripByUserID/${userId}`)
       .then((res) => {
         setTrips(res.data);
       });
-  },[]);
-
-  console.log("trips",trips)
+  }, []);
 
   return (
     <Card sx={{ width: 345, maxWidth: 345, ml: 2, mt: 2 }}>
@@ -129,9 +148,9 @@ function HorizontralCardComp(props) {
                 </Typography>
               </Box>
               <Box>
-                <Box sx={{ minWidth: 120 }}>
+                <Box sx={{ minWidth: 140 }}>
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Age</InputLabel>
+                    <InputLabel id="demo-simple-select-label">Select a Trip</InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
@@ -141,21 +160,11 @@ function HorizontralCardComp(props) {
                     >
                       {trips?.map((myVariable, index) => {
                         return (
-                          // <HorizontralCardComp
-                          //   key={index}
-                          //   name={myVariable.hotel_name}
-                          //   address={myVariable.address}
-                          //   image={myVariable.hotel_image}
-                          //   price={myVariable.price}
-                          //   desc={myVariable.hotel_desc}
-                          //   city={myVariable.city}
-                          // />
-                          <MenuItem key={index} value={myVariable.plan_id}>{myVariable.plan_name} - {myVariable.city}</MenuItem>
+                          <MenuItem key={index} value={myVariable.plan_id}>
+                            {myVariable.plan_name} - {myVariable.city}
+                          </MenuItem>
                         );
                       })}
-                      {/* <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem> */}
                     </Select>
                   </FormControl>
                 </Box>
@@ -163,7 +172,11 @@ function HorizontralCardComp(props) {
             </Grid>
             <Grid container sx={{ pt: 2 }}>
               <Box sx={{ flexGrow: 1 }}></Box>
-              <Button sx={{ minWidth: 120 }} variant="contained">
+              <Button
+                sx={{ minWidth: 120 }}
+                onClick={addToTrip}
+                variant="contained"
+              >
                 Add
               </Button>
             </Grid>
