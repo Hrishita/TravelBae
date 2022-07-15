@@ -48,12 +48,12 @@ function UserDashbordPlan() {
     // console.log("fetching the data");
     let res = await axios({
       method: "POST",
-      url: "http://localhost:8000/pt/findPlanTripByUserID/" + id,
+      url: `${BACKEND_URL}/pt/findPlanTripByUserID/` + id,
     });
 
     let locData = await axios({
       method: "GET",
-      url: "http://localhost:8000/destination/fetchAllDestinations",
+      url: `${BACKEND_URL}/destination/fetchAllDestinations`,
     });
 
     let finalUpcomingData = Array();
