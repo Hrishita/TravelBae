@@ -4,6 +4,10 @@
 
 Group Number - 15
 
+## Prerequisites for heroku application
+
+- Install and enable this [CORS extension](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en) to run the project on Heroku.
+
 ## Author of the assignment
 
 - Name: Smily Ms
@@ -50,10 +54,6 @@ Group Number - 15
 - Git Project Individual Branch - Trushita Maurya: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/trushita-maurya
 - Git Project Individual Branch - Sangramsinh More: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/sangramsinh-more
 - Git Project Individual Branch - Smriti Mishra: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/smriti-mishra
-
-## Prerequisites for heroku application
-
-- Install and enable this [CORS extension](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en) to run the project on Heroku.
 
 ## Feature: Destination Information System
 
