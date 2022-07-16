@@ -179,5 +179,3 @@ The page will reload when you make changes.
 [4] "Installation - Material UI", Mui.com, 2022. [Online]. Available: https://mui.com/material-ui/getting-started/installation/. [Accessed: July 15, 2022]
 
 [5] Assignment-1 Git URL (SmilyMs) - https://git.cs.dal.ca/smily/smily-csci5709-individual/-/tree/assignment1
-
-- Used Material UI documentation to learn about different material UI components.
