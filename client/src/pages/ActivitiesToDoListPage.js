@@ -14,6 +14,7 @@ import AccommodationSortDropdown from "../components/AccommodationSortDropdown";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import usePagination from "../containers/UsePagination";
+import NoDataFound from "../components/NoDataFound";
 
 function ActivitiesToDoListPage() {
   const [allHotels, setAllHotels] = useState([]);
@@ -47,7 +48,7 @@ function ActivitiesToDoListPage() {
       .then((res) => {
         setAllHotels(res.data.data);
       });
-  }, [allHotels]);
+  }, [keyword, filtering, sort ]);
 
   const [page, setPage] = useState(1);
   const PER_PAGE = 9;
@@ -65,6 +66,20 @@ function ActivitiesToDoListPage() {
     <Grid container spacing={0.5}>
       <Grid item xs={12}>
         <NavBar />
+      </Grid>
+      <Grid item xs={12}>
+        <Box
+          component="img"
+          sx={{
+            height: 600,
+            width: "100%",
+            borderRadius: 2,
+            p: 4,
+          }}
+          title="main image accommodation"
+          alt="The house from the offer."
+          src="https://assets-eu-01.kc-usercontent.com/bcd02f72-b50c-0179-8b4b-5e44f5340bd4/6349a86b-0fff-41ec-a230-41fc427ed203/Outdoor-activties-header.jpg"
+        />
       </Grid>
       <Grid item xs={12}>
         <Box pt={4} pb={4}>
@@ -89,16 +104,44 @@ function ActivitiesToDoListPage() {
 
       <Grid item xs={12}>
         <Grid container justifyContent="center" alignItems="center">
-          <Box
-            component="span"
-            sx={{
-              fontSize: 24,
-              fontFamily: "Arial",
-              fontWeight: "bold",
-            }}
-          >
-            Top Activities to Do...
-          </Box>
+          {allHotels.length === 0 && (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={2}
+              style={{ textAlign: "center" }}
+            >
+              <NoDataFound
+                message="Search Results are Empty"
+                display={true}
+                listEmpty={true}
+                className="text-align-center"
+              />
+            </Grid>
+          )}
+          {allHotels.length !== 0 && (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={2}
+              style={{ textAlign: "center" }}
+            >
+              <Box
+                component="span"
+                sx={{
+                  fontSize: 24,
+                  fontFamily: "Arial",
+                  fontWeight: "bold",
+                }}
+              >
+                Top Activities to Do...
+              </Box>
+            </Grid>
+          )}
         </Grid>
       </Grid>
       <Grid container>

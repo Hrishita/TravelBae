@@ -30,7 +30,7 @@ const SearchComp = ({ onEvent }) => {
             className="text"
             variant="outlined"
             color="primary"
-            placeholder="Search by country name..."
+            placeholder="Search by city name..."
             size="small"
             onChange={(event) => setSearchInput(event.target.value)}
             value={searchInput}
@@ -55,7 +55,7 @@ const SearchComp = ({ onEvent }) => {
             className="text"
             variant="outlined"
             color="primary"
-            placeholder="Search by country name"
+            placeholder="Search by city name"
             size="small"
             onChange={(event) => setSearchInput(event.target.value)}
             sx={{

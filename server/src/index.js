@@ -48,7 +48,12 @@ app.use(cookieParser());
 //cors issues middleware
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: [
+      "http://localhost:3000",
+      "https://travel-bae.herokuapp.com/",
+      "https://api.openweathermap.org/data/2.5/forecast",
+      "https://api.openweathermap.org",
+    ],
     credentials: true,
   })
 );

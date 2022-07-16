@@ -3,10 +3,7 @@ import DestinationCard from "../../components/DestinationCard";
 
 function DestinationCardCont(props) {
   return (
-    props.details.map((dest) => {
-      return <DestinationCard details={dest} />
-    })
-    // <DestinationCard details={props} />
+      <DestinationCard details={props} />
   );
 }
 

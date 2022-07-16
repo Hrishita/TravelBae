@@ -1,8 +1,7 @@
 import { Typography } from "@mui/material";
 import * as React from "react";
 
-function NoDataFound({ message, display: show, listEmpty }) {
-  if (show && listEmpty) {
+function NoDataFound({ message, listEmpty }) {
     return (
       <Typography
         variant="body1"
@@ -12,9 +11,6 @@ function NoDataFound({ message, display: show, listEmpty }) {
         {message}
       </Typography>
     );
-  } else {
-    return false;
   }
-}
 
 export default NoDataFound;
