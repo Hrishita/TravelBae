@@ -22,11 +22,11 @@ Group Number - 15
 
 ## Professor
 
-[Shehzeen Huda](sh655624@dal.ca)
+- [Shehzeen Huda](sh655624@dal.ca)
 
 ## Teaching Assistant
 
-[Gurleen Saluja](gr997570@dal.ca)
+- [Gurleen Saluja](gr997570@dal.ca)
 
 ## Author of the assignment
 
@@ -35,15 +35,10 @@ Group Number - 15
 ## Authors of the project
 
 - [Smily Ms](smily@dal.ca)
-
 - [Hrishita Mavani](hr637632@dal.ca)
-
 - [Nishit Mistry](nishit.mistry@dal.ca)
-
 - [Smriti Mishra](sm689498@dal.ca)
-
 - [Trushita Maurya](trushita.maurya@dal.ca)
-
 - [Sangramsinh More](sangramsingh.more@dal.ca)
 
 ### Individual Branches for each Team Member -
