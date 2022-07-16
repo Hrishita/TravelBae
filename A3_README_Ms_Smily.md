@@ -17,19 +17,19 @@ Group Number - 15
 - Heroku deployment URL for application: https://travel-bae.herokuapp.com/destinations
 
 ## Professor
----
+
 [Shehzeen Huda](sh655624@dal.ca)
 
 ## Teaching Assistant
----
+
 [Gurleen Saluja](gr997570@dal.ca)
 
 ## Author of the assignment
----
-- [Hrishita Mavani](hr638732@dal.ca@dal.ca) - (Maintainer)
+
+- [Smily](smily@dal.ca) - (Maintainer)
 
 ## Authors of the project
----
+
 - [Smily](smily@dal.ca)
 
 - [Hrishita Mavani](hr637632@dal.ca)
@@ -149,7 +149,7 @@ The page will reload when you make changes.
 ## Built With
 
 - [Node.js](https://nodejs.org/en/download/)
-- [Heroku] - Platform for deploying web applications
+- [Heroku](https://id.heroku.com/login) - Platform for deploying web applications
 - [ReactJS](https://reactjs.org/) - ReactJS Library Used
 - [MaterialUI](https://mui.com/) - Material UI Library Used for Styling
 - [Node.js](https://nodejs.org/en/download/)
