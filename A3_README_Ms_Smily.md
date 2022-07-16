@@ -1,25 +1,59 @@
-# Assignment 3
+# Assignment 3 | Individual Submission 
 
-- Name: Smily
+## Project Group
+
+Group Number - 15
+
+## Author of the assignment
+
+- Name: Smily Ms
+- Date Created: July 15, 2022
+- Last Modification Date: July 15, 2022
 - Banner ID: B00871427
-- Group 15
+- Course: CSCI 5709 - Advanced Topics in Web Development
+- Git Project Repository - https://git.cs.dal.ca/maurya/csci-5709-project
+- Git Project Branch - Smily: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/smily
+- Heroku deployment URL for application: https://travel-bae.herokuapp.com/
+- Heroku deployment URL for application: https://travel-bae.herokuapp.com/destinations
 
-## Team Members:
+## Professor
+---
+[Shehzeen Huda](sh655624@dal.ca)
 
-- Hrishita Mavani
-- Nishit Mistry
-- Sangramsinh More
-- Smily MS
-- Smriti Mishra
-- Trushita Maurya
+## Teaching Assistant
+---
+[Gurleen Saluja](gr997570@dal.ca)
 
-## Project Repository, Deployment URL, Individual Branch
+## Author of the assignment
+---
+- [Hrishita Mavani](hr638732@dal.ca@dal.ca) - (Maintainer)
 
-- Deployment URL: https://travel-bae.herokuapp.com/
-- Feature URL: https://travel-bae.herokuapp.com/destinations
+## Authors of the project
+---
+- [Smily](smily@dal.ca)
 
-- Gitlab URL: https://git.cs.dal.ca/maurya/csci-5709-project
-- Gitlab URL (individual branch): https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/smily
+- [Hrishita Mavani](hr637632@dal.ca)
+
+- [Nishit Mistry](nishit.mistry@dal.ca)
+
+- [Smriti Mishra](sm689498@dal.ca)
+
+- [Trushita Maurya](trushita.maurya@dal.ca)
+
+- [Sangramsinh More](sangramsingh.more@dal.ca)
+
+### Individual Branches for each Team Member -
+
+- Git Project Individual Branch - Smily: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/smily
+- Git Project Individual Branch - Hrishita Mavani: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/hrishita-mavani
+- Git Project Individual Branch - Nishit Mistry: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/nishit-mistry
+- Git Project Individual Branch - Trushita Maurya: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/trushita-maurya
+- Git Project Individual Branch - Sangramsinh More: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/sangramsinh-more
+- Git Project Individual Branch - Smriti Mishra: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/smriti-mishra
+
+## Prerequisites for heroku application
+
+- Install this [CORS extension](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en) to run the project on Heroku.
 
 ## Feature: Destination Information System
 
@@ -70,7 +104,7 @@ Backend files:
 - Nodemon
   https://www.npmjs.com/search?q=nodemon
 
-### Prerequisites
+### Prerequisites for local
 
 To have a local copy of this lab running on your local machine, you will first need to install the following software / libraries / plug-ins
 
