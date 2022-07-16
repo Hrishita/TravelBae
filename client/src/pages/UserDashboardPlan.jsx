@@ -1,3 +1,8 @@
+/**
+ * Author: Smriti Mishra
+ * Feature: UserDashboard Plan Page
+ * Description: On this page, logged-in users will find a list of all the plans that have been finished as well as those that are upcomings.
+ */
 import React, { useEffect, useContext } from "react";
 import "./../components/UserDashboard/Dashboard.css";
 import NavBar from "../containers/NavBar";
@@ -51,15 +56,15 @@ function UserDashbordPlan() {
       .catch((error) => console.log(error));
   };
 
-  const handleClick = () => {
-    history.push({
-      pathname: "/myPlan",
-      state: {plan_id:1},
-    });
+  const handleClick = (plan_ids) => {
+    if (plan_ids)
+      history.push({
+        pathname: "/myPlan",
+        state: { plan_id: plan_ids },
+      });
   };
 
   const handleComplete = (id) => {
-    debugger;
     axios({
       method: "post",
       url: `${BACKEND_URL}/pt/updatePlanTripByID`,
@@ -121,12 +126,12 @@ function UserDashbordPlan() {
     return (
       <Grid item xs={12}>
         <Paper sx={{ display: "flex" }}>
-          <Box sx={{ display: "flex" }} onClick={handleClick}>
+          <Box sx={{ display: "flex" }}>
             <img
               src={plan.img}
               width="200rem"
               alt="Plan Image"
-              onClick={handleClick}
+              onClick={() => handleClick(plan.res.plan_id)}
             />
           </Box>
           <Box

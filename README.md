@@ -22,6 +22,10 @@ The Main Features of our application are:
 
 - Install and enable this [CORS extension](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en) to run the project on Heroku.
 
+## Prerequisites
+
+- Install and enable this [CORS extension](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en) to run the project on Heroku.
+
 ## Project Repository, Individual Branch and Deployement URL
 
 - _Date Created_: 16 Jun 2022
