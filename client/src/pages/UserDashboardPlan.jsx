@@ -1,3 +1,8 @@
+/**
+ * Author: Smriti Mishra
+ * Feature: UserDashboard Plan Page
+ * Description: On this page, logged-in users will find a list of all the plans that have been finished as well as those that are upcomings.
+ */
 import React, { useEffect, useContext } from "react";
 import "./../components/UserDashboard/Dashboard.css";
 import NavBar from "../containers/NavBar";
