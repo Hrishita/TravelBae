@@ -26,11 +26,11 @@ Group Number - 15
 
 ## Author of the assignment
 
-- [Smily](smily@dal.ca) - (Maintainer)
+- [Smily Ms](smily@dal.ca) - (Maintainer)
 
 ## Authors of the project
 
-- [Smily](smily@dal.ca)
+- [Smily Ms](smily@dal.ca)
 
 - [Hrishita Mavani](hr637632@dal.ca)
 
@@ -44,7 +44,7 @@ Group Number - 15
 
 ### Individual Branches for each Team Member -
 
-- Git Project Individual Branch - Smily: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/smily
+- Git Project Individual Branch - Smily Ms: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/smily
 - Git Project Individual Branch - Hrishita Mavani: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/hrishita-mavani
 - Git Project Individual Branch - Nishit Mistry: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/nishit-mistry
 - Git Project Individual Branch - Trushita Maurya: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/trushita-maurya
