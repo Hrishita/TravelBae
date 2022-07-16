@@ -1,3 +1,8 @@
+/**
+ * Author: Sangramsinh More
+ * Feature: Accommodation
+ * Task: Accommoadation sorting component for sorting accomodations by price
+ */
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import Button from "@mui/material/Button";
@@ -5,7 +10,13 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Box } from "@mui/system";
-// import { useState } from "react";
+
+/**
+ * This component is responsible for soring accommodation by price
+ * @param {*} props 
+ * @returns 
+ */
+
 
 const StyledMenu = styled((props) => (
   <Menu

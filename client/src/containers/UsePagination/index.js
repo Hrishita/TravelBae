@@ -1,5 +1,18 @@
+/**
+ * Author: Sangramsinh More
+ * Feature: Accommodation
+ * Task: Accommoadation Main Page
+ */
 import React, { useState } from "react";
 
+/**
+ * This component is responsible for pagination
+ * @param {*} props 
+ * @returns 
+ */
+
+
+// code reference: https://www.codegrepper.com/code-examples/javascript/pagination+hook+react
 function usePagination(data, itemsPerPage) {
   const [currentPage, setCurrentPage] = useState(1);
   const maxPage = Math.ceil(data.length / itemsPerPage);

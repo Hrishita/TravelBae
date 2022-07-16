@@ -1,3 +1,8 @@
+/**
+ * Author: Sangramsinh More
+ * Feature: Accommodation
+ * Task: Accommoadation service for mongoose REST calls
+ */
 const accommodation = require("../../models/accommodationModel");
 
 // here remove .sort() if you only want to search
