@@ -60,11 +60,6 @@ Group Number - 15
 4. Pagination : The resultset of destinations is paginated (5 destinations in 1 page).
 
 
-### Front-end development framework: 
-
-- [ReactJS](https://reactjs.org/) - ReactJS Library Used
-- [MaterialUI](https://mui.com/) - Material UI Library Used for Styling
-
 #### Front-end files:
 
 - client/src/pages/Destinations.js: This is the main page that displays the list of destinations. The page is bound to APIs with which the user can search for a particualr destination, filter the destinations based on country, and use pagination to view more destinations.
@@ -97,6 +92,39 @@ Group Number - 15
   https://www.npmjs.com/package/mongoose-unique-validator
 - Nodemon
   https://www.npmjs.com/search?q=nodemon
+
+### Built With
+
+- [Node.js](https://nodejs.org/en/download/) - For the backend server
+- [Heroku](https://id.heroku.com/login) - Platform for deploying web applications
+- [ReactJS](https://reactjs.org/) - ReactJS Library Used
+- [MaterialUI](https://mui.com/) - Material UI Library Used for Styling
+- [Gitlab](https://git.cs.dal.ca/) - Repository and version control system
+- [Postman](https://www.postman.com/) - API testing software
+- [Mongo DB](https://www.mongodb.com/) - Tool used to check the collections and data on the database
+- [Express](https://expressjs.com/) - For the APIs and routes
+
+
+### Components Used
+
+For the completion of this assignment, I have used the components provided by [Material UI](https://mui.com/)
+The components used are:
+
+- App Bar
+- Theming
+- Grid
+- Typography
+- Box
+- Form Group
+- Checkbox
+- Icon Button
+- Tool Bar
+- Card
+- Grid
+- Pagination
+- Alert
+- TextField
+
 
 ### Prerequisites for local
 
@@ -140,10 +168,16 @@ Runs at [http://localhost:8000] in console
 
 The page will reload when you make changes.
 
-### Built With
+### References
 
-- [Node.js](https://nodejs.org/en/download/)
-- [Heroku](https://id.heroku.com/login) - Platform for deploying web applications
-- [ReactJS](https://reactjs.org/) - ReactJS Library Used
-- [MaterialUI](https://mui.com/) - Material UI Library Used for Styling
-- [Node.js](https://nodejs.org/en/download/)
+[1] "The W3C Markup Validation Service," Validator.w3.org [Online]. Available: https://validator.w3.org/. [Accessed: July 15, 2022].
+
+[2] "Cloud Application Platform | Heroku," Heroku.com [Online]. Available: https://www.heroku.com/. [Accessed: July 15, 2022].
+
+[3] "Getting Started – React", Reactjs.org, 2022. [Online]. Available: https://reactjs.org/docs/getting-started.html. [Accessed: July 15, 2022]
+
+[4] "Installation - Material UI", Mui.com, 2022. [Online]. Available: https://mui.com/material-ui/getting-started/installation/. [Accessed: July 15, 2022]
+
+[5] Assignment-1 Git URL (SmilyMs) - https://git.cs.dal.ca/smily/smily-csci5709-individual/-/tree/assignment1
+
+- Used Material UI documentation to learn about different material UI components.
