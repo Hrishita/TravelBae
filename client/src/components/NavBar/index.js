@@ -1,5 +1,5 @@
 /**
- * Author: Trushita
+ * Author: Trushita Maurya
  * Feature: User Management
  * Task: Login
  */
