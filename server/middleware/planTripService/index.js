@@ -1,5 +1,5 @@
 /**
- * Author:Smriti Mishra
+ * Author: Nishit Mistry and Smriti Mishra
  * Description: Handles DB operations of user dashboard plan information - add plan, fetch paln, delete plan, update plan.
  */
 const planTripDB = require("../../data/planTripDB/index");
