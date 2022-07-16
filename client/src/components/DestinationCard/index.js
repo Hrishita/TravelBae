@@ -1,15 +1,25 @@
+/**
+ * Author: Smily Ms
+ * Feature: Destination Information System
+ * Task: Display the list of destinations.
+ */
 import * as React from "react";
 import Paper from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useHistory } from "react-router-dom";
 import AlertDialog from "../../containers/AlertDialog";
 import { AuthContext } from "../../context/AuthContext";
 import { useState, useEffect } from "react";
 
+/**
+ *
+ * @param {*} details
+ * @returns a single card component with a favorite icon depending on the user login status.
+ */
 const DestinationCardComp = ({ details }) => {
   const auth = React.useContext(AuthContext);
   const userId = auth.userId;
@@ -81,30 +91,27 @@ const DestinationCardComp = ({ details }) => {
             </Typography>
           </Grid>
           <Grid item xs={2} sx={{ paddingLeft: "20px" }}>
-            {
-              details.details.isFavorite ? (
-                <FavoriteIcon
-                  size="large"
-                  aria-label="add to bucket list"
-                  aria-controls="bucketlist-icon"
-                  aria-haspopup="false"
-                  color="primary"
-                  sx={{ margin: "0px", height: "100%" }}
-                  onClick={handleOpen}
-                />
-              ) :
-              (
-                <FavoriteBorderIcon
-                  size="large"
-                  aria-label="add to bucket list"
-                  aria-controls="bucketlist-icon"
-                  aria-haspopup="false"
-                  color="primary"
-                  sx={{ margin: "0px", height: "100%" }}
-                  onClick={handleOpen}
-                />
-              )
-            }
+            {details.details.isFavorite ? (
+              <FavoriteIcon
+                size="large"
+                aria-label="add to bucket list"
+                aria-controls="bucketlist-icon"
+                aria-haspopup="false"
+                color="primary"
+                sx={{ margin: "0px", height: "100%" }}
+                onClick={handleOpen}
+              />
+            ) : (
+              <FavoriteBorderIcon
+                size="large"
+                aria-label="add to bucket list"
+                aria-controls="bucketlist-icon"
+                aria-haspopup="false"
+                color="primary"
+                sx={{ margin: "0px", height: "100%" }}
+                onClick={handleOpen}
+              />
+            )}
           </Grid>
           <Grid item xs={12}>
             <AlertDialog

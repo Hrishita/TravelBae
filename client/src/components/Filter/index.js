@@ -1,3 +1,8 @@
+/**
+ * Author: Smily Ms
+ * Feature: Destination Information System
+ * Task: Filter Destinations
+ */
 import React, { useState } from "react";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
@@ -7,6 +12,11 @@ import Checkbox from "@mui/material/Checkbox";
 import { Button } from "@mui/material";
 import AlertDialog from "../AlertDialog";
 
+/**
+ *
+ * @param {*} props
+ * @returns a filter component with checkboxes and clear button which is displayed for web screens
+ */
 const FilterComp = (props) => {
   const [clearAll, setClearAll] = React.useState(true);
   const [checkedItems, setCheckedItems] = React.useState([]);
