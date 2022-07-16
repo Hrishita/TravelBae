@@ -1,3 +1,8 @@
+/**
+ * Author: Sangramsinh More
+ * Feature: Accommodation/Activitites to do
+ * Task: Display Accommodation/Activities
+ */
 import React from "react";
 import { Button, Divider } from "@mui/material";
 import Card from "@mui/material/Card";
@@ -17,6 +22,7 @@ import axios from "axios";
 import { BACKEND_URL } from "../../config";
 import { useEffect, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import AlertDialog from "../../containers/AlertDialog";
 
 const style = {
   position: "absolute",
@@ -30,6 +36,13 @@ const style = {
   p: 4,
 };
 
+
+/**
+ * This component is responsible for displaying the accommoadtion and activity information in a card form, this component is reused for rendering individual accommodations and activities 
+ * @param {*} props 
+ * @returns 
+ */
+
 //Code Reference: https://mui.com/core/
 function HorizontralCardComp(props) {
   const [open, setOpen] = React.useState(false);
@@ -40,8 +53,11 @@ function HorizontralCardComp(props) {
   const userId = auth.userId ? auth.userId : "";
 
   const [open1, setOpen1] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
   const handleOpen1 = () => setOpen1(true);
+  const handleOpen2 = () => setOpen2(true);
   const handleClose1 = () => setOpen1(false);
+  const handleClose2 = () => setOpen2(false);
 
   const [selectTrip, setSelectTrip] = React.useState("");
 
@@ -99,7 +115,7 @@ function HorizontralCardComp(props) {
         <Button onClick={handleOpen} variant="contained" size="small">
           Learn More
         </Button>
-        <Button onClick={handleOpen1} variant="contained" size="small">
+        <Button onClick={handleOpen2} variant="contained" size="small">
           Add to Trip
         </Button>
         <Modal
@@ -183,6 +199,15 @@ function HorizontralCardComp(props) {
           </Box>
         </Modal>
       </CardActions>
+      <Grid item xs={12}>
+        <AlertDialog
+          open={open2}
+          title="Confirmation"
+          message="Sucessfully added to trip"
+          handleClose={handleClose2}
+          buttons={["Yay"]}
+        />
+      </Grid>
     </Card>
   );
 }

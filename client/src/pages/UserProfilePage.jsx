@@ -1,3 +1,6 @@
+/**
+ * Author: Trushita Maurya
+ */
 import React, { useContext } from "react";
 import "./../components/UserDashboard/Dashboard.css";
 import NavBar from "../containers/NavBar";
@@ -11,11 +14,15 @@ import { BACKEND_URL } from "../config";
 import axios from "axios";
 import FormDialogComp from "../components/FormDialogAlert";
 
+/**
+ * Author: Trushita Maurya
+ * File: Display user profile
+ * @returns
+ */
 const UserProfile = () => {
   const auth = useContext(AuthContext);
   const [open, setOpen] = React.useState(false);
   const [resData, setResData] = React.useState([]);
-  console.log("resData.....", resData);
   const handleClick = () => {
     setOpen(true);
   };

@@ -1,13 +1,16 @@
+/**
+ * Author: Sangramsinh More
+ * Feature: Accommodation
+ * Task: Accommoadation Main Page
+ */
 import React, { useEffect, useState } from "react";
 import { Grid, Divider } from "@mui/material";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
 import Footer from "../containers/Footer";
-// import Pagination from "../containers/Pagination";
 import AccommodationSearchBoxComp from "../components/AccommodationSearch";
 import HorizontralCardComp from "../components/HorizontalCard";
 import Filter from "../containers/Filter";
-// import data from "../containers/Filter/mockData";
 import FilterMenu from "../containers/FilterMenu";
 import accommodationFilter from "../containers/AccommodationFIlters";
 import axios from "axios";
@@ -18,6 +21,12 @@ import Stack from "@mui/material/Stack";
 import usePagination from "../containers/UsePagination";
 import { useParams } from "react-router-dom";
 import NoDataFound from "../components/NoDataFound";
+
+/**
+ * This component is responsible for the api calls with backend and also for the sorting, filtering, pagination and searching tasks.
+ * @param {*} props 
+ * @returns 
+ */
 
 function AccommodationListPage() {
   const [allHotels, setAllHotels] = useState([]);
@@ -34,6 +43,7 @@ function AccommodationListPage() {
     keyword.keyword = params.code;
   }
   console.log("san", keyword.keyword);
+  console.log("allHot", allHotels);
 
   let [sort, setSort] = useState(0);
 
@@ -149,7 +159,7 @@ function AccommodationListPage() {
                   fontWeight: "bold",
                 }}
               >
-                Where do you want to go?
+                Hotel results: 
               </Box>
             </Grid>
           )}

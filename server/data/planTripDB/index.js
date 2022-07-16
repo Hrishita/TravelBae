@@ -1,3 +1,7 @@
+/**
+ * Author: Smriti Mishra
+ * This file does all the operations on plantrips collection of Mongo DB
+ */
 const planTrip = require("../../models/planTripModel/index");
 
 /**

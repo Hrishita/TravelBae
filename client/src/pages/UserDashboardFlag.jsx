@@ -1,6 +1,16 @@
-import { Grid, Typography, Box, CardActions } from "@material-ui/core";
+/**
+ * Author: Smriti Mishra
+ * Feature: On this page, logged-in users will find a list of all the flags they have collected or will be collected after the trip completion
+ */
+import {
+  Grid,
+  Typography,
+  Box,
+  CardActions,
+  useForkRef,
+} from "@material-ui/core";
 import Button from "@mui/material/Button";
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import NavBar from "../containers/NavBar";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -8,44 +18,20 @@ import { CardActionArea, Divider } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import SideBar from "../components/SideBar/Sidebar";
+import { AuthContext } from "../context/AuthContext";
+import { BACKEND_URL } from "../config";
+import { flagdata } from "../containers/CardCont/mockData";
 
 //MockData
 import canada from "../assets/flags/canada.jpg";
 import india from "../assets/flags/india.jpg";
 import usa from "../assets/flags/usa.jpg";
 import france from "../assets/flags/france.jpg";
+import uk from "../assets/flags/uk.jpg";
+import thailand from "../assets/flags/thailand.jpg";
 
-import AlertDialog from "../containers/AlertDialog";
 import Footer from "../containers/Footer";
-
-const data = [
-  {
-    category: "Collected Falgs",
-    itemList: [
-      {
-        name: "Canada",
-        image: canada,
-      },
-      {
-        name: "USA",
-        image: usa,
-      },
-    ],
-  },
-  {
-    category: "Upcoming Flags To Be Collected",
-    itemList: [
-      {
-        name: "France",
-        image: france,
-      },
-      {
-        name: "India",
-        image: india,
-      },
-    ],
-  },
-];
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,47 +55,116 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UserDashbordFlag = (props) => {
+const UserDashbordFlag = () => {
+  const imgPaths = {
+    "../../assets/flags/france.jpg": france,
+    "../../assets/flags/canada.jpg": canada,
+    "../../assets/flags/usa.jpg": usa,
+    "../../assets/flags/india.jpg": india,
+    "../../assests/flags/uk.jpg": uk,
+    "../../assests/flags/thailand.jpg": thailand,
+  };
+
+  const auth = useContext(AuthContext);
+
+  const [data, setData] = useState([
+    {
+      category: "Collected Flags",
+      itemList: [],
+    },
+    {
+      category: "Upcoming Flags To Be Collected",
+      itemList: [],
+    },
+  ]);
+
+  let id = null;
+
+  if (auth && auth.isLoggedIn == true && auth.userId != null) {
+    id = auth.userId;
+  } else {
+    id = "test@gmail.com";
+  }
+
+  // const [NotCollectedFlag, setNotCollectedFlagData] = React.useState([]);
+  // const [CollectedFlag, setCollectedFlagData] = React.useState([]);
+
   const classes = useStyles();
-  const [checkedItems, setCheckedItems] = useState([]);
-  const [open, setOpen] = useState(false);
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleClick = (name) => {
-    console.log("name...", name);
-    const updatedChecklist = [...checkedItems];
-    const position = updatedChecklist.findIndex((item) => item === name);
-    if (position !== -1) {
-      updatedChecklist.splice(position, 1);
-    } else {
-      updatedChecklist.push(name);
+  const checkIfExist = (arr, name) => {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].name === name) return true;
     }
-    setCheckedItems(updatedChecklist);
+    return false;
   };
 
-  const displayCards = (name, image) => {
+  const fetchAllPlanTrips = async () => {
+    // console.log("fetching the data");
+    const mockDataFlag = flagdata;
+
+    let res = await axios({
+      method: "POST",
+      url: `${BACKEND_URL}/pt/findPlanTripByUserID/` + id,
+    });
+
+    let finalUpcomingData = Array();
+    let finalCompletedData = Array();
+    debugger;
+    res.data.map((cities) => {
+      console.log(cities);
+      for (let i = 0; i < mockDataFlag.length; i++) {
+        if (mockDataFlag[i].country === cities.country) {
+          if (cities.is_completed === false) {
+            mockDataFlag[i].res = cities;
+
+            if (!checkIfExist(finalUpcomingData, mockDataFlag[i].country))
+              finalUpcomingData.push({
+                name: mockDataFlag[i].country,
+                image: mockDataFlag[i].flag_image,
+              });
+
+            return true;
+          } else {
+            mockDataFlag[i].res = cities;
+            if (!checkIfExist(finalCompletedData, mockDataFlag[i].country))
+              finalCompletedData.push({
+                name: mockDataFlag[i].country,
+                image: mockDataFlag[i].flag_image,
+              });
+            return true;
+          }
+        }
+      }
+    });
+
+    setData([
+      {
+        category: "Collected Falgs",
+        itemList: finalUpcomingData,
+      },
+      {
+        category: "Upcoming Flags To Be Collected",
+        itemList: finalCompletedData,
+      },
+    ]);
+  };
+
+  useEffect(() => {
+    fetchAllPlanTrips();
+  }, []);
+
+  const displayCards = (name, img) => {
+    debugger;
+    let image = imgPaths[img];
     return (
-      <Card
-        className={classes.root}
-        key={name}
-        onClick={() => handleClick(name)}
-      >
-        <Box component="div" sx={{ height: "1rem" }}>
-          {checkedItems.indexOf(name) !== -1 && (
-            <CheckCircleIcon color="success" />
-          )}
-        </Box>
+      <Card className={classes.root} key={name}>
         {image && (
           <CardActionArea className={classes.actionArea}>
             <CardMedia
               className={classes.media}
               component="img"
               image={image}
+              // src={image}
               alt={name}
             />
           </CardActionArea>
@@ -202,16 +257,7 @@ const UserDashbordFlag = (props) => {
                     justifyContent="flex-end"
                     paddingLeft={2}
                     paddingRight={2}
-                  >
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      onClick={handleOpen}
-                    >
-                      Share Flag
-                    </Button>
-                  </Box>
+                  ></Box>
                 </Box>
               </Grid>
             </Grid>
@@ -220,15 +266,6 @@ const UserDashbordFlag = (props) => {
       </Grid>
       <Grid item xs={12}>
         <Footer />
-      </Grid>
-      <Grid item xs={12}>
-        <AlertDialog
-          open={open}
-          title="Confirm"
-          message="API logic required"
-          handleClose={handleClose}
-          buttons={["Cancel", "Ok"]}
-        />
       </Grid>
     </Grid>
   );

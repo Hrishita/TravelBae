@@ -1,5 +1,8 @@
-
-import { createContext } from 'react';
+/**
+ * Author : Trushita Maurya
+ * Created context to pass user information to all child components
+ */
+import { createContext } from "react";
 
 export const AuthContext = createContext({
   isLoggedIn: false,
@@ -7,5 +10,5 @@ export const AuthContext = createContext({
   token: null,
   login: () => {},
   logout: () => {},
-  loadUserProfile: () => {}
+  loadUserProfile: () => {},
 });

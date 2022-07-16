@@ -1,3 +1,7 @@
+/**
+ * Author:Smriti Mishra
+ * Description: Defines model structure of the planedTripSchema
+ */
 const mongoose = require("mongoose");
 
 /**

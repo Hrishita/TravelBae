@@ -1,3 +1,8 @@
+/**
+ * Author: Smriti Mishra
+ * Feature: UserDashboard
+ */
+
 import React from "react";
 import ProfileImage from "./../../assets/profile.jpg";
 import List from "@mui/material/List";
@@ -5,12 +10,13 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import "./Sidebar.css";
 import { Box, Divider, Paper, Typography, useTheme } from "@mui/material";
 import { menu } from "./SideBarMenu";
 import { useStyles } from "./style";
 import { useHistory } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
 
 const Sidebar = (props) => {
   const history = useHistory();
@@ -18,8 +24,15 @@ const Sidebar = (props) => {
     history.push(link);
   };
 
+  const auth = useContext(AuthContext);
   const theme = useTheme();
   const classes = useStyles();
+
+  if (!auth.userProfileData.length) {
+    auth.loadUserProfile();
+  }
+  const userData = auth.userProfileData.length ? auth.userProfileData[0] : {};
+
   return (
     <Paper elevation={3}>
       <Box
@@ -40,7 +53,9 @@ const Sidebar = (props) => {
             alt="ProfileImage"
             src={ProfileImage}
           />
-          <Typography variant="h5"> Jenner Joe</Typography>
+          <Typography variant="h5">
+            {userData.fName} {userData.lName}
+          </Typography>
         </Box>
         <Box ml={3} mr={3}>
           <Divider />

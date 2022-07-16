@@ -1,14 +1,9 @@
-// References: https://stackoverflow.com/questions/63963246/bcrypt-mongoose-change-user-password
+/**
+ * Author: Trushita Maurya
+ * This file does all the operations on users collection of Mongo DB
+ */
 const User = require("../../models/userModel");
 const bcrypt = require("bcrypt");
-
-/**
- * This function does all the operations on users collection
- * to find the email that's sent from another function.
- * @param {*} req : The request passsed as a parameter to the function userDB
- * @returns : The function returns the User model
- * associated with the  email foung in the database
- */
 
 exports.fetchUserProfile = function (req, res) {
   const email = req.body.email;
@@ -34,13 +29,10 @@ exports.updatePassword = function (req, res) {
     });
   } else {
     //VALIDATION SUCCESSFUL
-    //Ensure current password submitted matches
     User.findOne({ email: userID }).then((user) => {
-      //encrypt newly submitted password
       bcrypt.compare(cPassword, user.password, (err, isMatch) => {
         if (err) throw err;
         if (isMatch) {
-          //Update password for user with new password
           bcrypt.genSalt(10, (err, salt) =>
             bcrypt.hash(nPassword, salt, (err, hash) => {
               if (err) throw err;
@@ -53,7 +45,6 @@ exports.updatePassword = function (req, res) {
             error: "",
             message: "Password successfully updated!",
           });
-          res.redirect("/userdashboard");
         } else {
           res.json({
             error: "Current password is not a match.",
@@ -67,19 +58,13 @@ exports.updatePassword = function (req, res) {
 exports.addDestToBucketList = function (req, res) {
   const { dest_name, dest_code, img } = req.body.bucket_list;
   const userID = req.body.email;
-  User.findOne({ email: userID }, function(err, user){
-    if(err){
+  User.findOne({ email: userID }, function (err, user) {
+    if (err) {
       console.log(err);
-    } else{
+    } else {
       user.bucket_list.push({ dest_name, dest_code, img });
       user.save();
-      return res.json({success: true, user: user});;
+      return res.json({ success: true, user: user });
     }
-  })
+  });
 };
-
-/**
- * The module is being exported as userDB so that
- * this module can be imported into other modules.
- */
-// module.exports = userDB;

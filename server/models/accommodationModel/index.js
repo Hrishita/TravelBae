@@ -1,3 +1,8 @@
+/**
+ * Author: Sangramsinh More
+ * Feature: Accommodation
+ * Task: Accommoadation schema for mongoose
+ */
 const mongoose = require("mongoose");
 /**
  * This constant defines the model structure of the accommodationSchema that is to be stored in MongoDB.
