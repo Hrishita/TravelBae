@@ -53,7 +53,7 @@ Group Number - 15
 
 ## Prerequisites for heroku application
 
-- Install this [CORS extension](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en) to run the project on Heroku.
+- Install and enable this [CORS extension](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en) to run the project on Heroku.
 
 ## Feature: Destination Information System
 
