@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
  */
 
 const plannedTripSchema = new mongoose.Schema({
-  plan_id: { type: String, required: true },
+  plan_id: { type: Number, required: true },
   plan_name: { type: String, default: "FunTrip" },
   userID: { type: String, required: true },
   city: { type: String, required: true },

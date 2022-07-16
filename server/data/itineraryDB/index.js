@@ -15,7 +15,6 @@ exports.fetchRecommendedItineraries = function (req, res) {
 };
 
 exports.searchByCity = function (req, res) {
-  // https://stackoverflow.com/questions/1863399/mongodb-is-it-possible-to-make-a-case-insensitive-query
   Itinerary.find(
     { itinerary_city: { $regex: req.body.itinerary_city, $options: "i" } },
     function (err, itineraries) {

@@ -41,7 +41,7 @@ exports.fetchAllDestinations = function(req,res){
 };
 
 exports.fetchDestinationByCode = function(req, res){
-  Destination.findOne({dest_code: req.params.dest_code}, function(err, destinationsList){
+  Destination.findOne({dest_name: req.params.dest_name}, function(err, destinationsList){
     if(err) return res.json({success: false, error: err});
     return res.json({success: true, destinations: destinationsList});
   });

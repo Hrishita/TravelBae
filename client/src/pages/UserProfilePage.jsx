@@ -14,7 +14,7 @@ import FormDialogComp from "../components/FormDialogAlert";
 const UserProfile = () => {
   const auth = useContext(AuthContext);
   const [open, setOpen] = React.useState(false);
-  const [resData, setResData] = React.useState(false);
+  const [resData, setResData] = React.useState([]);
   console.log("resData.....", resData);
   const handleClick = () => {
     setOpen(true);
@@ -26,7 +26,7 @@ const UserProfile = () => {
     axios
       .post(url, userUpdate)
       .then((res) => {
-        setResData(res);
+        setResData(res.data);
       })
       .catch((e) => {
         console.error(e);
@@ -106,6 +106,7 @@ const UserProfile = () => {
               handleClose={handleClose}
               handleSubmitForm={handleSubmit}
               isUserPopUp={true}
+              alertMsg={resData}
             />
           </Grid>
         </>

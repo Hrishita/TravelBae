@@ -7,6 +7,7 @@ import HikingIcon from "@mui/icons-material/Hiking";
 import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
 import axios from "axios";
 import { BACKEND_URL } from "../../config";
+import { useLocation } from "react-router-dom";
 // import data from "./mockData";
 
 const displayPaper = (title, data, icon) => {
@@ -35,21 +36,21 @@ const displayPaper = (title, data, icon) => {
           {title === data.plan_name.toUpperCase() && (
             <>
               <Box display={"inline-flex"} width="100%" pb={1} pt={1}>
-                <Typography variant="h5" fontWeight={550}>
+                <Typography variant="h5" fontWeight={600}>
                   Plan Name:
                 </Typography>
                 <Typography variant="h5">&nbsp;</Typography>
                 <Typography variant="h5">{data.plan_name}</Typography>
               </Box>
               <Box display={"inline-flex"} width="100%" pb={1}>
-                <Typography variant="h5" fontWeight={550}>
+                <Typography variant="h5" fontWeight={600}>
                   Location:
                 </Typography>
                 <Typography variant="h5">&nbsp;</Typography>
                 <Typography variant="h5">{data.city}</Typography>
               </Box>
               <Box display={"inline-flex"} width="100%" pb={1}>
-                <Typography variant="h5" fontWeight={550}>
+                <Typography variant="h5" fontWeight={600}>
                   Travel Partner:
                 </Typography>
                 <Typography variant="h5">&nbsp;</Typography>
@@ -188,18 +189,19 @@ const displayPaper = (title, data, icon) => {
 };
 
 const MyPlan = (props) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
+  const location = useLocation();
+  console.log("data....", data);
 
   useEffect(() => {
     const fetchURL = `${BACKEND_URL}/pt/findPlanTripByPlanID`;
     const planIDReq = {
-      plan_id: props.plan_id,
+      plan_id: location.state.plan_id,
     };
     axios
       .post(fetchURL, planIDReq)
       .then((res) => {
-        setData(res.data);
-        console.log("data....", data);
+        setData(res.data[0]);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -222,27 +224,27 @@ const MyPlan = (props) => {
         />
       </Grid>
       {/* @Todo: Take data from mockdata and print in grid item */}
-      {data.length &&
+      {data.plan_name &&
         displayPaper(
           data.plan_name.toUpperCase(),
           data,
           <TravelExploreIcon fontSize="large" color="secondary" />
         )}
-      {data.length &&
+      {Object.keys(data).length !== 0 &&
         data.accommodation.length !== 0 &&
         displayPaper(
           "ACCOMMODATION",
           data,
           <VillaIcon fontSize="large" color="secondary" />
         )}
-      {data.length &&
+      {Object.keys(data).length !== 0 &&
         data.activity.length !== 0 &&
         displayPaper(
           "ACTIVITIES TO DO",
           data,
           <HikingIcon fontSize="large" color="secondary" />
         )}
-      {data.length &&
+      {Object.keys(data).length !== 0 &&
         data.transportation.length !== 0 &&
         displayPaper(
           "TRANSPORTATION",
