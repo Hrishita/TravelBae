@@ -1,8 +1,13 @@
+/**
+ * Author: Smily Ms
+ * Feature: Destination Information System
+ */
 const destinationRouter = require("express").Router();
 const destinationService = require("../../middleware/destinationService");
 /**
- * This router is to create a POST API for insertDestination. This API can be tested on Postman
- * with route '/destination/insertDestination' at the end of the server_url.
+ * This router is to create a POST API for inserting, fetching, updating the destinations. 
+ * This API can be tested on Postman
+ * with route '/destination/{insertDestination}' at the end of the server_url.
  */
  destinationRouter.post("/insertDestination", destinationService.insertDestination);
 

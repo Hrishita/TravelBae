@@ -1,8 +1,18 @@
+/**
+ * Author: Smily Ms
+ * Feature: Destination Information System
+ * Task: Search for destination.
+ */
+
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 
+/**
+ * 
+ * The search component function which invokes an event on click of the search button.
+ */
 const SearchComp = ({ onEvent }) => {
   const [searchInput, setSearchInput] = useState("");
   let handleEvent = () => {
