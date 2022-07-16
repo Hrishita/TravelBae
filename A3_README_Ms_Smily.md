@@ -1,8 +1,8 @@
 # Assignment 3
 
-Name: Smily
-Banner ID: B00871427
-Group 15
+- Name: Smily
+- Banner ID: B00871427
+- Group 15
 
 ## Team Members:
 
