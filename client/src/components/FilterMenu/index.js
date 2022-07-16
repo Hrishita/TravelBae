@@ -1,3 +1,8 @@
+/**
+ * Author: Smily Ms
+ * Feature: Destination Information System
+ * Task: Filter Destinations
+ */
 import * as React from "react";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -6,6 +11,11 @@ import Filter from "../../containers/Filter";
 import Menu from "@mui/material/Menu";
 import { Box } from "@mui/system";
 
+/**
+ *
+ * @param {*} props
+ * @returns a filter component with checkboxes which is displayed for mobile screens
+ */
 export default function FilterMenuComp(props) {
   const [travelBaeFilter, setTravelBaeFilterMenu] = React.useState(null);
 

@@ -1,3 +1,7 @@
+/**
+ * Author: Smily Ms
+ * Feature: Destination Information System
+ */
 const mongoose = require("mongoose");
 
 /**
