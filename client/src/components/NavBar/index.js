@@ -43,10 +43,6 @@ const pages = [
     name: "Things to Carry",
     link: "/thingstocarry",
   },
-  {
-    name: "Bucket List",
-    link: "/bucket-list",
-  },
 ];
 
 //user profile settings
