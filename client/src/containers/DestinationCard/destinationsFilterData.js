@@ -1,3 +1,8 @@
+/**
+ * Author: Smily Ms
+ * Feature: DEstination Information System
+ * Task: Filter Destination
+ */
 const destinationFilterPoperties = [
   {
     filterTitle: "Country",
