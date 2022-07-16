@@ -1,3 +1,9 @@
+/**
+ * Author: Trushita Maurya
+ * Feature: User Management
+ * Task: Login
+ */
+
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -12,6 +18,8 @@ import MenuItem from "@mui/material/MenuItem";
 import Logo from "../../assets/logo.jpeg";
 import { useStyles } from "./style";
 import { Link, useHistory } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
+import { AccountCircle } from "@mui/icons-material";
 
 //navbar page links
 const pages = [
@@ -44,20 +52,42 @@ const pages = [
 //user profile settings
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
+/**
+ * Renders Nav Bar UI with user avatar for login and sign up button for guest users
+ * @returns
+ */
 const NavBarComp = () => {
   const classes = useStyles();
   const history = useHistory();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const auth = React.useContext(AuthContext);
+  const userId = auth.userId;
+
   const navigateToPage = (page) => {
     history.push(page);
   };
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  // const handleOpenUserMenu = (event) => {
-  //   setAnchorElUser(event.currentTarget);
-  // };
+
+  const handleLogout = () => {
+    auth.logout();
+    history.push("/");
+  };
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleOpenProfile = () => {
+    history.push("/userdashboard");
+  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -69,6 +99,44 @@ const NavBarComp = () => {
   const handleSignIn = () => {
     history.push("/register");
   };
+
+  const displayUserAvatar = () => {
+    return (
+      <>
+        <div>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={handleMenu}
+            color="secondary"
+          >
+            <AccountCircle fontSize="large" />
+          </IconButton>
+          <Menu
+            id="menu-appbar"
+            anchorEl={anchorEl}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem onClick={handleOpenProfile}>Profile</MenuItem>
+            <MenuItem onClick={handleLogout}>Log Out</MenuItem>
+          </Menu>
+        </div>
+      </>
+    );
+  };
+
   return (
     <AppBar position="static" className={classes.root}>
       <Container maxWidth="xl">
@@ -179,14 +247,20 @@ const NavBarComp = () => {
             {/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton> */}
-            <Button
-              color="secondary"
-              variant="contained"
-              onClick={handleSignIn}
-              type="submit"
-            >
-              <Typography color="white">Sign Up</Typography>
-            </Button>
+
+            {userId ? (
+              displayUserAvatar()
+            ) : (
+              <Button
+                color="secondary"
+                variant="contained"
+                onClick={handleSignIn}
+                type="submit"
+              >
+                <Typography color="white">Sign Up</Typography>
+              </Button>
+            )}
+
             {/* </Tooltip> */}
             <Menu
               sx={{ mt: "45px" }}

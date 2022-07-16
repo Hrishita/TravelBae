@@ -1,3 +1,9 @@
+/**
+ * Author: Trushita Maurya
+ * Feature: User Management
+ * Task: Registration
+ *
+ */
 import React, { useState } from "react";
 import {
   Avatar,
@@ -10,8 +16,12 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Link } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
 
+/**
+ * File renders the registration form and takes care of client side validation
+ * @param {*} props
+ * @returns
+ */
 function RegisterComp(props) {
   const [fName, setfName] = useState("");
   const [lName, setlName] = useState("");
@@ -23,8 +33,6 @@ function RegisterComp(props) {
     backgroundSize: "cover",
   };
 
-
-  //error handling
   const [error, setError] = useState({
     fName: "",
     lName: "",
@@ -173,10 +181,10 @@ function RegisterComp(props) {
       fName: fName,
       lName: lName,
       email: email,
-      password: password
+      password: password,
     };
 
-      props.handleSignUp(userProfileData)
+    props.handleSignUp(userProfileData);
     //send data to next page if validation is correct
     // history.push({
     //   pathname: "/userdashboard-trips",

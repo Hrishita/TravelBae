@@ -56,11 +56,19 @@ const HomePage = () => {
     setOpen(false);
   };
 
-  const handleClick = (link) => {
+  const handleClick = (link,type) => {
+    if(type==="accommodation"){
     history.push(link);
+    }
+    if(type==="blogs"){
+      history.push(link);
+      }
+      if(type==="destination"){
+        history.push(link);
+        }
   };
 
-  const displayStrip = (title, cards, link) => {
+  const displayStrip = (title, cards, link,type) => {
     const data = cards;
     return (
       <>
@@ -106,7 +114,7 @@ const HomePage = () => {
                 >
                   <Card
                     className={classes.root}
-                    onClick={() => handleClick(link)}
+                    onClick={() => handleClick(`${link}/${card.city}`,type)}
                   >
                     <CardMedia
                       component="img"
@@ -146,9 +154,9 @@ const HomePage = () => {
           <SearchBoxComp />
         </Box>
       </Grid>
-      {displayStrip("Popular Places", destinationData, "/destinations")}
+      {displayStrip("Popular Places", destinationData, "/destination", "destination")}
       {displayStrip("Travel Blogs", blogCards, "/view-blogs")}
-      {displayStrip("Accommodations", accCards, "/accommodationList")}
+      {displayStrip("Accommodations", accCards, "/accommodation", "accommodation" )}
 
       <Grid item xs={12}>
         <Footer />

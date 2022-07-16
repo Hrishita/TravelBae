@@ -56,12 +56,10 @@ const DayItineraryPage = () => {
     weatherData.list.map((item) => {
       return {
         epochDate: item.dt,
-        // https://stackoverflow.com/questions/40752287/use-moment-js-to-convert-unix-epoch-time-to-human-readable-time
         formattedDate: moment.unix(item.dt).format("MMM DD YYYY"),
       };
     });
 
-  //https://yagisanatode.com/2021/07/03/get-a-unique-list-of-objects-in-an-array-of-object-in-javascript/
   let uniqueDates = [
     ...new Map(
       dates && dates.map((item) => [item["formattedDate"], item])

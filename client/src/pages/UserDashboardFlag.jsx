@@ -1,127 +1,270 @@
-import React from "react";
-import "./../components/UserDashboard/Dashboard.css";
-import gif1 from "./../assets/blue-flag.gif";
-import gif2 from "./../assets/white-flag.gif";
-import SideBar from "../components/SideBar/Sidebar";
-import Footer from "../containers/Footer";
+import {
+  Grid,
+  Typography,
+  Box,
+  CardActions,
+  useForkRef,
+} from "@material-ui/core";
+import Button from "@mui/material/Button";
+import React, { useState, useContext, useEffect } from "react";
 import NavBar from "../containers/NavBar";
-import { Grid } from "@material-ui/core";
-import Typography from "@mui/material/Typography";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import { CardActionArea, Divider } from "@mui/material";
+import { makeStyles } from "@material-ui/core/styles";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import SideBar from "../components/SideBar/Sidebar";
+import { AuthContext } from "../context/AuthContext";
+import { BACKEND_URL } from "../config";
+import { flagdata } from "../containers/CardCont/mockData";
 
-function UserDashbordFlag() {
+//MockData
+import canada from "../assets/flags/canada.jpg";
+import india from "../assets/flags/india.jpg";
+import usa from "../assets/flags/usa.jpg";
+import france from "../assets/flags/france.jpg";
+import uk from "../assets/flags/uk.jpg";
+import thailand from "../assets/flags/thailand.jpg";
+
+import Footer from "../containers/Footer";
+import axios from "axios";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundSize: "contain",
+    transition: "transform 0.15s ease-in-out",
+    "&:hover": { transform: "scale3d(1.05, 1.05, 1)" },
+    paddingBottom: "1rem",
+    cursor: "pointer",
+  },
+  media: {
+    objectFit: "scale-down",
+    height: "50%",
+    alignItems: "center",
+    width: "50%",
+  },
+  actionArea: {
+    display: "flex",
+  },
+  cardFooter: {
+    justifyContent: "center",
+  },
+}));
+
+const UserDashbordFlag = () => {
+  const imgPaths = {
+    "../../assets/flags/france.jpg": france,
+    "../../assets/flags/canada.jpg": canada,
+    "../../assets/flags/usa.jpg": usa,
+    "../../assets/flags/india.jpg": india,
+    "../../assests/flags/uk.jpg": uk,
+    "../../assests/flags/thailand.jpg": thailand,
+  };
+
+  const auth = useContext(AuthContext);
+
+  const [data, setData] = useState([
+    {
+      category: "Collected Flags",
+      itemList: [],
+    },
+    {
+      category: "Upcoming Flags To Be Collected",
+      itemList: [],
+    },
+  ]);
+
+  let id = null;
+
+  if (auth && auth.isLoggedIn == true && auth.userId != null) {
+    id = auth.userId;
+  } else {
+    id = "test@gmail.com";
+  }
+
+  // const [NotCollectedFlag, setNotCollectedFlagData] = React.useState([]);
+  // const [CollectedFlag, setCollectedFlagData] = React.useState([]);
+
+  const classes = useStyles();
+
+  const checkIfExist = (arr, name) => {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].name === name) return true;
+    }
+    return false;
+  };
+
+  const fetchAllPlanTrips = async () => {
+    // console.log("fetching the data");
+    const mockDataFlag = flagdata;
+
+    let res = await axios({
+      method: "POST",
+      url: `${BACKEND_URL}/pt/findPlanTripByUserID/` + id,
+    });
+
+    let finalUpcomingData = Array();
+    let finalCompletedData = Array();
+    debugger;
+    res.data.map((cities) => {
+      console.log(cities);
+      for (let i = 0; i < mockDataFlag.length; i++) {
+        if (mockDataFlag[i].country === cities.country) {
+          if (cities.is_completed === false) {
+            mockDataFlag[i].res = cities;
+
+            if (!checkIfExist(finalUpcomingData, mockDataFlag[i].country))
+              finalUpcomingData.push({
+                name: mockDataFlag[i].country,
+                image: mockDataFlag[i].flag_image,
+              });
+
+            return true;
+          } else {
+            mockDataFlag[i].res = cities;
+            if (!checkIfExist(finalCompletedData, mockDataFlag[i].country))
+              finalCompletedData.push({
+                name: mockDataFlag[i].country,
+                image: mockDataFlag[i].flag_image,
+              });
+            return true;
+          }
+        }
+      }
+    });
+
+    setData([
+      {
+        category: "Collected Falgs",
+        itemList: finalUpcomingData,
+      },
+      {
+        category: "Upcoming Flags To Be Collected",
+        itemList: finalCompletedData,
+      },
+    ]);
+  };
+
+  useEffect(() => {
+    fetchAllPlanTrips();
+  }, []);
+
+  const displayCards = (name, img) => {
+    debugger;
+    let image = imgPaths[img];
+    return (
+      <Card className={classes.root} key={name}>
+        {image && (
+          <CardActionArea className={classes.actionArea}>
+            <CardMedia
+              className={classes.media}
+              component="img"
+              image={image}
+              // src={image}
+              alt={name}
+            />
+          </CardActionArea>
+        )}
+        <CardActions className={classes.cardFooter}>
+          <Typography gutterBottom component="div">
+            {name}
+          </Typography>
+        </CardActions>
+      </Card>
+    );
+  };
   return (
-    <Grid container>
+    <Grid spacing={2} container mt={2}>
       <Grid item xs={12}>
         <NavBar />
       </Grid>
-      <Grid item xs={12}>
-        <div className="main-container">
-          <SideBar />
-          <div
-            className="dashbord-container"
-            style={{ justifyContent: "center" }}
-          >
-            <h3 className="dashbord-titletext">FLAGS</h3>
-            <div style={{ width: "85%", height: "70%" }}>
-              <div style={{ height: "70%", display: "flex" }}>
-                <div style={{ width: "50%", marginLeft: "20%" }}>
-                  <img
-                  alt="gif"
-                    src={gif2}
-                    style={{
-                      height: "14rem",
-                      borderRadius: "2rem",
+      <Grid item xs={12} sx={{ overflow: "hidden" }}>
+        <Grid container justifyContent="center">
+          <Grid item xs={12} lg={3}>
+            <SideBar />
+          </Grid>
+          <Grid item xs={12} lg={9}>
+            <Grid container justifyContent="center" spacing={2}>
+              <Grid item>
+                <Box display="inline-flex">
+                  <Typography variant="h5">Flags Collected</Typography>
+                  <Box
+                    sx={{
+                      display: { xs: "flex", lg: "none" },
                     }}
+                  ></Box>
+                </Box>
+              </Grid>
+              <Grid item xs={12}>
+                <Box pb={2}>
+                  <Divider
+                    variant="middle"
+                    sx={{ borderBottomWidth: 3, background: "black" }}
                   />
-                  <div>
-                    <Typography
-                      variant="h5"
-                      gutterBottom
-                      component="div"
-                      sx={{ paddingTop: "2%" }}
-                    >
-                      <h4 style={{ fontWeight: "bold", color: "#045b52" }}>
-                        Flags not collected from{" "}
-                      </h4>
-                    </Typography>
-                  </div>
-                  <div>
-                    <Typography
-                      variant="h5"
-                      gutterBottom
-                      component="div"
-                      sx={{ paddingTop: "2%" }}
-                    >
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Integer nec odio. Praesent libero. Sed cursus ante dapibus
-                      diam. Sed nisi. Nulla quis sem at nibh elementum
-                      imperdiet. Duis sagittis ipsum. Praesent mauris. 
-                    </Typography>
-                  </div>
-                </div>
+                </Box>
+              </Grid>
+              <Grid item xs={12}>
+                <Box
+                  sx={{
+                    width: "auto",
+                    height: "auto",
+                    backgroundColor: "white",
+                    marginLeft: "2rem",
+                    marginRight: "2rem",
+                  }}
+                ></Box>
+              </Grid>
+              {data.map((dataObj) => {
+                return (
+                  <>
+                    <Grid item xs={12}>
+                      <Typography variant="h5" textAlign="center">
+                        {dataObj.category}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Divider />
+                    </Grid>
+                    {dataObj.itemList.map((item) => (
+                      <Grid
+                        item
+                        xs={6}
+                        sm={4}
+                        md={2}
+                        lg={2}
+                        style={{ marginBottom: 20 }}
+                      >
+                        {displayCards(item.name, item.image)}
+                      </Grid>
+                    ))}
+                  </>
+                );
+              })}
 
-                <div style={{ width: "50%", marginLeft: "20%" }}>
-                  <img
-                  alt="gif"
-                    src={gif1}
-                    style={{
-                      height: "14rem",
-                      borderRadius: "2rem",
-                    }}
-                  />
-                  <div>
-                    <Typography
-                      variant="h5"
-                      gutterBottom
-                      component="div"
-                      sx={{ paddingTop: "2%" }}
-                    >
-                      <h4 style={{ fontWeight: "bold", color: "#045b52" }}>
-                        Flags collected from
-                      </h4>
-                    </Typography>
-                  </div>
-                  <div>
-                    <Typography
-                      variant="h5"
-                      gutterBottom
-                      component="div"
-                      sx={{ paddingTop: "2%" }}
-                    >
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Integer nec odio. Praesent libero. Sed cursus ante dapibus
-                      diam. Sed nisi. Nulla quis sem at nibh elementum
-                      imperdiet. Duis sagittis ipsum. Praesent mauris. 
-                    </Typography>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style={{ width: "100%", textAlign: "center" }}>
-              <Typography
-                variant="h3"
-                gutterBottom
-                component="div"
-                sx={{ paddingTop: "2%" }}
-              >
-                {/* <li style={{ listStyle: "none" }}>
-                  <h5>
-                    <a href="/userdashboard-flags">Flag bank of Travel Bae</a>
-                  </h5>
-                </li> */}
-                {/* Flag bank of Travel Bae */}
-              </Typography>
-            </div>
-
-            {}
-          </div>
-        </div>
+              <Grid item xs={12}>
+                <Box justifyContent="flex-end" display="flex">
+                  <Box
+                    display="inline-flex"
+                    justifyContent="flex-end"
+                    paddingRight={4}
+                  ></Box>
+                  <Box
+                    display="inline-flex"
+                    justifyContent="flex-end"
+                    paddingLeft={2}
+                    paddingRight={2}
+                  ></Box>
+                </Box>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
       </Grid>
       <Grid item xs={12}>
         <Footer />
       </Grid>
     </Grid>
   );
-}
+};
 
 export default UserDashbordFlag;

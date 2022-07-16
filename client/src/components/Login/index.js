@@ -1,4 +1,9 @@
-import React, { useState } from "react";
+/**
+ * Author: Trushita Maurya
+ * Feature: User Management
+ * Task: User Login
+ */
+import React, { useContext, useState } from "react";
 import {
   Avatar,
   Box,
@@ -7,17 +12,24 @@ import {
   TextField,
   Typography,
   Container,
+  Alert,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Link } from "@material-ui/core";
 import AlertDialog from "../../containers/AlertDialog";
-import filterProperties from "../../pages/Itinerary/FilterMockData";
+import { AuthContext } from "../../context/AuthContext";
 
+/**
+ * Renders Login UI
+ * @param {*} props
+ * @returns
+ */
 function LoginComp(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [open, setOpen] = useState(false); // for alert box
-
+  const loginVal = props.loginCredsError;
+  // const [loginVal, setLoginVal] = useState(props.loginCredsError);
   const handleClose = () => {
     setOpen(false);
   };
@@ -50,6 +62,7 @@ function LoginComp(props) {
   //password validation
   const handlePasswordChange = (value) => {
     setPassword(value);
+
     let pattern = new RegExp(/^[A-Za-z0-9_@./!$%^~`*=|;:'",(){}#&+-]*$/);
     let errorObj = Object.assign({}, error);
     let len = value.length;
@@ -101,7 +114,7 @@ function LoginComp(props) {
 
     const userData = { email, password };
     // setOpen(true);
-    props.handleLogin(userData)
+    props.handleLogin(userData);
   };
 
   return (
@@ -167,11 +180,16 @@ function LoginComp(props) {
                 />
               </Grid>
               <Grid item xs={12}>
+                {loginVal && (
+                  <Typography color="#d32f2f" variant="caption">
+                    {loginVal}
+                  </Typography>
+                )}
                 <Button
                   type="submit"
                   fullWidth
                   variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
+                  sx={{ mt: 2, mb: 2 }}
                   onClick={(e) => handleSubmit(e)}
                 >
                   <Typography color="white">Log In</Typography>

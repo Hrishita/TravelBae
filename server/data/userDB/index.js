@@ -1,17 +1,11 @@
-// References: https://stackoverflow.com/questions/63963246/bcrypt-mongoose-change-user-password
+/**
+ * Author: Trushita Maurya
+ * This file does all the operations on users collection of Mongo DB
+ */
 const User = require("../../models/userModel");
 const bcrypt = require("bcrypt");
 
-/**
- * This function does all the operations on users collection
- * to find the email that's sent from another function.
- * @param {*} req : The request passsed as a parameter to the function userDB
- * @returns : The function returns the User model
- * associated with the  email foung in the database
- */
-
-
- exports.fetchUserProfile = function (req, res) {
+exports.fetchUserProfile = function (req, res) {
   const email = req.body.email;
   User.find({ email: email }, function (err, user) {
     if (err) return res.json({ success: false, error: err });
@@ -19,50 +13,41 @@ const bcrypt = require("bcrypt");
   });
 };
 
-
 exports.updatePassword = function (req, res) {
-  const { currentPassword, newPassword, confirmNewPassword } = req.body;
-  const userID = req.user.id;
+  const { userID, cPassword, nPassword, confPassword } = req.body;
+  console.log("request............", req);
   let errors = [];
-  //Check required fields
-  if (!currentPassword || !newPassword || !confirmNewPassword) {
-    errors.push({ msg: "Please fill in all fields." });
-  }
 
   //Check passwords match
-  if (newPassword !== confirmNewPassword) {
+  if (nPassword !== confPassword) {
     errors.push({ msg: "New passwords do not match." });
   }
 
   if (errors.length > 0) {
-    res.render("changepassword", {
-      errors,
-      name: req.user.name,
+    res.json({
+      error: "New passwords do not match",
     });
   } else {
-    //VALIDATION PASSED
-    //Ensure current password submitted matches
-    User.findOne({ _id: userID }).then(user => {
-      //encrypt newly submitted password
-      bcrypt.compare(currentPassword, user.password, (err, isMatch) => {
+    //VALIDATION SUCCESSFUL
+    User.findOne({ email: userID }).then((user) => {
+      bcrypt.compare(cPassword, user.password, (err, isMatch) => {
         if (err) throw err;
         if (isMatch) {
-          //Update password for user with new password
           bcrypt.genSalt(10, (err, salt) =>
-            bcrypt.hash(newPassword, salt, (err, hash) => {
+            bcrypt.hash(nPassword, salt, (err, hash) => {
               if (err) throw err;
               user.password = hash;
               user.save();
             })
           );
-          req.flash("success_msg", "Password successfully updated!");
-          res.redirect("/dashboard");
+
+          res.json({
+            error: "",
+            message: "Password successfully updated!",
+          });
         } else {
-          //Password does not match
-          errors.push({ msg: "Current password is not a match." });
-          res.render("changepassword", {
-            errors,
-            name: req.user.name,
+          res.json({
+            error: "Current password is not a match.",
           });
         }
       });
@@ -70,10 +55,16 @@ exports.updatePassword = function (req, res) {
   }
 };
 
-
-
-/**
- * The module is being exported as userDB so that
- * this module can be imported into other modules.
- */
-// module.exports = userDB;
+exports.addDestToBucketList = function (req, res) {
+  const { dest_name, dest_code, img } = req.body.bucket_list;
+  const userID = req.body.email;
+  User.findOne({ email: userID }, function (err, user) {
+    if (err) {
+      console.log(err);
+    } else {
+      user.bucket_list.push({ dest_name, dest_code, img });
+      user.save();
+      return res.json({ success: true, user: user });
+    }
+  });
+};

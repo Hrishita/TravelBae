@@ -1,3 +1,10 @@
+/**
+ * Author Trushita Maurya
+ * Form validation check
+ * @param {*} value
+ * @returns
+ */
+
 // Email Validation
 export const isEmailValid = (value) => {
   let isValid = true;
@@ -37,7 +44,7 @@ export const passwordValidator = (value) => {
     isValid = false;
   } else {
     errorMsg = "";
-    isValid = false;
+    isValid = true;
   }
   pwdValidation.errorMsg = errorMsg;
   pwdValidation.isValid = isValid;

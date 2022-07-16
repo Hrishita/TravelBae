@@ -8,10 +8,10 @@ const transportationSchema = new mongoose.Schema({
     source: { type: String, required: true },
     dest_name: { type: String, required: true },
     flight_company: { type: String },
-    start_date: { type: Date, required: true },
-    return_date: { type: Date},
+    start_date: { type: Number, required: true },
+    return_date: { type: Number},
     trip_type: { type: String, required: true },
-    price: { type: String},
+    price: { type: Number},
     trip_duration: { type: String},
     flight_company_logo: { type: String}
 });

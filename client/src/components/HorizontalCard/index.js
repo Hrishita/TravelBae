@@ -1,3 +1,8 @@
+/**
+ * Author: Sangramsinh More
+ * Feature: Accommodation/Activitites to do
+ * Task: Display Accommodation/Activities
+ */
 import React from "react";
 import { Button, Divider } from "@mui/material";
 import Card from "@mui/material/Card";
@@ -9,6 +14,14 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import LocationOn from "@mui/icons-material/LocationOn";
 import { Grid } from "@mui/material";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import axios from "axios";
+import { BACKEND_URL } from "../../config";
+import { useEffect, useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 import AlertDialog from "../../containers/AlertDialog";
 
 const style = {
@@ -23,15 +36,61 @@ const style = {
   p: 4,
 };
 
+
+/**
+ * This component is responsible for displaying the accommoadtion and activity information in a card form, this component is reused for rendering individual accommodations and activities 
+ * @param {*} props 
+ * @returns 
+ */
+
 //Code Reference: https://mui.com/core/
 function HorizontralCardComp(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const auth = useContext(AuthContext);
+  const userId = auth.userId ? auth.userId : "";
+
   const [open1, setOpen1] = React.useState(false);
+  const [open2, setOpen2] = React.useState(false);
   const handleOpen1 = () => setOpen1(true);
+  const handleOpen2 = () => setOpen2(true);
   const handleClose1 = () => setOpen1(false);
+  const handleClose2 = () => setOpen2(false);
+
+  const [selectTrip, setSelectTrip] = React.useState("");
+
+  const handleChange = (event) => {
+    setSelectTrip(event.target.value);
+  };
+
+  const addToTrip = () => {
+    axios
+      .post(`${BACKEND_URL}/pt/updatePlan`, {
+        accommodation: {
+          hotel_id: props.id,
+          hotel_name: props.name,
+          address: props.address,
+          city: props.city,
+          price: props.price,
+          country: props.country,
+        },
+      })
+      .then((res) => {
+        setTrips(res.data);
+      });
+  };
+
+  const [trips, setTrips] = React.useState([{}]);
+
+  useEffect(() => {
+    axios
+      .post(`${BACKEND_URL}/pt/findPlanTripByUserID/${userId}`)
+      .then((res) => {
+        setTrips(res.data);
+      });
+  }, []);
 
   return (
     <Card sx={{ width: 345, maxWidth: 345, ml: 2, mt: 2 }}>
@@ -56,7 +115,7 @@ function HorizontralCardComp(props) {
         <Button onClick={handleOpen} variant="contained" size="small">
           Learn More
         </Button>
-        <Button onClick={handleOpen1} variant="contained" size="small">
+        <Button onClick={handleOpen2} variant="contained" size="small">
           Add to Trip
         </Button>
         <Modal
@@ -80,14 +139,73 @@ function HorizontralCardComp(props) {
             </Typography>
           </Box>
         </Modal>
+
+        <Modal
+          open={open1}
+          onClose={handleClose1}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography
+              id="modal-modal-title"
+              variant="h5"
+              component="h2"
+              sx={{ mb: 2 }}
+            >
+              Add to trip:
+            </Typography>
+            <Divider />
+            <Grid container sx={{ pt: 2 }}>
+              <Box sx={{ flexGrow: 1 }}>
+                {" "}
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  Select a plan:
+                </Typography>
+              </Box>
+              <Box>
+                <Box sx={{ minWidth: 140 }}>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Select a Trip</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={selectTrip}
+                      label="Select a Trip"
+                      onChange={handleChange}
+                    >
+                      {trips?.map((myVariable, index) => {
+                        return (
+                          <MenuItem key={index} value={myVariable.plan_id}>
+                            {myVariable.plan_name} - {myVariable.city}
+                          </MenuItem>
+                        );
+                      })}
+                    </Select>
+                  </FormControl>
+                </Box>
+              </Box>
+            </Grid>
+            <Grid container sx={{ pt: 2 }}>
+              <Box sx={{ flexGrow: 1 }}></Box>
+              <Button
+                sx={{ minWidth: 120 }}
+                onClick={addToTrip}
+                variant="contained"
+              >
+                Add
+              </Button>
+            </Grid>
+          </Box>
+        </Modal>
       </CardActions>
       <Grid item xs={12}>
         <AlertDialog
-          open={open1}
-          title="Confirm"
-          message="API logic required to Save"
-          handleClose={handleClose1}
-          buttons={["Cancel", "Ok"]}
+          open={open2}
+          title="Confirmation"
+          message="Sucessfully added to trip"
+          handleClose={handleClose2}
+          buttons={["Yay"]}
         />
       </Grid>
     </Card>
