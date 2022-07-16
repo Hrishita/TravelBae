@@ -4,11 +4,14 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import { Grid } from "@material-ui/core";
+import { Stack } from "@mui/material";
 import Card from "@material-ui/core/Card";
 import Footer from "../containers/Footer";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
+import { deepOrange } from "@mui/material/colors";
+
 import Avatar from "@material-ui/core/Avatar";
 import NavBar from "../containers/NavBar";
 import { useHistory } from "react-router-dom";
@@ -46,7 +49,9 @@ const useStyles = makeStyles((theme) => ({
   card: {
     maxWidth: "100%",
     width: "auto",
-    marginLeft: "20px",
+    marginLeft: "2rem",
+    marginRight: "2rem",
+    marginTop: "2rem",
     width: "18rem",
   },
   media: {
@@ -96,9 +101,9 @@ function BlogList() {
       );
     } else {
       setFiltered(blogs);
-    }
+    } 
   };
-  useEffect(() => {
+  useEffect(() =>  {
     fetchAllBlogs();
   }, []);
   return (
@@ -130,8 +135,8 @@ function BlogList() {
             />
           </Box>
           <Container maxWidth="lg" className={classes.blogsContainer}>
-            <Grid container spacing={3}>
-              <Box item xs={12} sm={6} md={4} className="d-flex flex-row">
+            <Grid container spacing={2}>
+              <Box item xs={12} sm={6} md={4} className="d-flex flex-row flex-wrap justify-content-center align-items-center my-3"> 
                 {filtered.map((blog, index) => {
                   return (
                     <Card
@@ -167,7 +172,8 @@ function BlogList() {
                       </CardActionArea>
                       <CardActions className={classes.cardActions}>
                         <Box className={classes.author}>
-                          <Avatar src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
+                        <Avatar sx={{ bgcolor: deepOrange[500], mx: 1.4 }}>{(blog && blog.author_id) ? blog.author_id[0] : ''}</Avatar>  
+
                           <Box ml={2}>
                             <Typography
                               variant="subtitle2"
@@ -181,7 +187,7 @@ function BlogList() {
                               color="textSecondary"
                               component="p"
                             >
-                              May 14, 2020
+                              {blog.date}
                             </Typography>
                           </Box>
                         </Box>
@@ -191,11 +197,24 @@ function BlogList() {
                 })}
               </Box>
             </Grid>
-            <Box my={4} className={classes.paginationContainer}>
+            {/* <Grid container justifyContent="center" sx={{ mt: 3, mb: 2 }}>
+                <Stack spacing={2}>
+                  <Pagination
+                    count={count}
+                    color="primary"
+                    page={page}
+                    variant="outlined"
+                    shape="rounded"
+                    onChange={handleChange1}
+                  />
+                </Stack>
+              </Grid> */}
+            {/* <Box my={4} className={classes.paginationContainer}>
               <Pagination count={10} />
-            </Box>
+            </Box> */}
           </Container>
         </Grid>
+      
       </Grid>
       <Grid item xs={12}>
         <Footer />
@@ -205,3 +224,4 @@ function BlogList() {
 }
 
 export default BlogList;
+

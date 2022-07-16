@@ -1,3 +1,6 @@
+/**
+ * Author: Trushita Maurya
+ */
 import React, { useContext } from "react";
 import "./../components/UserDashboard/Dashboard.css";
 import NavBar from "../containers/NavBar";
@@ -11,11 +14,15 @@ import { BACKEND_URL } from "../config";
 import axios from "axios";
 import FormDialogComp from "../components/FormDialogAlert";
 
+/**
+ * Author: Trushita Maurya
+ * File: Display user profile
+ * @returns
+ */
 const UserProfile = () => {
   const auth = useContext(AuthContext);
   const [open, setOpen] = React.useState(false);
-  const [resData, setResData] = React.useState(false);
-  console.log("resData.....", resData);
+  const [resData, setResData] = React.useState([]);
   const handleClick = () => {
     setOpen(true);
   };
@@ -26,7 +33,7 @@ const UserProfile = () => {
     axios
       .post(url, userUpdate)
       .then((res) => {
-        setResData(res);
+        setResData(res.data);
       })
       .catch((e) => {
         console.error(e);
@@ -106,6 +113,7 @@ const UserProfile = () => {
               handleClose={handleClose}
               handleSubmitForm={handleSubmit}
               isUserPopUp={true}
+              alertMsg={resData}
             />
           </Grid>
         </>

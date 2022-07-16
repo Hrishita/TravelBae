@@ -1,18 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import "./../components/UserDashboard/Dashboard.css";
 import NavBar from "../containers/NavBar";
 import Footer from "../containers/Footer";
 import SideBar from "../components/SideBar/Sidebar";
-import { Grid } from "@material-ui/core";
-import { Box, Button, CardActionArea, CssBaseline, Divider, Paper, Typography, useTheme } from "@mui/material";
+import { Grid, Snackbar } from "@material-ui/core";
+import {Alert, Box, Button, CardActionArea, CssBaseline, Divider, Paper, Typography, useTheme } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
 import axios from "axios";
-import { BACKEND_URL } from "../../config";
+import { BACKEND_URL } from "../config";
+import { AuthContext } from "../context/AuthContext";
 
 function UserDashbordBlog() {
   const history = useHistory();
   const [blogs, setBlogs] = React.useState([]);
+  const auth = useContext(AuthContext);
+  const [showSnackbar, setShowSnackbar] = useState(false)
+
+
+  if (!auth.userProfileData.length) {
+    auth.loadUserProfile(); 
+  }
+  const userData = auth.userProfileData.length ? auth.userProfileData[0] : {};
 
   const handleClick = () => {
     history.push("/write-blog");
@@ -38,22 +47,49 @@ function UserDashbordBlog() {
         blog_id: id
       }
     })
+    setShowSnackbar(true)
     console.log(res.data)
-  }
 
+   
+  }
+  const goToBlog = id => {
+    console.log("blog id is"+ id);
+
+    history.push(`/view-blogs/${id}`);
+  }
   const displayCard = (blog) => {
-    return (<Grid item xs={12}>
+    return (<Grid item xs={12} >
+   <Box component={'div'} >
+        <Snackbar
+            open={showSnackbar}
+            autoHideDuration={6000}
+            onClose={() => {
+              setShowSnackbar(false);
+              fetchAllBlogs()
+            }}
+          >
+            <Alert
+              onClose={() => {
+                setShowSnackbar(false);
+              }}
+              severity="success"
+              sx={{ width: "100%" }}
+            >
+              Deleted Successfully
+            </Alert>
+          </Snackbar>
+        </Box> 
       <Paper sx={{ display: 'flex' }} >
-        <Box sx={{ display: 'flex' }} onClick={handleClick}>
-          <img src={blog.image} width="200rem" alt="Blog Image" onClick={handleClick} />
+        <Box sx={{ display: 'flex' }} onClick={() => goToBlog(blog.blog_id)}>
+          <img src={blog.image} width="200rem" alt="Blog Image"  />
         </Box>
 
-        <Box sx={{ display: 'flex', flexDirection: 'column', padding: 2 }} onClick={handleClick}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', padding: 2 }} onClick={() => goToBlog(blog.blog_id)}>
           <Typography component="div" variant="h5">
             {blog.title}
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" component="div">
-            Jenner Joe
+            {userData.fname} {userData.lname}
           </Typography>
           <Typography>
             {blog.content.substring(0, 10)}
@@ -86,7 +122,7 @@ function UserDashbordBlog() {
               </Grid>
               <Grid item lg={6}>
                 <Box pt={2} pr={4} display="flex" justifyContent="flex-end">
-                  <Button variant="outlined" color="primary">Create Blog</Button>
+                  <Button variant="outlined" color="primary" onClick={handleClick}>Create Blog</Button>
                 </Box>
               </Grid>
             </Grid>

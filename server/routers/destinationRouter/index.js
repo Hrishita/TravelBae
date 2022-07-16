@@ -8,7 +8,7 @@ const destinationService = require("../../middleware/destinationService");
 
  destinationRouter.get("/fetchAllDestinations", destinationService.fetchAllDestinations);
 
- destinationRouter.get("/fetchDestinationByCode/:dest_code", destinationService.fetchDestinationByCode);
+ destinationRouter.get("/fetchDestinationByCode/:dest_name", destinationService.fetchDestinationByCode);
 
  destinationRouter.put("/updateDestinationByCode", destinationService.updateDestinationByCode);
 

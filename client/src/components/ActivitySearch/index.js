@@ -13,15 +13,14 @@ const ActivitySearchBoxComp = (props) => {
 
   const handleClick = (e) => {
     props.keyword(searchKeyword);
-    history.push("/activitylist");
   };
 
   return (
     <Box paddingLeft={4} paddingRight={4}>
-      <Grid container spacing={4} alignItems="center">
+      <Grid container spacing={4} alignItems="center" justifyContent="center">
         <Grid item lg={2} md={2} xs={12}>
           <Typography variant="h5" textAlign="center">
-            Where do you want to go?
+            Search for Activities
           </Typography>
         </Grid>
         <Grid item lg={3} md={2} xs={12}>
@@ -29,7 +28,7 @@ const ActivitySearchBoxComp = (props) => {
             <TextField
               id="searchKeyword"
               name="searchKeyword"
-              placeholder="Destination"
+              placeholder="Activities"
               size="medium"
               type="search"
               color="secondary"
@@ -37,32 +36,6 @@ const ActivitySearchBoxComp = (props) => {
               fullWidth
             />
           </Box>
-        </Grid>
-        <Grid item lg={2} md={2} xs={12}>
-          <TextField
-            id="date"
-            label="Check-in"
-            type="date"
-            color="secondary"
-            defaultValue={today}
-            sx={{ display: "flex" }}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-        </Grid>
-        <Grid item lg={2} md={2} xs={12}>
-          <TextField
-            id="date"
-            label="Check-out"
-            type="date"
-            color="secondary"
-            defaultValue={today}
-            sx={{ display: "flex" }}
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
         </Grid>
         <Grid
           item

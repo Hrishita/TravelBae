@@ -10,7 +10,6 @@ exports.createPlanTrip = function (req, res) {
   console.log("Creating");
   const insertPlanTripData = new planTrip();
   const {
-    plan_id,
     plan_name,
     userID,
     city,
@@ -27,7 +26,7 @@ exports.createPlanTrip = function (req, res) {
 
   console.log(req.body);
 
-  (insertPlanTripData.plan_id = plan_id),
+  (insertPlanTripData.plan_id = Math.random() * 1000000),
     (insertPlanTripData.plan_name = plan_name),
     (insertPlanTripData.userID = userID),
     (insertPlanTripData.city = city),
@@ -58,11 +57,11 @@ exports.fetchAllPlanTrips = function (req, res) {
 };
 
 exports.findPlanTripByUserID = function (req, res) {
-  let { emailid } = req.body;
-  if (emailid === undefined) {
-    emailid = req.params.id;
+  let { userID } = req.body;
+  if (userID === undefined) {
+    userID = req.params.id;
   }
-  planTrip.find({ emailid }, function (err, planTrip) {
+  planTrip.find({ userID }, function (err, planTrip) {
     if (err) {
       res.send(err);
     }
@@ -94,4 +93,14 @@ exports.updatePlanTripByID = function (req, res) {
       res.json(planTrip);
     }
   );
+};
+
+exports.findPlanTripByPlanID = function (req, res) {
+  let { plan_id } = req.body;
+  planTrip.find({ plan_id }, function (err, planTrip) {
+    if (err) {
+      res.send(err);
+    }
+    res.json(planTrip);
+  });
 };

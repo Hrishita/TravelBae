@@ -1,3 +1,8 @@
+/**
+ * Author: Sangramsinh More
+ * Feature: Accommodation
+ * Task: Accommoadation service for mongoose REST calls
+ */
 const accommodation = require("../../models/accommodationModel");
 
 // here remove .sort() if you only want to search
@@ -25,7 +30,7 @@ exports.searchAccommodation = async function (req, res) {
   accommodation
     .find(
       {
-        hotel_name: { $regex: req.body.hotel_name, $options: "i" },
+        city: { $regex: req.body.hotel_name, $options: "i" },
         Rating: { $in: tag },
         check_in_date: {
           $gte: cin,

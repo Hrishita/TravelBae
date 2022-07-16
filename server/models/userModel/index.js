@@ -19,7 +19,9 @@ const userSchema = new mongoose.Schema({
     flag_img: String
   }],
   bucket_list: [{
-    dest_name: String
+    dest_name: String,
+    dest_code: String,
+    img: String
   }]
 });
 
