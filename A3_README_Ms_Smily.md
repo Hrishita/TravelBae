@@ -18,7 +18,7 @@ Group Number - 15
 - Git Project Repository - https://git.cs.dal.ca/maurya/csci-5709-project
 - Git Project Branch - Smily: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/smily
 - Heroku deployment URL for application: https://travel-bae.herokuapp.com/
-- Heroku deployment URL for application: https://travel-bae.herokuapp.com/destinations
+- Heroku deployment URL for feature: https://travel-bae.herokuapp.com/destinations
 
 ## Professor
 
