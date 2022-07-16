@@ -1,3 +1,7 @@
+/**
+ * Author: Smriti Mishra
+ * Feature: On this page, logged-in users will find a list of all the flags they have collected or will be collected after the trip completion
+ */
 import {
   Grid,
   Typography,
