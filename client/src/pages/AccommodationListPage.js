@@ -1,13 +1,16 @@
+/**
+ * Author: Sangramsinh More
+ * Feature: Accommodation
+ * Task: Accommoadation Main Page
+ */
 import React, { useEffect, useState } from "react";
 import { Grid, Divider } from "@mui/material";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
 import Footer from "../containers/Footer";
-// import Pagination from "../containers/Pagination";
 import AccommodationSearchBoxComp from "../components/AccommodationSearch";
 import HorizontralCardComp from "../components/HorizontalCard";
 import Filter from "../containers/Filter";
-// import data from "../containers/Filter/mockData";
 import FilterMenu from "../containers/FilterMenu";
 import accommodationFilter from "../containers/AccommodationFIlters";
 import axios from "axios";
@@ -17,6 +20,13 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import usePagination from "../containers/UsePagination";
 import { useParams } from "react-router-dom";
+import NoDataFound from "../components/NoDataFound";
+
+/**
+ * This component is responsible for the api calls with backend and also for the sorting, filtering, pagination and searching tasks.
+ * @param {*} props 
+ * @returns 
+ */
 
 function AccommodationListPage() {
   const [allHotels, setAllHotels] = useState([]);
@@ -28,12 +38,12 @@ function AccommodationListPage() {
   });
 
   const params = useParams();
-  
+
   if (params.code !== undefined) {
-    debugger
-    keyword.keyword=params.code;
+    keyword.keyword = params.code;
   }
-  console.log("san",keyword.keyword);
+  console.log("san", keyword.keyword);
+  console.log("allHot", allHotels);
 
   let [sort, setSort] = useState(0);
 
@@ -46,7 +56,7 @@ function AccommodationListPage() {
   };
 
   const handleClearAll = () => {
-    setFiltering={};
+    setFiltering({});
   };
 
   useEffect(() => {
@@ -113,20 +123,46 @@ function AccommodationListPage() {
           <Divider />
         </Box>
       </Grid>
-
       <Grid item xs={12}>
         <Grid container justifyContent="center" alignItems="center">
-          <Box
-            component="span"
-            sx={{
-              fontSize: 24,
-              fontFamily: "Arial",
-              fontWeight: "bold",
-              pt: 2,
-            }}
-          >
-            Our top picked hotels for you...
-          </Box>
+          {allHotels.length === 0 && (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={2}
+              style={{ textAlign: "center" }}
+            >
+              <NoDataFound
+                message="Search Results are Empty"
+                display={true}
+                listEmpty={true}
+                className="text-align-center"
+              />
+            </Grid>
+          )}
+          {allHotels.length !== 0 && (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={2}
+              style={{ textAlign: "center" }}
+            >
+              <Box
+                component="span"
+                sx={{
+                  fontSize: 24,
+                  fontFamily: "Arial",
+                  fontWeight: "bold",
+                }}
+              >
+                Hotel results: 
+              </Box>
+            </Grid>
+          )}
         </Grid>
       </Grid>
 

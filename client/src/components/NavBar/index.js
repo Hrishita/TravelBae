@@ -1,3 +1,9 @@
+/**
+ * Author: Trushita Maurya
+ * Feature: User Management
+ * Task: Login
+ */
+
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -46,6 +52,10 @@ const pages = [
 //user profile settings
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
+/**
+ * Renders Nav Bar UI with user avatar for login and sign up button for guest users
+ * @returns
+ */
 const NavBarComp = () => {
   const classes = useStyles();
   const history = useHistory();
