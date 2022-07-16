@@ -70,7 +70,7 @@ Group Number - 15
 - [ReactJS](https://reactjs.org/) - ReactJS Library Used
 - [MaterialUI](https://mui.com/) - Material UI Library Used for Styling
 
-Front-end files:
+#### Front-end files:
 
 - client/src/pages/Destinations.js: This is the main page that displays the list of destinations. The page is bound to APIs with which the user can search for a particualr destination, filter the destinations based on country, and use pagination to view more destinations.
 - client/src/pages/Destination.js: This page contains the information of the selected destination along with the blogs (if any) for the selected destination.
@@ -79,15 +79,14 @@ Front-end files:
 - client/src/components/NoDataFound/index.js: This is a common component for the application that is displayed when the search/filter results are empty.
 - client/src/components/Search/index.js: This component file contains the elements and logic for displaying detinations based on search text.
 
-Node.js backend for API development
 
-Backend files:
+#### Backend files:
 - server/data/destinationDB/index.js: This file is used for destination service mongoose REST calls.
 - server/middleware/destinationService/index.js: This file is used as a middleware for mongoose and nodeJS.
 - server/models/destinationModel/index.js: This file is used for defining mongoose schema model
 - server/routers/destinationRouter/index.js: This file is used for routing the frontend calls to backend
 
-## Sources used
+### Sources used
 
 - Cors
   https://www.npmjs.com/package/cors
@@ -118,7 +117,7 @@ To have a local copy of this lab running on your local machine, you will first n
 3. Install the heroku package using "npm install heroku".
 ```
 
-## Available Scripts
+### Available Scripts
 
 In the project directory,
 
@@ -146,7 +145,7 @@ Runs at [http://localhost:8000] in console
 
 The page will reload when you make changes.
 
-## Built With
+### Built With
 
 - [Node.js](https://nodejs.org/en/download/)
 - [Heroku](https://id.heroku.com/login) - Platform for deploying web applications
