@@ -1,5 +1,5 @@
 /**
- * Author: Trushita
+ * Author: Trushita Maurya
  * Feature: User Management
  * Task: Login
  */
@@ -42,10 +42,6 @@ const pages = [
   {
     name: "Things to Carry",
     link: "/thingstocarry",
-  },
-  {
-    name: "Bucket List",
-    link: "/bucket-list",
   },
 ];
 

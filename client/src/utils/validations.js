@@ -1,3 +1,10 @@
+/**
+ * Author Trushita Maurya
+ * Form validation check
+ * @param {*} value
+ * @returns
+ */
+
 // Email Validation
 export const isEmailValid = (value) => {
   let isValid = true;
