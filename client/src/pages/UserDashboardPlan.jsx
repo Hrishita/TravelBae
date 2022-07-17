@@ -201,13 +201,14 @@ function UserDashbordPlan() {
       <Grid item xs={12} lg={3}>
         <SideBar />
       </Grid>
+
       <Grid item xs={12} lg={8}>
         <Box pl={3} mt={4} pb={3} display="flex">
           <Paper>
             <Grid container>
               <Grid item lg={6}>
                 <Box pt={2} pl={4}>
-                  <Typography variant="h4" component="span">
+                  <Typography variant="h5" component="span">
                     Upcoming Plans
                   </Typography>
                 </Box>
@@ -232,7 +233,7 @@ function UserDashbordPlan() {
             </Box>
             <Grid item lg={6}>
               <Box pt={2} pl={4}>
-                <Typography variant="h4" component="span">
+                <Typography variant="h5" component="span">
                   Plans Completed
                 </Typography>
               </Box>
@@ -250,7 +251,6 @@ function UserDashbordPlan() {
           </Paper>
         </Box>
       </Grid>
-
       <Grid item xs={12}>
         <Footer />
       </Grid>
