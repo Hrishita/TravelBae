@@ -139,7 +139,7 @@ const UserDashbordFlag = () => {
 
     setData([
       {
-        category: "Collected Falgs",
+        category: "Collected Flags",
         itemList: finalUpcomingData,
       },
       {
@@ -222,9 +222,13 @@ const UserDashbordFlag = () => {
                 return (
                   <>
                     <Grid item xs={12}>
-                      <Typography variant="h5" textAlign="center">
+                      <Box
+                        display="inline-flex"
+                        paddingLeft={4}
+                        sx={{ fontSize: 24, fontWeight: 500 }}
+                      >
                         {dataObj.category}
-                      </Typography>
+                      </Box>
                     </Grid>
                     <Grid item xs={12}>
                       <Divider />
