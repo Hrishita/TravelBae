@@ -109,7 +109,7 @@ const UserDashbordFlag = () => {
 
     let finalUpcomingData = Array();
     let finalCompletedData = Array();
-    debugger;
+
     res.data.map((cities) => {
       console.log(cities);
       for (let i = 0; i < mockDataFlag.length; i++) {
@@ -154,20 +154,20 @@ const UserDashbordFlag = () => {
   }, []);
 
   const displayCards = (name, img) => {
-    debugger;
     let image = imgPaths[img];
     return (
       <Card className={classes.root} key={name}>
         {image && (
-          <CardActionArea className={classes.actionArea}>
+          <CardMedia className={classes.actionArea}>
             <CardMedia
               className={classes.media}
               component="img"
               image={image}
+              style={{ margin: "auto", width: "50%", height: "10vh" }}
               // src={image}
               alt={name}
             />
-          </CardActionArea>
+          </CardMedia>
         )}
         <CardActions className={classes.cardFooter}>
           <Typography gutterBottom component="div">
