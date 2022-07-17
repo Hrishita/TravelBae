@@ -17,7 +17,6 @@ exports.fetchSpecificItineraries = function (req, res) {
     { itinerary_place: { $regex: req.body.itinerary_place, $options: "i" } },
     function (err, specificItineraries) {
       if (err) return res.json({ success: false, error: err });
-
       res.json(specificItineraries);
     }
   );
@@ -25,19 +24,31 @@ exports.fetchSpecificItineraries = function (req, res) {
 
 exports.filterItineraries = function (req, res) {
   console.log(req.body.tags);
-  SpecificItinerary.find(
-    {
-      $and: [
-        { tags: { $in: req.body.tags } },
-        {
-          itinerary_place: { $regex: req.body.itinerary_place, $options: "i" },
-        },
-      ],
-    },
-    function (err, filterItineraries) {
-      if (err) return res.json({ success: false, error: err });
-
-      res.json(filterItineraries);
-    }
-  );
+  if (req.body.tags.length === 0) {
+    SpecificItinerary.find(
+      { itinerary_place: { $regex: req.body.itinerary_place, $options: "i" } },
+      function (err, specificItineraries) {
+        if (err) return res.json({ success: false, error: err });
+        res.json(specificItineraries);
+      }
+    );
+  } else {
+    SpecificItinerary.find(
+      {
+        $and: [
+          { tags: { $in: req.body.tags } },
+          {
+            itinerary_place: {
+              $regex: req.body.itinerary_place,
+              $options: "i",
+            },
+          },
+        ],
+      },
+      function (err, filterItineraries) {
+        if (err) return res.json({ success: false, error: err });
+        res.json(filterItineraries);
+      }
+    );
+  }
 };
