@@ -114,7 +114,7 @@ const UserDashbordFlag = () => {
       console.log(cities);
       for (let i = 0; i < mockDataFlag.length; i++) {
         if (mockDataFlag[i].country === cities.country) {
-          if (cities.is_completed === false) {
+          if (cities.is_completed === true) {
             mockDataFlag[i].res = cities;
 
             if (!checkIfExist(finalUpcomingData, mockDataFlag[i].country))
