@@ -13,6 +13,7 @@ import GoogleMap from "./../components/GoogleMap/index";
 import AlertDialog from "../containers/AlertDialog";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+import destinations from "./../containers/ContentCard/mockData";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,12 +48,17 @@ const Destination = () => {
   const [destinationDescription, setDestinationDescription] = useState("");
   const [destinationImage, setDestinationImage] = useState("");
   const [blogCards, setBlogCards] = useState("");
+  const [coordinates, setCoordinates] = useState({ lat: 44.62, lng: -63.57 });
 
   useEffect(() => {
     const fetchDestinationURL = `${BACKEND_URL}/destination/fetchDestinationByCode/${params.code}`;
     axios
       .get(fetchDestinationURL)
       .then((res) => {
+        setCoordinates({
+          lat: parseFloat(res.data.destinations.latitude),
+          lng: parseFloat(res.data.destinations.longitude),
+        });
         setDestinationName(res.data.destinations.dest_name);
         setDestinationDescription(res.data.destinations.dest_desc);
         setDestinationImage(res.data.destinations.img);
@@ -194,7 +200,10 @@ const Destination = () => {
                 </Box>
               </Grid>
               <Grid item xs={12} md={3} sx={{ padding: "0em 0.5em" }}>
-                <GoogleMap />
+                <GoogleMap
+                  coordinates={coordinates}
+                  label={{ color: "black", text: "" + destinationName }}
+                />
               </Grid>
             </Grid>
           </Box>
