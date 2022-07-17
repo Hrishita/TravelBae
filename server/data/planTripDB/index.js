@@ -14,7 +14,6 @@ exports.createPlanTrip = function (req, res) {
   console.log("Creating");
   const insertPlanTripData = new planTrip();
   const {
-    plan_id,
     plan_name,
     userID,
     city,
@@ -31,7 +30,7 @@ exports.createPlanTrip = function (req, res) {
 
   console.log(req.body);
 
-  (insertPlanTripData.plan_id = plan_id), //Math.random() * 1000000),
+  (insertPlanTripData.plan_id = Math.round(Math.random() * 1000000)),
     (insertPlanTripData.plan_name = plan_name),
     (insertPlanTripData.userID = userID),
     (insertPlanTripData.city = city),
