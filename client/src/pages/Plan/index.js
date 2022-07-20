@@ -191,7 +191,6 @@ const displayPaper = (title, data, icon) => {
 const MyPlan = (props) => {
   const [data, setData] = useState({});
   const location = useLocation();
-  console.log("data....", data);
 
   useEffect(() => {
     const fetchURL = `${BACKEND_URL}/pt/findPlanTripByPlanID`;
@@ -218,8 +217,8 @@ const MyPlan = (props) => {
             height: "500px",
             width: "100%",
           }}
-          title={props.name}
-          alt={props.name}
+          title="Trip Planning"
+          alt="Plan your Trip"
           src="https://www.switchbacktravel.com/sites/default/files/images/articles/Travel%20photo%20airplane.jpg"
         />
       </Grid>

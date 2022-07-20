@@ -1,4 +1,4 @@
-import React, { useContext,useState } from 'react';
+import React, { useContext, useState } from "react";
 import {
   Grid,
   Link,
@@ -22,7 +22,6 @@ import Footer from "../containers/Footer";
 import AlertDialog from "../containers/AlertDialog";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,7 +47,7 @@ const HomePage = () => {
   const [open, setOpen] = useState(false); // for alert box
   const auth = useContext(AuthContext);
 
-  console.log("userId....",auth.userId);
+  console.log("userId....", auth.userId);
 
   const handleOpen = () => {
     setOpen(true);
@@ -57,19 +56,19 @@ const HomePage = () => {
     setOpen(false);
   };
 
-  const handleClick = (link,type) => {
-    if(type==="accommodation"){
-    history.push(link);
-    }
-    if(type==="blogs"){
+  const handleClick = (link, type) => {
+    if (type === "accommodation") {
       history.push(link);
-      }
-      if(type==="destination"){
-        history.push(link);
-        }
+    }
+    if (type === "blogs") {
+      history.push(link);
+    }
+    if (type === "destination") {
+      history.push(link);
+    }
   };
 
-  const displayStrip = (title, cards, link,type) => {
+  const displayStrip = (title, cards, link, type) => {
     const data = cards;
     return (
       <>
@@ -115,7 +114,7 @@ const HomePage = () => {
                 >
                   <Card
                     className={classes.root}
-                    onClick={() => handleClick(`${link}/${card.city}`,type)}
+                    onClick={() => handleClick(`${link}/${card.city}`, type)}
                   >
                     <CardMedia
                       component="img"
@@ -155,10 +154,19 @@ const HomePage = () => {
           <SearchBoxComp />
         </Box>
       </Grid>
-      {displayStrip("Popular Places", destinationData, "/destination", "destination")}
+      {displayStrip(
+        "Popular Places",
+        destinationData,
+        "/destination",
+        "destination"
+      )}
       {displayStrip("Travel Blogs", blogCards, "/view-blogs")}
-      {displayStrip("Accommodations", accCards, "/accommodation", "accommodation" )}
-
+      {displayStrip(
+        "Accommodations",
+        accCards,
+        "/accommodation",
+        "accommodation"
+      )}
       <Grid item xs={12}>
         <Footer />
       </Grid>

@@ -1,25 +1,21 @@
+/**
+ * Author: Trushita Maurya and Smriti Mishra
+ * Description: Handles all routes related to user management - sign up , login, change password
+ */
+
 const userRouter = require("express").Router();
 const userService = require("../../middleware/userService");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../../models/userModel");
 
-/**
- * This router is to create a POST API for userInfo. This API can be tested on Postman
- * with route '/user/userProfile' at the end of the server_url.
- * Upon passing the email, it should return all the information related to the user in the JSON format.
- */
-
 userRouter.post("/userProfile", userService.fetchUserProfile);
 
-userRouter.post(
-  "/addDestToBucketList",
-  userService.addDestToBucketList
-);
+userRouter.post("/addDestToBucketList", userService.addDestToBucketList);
 
 userRouter.post("/changePassword", userService.updatePassword);
 
-//Authentication Logic begins here
+//Authentication Logic for registration
 
 userRouter.post("/signup", (req, res, next) => {
   console.log("reqyest.....", req);

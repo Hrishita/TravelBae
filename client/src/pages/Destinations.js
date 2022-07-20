@@ -1,36 +1,35 @@
-import { Grid } from "@mui/material";
+/**
+ * Author: Smily Ms
+ * Feature: Destination Information System
+ */
+import { Grid, Typography, Pagination, Stack } from "@mui/material";
 import "./../components/DestinationCard/Destination.css";
 import Filter from "../containers/Filter";
 import FilterMenu from "../containers/FilterMenu";
-import { Typography } from "@mui/material";
 import data from "../containers/DestinationCard/destinationsFilterData";
 import NavBar from "../containers/NavBar";
 import DestinationCardCont from "../containers/DestinationCard";
 import SearchCont from "../containers/Search";
 import React, { useState, useEffect } from "react";
-import Pagination from "@mui/material/Pagination";
 import NoDataFound from "../components/NoDataFound";
 import Footer from "../containers/Footer";
-import Stack from "@mui/material/Stack";
 import usePagination from "../containers/UsePagination";
 import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import { BACKEND_URL } from "../config";
 
+/**
+ * This function brings in different components of Destination Information System in one page.
+ */
+
 const Destinations = () => {
   const auth = React.useContext(AuthContext);
-  const userID = auth.userId;
+  const userID = auth && auth.userId;
 
   const [destinationsData, setDestinationsData] = useState("");
   const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
-    if (!auth.userProfileData.length) {
-      auth.loadUserProfile();
-    }
-    const userData = auth.userProfileData.length ? auth.userProfileData[0] : {};
-    console.log(userData);
-
     const fetchDestinationsURL = `${BACKEND_URL}/destination/fetchAllDestinations`;
     axios
       .get(fetchDestinationsURL)
@@ -73,7 +72,7 @@ const Destinations = () => {
       })
       .then((res) => {
         console.log(res.data);
-        
+
         setPage(1);
         // _DATA.jump(1);
         setDestinationsData(res.data.destinations);
@@ -165,7 +164,12 @@ const Destinations = () => {
               );
             })
           ) : (
-            <Grid container alignItems="center" justifyContent="center" sx={{mt: 2}}>
+            <Grid
+              container
+              alignItems="center"
+              justifyContent="center"
+              sx={{ mt: 2 }}
+            >
               <NoDataFound
                 message="Destination not present. Please search for another one or select from the list."
                 className="text-align-center"

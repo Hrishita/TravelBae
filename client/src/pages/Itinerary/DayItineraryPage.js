@@ -1,3 +1,8 @@
+/**
+ * Author: Nishit Mistry
+ * Feature: Itinerary Management
+ * Task: Weather Integration
+ */
 import { Grid } from "@material-ui/core";
 import { Typography } from "@mui/material";
 import Divider from "@mui/material/Divider";
@@ -5,15 +10,18 @@ import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import NavBar from "../../containers/NavBar";
 import DescriptionList from "../../containers/DescriptionList";
-// import descList from "../../containers/DescriptionList/mockData";
 import Footer from "../../containers/Footer";
-// import weatherData from "./WeatherMockData";
 import axios from "axios";
 import moment from "moment";
 import { BACKEND_URL } from "../../config";
 import { Weather_API } from "../../config";
 import { useLocation } from "react-router-dom";
 
+/**
+ * Renders the day itinerary page that shows the content of a particular itinerary and
+ * weather details for a city
+ * @returns
+ */
 const DayItineraryPage = () => {
   const location = useLocation();
   const duration = location.state.duration;

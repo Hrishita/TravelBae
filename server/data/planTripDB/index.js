@@ -1,3 +1,7 @@
+/**
+ * Author: Nishit Mistry and Smriti Mishra
+ * This file does all the operations on plantrips collection of Mongo DB
+ */
 const planTrip = require("../../models/planTripModel/index");
 
 /**
@@ -81,7 +85,7 @@ exports.deletePlanTripByID = function (req, res) {
 };
 
 exports.updatePlanTripByID = function (req, res) {
-  console.log("Updating the paln status");
+  console.log("Updating the plan status");
   const { plan_id } = req.body;
   planTrip.findOneAndUpdate(
     { plan_id },
@@ -103,4 +107,31 @@ exports.findPlanTripByPlanID = function (req, res) {
     }
     res.json(planTrip);
   });
+};
+
+exports.updatePlan = function (req, res) {
+  console.log("Updating the plan status");
+  const { plan_id, accommodation, transportation, activity } = req.body;
+  let col_name = "";
+  let col_value = "";
+  if (accommodation) {
+    col_name = "accommodation";
+    col_value = accommodation;
+  } else if (transportation) {
+    col_name = "transportation";
+    col_value = transportation;
+  } else {
+    col_name = "activity";
+    col_value = activity;
+  }
+  planTrip.findOneAndUpdate(
+    { plan_id },
+    { $push: { [col_name]: col_value } },
+    function (err, planTrip) {
+      if (err) {
+        res.send(err);
+      }
+      res.json(planTrip);
+    }
+  );
 };

@@ -1,3 +1,8 @@
+/**
+ * Author: Nishit Mistry
+ * Feature: Itinerary Management
+ * Task: Search Itinerary and Itinerary Recommendation
+ */
 import { Grid } from "@material-ui/core";
 import { Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -8,13 +13,17 @@ import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import Divider from "@mui/material/Divider";
 import CardCont from "../../containers/CardCont";
-// import { cards } from "../../containers/CardCont/mockData";
 import { Link } from "react-router-dom";
 import Footer from "../../containers/Footer";
 import axios from "axios";
 import { BACKEND_URL } from "../../config";
 import NoDataFound from "../../components/NoDataFound";
 
+/**
+ * Renders the itinerary page that displays the recommended itineraries fetched from MongoDB and
+ * the user can also search a specific set of cities through the search bar
+ * @returns
+ */
 const ItineraryPage = () => {
   const [cards, setCards] = useState([]);
 
