@@ -3,25 +3,25 @@ export const destinationData = [
     img: "https://live.staticflickr.com/947/27029805017_6f2cbfd76a_b.jpg",
     title: "Paris",
     desc: "Dolore aute amet dolore voluptate. Excepteur ut aute officia fugiat aliqua est dolor ipsum elit dolore sint commodo velit. Culpa sit dolor amet irure nostrud dolore ipsum eiusmod eu tempor mollit ad ad.",
-    city: "CDG" 
+    city: "CDG",
   },
   {
     img: "https://live.staticflickr.com/2188/2756233095_1dbd1ed8d6_b.jpg",
     title: "Mumbai",
     desc: "Dolore aute amet dolore voluptate. Excepteur ut aute officia fugiat aliqua est dolor ipsum elit dolore sint commodo velit. Culpa sit dolor amet irure nostrud dolore ipsum eiusmod eu tempor mollit ad ad.",
-    city: "BOM" 
+    city: "BOM",
   },
   {
     img: "https://live.staticflickr.com/7105/27035703252_15ee559f5a_b.jpg",
     title: "Halifax",
     desc: "Dolore aute amet dolore voluptate. Excepteur ut aute officia fugiat aliqua est dolor ipsum elit dolore sint commodo velit. Culpa sit dolor amet irure nostrud dolore ipsum eiusmod eu tempor mollit ad ad.",
-    city: "YHZ" 
+    city: "YHZ",
   },
   {
     img: "https://live.staticflickr.com/3497/4067310548_a9ecf79f06_b.jpg",
     title: "Goa",
     desc: "Dolore aute amet dolore voluptate. Excepteur ut aute officia fugiat aliqua est dolor ipsum elit dolore sint commodo velit. Culpa sit dolor amet irure nostrud dolore ipsum eiusmod eu tempor mollit ad ad.",
-    city: "GOI" 
+    city: "GOI",
   },
 ];
 
@@ -99,25 +99,25 @@ export const accCards = [
     img: "https://live.staticflickr.com/4356/36418492922_cdfeec11b1_b.jpg",
     title: "halifax Accommodation",
     desc: "Dolore aute amet dolore voluptate. Excepteur ut aute officia fugiat aliqua est dolor ipsum elit dolore sint commodo velit. Culpa sit dolor amet irure nostrud dolore ipsum eiusmod eu tempor mollit ad ad.",
-    city: "halifax"
+    city: "halifax",
   },
   {
     img: "https://upload.wikimedia.org/wikipedia/en/2/2f/ManUni_Accommodation_year1.jpg",
     title: "Toronto Accommodation",
     desc: "Dolore aute amet dolore voluptate. Excepteur ut aute officia fugiat aliqua est dolor ipsum elit dolore sint commodo velit. Culpa sit dolor amet irure nostrud dolore ipsum eiusmod eu tempor mollit ad ad.",
-    city: "toronto"
+    city: "toronto",
   },
   {
     img: "https://live.staticflickr.com/1896/44470024231_52f4f40c8c_b.jpg",
     title: "Goa Accommodation",
     desc: "Dolore aute amet dolore voluptate. Excepteur ut aute officia fugiat aliqua est dolor ipsum elit dolore sint commodo velit. Culpa sit dolor amet irure nostrud dolore ipsum eiusmod eu tempor mollit ad ad.",
-    city: "Goa"
+    city: "Goa",
   },
   {
     img: "https://upload.wikimedia.org/wikipedia/commons/1/19/Accommodation_on_the_Blasket_Island.jpg",
     title: "Mumbai Accommodation",
     desc: "Dolore aute amet dolore voluptate. Excepteur ut aute officia fugiat aliqua est dolor ipsum elit dolore sint commodo velit. Culpa sit dolor amet irure nostrud dolore ipsum eiusmod eu tempor mollit ad ad.",
-    city: "Mumbai"
+    city: "Mumbai",
   },
 ];
 
@@ -144,5 +144,28 @@ export const completedPlanData = [
     img: "https://live.staticflickr.com/2188/2756233095_1dbd1ed8d6_b.jpg",
     title: "India",
     desc: "Dolore aute amet dolore voluptate. Excepteur ut aute officia fugiat aliqua est dolor ipsum elit dolore sint commodo velit. Culpa sit dolor amet irure nostrud dolore ipsum eiusmod eu tempor mollit ad ad.",
+  },
+];
+
+export const flagdata = [
+  {
+    flag_image: "../../assets/flags/france.jpg",
+    country: "France",
+  },
+  {
+    flag_image: "../../assets/flags/india.jpg",
+    country: "India",
+  },
+  {
+    flag_image: "../../assets/flags/usa.jpg",
+    country: "USA",
+  },
+  {
+    flag_image: "../../assets/flags/canada.jpg",
+    country: "Canada",
+  },
+  {
+    flag_image: "../../assets/flags/uk.jpg",
+    country: "UK",
   },
 ];

@@ -1,6 +1,16 @@
+/**
+ * Author: Nishit Mistry
+ * Feature: Itinerary Management
+ */
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import { Grid } from "@material-ui/core";
+
+/**
+ * Renders a description list that is visible on the Day Itinerary Page
+ * @param {*} props
+ * @returns
+ */
 const DescriptionListComp = (props) => {
   return (
     <Grid container>
