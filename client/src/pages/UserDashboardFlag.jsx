@@ -109,12 +109,12 @@ const UserDashbordFlag = () => {
 
     let finalUpcomingData = Array();
     let finalCompletedData = Array();
-    debugger;
+
     res.data.map((cities) => {
       console.log(cities);
       for (let i = 0; i < mockDataFlag.length; i++) {
         if (mockDataFlag[i].country === cities.country) {
-          if (cities.is_completed === false) {
+          if (cities.is_completed === true) {
             mockDataFlag[i].res = cities;
 
             if (!checkIfExist(finalUpcomingData, mockDataFlag[i].country))
@@ -139,7 +139,7 @@ const UserDashbordFlag = () => {
 
     setData([
       {
-        category: "Collected Falgs",
+        category: "Collected Flags",
         itemList: finalUpcomingData,
       },
       {
@@ -154,20 +154,20 @@ const UserDashbordFlag = () => {
   }, []);
 
   const displayCards = (name, img) => {
-    debugger;
     let image = imgPaths[img];
     return (
       <Card className={classes.root} key={name}>
         {image && (
-          <CardActionArea className={classes.actionArea}>
+          <CardMedia className={classes.actionArea}>
             <CardMedia
               className={classes.media}
               component="img"
               image={image}
+              style={{ margin: "auto", width: "50%", height: "10vh" }}
               // src={image}
               alt={name}
             />
-          </CardActionArea>
+          </CardMedia>
         )}
         <CardActions className={classes.cardFooter}>
           <Typography gutterBottom component="div">
@@ -222,9 +222,13 @@ const UserDashbordFlag = () => {
                 return (
                   <>
                     <Grid item xs={12}>
-                      <Typography variant="h5" textAlign="center">
+                      <Box
+                        display="inline-flex"
+                        paddingLeft={4}
+                        sx={{ fontSize: 24, fontWeight: 500 }}
+                      >
                         {dataObj.category}
-                      </Typography>
+                      </Box>
                     </Grid>
                     <Grid item xs={12}>
                       <Divider />

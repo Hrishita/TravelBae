@@ -1,3 +1,9 @@
+/**
+ * Author: Nishit Mistry
+ * Feature: Itinerary Management
+ * Task: Filter Itinerary
+ */
+
 const filterProperties = [
   {
     filterTitle: "Activities",
