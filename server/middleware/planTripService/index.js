@@ -1,5 +1,5 @@
 /**
- * Author:Smriti Mishra
+ * Author: Nishit Mistry and Smriti Mishra
  * Description: Handles DB operations of user dashboard plan information - add plan, fetch paln, delete plan, update plan.
  */
 const planTripDB = require("../../data/planTripDB/index");
@@ -29,6 +29,10 @@ exports.deletePlanTripByID = function (req, res) {
 
 exports.updatePlanTripByID = function (req, res) {
   planTripDB.updatePlanTripByID(req, res);
+};
+
+exports.updatePlan = function (req, res) {
+  planTripDB.updatePlan(req, res);
 };
 
 exports.findPlanTripByPlanID = function (req, res) {

@@ -203,6 +203,7 @@ function AccommodationListPage() {
                 city={myVariable.city}
                 country={myVariable.country}
                 id={myVariable.id}
+                type="acc"
               />
             );
           })}

@@ -1,3 +1,8 @@
+/**
+ * Author: Hrishita Mavani
+ * Feature: Blog Management
+ * Task: View Blog Task - Display a particular blog
+ */
 import { Grid } from "@material-ui/core";
 import { CommentBank, Send } from "@mui/icons-material";
 import { Box, TextField } from "@material-ui/core";
@@ -11,7 +16,14 @@ import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import { BACKEND_URL } from "../config";
 
-function SingleComment({ index, comment, name = "John Doe" }) {
+/**
+ * This Page is used to display a particular blog
+ * User would be able to view the blog and also be able to comment on the blog
+ * @param {*} req : The request passsed as a parameter to the function blogDB
+ * @returns 
+ */
+
+function SingleComment({ index, comment, name = "Default name" }) {
   
   return (
     <Box
