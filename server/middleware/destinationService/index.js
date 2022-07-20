@@ -25,6 +25,11 @@ exports.fetchDestinationByCode = function (req, res) {
 exports.updateDestinationByCode = function (req, res) {
   destinationDB.updateDestinationByCode(req, res);
 };
+
 exports.fetchFilteredDestinations = function (req, res) {
   destinationDB.fetchFilteredDestinations(req, res);
+};
+
+exports.fetchDestinationOnTripPlanner = function (req, res) {
+  destinationDB.fetchDestinationOnTripPlanner(req, res);
 };

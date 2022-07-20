@@ -28,3 +28,13 @@ exports.searchByCity = function (req, res) {
     }
   );
 };
+
+exports.findItineraryByCity = function (req, res) {
+  Itinerary.find(
+    { itinerary_city: { $regex: req.body.itinerary_city, $options: "i" } },
+    function (err, itineraries) {
+      if (err) return res.json({ success: false, error: err });
+      res.json(itineraries);
+    }
+  );
+};
