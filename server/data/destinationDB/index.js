@@ -45,6 +45,13 @@ exports.fetchAllDestinations = function (req, res) {
   }).select("dest_name dest_desc dest_code img country_name");
 };
 
+exports.fetchDestinationOnTripPlanner = function (req, res) {
+  Destination.find({}, function (err, destinationsList) {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true, destinations: destinationsList });
+  }).select("dest_name");
+};
+
 exports.fetchDestinationByCode = function (req, res) {
   Destination.findOne(
     { dest_name: req.params.dest_name },

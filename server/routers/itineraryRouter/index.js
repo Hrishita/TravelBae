@@ -17,4 +17,9 @@ itineraryRouter.post(
 
 itineraryRouter.post("/searchByCity", itineraryService.searchByCity);
 
+itineraryRouter.post(
+  "/findItineraryByCity",
+  itineraryService.findItineraryByCity
+);
+
 module.exports = itineraryRouter;
