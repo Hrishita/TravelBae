@@ -339,6 +339,18 @@ function SearchFlights() {
                   <Sort onClick={handleSort} />
                 </ButtonBase>
               </Box>
+              {
+                _DATA.length == 0 ? (
+                  <Box className="d-flex flex-row justify-content-center align-items-center">
+                    <Typography
+                      className="mx-4 my-3"
+                      variant="h4"
+                      >
+                        No flights found
+                      </Typography>
+                  </Box>
+                ) : null
+              } 
               {_DATA.currentData().map((d, index) => {
                 return (
                   <Box

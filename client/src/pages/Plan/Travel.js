@@ -1,3 +1,8 @@
+/**
+ * Author: Nishit Mistry
+ * Feature: Trip Planner
+ * Task: Customized Trip Form
+ */
 import React, { useState } from "react";
 import { Grid, Typography } from "@material-ui/core";
 import { Box } from "@mui/material";
@@ -16,13 +21,35 @@ import PersonIcon from "@mui/icons-material/Person";
 import GroupIcon from "@mui/icons-material/Group";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FamilyRestroomIcon from "@mui/icons-material/FamilyRestroom";
+import { useHistory, useLocation } from "react-router-dom";
 
+/**
+ * Renders the Travel option page for the customized trip form
+ * @returns
+ */
 const Travel = () => {
   const [checkedItemsSolo, setCheckedItemsSolo] = useState("");
   const [checkedItemsCouple, setCheckedItemsCouple] = useState("");
   const [checkedItemsFamily, setCheckedItemsFamily] = useState("");
   const [checkedItemsFriends, setCheckedItemsFriends] = useState("");
   const [marked, setMarked] = useState(false);
+  const location = useLocation();
+  const history = useHistory();
+  const tripPlannerData = location.state;
+
+  const handleBack = () => {
+    history.push({
+      pathname: "/trip-planner/plan",
+      state: { ...tripPlannerData },
+    });
+  };
+
+  const handleForward = () => {
+    history.push({
+      pathname: "/trip-planner/itinerary",
+      state: { ...tripPlannerData, travel_partner },
+    });
+  };
 
   const handleClickSolo = (name) => {
     if (checkedItemsSolo === name) {
@@ -72,6 +99,17 @@ const Travel = () => {
     }
   };
 
+  let travel_partner = "";
+  if (checkedItemsSolo) {
+    travel_partner = "solo";
+  } else if (checkedItemsCouple) {
+    travel_partner = "couple";
+  } else if (checkedItemsFamily) {
+    travel_partner = "family";
+  } else if (checkedItemsFriends) {
+    travel_partner = "friends";
+  }
+
   return (
     <Grid container alignItems="center" justifyContent="center">
       <Grid item xs={12}>
@@ -95,7 +133,7 @@ const Travel = () => {
                   display="flex"
                   sx={{ pl: 2, display: { xs: "none", lg: "block" } }}
                 >
-                  <IconButton aria-label="back" href="/trip-planner/plan">
+                  <IconButton aria-label="back" onClick={handleBack}>
                     <ArrowBackOutlinedIcon />
                   </IconButton>
                 </Box>
@@ -113,8 +151,20 @@ const Travel = () => {
                     Who are you travelling with?
                   </Typography>
                   <Box display="inline-flex" sx={{ pt: 2, pb: 2 }}>
-                    <Typography variant="h6">
-                      Start Date: 14 June 2022 - End Date: 22 June 2022
+                    <Typography variant="h5" fontWeight={550}>
+                      Start Date:
+                    </Typography>
+                    <Typography variant="h5">&nbsp;</Typography>
+                    <Typography variant="h5">
+                      {tripPlannerData.start_date} -
+                    </Typography>
+                    <Typography variant="h5">&nbsp;</Typography>
+                    <Typography variant="h5" fontWeight={550}>
+                      End Date:
+                    </Typography>
+                    <Typography variant="h5">&nbsp;</Typography>
+                    <Typography variant="h5">
+                      {tripPlannerData.end_date}
                     </Typography>
                   </Box>
                   <Box display="inline-flex">
@@ -294,13 +344,10 @@ const Travel = () => {
                       display: { xs: "block", lg: "none" },
                     }}
                   >
-                    <IconButton aria-label="back" href="/trip-planner/plan">
+                    <IconButton aria-label="back" onClick={handleBack}>
                       <ArrowBackOutlinedIcon />
                     </IconButton>
-                    <IconButton
-                      aria-label="next"
-                      href="/trip-planner/itinerary"
-                    >
+                    <IconButton aria-label="next" onClick={handleForward}>
                       <ArrowForwardOutlinedIcon />
                     </IconButton>
                   </Box>
@@ -310,7 +357,7 @@ const Travel = () => {
                   justifyContent="flex-end"
                   sx={{ pr: 2, display: { xs: "none", lg: "flex" } }}
                 >
-                  <IconButton aria-label="next" href="/trip-planner/itinerary">
+                  <IconButton aria-label="next" onClick={handleForward}>
                     <ArrowForwardOutlinedIcon />
                   </IconButton>
                 </Box>
