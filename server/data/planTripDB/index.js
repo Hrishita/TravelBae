@@ -16,7 +16,7 @@ exports.createPlanTrip = function (req, res) {
   const {
     plan_name,
     userID,
-    city,
+    // city,
     country,
     start_date,
     end_date,
@@ -28,12 +28,26 @@ exports.createPlanTrip = function (req, res) {
     activity,
   } = req.body;
 
-  console.log(req.body);
-
+  // console.log(req.body);
+  console.log(accommodation);
+  
+  if(accommodation)
+  {
+  insertPlanTripData.city = accommodation.city
+  }
+  else if(activity){
+    insertPlanTripData.city = activity.city
+  }
+  else if(transportation){
+    insertPlanTripData.city = transportation.city
+  }
+  else {
+    insertPlanTripData.city = city
+  }
   (insertPlanTripData.plan_id = Math.random() * 1000000),
     (insertPlanTripData.plan_name = plan_name),
     (insertPlanTripData.userID = userID),
-    (insertPlanTripData.city = city),
+    // (insertPlanTripData.city = city),
     (insertPlanTripData.country = country),
     (insertPlanTripData.start_date = start_date),
     (insertPlanTripData.end_date = end_date),
@@ -43,6 +57,7 @@ exports.createPlanTrip = function (req, res) {
     (insertPlanTripData.accommodation = accommodation),
     (insertPlanTripData.transportation = transportation),
     (insertPlanTripData.activity = activity),
+    
     insertPlanTripData.save(function (err, planTrip) {
       if (err) {
         res.send(err);

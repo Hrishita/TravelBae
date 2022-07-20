@@ -160,9 +160,10 @@ function UserDashbordPlan() {
               color="text.secondary"
               component="div"
             >
-              {plan.res.start_date.substring(0, 10) +
-                " - " +
-                plan.res.end_date.substring(0, 10)}
+              {plan.res.start_date &&
+                plan.res.start_date.substring(0, 10) +
+                  " - " +
+                  plan.res.end_date.substring(0, 10)}
             </Typography>
             <Typography>{plan.dest_desc}</Typography>
 
