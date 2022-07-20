@@ -1,9 +1,3 @@
-/**
- * Author: Hrishita Mavani
- * Feature: Transportation Management
- * Task: View Transportation options, Search , filter by price, sort by price, pagination
- * 
- */
 import { Box, ButtonBase, Pagination, Stack } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import { Divider } from "@mui/material";
@@ -47,12 +41,6 @@ const style = {
   p: 4,
 };
 
-/**
- * This Page is used to display all the available flights
- * User would be able to view the flights and also be able to search for flights
- * @param {*} req : The request passsed as a parameter to the flightDB
- * @returns 
- */
 function SearchFlights() {
   const [startDate, setStartDate] = useState();
   const [source, setSource] = useState("");
@@ -350,6 +338,18 @@ function SearchFlights() {
                   <Sort onClick={handleSort} />
                 </ButtonBase>
               </Box>
+              {
+                _DATA.length == 0 ? (
+                  <Box className="d-flex flex-row justify-content-center align-items-center">
+                    <Typography
+                      className="mx-4 my-3"
+                      variant="h4"
+                      >
+                        No flights found
+                      </Typography>
+                  </Box>
+                ) : null
+              } 
               {_DATA.currentData().map((d, index) => {
                 return (
                   <Box
