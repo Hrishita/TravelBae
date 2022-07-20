@@ -12,29 +12,13 @@ import { useState } from "react";
 import Footer from "../containers/Footer";
 import AlertDialog from "../containers/AlertDialog";
 import { AuthContext } from "../context/AuthContext";
+import SideBar from "../components/SideBar/Sidebar";
 import { Button, CardActionArea, CardActions, Divider } from "@mui/material";
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     position: "relative",
-//     width: "100%",
-//     transition: "transform 0.15s ease-in-out",
-//     "&:hover": { transform: "scale3d(1.05, 1.05, 1)", cursor: "pointer" },
-//     marginBottom: "10%",
-//   },
-//   font: {
-//     position: "absolute",
-//     top: "80%",
-//     left: "10%",
-//     color: "white",
-//     backgroundColor: "none",
-//     fontFamily: "Comic Sans MS",
-//     textAlign: "center",
-//   },
-// }));
 const BucketList = () => {
   const auth = React.useContext(AuthContext);
   const userID = auth.userId;
+  debugger
   const bucketList = auth.userProfileData[0].bucket_list;
 
   
@@ -148,13 +132,15 @@ const BucketList = () => {
       <Grid item xs={12}>
         <NavBar />
       </Grid>
-      <Grid container>
-        <Grid item xs={12}>
+      <Grid item xs={12} lg={3}>
+         <SideBar />
+       </Grid>
+        <Grid item xs={12} lg={9}>
           <Box sx={{ padding: "1em 3em" }}>
             {displayStrip("Your Bucket List", bucketList)}
           </Box>
         </Grid>
-      </Grid>
+      
       <Grid item xs={12}>
         <Footer />
       </Grid>
