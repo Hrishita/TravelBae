@@ -24,8 +24,8 @@ const AlertDialogComp = (props) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          {buttons.map((buttonObj) => (
-            <Button onClick={buttonObj.func}>{buttonObj.label}</Button>
+          {buttons.map((buttonLabel) => (
+            <Button onClick={handleClose}>{buttonLabel}</Button>
           ))}
         </DialogActions>
       </Dialog>

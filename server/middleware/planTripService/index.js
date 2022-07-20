@@ -31,6 +31,10 @@ exports.updatePlanTripByID = function (req, res) {
   planTripDB.updatePlanTripByID(req, res);
 };
 
+exports.updatePlan = function (req, res) {
+  planTripDB.updatePlan(req, res);
+};
+
 exports.findPlanTripByPlanID = function (req, res) {
   planTripDB.findPlanTripByPlanID(req, res);
 };

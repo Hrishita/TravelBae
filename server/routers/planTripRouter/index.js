@@ -25,5 +25,6 @@ planTripRouter.post(
   "/findPlanTripByPlanID",
   planTripService.findPlanTripByPlanID
 );
+planTripRouter.post("/updatePlan", planTripService.updatePlan);
 
 module.exports = planTripRouter;
