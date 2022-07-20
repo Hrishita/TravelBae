@@ -22,7 +22,6 @@ import Footer from "../containers/Footer";
 import AlertDialog from "../containers/AlertDialog";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import AddToPlanComp from "../components/AddToPlan";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -168,9 +167,6 @@ const HomePage = () => {
         "/accommodation",
         "accommodation"
       )}
-      <Grid item xs={12}>
-        <AddToPlanComp />
-      </Grid>
       <Grid item xs={12}>
         <Footer />
       </Grid>
