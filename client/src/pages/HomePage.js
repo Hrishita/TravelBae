@@ -14,7 +14,7 @@ import SearchBoxComp from "../components/SearchBox";
 import Divider from "@mui/material/Divider";
 import {
   destinationData,
-  blogCards,
+  accCards2,
   accCards,
 } from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
@@ -22,6 +22,7 @@ import Footer from "../containers/Footer";
 import AlertDialog from "../containers/AlertDialog";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { Button } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,8 +50,16 @@ const HomePage = () => {
 
   console.log("userId....", auth.userId);
 
-  const handleOpen = () => {
-    setOpen(true);
+  const handleOpen = (link,type) => {
+    if (type === "accommodation") {
+      history.push(link);
+    }
+    if (type === "blogs") {
+      history.push(link);
+    }
+    if (type === "destination") {
+      history.push("/destinations");
+    }
   };
   const handleClose = () => {
     setOpen(false);
@@ -83,7 +92,7 @@ const HomePage = () => {
             </Grid>
             <Grid item xs={2}>
               <Box pt={4} pr={2} display="flex" justifyContent="flex-end">
-                <Link onClick={handleOpen}>View All</Link>
+                <Button onClick={() => handleOpen(link,type)}>View All</Button>
               </Box>
             </Grid>
           </Grid>
@@ -160,10 +169,16 @@ const HomePage = () => {
         "/destination",
         "destination"
       )}
-      {displayStrip("Travel Blogs", blogCards, "/view-blogs")}
+      {/* {displayStrip("Travel Blogs", blogCards, "/blog-list", "blogs")} */}
       {displayStrip(
         "Accommodations",
         accCards,
+        "/accommodation",
+        "accommodation"
+      )}
+        {displayStrip(
+        "Most Visited",
+        accCards2,
         "/accommodation",
         "accommodation"
       )}

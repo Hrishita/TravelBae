@@ -168,8 +168,7 @@ function HorizontralCardComp(props) {
           handleClose={handleClose2}
           data={sendData}
         />}
-        </Card>
-        
+        </Card>        
   );
 }
 
