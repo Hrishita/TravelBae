@@ -12,7 +12,7 @@ import { BACKEND_URL } from "../../config";
 import { useHistory } from "react-router-dom";
 
 const AddToPlanComp = (props) => {
-  const { data, open, handleClose } = props.data;
+  const { data, open, handleClose } = props;
   const [plan, setPlan] = useState([]);
   const [selectedPlan, setSelectedPlan] = useState(0);
   const [newPlan, setNewPlan] = useState("");
@@ -33,7 +33,7 @@ const AddToPlanComp = (props) => {
   //   },
   // };
   const keys = data && Object.keys(data);
-  const col_name = keys[0];
+  const col_name = keys ? keys[0] : [];
 
   if (Object.keys(plan).length === 0) {
     axios({
