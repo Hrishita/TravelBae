@@ -1,13 +1,12 @@
 /**
  * Author: Smily Ms
- * Feature: Destionation Information System
- * Task: Display all destinations
+ * Feature: Destination Information System
  */
-import { Link, makeStyles, Card, CardMedia } from "@material-ui/core";
+import { makeStyles, Card, CardMedia } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import NavBar from "../containers/NavBar";
-import { Grid, Box, Typography, Divider, Button} from "@mui/material";
+import { Grid, Box, Typography, Divider, Button } from "@mui/material";
 import Footer from "../containers/Footer";
 import { useHistory } from "react-router-dom";
 import GoogleMap from "./../components/GoogleMap/index";
@@ -35,8 +34,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 /**
- * 
- * @returns 
+ *
+ * @returns
  */
 const Destination = () => {
   const classes = useStyles();
@@ -60,18 +59,20 @@ const Destination = () => {
       })
       .catch((err) => console.log(err));
 
-      const fetchBlogsURL = `${BACKEND_URL}/bg/fetchBlogByDestination`;
-      axios.post(fetchBlogsURL, {
-        'destination_tag' : params.code
-      }).then((res) => {
-          setBlogCards(res.data);
-          console.log(res.data);
+    const fetchBlogsURL = `${BACKEND_URL}/bg/fetchBlogByDestination`;
+    axios
+      .post(fetchBlogsURL, {
+        destination_tag: params.code,
       })
+      .then((res) => {
+        setBlogCards(res.data);
+        console.log(res.data);
+      });
   }, []);
 
   const handleListItemClick = (navigationLink, type) => {
     if (type === "blogs") {
-      debugger
+      debugger;
       history.push(navigationLink);
     }
   };
@@ -84,7 +85,7 @@ const Destination = () => {
   };
   const handleViewAccomodation = () => {
     history.push("/accommodation/" + destinationName);
-  }
+  };
   const displayStrip = (title, cards, navigationLink, type) => {
     // const data = cards;
     return (
@@ -112,44 +113,45 @@ const Destination = () => {
             justifyContent="center"
             spacing={2}
           >
-            {cards && cards.map((card) => {
-              return (
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  lg={3}
-                  style={{ textAlign: "center" }}
-                >
-                  <Card
-                    className={classes.root}
-                    onClick={() => {
-                      handleListItemClick(
-                        `${navigationLink}/${card.blog_id}`,
-                        "blogs"
-                      );
-                    }}
+            {cards &&
+              cards.map((card) => {
+                return (
+                  <Grid
+                    item
+                    xs={12}
+                    sm={6}
+                    md={4}
+                    lg={3}
+                    style={{ textAlign: "center" }}
                   >
-                    <CardMedia
-                      component="img"
-                      alt={title}
-                      height="300"
-                      image={card.image}
-                      title={title}
-                    />
-                    <Typography
-                      gutterBottom
-                      variant="h6"
-                      component="h6"
-                      className={classes.font}
+                    <Card
+                      className={classes.root}
+                      onClick={() => {
+                        handleListItemClick(
+                          `${navigationLink}/${card.blog_id}`,
+                          "blogs"
+                        );
+                      }}
                     >
-                      {card.title}
-                    </Typography>
-                  </Card>
-                </Grid>
-              );
-            })}
+                      <CardMedia
+                        component="img"
+                        alt={title}
+                        height="300"
+                        image={card.image}
+                        title={title}
+                      />
+                      <Typography
+                        gutterBottom
+                        variant="h6"
+                        component="h6"
+                        className={classes.font}
+                      >
+                        {card.title}
+                      </Typography>
+                    </Card>
+                  </Grid>
+                );
+              })}
           </Grid>
         </Grid>
       </>
@@ -182,7 +184,11 @@ const Destination = () => {
                   <Typography variant="body2" color="default">
                     {destinationDescription}
                   </Typography>
-                  <Button variant="contained" onClick={handleViewAccomodation} sx={{height: "3em", marginTop: "1em"}}>
+                  <Button
+                    variant="contained"
+                    onClick={handleViewAccomodation}
+                    sx={{ height: "3em", marginTop: "1em" }}
+                  >
                     <Typography p={1}>View Accommodations</Typography>
                   </Button>
                 </Box>
@@ -195,7 +201,11 @@ const Destination = () => {
         </Grid>
         <Grid item xs={12}>
           <Box sx={{ padding: "1em 3em" }}>
-            {blogCards.length > 0 ? (displayStrip("Travel Blogs", blogCards, "/view-blogs")) : (<></>)}
+            {blogCards.length > 0 ? (
+              displayStrip("Travel Blogs", blogCards, "/view-blogs")
+            ) : (
+              <></>
+            )}
           </Box>
         </Grid>
       </Grid>

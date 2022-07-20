@@ -1,5 +1,5 @@
 /**
- * Author : Trushita
+ * Author : Trushita Maurya
  * Created context to pass user information to all child components
  */
 import { createContext } from "react";

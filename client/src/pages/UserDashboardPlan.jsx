@@ -1,4 +1,9 @@
-import React, { useEffect, useContext } from "react";
+/**
+ * Author: Smriti Mishra
+ * Feature: UserDashboard Plan Page
+ * Description: On this page, logged-in users will find a list of all the plans that have been finished as well as those that are upcomings.
+ */
+import React, { useEffect, useContext, useState } from "react";
 import "./../components/UserDashboard/Dashboard.css";
 import NavBar from "../containers/NavBar";
 import Footer from "../containers/Footer";
@@ -19,8 +24,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { planData } from "../containers/CardCont/mockData";
 import { completedPlanData } from "../containers/CardCont/mockData";
 import { AuthContext } from "../context/AuthContext";
-import { BACKEND_URL } from "../config";
 import Checkbox from "@mui/material/Checkbox";
+import { BACKEND_URL } from "../config";
+import AlertDialog from "../containers/AlertDialog";
+
 function UserDashbordPlan() {
   const auth = useContext(AuthContext);
 
@@ -36,6 +43,18 @@ function UserDashbordPlan() {
   const history = useHistory();
   const [UpcomingPlanTrip, setUpcomingPlanTrip] = React.useState([]);
   const [CompletedPlanTrip, setCompletedPlanTrip] = React.useState([]);
+  const [open, setOpen] = useState(false); // for alert box
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const deleteAlert = () => {
+    setOpen(true);
+  };
 
   const handleDelete = (id) => {
     axios({
@@ -51,15 +70,15 @@ function UserDashbordPlan() {
       .catch((error) => console.log(error));
   };
 
-  const handleClick = () => {
-    history.push({
-      pathname: "/myPlan",
-      state: {plan_id:1},
-    });
+  const handleClick = (plan_ids) => {
+    if (plan_ids)
+      history.push({
+        pathname: "/myPlan",
+        state: { plan_id: plan_ids },
+      });
   };
 
   const handleComplete = (id) => {
-    debugger;
     axios({
       method: "post",
       url: `${BACKEND_URL}/pt/updatePlanTripByID`,
@@ -121,12 +140,12 @@ function UserDashbordPlan() {
     return (
       <Grid item xs={12}>
         <Paper sx={{ display: "flex" }}>
-          <Box sx={{ display: "flex" }} onClick={handleClick}>
+          <Box sx={{ display: "flex" }}>
             <img
               src={plan.img}
               width="200rem"
               alt="Plan Image"
-              onClick={handleClick}
+              onClick={() => handleClick(plan.res.plan_id)}
             />
           </Box>
           <Box
@@ -141,7 +160,9 @@ function UserDashbordPlan() {
               color="text.secondary"
               component="div"
             >
-              {plan.res.start_date + " - " + plan.res.end_date}
+              {plan.res.start_date.substring(0, 10) +
+                " - " +
+                plan.res.end_date.substring(0, 10)}
             </Typography>
             <Typography>{plan.dest_desc}</Typography>
 
@@ -154,7 +175,7 @@ function UserDashbordPlan() {
                     handleComplete(plan.res.plan_id);
                   }}
                 >
-                  Completed
+                  Complete Trip
                 </Button>
               )}
             </Box>
@@ -166,6 +187,7 @@ function UserDashbordPlan() {
               cursor="pointer"
               onClick={() => {
                 handleDelete(plan.res.plan_id);
+                // deleteAlert();
               }}
             />
             {/* {if(plan.res.is_completed===true)} */}
@@ -244,6 +266,18 @@ function UserDashbordPlan() {
             </Box>
           </Paper>
         </Box>
+      </Grid>
+      <Grid item xs={12}>
+        <AlertDialog
+          open={open}
+          title="Delete Plan"
+          message="Are you sure you want to delete this plan ?"
+          handleClose={handleClose}
+          buttons={[
+            { label: "No", func: handleClose },
+            { label: "Yes", func: handleClose },
+          ]}
+        />
       </Grid>
 
       <Grid item xs={12}>
