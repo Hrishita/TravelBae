@@ -29,7 +29,10 @@ const Itinerary = () => {
   const [geo, setGeo] = useState([]);
   const location = useLocation();
   const history = useHistory();
+  let newPlan = {};
+  newPlan.plan = { ...location.state, city: location.state.dest_name };
   const tripPlannerData = location.state;
+  tripPlannerData.city = location.state.dest_name;
   const cityName = tripPlannerData.dest_name;
   const cityLat = geo.length && geo[0].latitude;
   const cityLong = geo.length && geo[0].longitude;
@@ -200,13 +203,9 @@ const Itinerary = () => {
           </Box>
         </Slide>
       </Grid>
-      {/* <Grid item xs={12}>
-        <AddToPlanComp
-          open={open}
-          handleClose={handleClose}
-          data={tripPlannerData}
-        />
-      </Grid> */}
+      <Grid item xs={12}>
+        <AddToPlanComp open={open} handleClose={handleClose} data={newPlan} />
+      </Grid>
       <Grid item xs={12}>
         <Footer />
       </Grid>

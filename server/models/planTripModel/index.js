@@ -17,7 +17,7 @@ const accommodationSchema = new mongoose.Schema({
   address: { type: String },
   price: { type: Number },
   city: { type: String },
-  country: { type: String }
+  country: { type: String },
 });
 
 const activitySchema = new mongoose.Schema({
@@ -26,7 +26,7 @@ const activitySchema = new mongoose.Schema({
   activity_address: { type: String },
   price: { type: Number },
   city: { type: String },
-  country: { type: String }
+  country: { type: String },
 });
 
 const transportationSchema = new mongoose.Schema({
@@ -43,13 +43,13 @@ const transportationSchema = new mongoose.Schema({
 
 const plannedTripSchema = new mongoose.Schema({
   plan_id: { type: Number, required: true },
-  plan_name: { type: String},
-  userID: { type: String},
-  city: { type: String  },
+  plan_name: { type: String },
+  userID: { type: String },
+  city: { type: String },
   country: { type: String },
   start_date: { type: String },
-  end_date: { type: String},
-  is_completed: { type: Boolean, default: false},
+  end_date: { type: String },
+  is_completed: { type: Boolean, default: false },
   travel_partner: [String],
   recommended_itineraries: [{ String }],
   accommodation: [accommodationSchema],

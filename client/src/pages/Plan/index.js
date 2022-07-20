@@ -73,7 +73,7 @@ const displayPaper = (title, data, icon) => {
                 </Typography>
                 <Typography variant="h5">&nbsp;</Typography>
                 <Typography variant="h5">
-                  {data.start_date.substring(0, 10)} -
+                  {data.start_date && data.start_date.substring(0, 10)} -
                 </Typography>
                 <Typography variant="h5">&nbsp;</Typography>
                 <Typography variant="h5" fontWeight={550}>
@@ -81,7 +81,7 @@ const displayPaper = (title, data, icon) => {
                 </Typography>
                 <Typography variant="h5">&nbsp;</Typography>
                 <Typography variant="h5">
-                  {data.end_date.substring(0, 10)}
+                  {data.end_date && data.end_date.substring(0, 10)}
                 </Typography>
               </Box>
             </>
