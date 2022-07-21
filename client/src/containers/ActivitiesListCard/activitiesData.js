@@ -1,3 +1,9 @@
+/**
+ * Feature: Activities To Do
+ * Task: Filter
+ * Author: Sangramsinh More
+ */
+
 export const activitiesList = [
   {
     filterTitle: "Type",

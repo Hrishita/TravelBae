@@ -1,3 +1,7 @@
+/**
+ * Description: Destination Data (Not used anymore as data is coming from server side)
+ * Author: Smily, Nishit Mistry
+ */
 export const destinationData = [
   {
     img: "https://live.staticflickr.com/947/27029805017_6f2cbfd76a_b.jpg",

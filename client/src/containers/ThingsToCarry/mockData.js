@@ -238,6 +238,10 @@ export const imgData = [
   },
 ];
 
+/**
+ * Author: Trushita Maurya
+ * Description: Filter Options
+ */
 export const filterProperties = [
   {
     filterTitle: "Activites",

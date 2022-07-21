@@ -1,3 +1,9 @@
+/**
+ * Author: Smily Ms
+ * Feature: Destination Information System
+ * Task: Filter Destinations
+ */
+
 const filterProperties = [
   {
     filterTitle: "Activities",
@@ -5,17 +11,17 @@ const filterProperties = [
     filterProperties: [
       {
         property: "Camping",
-        key: "CA"
+        key: "CA",
       },
       {
         property: "Hiking",
-        key: "HI"
+        key: "HI",
       },
       {
         property: "Fishing",
-        key: "FI"
+        key: "FI",
       },
-    ]
+    ],
   },
   {
     filterTitle: "Types",
@@ -23,14 +29,14 @@ const filterProperties = [
     filterProperties: [
       {
         property: "Beach",
-        key: "BE"
+        key: "BE",
       },
       {
         property: "Mountains",
-        key: "MO"
-      }
-    ]
-  }
+        key: "MO",
+      },
+    ],
+  },
 ];
 
 export default filterProperties;

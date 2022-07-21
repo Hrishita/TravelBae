@@ -7,8 +7,9 @@ import React from "react";
 import DestinationCard from "../../components/DestinationCard";
 
 /**
+ * Description: A destination card with image, description, and title passed in the props.
  * @param {*} props
- * @returns a destination card with image, description, and title passed in the props.
+ * @returns
  */
 function DestinationCardCont(props) {
   return <DestinationCard details={props} />;

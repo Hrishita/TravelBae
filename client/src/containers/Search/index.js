@@ -8,13 +8,13 @@ import React from "react";
 import SearchComp from "../../components/Search";
 
 /**
- * 
- * This function calls the search component that contains the logic.
+ *
+ * Description: This function calls the search component that contains the logic.
  */
 function SearchCont({ onEvent }) {
   return (
     <>
-      <SearchComp onEvent={onEvent}/>
+      <SearchComp onEvent={onEvent} />
     </>
   );
 }

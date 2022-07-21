@@ -1,3 +1,8 @@
+/**
+ * Feature: Accommodation
+ * Task: Filter
+ * Author: Sangramsinh More
+ */
 const accommodationFilter = [
   {
     filterTitle: "Rating",

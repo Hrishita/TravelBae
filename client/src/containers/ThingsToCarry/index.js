@@ -1,3 +1,9 @@
+/**
+ * Author: Trushita Maurya
+ * Feature: Things To Carry
+ * Task: Filter/Search/Share
+ */
+
 import React, { useEffect, useState } from "react";
 import ThingsToCarryComp from "../../components/ThingsToCarry";
 import { imgData, filterProperties } from "./mockData";
@@ -5,6 +11,10 @@ import axios from "axios";
 import { BACKEND_URL } from "../../config";
 import { saveAs } from "file-saver";
 
+/**
+ * Description: Business logic to make API calls for things to carry and passing props to component
+ * @returns
+ */
 const ThingsToCarry = () => {
   const [data, setData] = useState([]);
 
