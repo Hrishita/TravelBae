@@ -26,6 +26,7 @@ import { Sort } from "@material-ui/icons";
 import axios from "axios";
 import usePagination from "../containers/UsePagination";
 import ModalComp from "../components/Modal";
+import { BACKEND_URL } from "../config";
 
 function SearchFlights() {
   const [startDate, setStartDate] = useState();
