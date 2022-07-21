@@ -16,9 +16,6 @@ import { BACKEND_URL } from "./config";
 const HomePage = React.lazy(() => import("./pages/HomePage"));
 const RegisterUser = React.lazy(() => import("./containers/Registration"));
 
-//@todo DELETE TEST
-const Test = React.lazy(() => import("./containers/Test"));
-
 const LoginUser = React.lazy(() => import("./containers/Login"));
 const ItineraryPage = React.lazy(() =>
   import("./pages/Itinerary/ItineraryPage")
@@ -89,10 +86,8 @@ function Router() {
 
   const loadUserProfile = useCallback(
     (id) => {
-      console.log("uuuuuuuuu", userId);
       if (!id) {
         let user = JSON.parse(localStorage.getItem("userData"));
-        console.log("userId", user.userId);
         fetchUserProfile(user.userId);
       }
     },
@@ -258,14 +253,7 @@ function Router() {
                 return <UserProfile />;
               }}
             />
-            <Route
-              exact
-              path="/test"
-              render={() => {
-                return <Test />;
-              }}
-            />
-
+            
             <Route
               exact
               path="/userdashboard-blogs"
@@ -304,7 +292,7 @@ function Router() {
             />
             <Route
               exact
-              path="/bucket-list"
+              path="/userdashboard-bucketlist"
               render={() => {
                 return <BucketList />;
               }}

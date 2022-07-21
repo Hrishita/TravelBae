@@ -78,8 +78,6 @@ const Itinerary = () => {
     });
   };
 
-  console.log("tripplannerdata..", tripPlannerData);
-
   return (
     <Grid container alignItems="center" justifyContent="center">
       <Grid item xs={12}>

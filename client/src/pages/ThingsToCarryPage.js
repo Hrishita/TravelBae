@@ -228,7 +228,6 @@ const ThingsToCarryPage = (props) => {
     setOpen(false);
   };
   const handleClick = (name) => {
-    console.log("name...", name);
     const updatedChecklist = [...checkedItems];
     const position = updatedChecklist.findIndex((item) => item === name);
     if (position !== -1) {

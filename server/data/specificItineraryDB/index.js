@@ -23,7 +23,6 @@ exports.fetchSpecificItineraries = function (req, res) {
 };
 
 exports.filterItineraries = function (req, res) {
-  console.log(req.body.tags);
   if (req.body.tags.length === 0) {
     SpecificItinerary.find(
       { itinerary_place: { $regex: req.body.itinerary_place, $options: "i" } },

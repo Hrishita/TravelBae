@@ -1,3 +1,7 @@
+/**
+ * Author: Smriti Mishra
+ * Feature: Googke Map
+ */
 import React, { useState } from "react";
 import {
   GoogleMap,
@@ -6,17 +10,14 @@ import {
   Marker,
 } from "@react-google-maps/api";
 
-const MapComponent = () => {
+const MapComponent = (props) => {
   const [popUp, setpopUp] = useState("");
 
   const initialPinPosition = [
     {
       label: { color: "black", text: "Location" },
       draggable: true,
-      position: {
-        lat: 44.62,
-        lng: -63.57,
-      },
+      position: props.coordinates,
     },
   ];
   const [pin, setPin] = useState(initialPinPosition);
@@ -30,14 +31,14 @@ const MapComponent = () => {
     <LoadScript googleMapsApiKey="AIzaSyDrFm6nEA7UkiQLBQ3sCwhIJy-jdqj2NmM">
       <GoogleMap
         mapContainerStyle={{ width: "100%", height: "15em" }}
-        center={{ lat: 44.62, lng: -63.57 }}
+        center={props.coordinates}
         zoom={15}
       >
         {pin.map((pin, index) => (
           <Marker
             key={index}
-            position={pin.position}
-            label={pin.label}
+            position={props.coordinates}
+            label={props.label}
             draggable={pin.draggable}
             onClick={(event) => pinClick(pin, index)}
           ></Marker>

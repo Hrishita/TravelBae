@@ -30,8 +30,6 @@ import AlertDialog from "../containers/AlertDialog";
 
 function UserDashbordPlan() {
   const auth = useContext(AuthContext);
-
-  // console.log(auth);
   let id = null;
 
   if (auth && auth.isLoggedIn == true && auth.userId != null) {
@@ -93,7 +91,6 @@ function UserDashbordPlan() {
   };
 
   const fetchAllPlanTrips = async () => {
-    // console.log("fetching the data");
     let res = await axios({
       method: "POST",
       url: `${BACKEND_URL}/pt/findPlanTripByUserID/` + id,
@@ -108,7 +105,6 @@ function UserDashbordPlan() {
     let finalCompletedData = Array();
 
     res.data.map((cities) => {
-      // console.log(cities);
       for (let i = 0; i < locData.data.destinations.length; i++) {
         if (locData.data.destinations[i].dest_name === cities.city) {
           if (cities.is_completed === false) {
@@ -126,8 +122,6 @@ function UserDashbordPlan() {
 
     setUpcomingPlanTrip(finalUpcomingData);
     setCompletedPlanTrip(finalCompletedData);
-
-    // console.log(res.data);
   };
 
   useEffect(() => {
@@ -153,7 +147,7 @@ function UserDashbordPlan() {
             // onClick={handleClick}
           >
             <Typography component="div" variant="h5">
-              {plan.dest_name}
+              {plan.res.plan_name}
             </Typography>
             <Typography
               variant="subtitle1"
@@ -219,13 +213,14 @@ function UserDashbordPlan() {
       <Grid item xs={12} lg={3}>
         <SideBar />
       </Grid>
+
       <Grid item xs={12} lg={8}>
         <Box pl={3} mt={4} pb={3} display="flex">
           <Paper>
             <Grid container>
               <Grid item lg={6}>
                 <Box pt={2} pl={4}>
-                  <Typography variant="h4" component="span">
+                  <Typography variant="h5" component="span">
                     Upcoming Plans
                   </Typography>
                 </Box>
@@ -250,7 +245,7 @@ function UserDashbordPlan() {
             </Box>
             <Grid item lg={6}>
               <Box pt={2} pl={4}>
-                <Typography variant="h4" component="span">
+                <Typography variant="h5" component="span">
                   Plans Completed
                 </Typography>
               </Box>

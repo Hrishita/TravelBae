@@ -34,7 +34,6 @@ exports.searchTransportation = function (req, res) {
         return_date: {$lt: req.body.return_date},
       },
       function (err, Transportation) {
-        console.log(err, Transportation)
         if (err) return res.json({ success: false, error: err });
         res.json({ data: Transportation });
       }

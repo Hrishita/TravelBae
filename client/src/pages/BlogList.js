@@ -100,10 +100,8 @@ function BlogList() {
   const onSearchChange = (e) => {
     setSearch(e.target.value);
     if (e.target.value != "") {
-      console.log("not empty");
       setFiltered(
         blogs.filter((blog) => {
-          console.log(blog.title);
           if (blog.title.includes(e.target.value)) return true;
           else return false;
         })

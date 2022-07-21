@@ -11,7 +11,6 @@ const planTrip = require("../../models/planTripModel/index");
  */
 
 exports.createPlanTrip = function (req, res) {
-  console.log("Creating");
   const insertPlanTripData = new planTrip();
   const {
     plan_name,
@@ -20,7 +19,7 @@ exports.createPlanTrip = function (req, res) {
     country,
     start_date,
     end_date,
-    is_completed,
+    
     travel_partner,
     recommended_itineraries,
     accommodation,
@@ -29,8 +28,6 @@ exports.createPlanTrip = function (req, res) {
     activity,
   } = req.body;
 
-  // console.log(req.body);
-  console.log(accommodation);
 
   if (accommodation) {
     insertPlanTripData.city = accommodation.city;
@@ -51,7 +48,7 @@ exports.createPlanTrip = function (req, res) {
     (insertPlanTripData.userID = userID),
     // (insertPlanTripData.city = city),
     (insertPlanTripData.country = country),
-    (insertPlanTripData.is_completed = is_completed),
+    (insertPlanTripData.is_completed = false),
     (insertPlanTripData.recommended_itineraries = recommended_itineraries),
     (insertPlanTripData.accommodation = accommodation),
     (insertPlanTripData.transportation = transportation),
@@ -87,7 +84,6 @@ exports.findPlanTripByUserID = function (req, res) {
 };
 
 exports.deletePlanTripByID = function (req, res) {
-  console.log("Deleting the data");
   const { plan_id } = req.body;
   planTrip.findOneAndDelete({ plan_id }, function (err, planTrip) {
     if (err) {
@@ -98,7 +94,6 @@ exports.deletePlanTripByID = function (req, res) {
 };
 
 exports.updatePlanTripByID = function (req, res) {
-  console.log("Updating the plan status");
   const { plan_id } = req.body;
   planTrip.findOneAndUpdate(
     { plan_id },
@@ -123,7 +118,6 @@ exports.findPlanTripByPlanID = function (req, res) {
 };
 
 exports.updatePlan = function (req, res) {
-  console.log("Updating the plan status");
   const { plan_id, accommodation, transportation, activity } = req.body;
   let col_name = "";
   let col_value = "";
