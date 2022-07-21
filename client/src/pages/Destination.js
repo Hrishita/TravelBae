@@ -76,7 +76,6 @@ const Destination = () => {
 
   const handleListItemClick = (navigationLink, type) => {
     if (type === "blogs") {
-      debugger;
       history.push(navigationLink);
     }
   };
