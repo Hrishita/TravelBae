@@ -45,6 +45,18 @@ The Main Features of our application are:
 - [Hrishita Mavani](hr637632@dal.ca) - _(Maintainer)_
 - [Smriti Mishra](sm689498@dal.ca)- _(Maintainer)_
 
+## Professor
+
+---
+
+[Shehzeen Huda](sh655624@dal.ca)
+
+## Teaching Assistant
+
+---
+
+[Gurleen Saluja](gr997570@dal.ca)
+
 # Getting Started
 
 ### Built With
@@ -80,21 +92,75 @@ The components used are:
 - [Heroku](https://dashboard.heroku.com/apps) - For deployment
 - The application has been deployed on Heroku.
 
-### Prerequisites
+# Getting Started
 
-To have a local copy of this assingnment up and running on your local machine, following tools and libraries are required.
+### Preqrequisites
 
-- `node`, a server-side javascript implementation
-- `npm`, the javascript package manager
+- To run this assignment on your local machine, you need the following software / libraries installed.
+
+```
+NodeJS
+npm - Node Package Manager
+```
+
+- Install and enable this [CORS extension](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en) to run the project on Heroku.
+
+- git
+
+Clone the repo, and run the following commands for installing the dependencies.
 
 ### Installing
 
-To install this project in your local machine following steps need to be performed.
+```
+npm install
+```
 
-- `git clone https://git.cs.dal.ca/maurya/csci-5709-project.git`
-- `cd csci-5709-project`
-- `npm install`
-- `npm start`
+The following command will run the application on your localhost.
+
+## Steps to follow to run the app
+
+1. Clone git repo using `git clone https://git.cs.dal.ca/maurya/csci-5709-project.git`
+
+2. `cd client`
+
+3. Install all dependencies using `npm install`
+
+4. Start application in dev environment using `npm run start`
+
+5. `cd ..`
+
+6. `cd server`
+
+7. Install all dependencies using `npm install`
+
+8. Start application in dev environment using `npm run start`
+
+## A step by step process to deploy the app on heroku
+
+1. Install NPM packages. `npm install`
+
+2. Authenticate heroku account via heroku CLI. `heroku login`
+
+3. Create a new app on heroku. `heroku apps:create project-name`
+
+4. Add heroku remote to the project. `heroku git:remote -a project-name`
+
+5. Push the code on heroku. `git push heroku master`
+
+## Tools and Software Used
+
+- [NPM](https://www.npmjs.com/) - Nodejs package manager
+
+- [Heroku](https://dashboard.heroku.com/login) - Cloud platform to deploy application
+
+- [VSCode](https://code.visualstudio.com/) - IDE used for development
+
+- [Gitlab](https://git.cs.dal.ca/) - Repository and version control system
+
+- [Postman](https://www.postman.com/) - API testing software
+
+- [Mongo DB](https://www.mongodb.com/) - Tool used to check the collections and data on the database
+
 
 # References
 
