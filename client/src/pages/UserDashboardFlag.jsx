@@ -243,6 +243,13 @@ const UserDashbordFlag = () => {
                         {displayCards(item.name, item.image)}
                       </Grid>
                     ))}
+                    {dataObj.itemList.length === 0 && (
+                      <div>
+                        <p sx={{ marginLeft: "1rem !important" }}>
+                          Flag list is empty.
+                        </p>
+                      </div>
+                    )}
                   </>
                 );
               })}

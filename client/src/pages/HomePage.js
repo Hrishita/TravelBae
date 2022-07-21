@@ -168,7 +168,7 @@ const HomePage = () => {
         </Box>
       </Grid>
       <Grid item xs={12}>
-        <Box pt={4} pb={4} display="flex" justifyContent="center">
+        <Box pb={4} display="flex" justifyContent="center">
           {" "}
           <Typography
             variant="h5"
