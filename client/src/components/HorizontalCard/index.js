@@ -112,7 +112,7 @@ function HorizontralCardComp(props) {
           Learn More
         </Button>
         <Button onClick={handleOpen2} variant="contained" size="small">
-          Add to Trip
+          Add to Plan
         </Button>
         <Modal
           open={open}
