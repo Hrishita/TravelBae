@@ -7,6 +7,7 @@ import {
   AiOutlinePieChart,
   AiOutlineFlag,
   AiOutlineSetting,
+  AiFillHeart
 } from "react-icons/ai";
 import { MdOutlineFlight } from "react-icons/md";
 
@@ -15,6 +16,11 @@ export const menu = [
     name: "Blogs",
     link: "/userdashboard-blogs",
     icon: <RiFileCopyLine />,
+  },
+  {
+    name: "Bucket List",
+    link: "/userdashboard-bucketlist",
+    icon: <AiFillHeart />,
   },
   {
     name: "Flags",

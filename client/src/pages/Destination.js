@@ -13,7 +13,6 @@ import GoogleMap from "./../components/GoogleMap/index";
 import AlertDialog from "../containers/AlertDialog";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
-import destinations from "./../containers/ContentCard/mockData";
 
 const useStyles = makeStyles((theme) => ({
   root: {

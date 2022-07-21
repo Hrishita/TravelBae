@@ -28,26 +28,32 @@ const Destinations = () => {
 
   const [destinationsData, setDestinationsData] = useState("");
   const [searchInput, setSearchInput] = useState("");
+  const [bucketList, setBucketList] = useState("");
 
   useEffect(() => {
     const fetchDestinationsURL = `${BACKEND_URL}/destination/fetchAllDestinations`;
+    const fetchBucketListURL = `${BACKEND_URL}/bl/fetchBucketListDataByUserId`;
+
     axios
       .get(fetchDestinationsURL)
-      .then((res) => {
-        if (userID && auth.userProfileData.length > 0) {
-          const bucketList = auth.userProfileData[0].bucket_list;
-          res.data.destinations.forEach((dest) => {
-            let index = bucketList.findIndex((item) => {
-              return item.dest_code === dest.dest_code;
-            });
-            if (index >= 0) {
-              dest.isFavorite = true;
-            } else {
-              dest.isFavorite = false;
+      .then((destinations) => {
+        axios
+          .post(fetchBucketListURL, {
+            email_id: userID,
+          })
+          .then((buckList) => {
+            setBucketList(buckList.data);
+            const bucketList = buckList.data.bucketListItems;
+            if (bucketList.length > 0) {
+              bucketList.forEach((buckList) => {
+                let index = destinations.data.destinations.findIndex((item) => {
+                  return item.dest_code === buckList.dest_code;
+                });
+                destinations.data.destinations[index].isFavorite = true;
+              });
             }
+            setDestinationsData(destinations.data.destinations);
           });
-        }
-        setDestinationsData(res.data.destinations);
       })
       .catch((err) => console.log(err));
   }, []);

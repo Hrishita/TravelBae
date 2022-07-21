@@ -304,7 +304,7 @@ function Router() {
             />
             <Route
               exact
-              path="/bucket-list"
+              path="/userdashboard-bucketlist"
               render={() => {
                 return <BucketList />;
               }}
