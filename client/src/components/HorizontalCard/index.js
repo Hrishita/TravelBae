@@ -87,87 +87,63 @@ function HorizontralCardComp(props) {
       },
     };
   }
-  const addToTrip = () => {
-    axios
-      .post(`${BACKEND_URL}/pt/updatePlan`, {
-        accommodation: {
-          hotel_id: props.id,
-          hotel_name: props.name,
-          address: props.address,
-          city: props.city,
-          price: props.price,
-          country: props.country,
-        },
-      })
-      .then((res) => {
-        setTrips(res.data);
-      });
-  };
-
-  const [trips, setTrips] = React.useState([{}]);
-
-  useEffect(() => {
-    axios
-      .post(`${BACKEND_URL}/pt/findPlanTripByUserID/${userId}`)
-      .then((res) => {
-        setTrips(res.data);
-      });
-  }, []);
 
   return (
-        <Card sx={{ width: 345, maxWidth: 345, ml: 2, mt: 2 }}>
-          <CardMedia
-            component="img"
-            height="140"
-            image={props.image}
-            alt={props.name}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {props.name}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              <LocationOn /> {props.address}, {props.city}
-            </Typography>
-          </CardContent>
-          <CardActions sx={{ ml: 2 }}>
-            <Typography variant="h6" sx={{ flexGrow: 1 }}>
-              ${props.price}
-            </Typography>
-            <Button onClick={handleOpen} variant="contained" size="small">
-              Learn More
-            </Button>
-            <Button onClick={handleOpen2} variant="contained" size="small">
-              Add to Trip
-            </Button>
-            <Modal
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
+    <Card sx={{ width: 345, maxWidth: 345, ml: 2, mt: 2 }}>
+      <CardMedia
+        component="img"
+        height="140"
+        image={props.image}
+        alt={props.name}
+      />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {props.name}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          <LocationOn /> {props.address}, {props.city}
+        </Typography>
+      </CardContent>
+      <CardActions sx={{ ml: 2 }}>
+        <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          ${props.price}
+        </Typography>
+        <Button onClick={handleOpen} variant="contained" size="small">
+          Learn More
+        </Button>
+        <Button onClick={handleOpen2} variant="contained" size="small">
+          Add to Trip
+        </Button>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Typography
+              id="modal-modal-title"
+              variant="h5"
+              component="h2"
+              sx={{ mb: 2 }}
             >
-              <Box sx={style}>
-                <Typography
-                  id="modal-modal-title"
-                  variant="h5"
-                  component="h2"
-                  sx={{ mb: 2 }}
-                >
-                  {props.name}:
-                </Typography>
-                <Divider />
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  {props.desc}
-                </Typography>
-              </Box>
-            </Modal>
-          </CardActions>
-          {<AddToPlanComp
+              {props.name}:
+            </Typography>
+            <Divider />
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              {props.desc}
+            </Typography>
+          </Box>
+        </Modal>
+      </CardActions>
+      {
+        <AddToPlanComp
           open={open2}
           handleClose={handleClose2}
           data={sendData}
-        />}
-        </Card>        
+        />
+      }
+    </Card>
   );
 }
 
