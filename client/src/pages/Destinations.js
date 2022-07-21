@@ -209,6 +209,7 @@ const Destinations = () => {
               alignItems="center"
               justifyContent="center"
               sx={{ mt: 2 }}
+              className="text-align-center"
             >
               <NoDataFound
                 message="Destination not present. Please search for another one or select from the list."
