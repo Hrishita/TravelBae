@@ -19,15 +19,48 @@ const TripPlannerPage = () => {
   const [startDate, setStartDate] = useState("");
   const [toDate, setToDate] = useState("");
   const [data, setData] = useState([]);
+  const [validation, setValidation] = useState("");
   const history = useHistory();
 
+  const handleStartDate = (e) => {
+    setValidation("");
+    setStartDate(e.target.value);
+  };
+
+  const handleToDate = (e) => {
+    setValidation("");
+    setToDate(e.target.value);
+  };
+
   const tripPlannerData = {
-    dest_name: searchDest.dest_name,
+    dest_name: searchDest
+      ? searchDest.dest_name
+      : { dest_name: "Search Destination" },
     start_date: startDate,
     end_date: toDate,
   };
-
+  console.log("searchDest", searchDest);
   const handleClick = () => {
+    if (!toDate) {
+      setValidation("All fields are required");
+      return;
+    } else {
+      setValidation("");
+    }
+    if (!startDate) {
+      setValidation("All fields are required");
+      return;
+    } else {
+      setValidation("");
+    }
+
+    if (searchDest && searchDest.dest_name === "Search Destination") {
+      setValidation("All fields are required");
+      return;
+    } else {
+      setValidation("");
+    }
+
     history.push({
       pathname: "/trip-planner/plan",
       state: { ...tripPlannerData },
@@ -82,31 +115,33 @@ const TripPlannerPage = () => {
               <Grid item xs={12} sm={8} md={8}>
                 <Box pt={2}>
                   {destOption && (
-                    <Autocomplete
-                      {...destOption}
-                      id="debug"
-                      debug
-                      renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          color="secondary"
-                          label="Search Destination"
-                          InputProps={{
-                            ...params.InputProps,
-                            startAdornment: (
-                              <InputAdornment position="start">
-                                <SearchIcon />
-                              </InputAdornment>
-                            ),
-                          }}
-                          variant="outlined"
-                          fullWidth
-                          required
-                        />
-                      )}
-                      value={searchDest}
-                      onChange={(event, value) => setSearchDest(value)}
-                    />
+                    <>
+                      <Autocomplete
+                        {...destOption}
+                        id="debug"
+                        debug
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            color="secondary"
+                            label="Search Destination"
+                            InputProps={{
+                              ...params.InputProps,
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <SearchIcon />
+                                </InputAdornment>
+                              ),
+                            }}
+                            variant="outlined"
+                            fullWidth
+                            required
+                          />
+                        )}
+                        value={searchDest}
+                        onChange={(event, value) => setSearchDest(value)}
+                      />
+                    </>
                   )}
                 </Box>
               </Grid>
@@ -122,8 +157,9 @@ const TripPlannerPage = () => {
                     InputLabelProps={{
                       shrink: true,
                     }}
-                    onChange={(e) => setStartDate(e.target.value)}
+                    onChange={(e) => handleStartDate(e)}
                   />
+
                   <TextField
                     color="secondary"
                     required
@@ -133,7 +169,7 @@ const TripPlannerPage = () => {
                     InputLabelProps={{
                       shrink: true,
                     }}
-                    onChange={(e) => setToDate(e.target.value)}
+                    onChange={(e) => handleToDate(e)}
                   />
                 </Box>
               </Grid>
@@ -151,6 +187,17 @@ const TripPlannerPage = () => {
                     Start Your Planning
                   </Button>
                 </Box>
+                {validation && (
+                  <Box display="flex" justifyContent="center" pt={3}>
+                    <Typography
+                      variant="caption"
+                      style={{ color: "red" }}
+                      textAlign="center"
+                    >
+                      All fields are required
+                    </Typography>
+                  </Box>
+                )}
               </Grid>
             </Grid>
           </Box>
