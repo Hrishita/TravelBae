@@ -1,13 +1,13 @@
 /**
  * Author: Trushita Maurya
- * Feature: User Management
+ * Feature: Generic
  * Task: Login
  */
 import React from "react";
 import NavBarComp from "../../components/NavBar";
 
 /**
- * File calls the nav bar component
+ * Description: File calls the nav bar component
  * @param {*} props
  * @returns
  */

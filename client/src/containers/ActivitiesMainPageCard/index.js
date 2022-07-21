@@ -1,3 +1,8 @@
+/**
+ * Feature: Activities To Do
+ * Task: Filter/Sort/Search
+ * Author: Sangramsinh More
+ */
 import React from "react";
 import { activitiesMainPageData } from "./activitiesMainPageData";
 import { Box, Stack } from "@mui/material";
@@ -7,6 +12,10 @@ import Chip from "@mui/material/Chip";
 import { Typography } from "@mui/material";
 import { Grid } from "@mui/material";
 
+/**
+ * Descripiton: This takes care of the business logic to display activity card main data
+ * @returns
+ */
 function ActivitiesMainPageCard() {
   return (
     <Box sx={{ flexGrow: 1, p: 2 }}>
@@ -56,58 +65,7 @@ function ActivitiesMainPageCard() {
           <Chip label="What we offer" color="primary" />
         </Typography>
 
-        <Typography variant="body2" sx={{ pt: 2 }}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-          blanditiis tenetur unde suscipit, quam beatae rerum inventore
-          consectetur, neque doloribus, cupiditate numquam dignissimos laborum
-          fugiat deleniti? Eum quasi quidem quibusdam.Lorem ipsum dolor sit
-          amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
-          suscipit, quam beatae rerum inventore consectetur, neque doloribus,
-          cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi
-          quidem quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum
-          inventore consectetur, neque doloribus, cupiditate numquam dignissimos
-          laborum fugiat deleniti? Eum quasi quidem quibusdam.
-          <br />
-          <br />
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-          blanditiis tenetur unde suscipit, quam beatae rerum inventore
-          consectetur, neque doloribus, cupiditate numquam dignissimos laborum
-          fugiat deleniti? Eum quasi quidem quibusdam.Lorem ipsum dolor sit
-          amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
-          suscipit, quam beatae rerum inventore consectetur, neque doloribus,
-          cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi
-          quidem quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum
-          inventore consectetur, neque doloribus, cupiditate numquam dignissimos
-          laborum fugiat deleniti? Eum quasi quidem quibusdam.
-          <br />
-          <br />
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-          blanditiis tenetur unde suscipit, quam beatae rerum inventore
-          consectetur, neque doloribus, cupiditate numquam dignissimos laborum
-          fugiat deleniti? Eum quasi quidem quibusdam.Lorem ipsum dolor sit
-          amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
-          suscipit, quam beatae rerum inventore consectetur, neque doloribus,
-          cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi
-          quidem quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum
-          inventore consectetur, neque doloribus, cupiditate numquam dignissimos
-          laborum fugiat deleniti? Eum quasi quidem quibusdam.
-          <br />
-          <br />
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-          blanditiis tenetur unde suscipit, quam beatae rerum inventore
-          consectetur, neque doloribus, cupiditate numquam dignissimos laborum
-          fugiat deleniti? Eum quasi quidem quibusdam.Lorem ipsum dolor sit
-          amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
-          suscipit, quam beatae rerum inventore consectetur, neque doloribus,
-          cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi
-          quidem quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum
-          inventore consectetur, neque doloribus, cupiditate numquam dignissimos
-          laborum fugiat deleniti? Eum quasi quidem quibusdam.
-        </Typography>
+        <Typography variant="body2" sx={{ pt: 2 }}></Typography>
       </Grid>
     </Box>
   );

@@ -1,3 +1,9 @@
+/**
+ * Feature: Activities To Do
+ * Task: Filter/Sort/Search
+ * Author: Sangramsinh More
+ */
+
 export const activitiesMainPageData = [
   {
     name: "Attractions",

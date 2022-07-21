@@ -1,3 +1,8 @@
+/**
+ * Feature: Accommodation
+ * Author: Sangramsinh More
+ */
+
 export const accommodationMainPageData = [
   {
     name: "Your perfect somewhere is out there",

@@ -4,6 +4,9 @@
  */
 import { createContext } from "react";
 
+/**
+ * Initialized the context props to be passed to child components
+ */
 export const AuthContext = createContext({
   isLoggedIn: false,
   userId: null,
