@@ -1,15 +1,17 @@
+/**
+ * Author: Nishit Mistry
+ * Feature: Itinerary Management
+ * Task: Filter Itinerary
+ */
 const specificItineraryDB = require("../../data/specificItineraryDB");
 
 /**
- * This function is used to return the data of userDB. Whenever this function is called,
- * the user data will be fetched from the mongo and will be returned in json format.
+ * These functions are used to return the data of specificItineraryDB by fetching the specific itineraries
+ * and filtering via some activity. Whenever this function is called, the specific city itinerary data will
+ * be fetched from MongoDB and will be returned in json format.
  * @param {*} req
- * @returns
+ * @param {*} res
  */
-// function itineraryService(req) {
-//   return itineraryDB(req);
-// }
-
 exports.fetchSpecificItineraries = function (req, res) {
   specificItineraryDB.fetchSpecificItineraries(req, res);
 };
@@ -17,8 +19,3 @@ exports.fetchSpecificItineraries = function (req, res) {
 exports.filterItineraries = function (req, res) {
   specificItineraryDB.filterItineraries(req, res);
 };
-
-/**
- * The module is being exported as userProfileService so that this module can be imported into other modules.
- */
-// module.exports = itineraryService;

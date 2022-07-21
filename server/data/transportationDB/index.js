@@ -1,11 +1,15 @@
+/**
+ * Author: Hrishita Mavani
+ * Feature: Blog Management
+ */
 const Transportation = require("../../models/transportationModel/index");
 
-/**
- * This function does all the operations on transportation collection
- * @param {*} req : The request passsed as a parameter to the function transportationDB
- * @returns : The function returns the Transportation model
- */
 
+/**
+ * This funtion is used to get the list of all available flights
+ * @param {*} req : The request passsed as a parameter to the function transportationDB
+ * @param {*} req 
+ */
 exports.fetchAllTransportation = function (req, res) {
   Transportation.find(function (err, Transportation) {
     if (err) return res.json({ success: false, error: err });
@@ -13,6 +17,11 @@ exports.fetchAllTransportation = function (req, res) {
   });
 };
 
+/**
+ * This function is used to search for a particular flight
+ * @param {*} req 
+ * @param {*} res 
+ */
 exports.searchTransportation = function (req, res) {
 
   // if round trip

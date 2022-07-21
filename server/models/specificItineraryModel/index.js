@@ -1,8 +1,13 @@
+/**
+ * Author: Nishit Mistry
+ * Feature: Itinerary Management
+ * Task: Filter Itinerary
+ */
 const mongoose = require("mongoose");
 
 /**
- * This constant defines the model structure of the userSchema that is to be stored in MongoDB.
- *  The schema declares the data type and requiurement for each field.
+ * This constant defines the model structure of the specificItinerarySchema that is to be stored in MongoDB.
+ * The schema declares the data type and requirement for each field.
  */
 const specificItinerarySchema = new mongoose.Schema({
   itinerary_image: { type: String, required: true },
@@ -18,8 +23,4 @@ const SpecificItinerary = mongoose.model(
   "specificItinerary"
 );
 
-/**
- * The module is being exported as 'User'
- * so that this module can be imported into other modules.
- */
 module.exports = SpecificItinerary;
