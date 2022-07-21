@@ -30,10 +30,9 @@ const Destinations = () => {
 
   const [destinationsData, setDestinationsData] = useState("");
   const [searchInput, setSearchInput] = useState("");
-  const [bucketList, setBucketList] = useState("");
+  const [getBucketList, setBucketList] = useState("");
 
   useEffect(() => {
-    debugger;
     if (!params.code) {
       const fetchDestinationsURL = `${BACKEND_URL}/destination/fetchAllDestinations`;
       const fetchBucketListURL = `${BACKEND_URL}/bl/fetchBucketListDataByUserId`;
@@ -116,9 +115,21 @@ const Destinations = () => {
       })
       .then((res) => {
         setPage(1);
-        // _DATA.jump(1);
-        setDestinationsData(res.data.destinations);
-      });
+          let filterBucketList = getBucketList.bucketListItems;
+          if (filterBucketList.length > 0) {
+            filterBucketList.forEach((buckList) => {
+              let index = res.data.destinations.findIndex(
+                (item) => {
+                  return item.dest_code === buckList.dest_code;
+                }
+              );
+              if(index >= 0){
+                res.data.destinations[index].isFavorite = true;
+              }
+            });
+          }
+          setDestinationsData(res.data.destinations);
+        });
   };
 
   const [filtering, setFiltering] = useState({});
@@ -135,7 +146,20 @@ const Destinations = () => {
         dest_name: searchInput,
       })
       .then((res) => {
-        setDestinationsData(res.data.destinations);
+        let filterBucketList = getBucketList.bucketListItems;
+          if (filterBucketList.length > 0) {
+            filterBucketList.forEach((buckList) => {
+              let index = res.data.destinations.findIndex(
+                (item) => {
+                  return item.dest_code === buckList.dest_code;
+                }
+              );
+              if(index >= 0){
+                res.data.destinations[index].isFavorite = true;
+              }
+            });
+          }
+          setDestinationsData(res.data.destinations);
         setPage(1);
         _DATA.jump(1);
       });
@@ -153,7 +177,20 @@ const Destinations = () => {
         dest_name: searchInput,
       })
       .then((res) => {
-        setDestinationsData(res.data.destinations);
+        let filterBucketList = getBucketList.bucketListItems;
+          if (filterBucketList.length > 0) {
+            filterBucketList.forEach((buckList) => {
+              let index = res.data.destinations.findIndex(
+                (item) => {
+                  return item.dest_code === buckList.dest_code;
+                }
+              );
+              if(index >= 0){
+                res.data.destinations[index].isFavorite = true;
+              }
+            });
+          }
+          setDestinationsData(res.data.destinations);
         setPage(1);
         _DATA.jump(1);
       });
@@ -196,7 +233,7 @@ const Destinations = () => {
           {_DATA.currentData() && _DATA.currentData().length > 0 ? (
             _DATA.currentData().map((destination) => {
               return (
-                <Grid container>
+                <Grid container key={destination.dest_code}>
                   <DestinationCardCont
                     details={destination}
                   ></DestinationCardCont>

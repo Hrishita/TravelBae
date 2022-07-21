@@ -188,7 +188,7 @@ const NavBarComp = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
                   <Typography
                     textAlign="center"
                     onClick={() => navigateToPage(page.link)}
@@ -229,7 +229,7 @@ const NavBarComp = () => {
           >
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.name}
                 onClick={() => navigateToPage(page.link)}
                 sx={{ m: 2, color: "#5a5a5a", display: "block" }}
               >

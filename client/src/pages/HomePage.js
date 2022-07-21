@@ -78,7 +78,6 @@ const HomePage = () => {
 
   const handleEvent = (event) => {
     setSearchInput(event);
-    debugger
     history.push("/destinations/" + event);
   };
 
