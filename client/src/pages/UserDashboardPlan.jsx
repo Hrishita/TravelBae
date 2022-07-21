@@ -265,7 +265,7 @@ function UserDashbordPlan() {
                 {CompletedPlanTrip.map((plan) => {
                   return displayCard(plan);
                 })}
-                {UpcomingPlanTrip.length === 0 && (
+                {CompletedPlanTrip.length === 0 && (
                   <div>
                     <p sx={{ marginLeft: "1rem !important" }}>
                       Plans list is empty.
