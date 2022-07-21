@@ -20,7 +20,7 @@
  const specificItineraryRouter = require("../routers/specificItineraryRouter");
  const dayItineraryRouter = require("../routers/dayItineraryRouter");
  const planTripRouter = require("../routers/planTripRouter");
- 
+ const bucketListRouter = require("../routers/bucketListRouter");
  /**
   * Using dotenv package, it reads the .env file provided which contains all the secrets and tokens for
   * mongo and jwt.
@@ -92,4 +92,5 @@
  app.use("/sit", specificItineraryRouter);
  app.use("/dit", dayItineraryRouter);
  app.use("/pt", planTripRouter);
+ app.use("/bl", bucketListRouter);
  

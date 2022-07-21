@@ -1,42 +1,53 @@
-import {
-  Grid,
-  Link,
-  Typography,
-  Card,
-  CardMedia,
-} from "@mui/material";
+import { Grid, Link, Typography, Card, CardMedia } from "@mui/material";
 import React from "react";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Footer from "../containers/Footer";
 import AlertDialog from "../containers/AlertDialog";
 import { AuthContext } from "../context/AuthContext";
 import SideBar from "../components/SideBar/Sidebar";
 import { Button, CardActionArea, CardActions, Divider } from "@mui/material";
+import { BACKEND_URL } from "../config";
+import axios from "axios";
 
 const BucketList = () => {
   const auth = React.useContext(AuthContext);
   const userID = auth.userId;
-  debugger
-  const bucketList = auth.userProfileData[0].bucket_list;
+  const [bucketList, setBucketList] = useState("");
+  const [selectedItem, setSelectedItem] = useState("");
 
-  
   const [open, setOpen] = useState(false); // for alert box
-  const [vopen, setVopen] = useState(false);
 
-  const handleOpen = () => {
+  useEffect(() => {
+    const fetchBucketListURL = `${BACKEND_URL}/bl/fetchBucketListDataByUserId`;
+    axios
+      .post(fetchBucketListURL, {
+        email_id: userID,
+      })
+      .then((buckList) => {
+        setBucketList(buckList.data.bucketListItems);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const handleOpen = (card) => {
+    setSelectedItem(card);
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
-  const handlevOpen = () => {
-    setVopen(true);
+
+  const handleOk = () => {
+    axios.post(`${BACKEND_URL}/bl/removeDataFromBucketList`, {
+      email_id: selectedItem.email_id,
+      dest_name: selectedItem.dest_name
+    }).then((res) => {
+      window.location.reload();
+    });
   };
-  const handlevClose = () => {
-    setVopen(false);
-  };
+
   const displayStrip = (title, cards) => {
     const data = cards;
     return (
@@ -71,14 +82,13 @@ const BucketList = () => {
             justifyContent="center"
             spacing={2}
           >
-            {data.map((card) => {
+            {data && data.map((card) => {
               return (
                 <Grid
                   item
                   xs={12}
                   sm={6}
                   md={4}
-                  lg={3}
                   style={{ textAlign: "center" }}
                 >
                   <Card>
@@ -93,7 +103,6 @@ const BucketList = () => {
                       <Typography
                         gutterBottom
                         variant="h6"
-                        
                         sx={{
                           position: "absolute",
                           top: "80%",
@@ -112,7 +121,7 @@ const BucketList = () => {
                         size="small"
                         color="primary"
                         className="text-align-center"
-                        onClick={handleOpen}
+                        onClick={(e) => handleOpen(card)}
                       >
                         Remove from bucket list
                       </Button>
@@ -133,14 +142,14 @@ const BucketList = () => {
         <NavBar />
       </Grid>
       <Grid item xs={12} lg={3}>
-         <SideBar />
-       </Grid>
-        <Grid item xs={12} lg={9}>
-          <Box sx={{ padding: "1em 3em" }}>
-            {displayStrip("Your Bucket List", bucketList)}
-          </Box>
-        </Grid>
-      
+        <SideBar />
+      </Grid>
+      <Grid item xs={12} lg={9}>
+        <Box sx={{ padding: "1em 3em" }}>
+          {displayStrip("Your Bucket List", bucketList)}
+        </Box>
+      </Grid>
+
       <Grid item xs={12}>
         <Footer />
       </Grid>
@@ -150,15 +159,7 @@ const BucketList = () => {
           title="Confirm"
           message="Are you sure you want to remove it from the bucket list ?"
           handleClose={handleClose}
-          buttons={["Cancel", "Ok"]}
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <AlertDialog
-          open={vopen}
-          title="Confirm"
-          message="API logic required to View"
-          handleClose={handlevClose}
+          handleOk={handleOk}
           buttons={["Cancel", "Ok"]}
         />
       </Grid>

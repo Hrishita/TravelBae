@@ -13,7 +13,9 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useHistory } from "react-router-dom";
 import AlertDialog from "../../containers/AlertDialog";
 import { AuthContext } from "../../context/AuthContext";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import axios, { Axios } from "axios";
+import { BACKEND_URL } from "../../config";
 
 /**
  *
@@ -23,19 +25,47 @@ import { useState, useEffect } from "react";
 const DestinationCardComp = ({ details }) => {
   const auth = React.useContext(AuthContext);
   const userId = auth.userId;
-
   const history = useHistory();
   const handleListItemClick = () => {
     history.push("/destination/" + details.details.dest_name);
   };
-  const [open, setOpen] = useState(false); // for alert box
+  const [openAdd, setOpenAdd] = useState(false); // for alert box
+  const [openRemove, setOpenRemove] = useState(false); // for alert box
 
-  const handleOpen = () => {
-    setOpen(true);
+
+  const handleOpenAdd = () => {
+    setOpenAdd(true);
   };
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseAdd = () => {
+    setOpenAdd(false);
   };
+
+  const handleOpenRemove = () => {
+    setOpenRemove(true);
+  };
+  const handleCloseRemove = () => {
+    setOpenRemove(false);
+  };
+
+  const handleOkAdd = () => {
+    axios.post(`${BACKEND_URL}/bl/addDataToBucketList`, {
+      email_id: userId,
+      dest_name: details.details.dest_name,
+      dest_code: details.details.dest_code,
+      img: details.details.img
+    }).then((res) => {
+      window.location.reload();
+    });
+  }
+
+  const handleOkRemove = () => {
+    axios.post(`${BACKEND_URL}/bl/removeDataFromBucketList`, {
+      email_id: userId,
+      dest_name: details.details.dest_name
+    }).then((res) => {
+      window.location.reload();
+    });
+  }
 
   return (
     <Paper
@@ -99,7 +129,7 @@ const DestinationCardComp = ({ details }) => {
                 aria-haspopup="false"
                 color="primary"
                 sx={{ margin: "0px", height: "100%" }}
-                onClick={handleOpen}
+                onClick={handleOpenRemove}
               />
             ) : (
               <FavoriteBorderIcon
@@ -109,16 +139,25 @@ const DestinationCardComp = ({ details }) => {
                 aria-haspopup="false"
                 color="primary"
                 sx={{ margin: "0px", height: "100%" }}
-                onClick={handleOpen}
+                onClick={handleOpenAdd}
               />
             )}
           </Grid>
           <Grid item xs={12}>
             <AlertDialog
-              open={open}
+              open={openAdd}
               title="Confirm"
               message="Are you sure you want to add it to the bucket list ?"
-              handleClose={handleClose}
+              handleClose={handleCloseAdd}
+              handleOk={handleOkAdd}
+              buttons={["Cancel", "Ok"]}
+            />
+            <AlertDialog
+              open={openRemove}
+              title="Confirm"
+              message="Are you sure you want to remove it from the bucket list ?"
+              handleOk={handleOkRemove}
+              handleClose={handleCloseRemove}
               buttons={["Cancel", "Ok"]}
             />
           </Grid>
