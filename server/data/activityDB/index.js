@@ -1,3 +1,16 @@
+/**
+ * Author: Sangramsinh More
+ * Feature: Activties to do
+ */
+
+/**
+ * This function does all the operations on specific itineraries collection. It will fetch the content of the
+ * itinerary city that's sent from the front-end and ignore the case of the city name and also filter's the
+ * itineraries based on tags stored in MongoDB.
+ * @param {*} req
+ * @param {*} res
+ */
+
 const activity = require("../../models/activityModel");
 
 exports.searchActivity = async function (req, res) {

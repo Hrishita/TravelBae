@@ -1,3 +1,15 @@
+/**
+ * Author: Trushita Maurya
+ * Feature: Things To Carry
+ */
+
+/**
+ * This funtion does all the operations on specific thingstocarry collection. It will fetch the content of the 
+ * collection based on the city name that is sent form the front-end.
+ * @param {*} req
+ * @param {*} res
+ */
+
 const pdf = require("html-pdf");
 const ThingsToCarry = require("../../models/thingsToCarryModel/index");
 const path = require("path");
@@ -42,9 +54,7 @@ exports.filterThingsToCarry = function (req, res) {
 
 exports.searchThingsToCarry = function (req, res) {
   let name = req.body.name;
-  // if (tag == undefined || Object.keys(tag).length === 0) {
-  //   tag = [];
-  // }
+
   ThingsToCarry.find(
     {
       name: { $regex: req.body.name, $options: "i" },

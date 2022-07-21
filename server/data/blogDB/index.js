@@ -1,6 +1,11 @@
+/**
+ * Author: Hrishita Mavani
+ * Feature: Blog Management
+ */
+
 const Blog = require("../../models/blogModel/index");
 
-/**
+/** 
  * This function does all the operations on blog collection
  * @param {*} req : The request passsed as a parameter to the function blogDB
  * @returns : The function returns the Blog model

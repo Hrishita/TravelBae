@@ -1,9 +1,19 @@
 /**
  * Author: Trushita Maurya
- * This file does all the operations on users collection of Mongo DB
+ * Feature: User Management
  */
-const User = require("../../models/userModel");
-const bcrypt = require("bcrypt");
+
+ const User = require("../../models/userModel");
+ const bcrypt = require("bcrypt");
+
+/**
+ *   This function does all the operations  on users collection of Mongo DB
+ *   It is used to fetch all the content of a user and perform operations like updating the password , displayin user profile
+ *   and adding destination to bucket list.
+ *   @param {*} req
+ *   @param {*} res
+ */
+
 
 exports.fetchUserProfile = function (req, res) {
   const email = req.body.email;
