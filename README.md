@@ -25,8 +25,8 @@ The Main Features of our application are:
 
 ## Project Repository, Individual Branch and Deployement URL
 
-- _Date Created_: 16 Jun 2022
-- _Last Modification Date_: 16 Jun 2022
+- _Date Created_: 16 June 2022
+- _Last Modification Date_: 21 July 2022
 - _Git Repository URL_: https://git.cs.dal.ca/maurya/csci-5709-project
 - _Heroku deployment URL for application_: https://travel-bae.herokuapp.com/
 - Nishit Mistry: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/nishit-mistry
@@ -49,9 +49,11 @@ The Main Features of our application are:
 
 ### Built With
 
-- [React](https://reactjs.org/) - The library used for building the front-end.
+- [React](https://reactjs.org/) - Used for building the front-end.
 - [Material UI](https://mui.com/) - To build responsive User Interface components - navigation bar, pagination and cards layout.
-- [React Router](https://reactrouter.com/) - Used to do the routing in the application (home and destinationsu) since react does not have anything in-built.
+- [React Router](https://reactrouter.com/) - Used to do the routing in the application (home and destinations) since react does not have anything in-built.
+- [NodeJS](https://nodejs.org/en/) - NodeJS Used as Back-End (Server Side) Framework.
+- [ExpressJS](https://expressjs.com/) - ExpressJS Used for Routing Purposes.
 
 ### Components Used
 
@@ -101,23 +103,23 @@ To install this project in your local machine following steps need to be perform
 All the images used for this project are royalty free.
 
 - Reference for Images:
-- Search.creativecommons.org. 2022. Openverse | WordPress.org. [online] Available at: <http://search.creativecommons.org/> [Accessed 21 July 2022].
+- Search.creativecommons.org. 2022. Openverse | WordPress.org. [online] Available at: <http://search.creativecommons.org/> [Accessed: July 21, 2022].
 
 ## Sources used
 
-[1] "The W3C Markup Validation Service," _Validator.w3.org_ [Online]. Available: https://validator.w3.org/. [Accessed: June 16, 2022].
+[1] "The W3C Markup Validation Service," _Validator.w3.org_ [Online]. Available: https://validator.w3.org/. [Accessed: July 15, 2022].
 
 - Used to check if the deployed app is W3C compliant.
 
-[2] "Cloud Application Platform | Heroku," _Heroku.com_ [Online]. Available: https://www.heroku.com/. [Accessed: June 16, 2022].
+[2] "Cloud Application Platform | Heroku," _Heroku.com_ [Online]. Available: https://www.heroku.com/. [Accessed: July 21, 2022].
 
 - Used Heroku to deploy the application.
 
-[3] "Getting Started – React", _Reactjs.org_ [Online]. Available: https://reactjs.org/docs/getting-started.html. [Accessed: June 16, 2022]
+[3] "Getting Started – React", _Reactjs.org_ [Online]. Available: https://reactjs.org/docs/getting-started.html. [Accessed: June 16, 2022].
 
 - Used React documentation to to learn React.
 
-[4] "Installation - Material UI", _Mui.com_ [Online]. Available: https://mui.com/material-ui/getting-started/installation/. [Accessed: June 16, 2022]
+[4] "Installation - Material UI", _Mui.com_ [Online]. Available: https://mui.com/material-ui/getting-started/installation/. [Accessed: June 16, 2022].
 
 - Used Material UI documentation to learn about different material UI components.
 
@@ -135,9 +137,8 @@ All the images used for this project are royalty free.
 
 - Some part of code is taken from first individual assignment referenced above.
 
-[11] "Javascript regular expression password validation having special characters," _StackOverflow.com_ [Online]. Available: https://stackoverflow.com/questions/12090077/javascript-regular-expression-password-validation-having-special-characters. [Accessed: June 16, 2022]
+[11] "Javascript regular expression password validation having special characters," _StackOverflow.com_ [Online]. Available: https://stackoverflow.com/questions/12090077/javascript-regular-expression-password-validation-having-special-characters. [Accessed: June 16, 2022].
 
-[12] Codegrepper.com. 2022. pagination hook react Code Example. [online] Available at: <https://www.codegrepper.com/code-examples/javascript/pagination+hook+react> [Accessed 21 July 2022].
+[12] "pagination hook react Code Example," _Codegrepper.com_ [Online]. Available: https://www.codegrepper.com/code-examples/javascript/pagination+hook+react. [Accessed: July 10, 2022].
 
-[13] M. parameter, "Mongoose query with array parameter", Stack Overflow, 2022. [Online]. Available: https://stackoverflow.com/questions/26985908/mongoose-query-with-array-parameter. [Accessed: 21- Jul- 2022]
-
+[13] M. parameter, "Mongoose query with array parameter," _Stack Overflow_ [Online]. Available: https://stackoverflow.com/questions/26985908/mongoose-query-with-array-parameter. [Accessed: July 12, 2022].
