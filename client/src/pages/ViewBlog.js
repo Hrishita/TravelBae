@@ -62,7 +62,6 @@ function ViewBlog() {
         blog_id: params['id']
       }
     })
-    console.log("result", res.data)
     setBlog(res.data[0])
     setComments(res.data[0].comments)
   }
@@ -71,7 +70,6 @@ function ViewBlog() {
   }, [])
 
   const handleSubmit = async () => {
-    console.log("comment"+userId)
 
     let newComments = [...comments, {
 

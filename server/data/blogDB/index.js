@@ -20,8 +20,6 @@ exports.createBlog = function (req, res) {
   const { blog_id, author_id, title, content, image, destination_tag } =
     req.body;
 
-  console.log(req.body);
-
   (insertBlogData.blog_id = blog_id),
     (insertBlogData.author_id = author_id),
     (insertBlogData.title = title),

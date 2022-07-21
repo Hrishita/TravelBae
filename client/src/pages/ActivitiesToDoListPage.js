@@ -61,7 +61,6 @@ function ActivitiesToDoListPage() {
 
   const _DATA = usePagination(allHotels, PER_PAGE);
 
-  console.log(page);
   return (
     <Grid container spacing={0.5}>
       <Grid item xs={12}>

@@ -71,7 +71,6 @@ const Destination = () => {
       })
       .then((res) => {
         setBlogCards(res.data);
-        console.log(res.data);
       });
   }, []);
 

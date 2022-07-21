@@ -87,7 +87,6 @@ function SearchFlights() {
   }, []);
 
   const checkForEmptySearch = (source, dest) => {
-    console.log(source, dest);
     if (source == "" && dest == "") {
       fetchRecommendedFlights();
     }
@@ -128,7 +127,6 @@ function SearchFlights() {
         d2.setHours(0);
         d2.setSeconds(0);
         d2.setMinutes(0);
-        console.log(d1.getTime(), d2.getTime());
         let res = await axios({
           method: "POST",
           url: `${BACKEND_URL}/tp/fetchTransporationByDestination`,
@@ -151,14 +149,12 @@ function SearchFlights() {
       return a.price - b.price;
     });
     setFilteredFlights(sorted);
-    console.log(sorted);
   };
 
   const handlePriceChange = (price) => {
     setPrice(price);
     let newFlightsList = [...flights];
     newFlightsList = newFlightsList.filter((f) => {
-      console.log(f.price, price);
       return f.price <= price;
     });
     setFilteredFlights(newFlightsList);
@@ -185,7 +181,6 @@ function SearchFlights() {
         country: "temp",
       },
     });
-    console.log("response", res);
   };
 
   const _DATA = usePagination(filteredFlights, PER_PAGE);

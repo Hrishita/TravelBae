@@ -18,7 +18,6 @@ import { AuthContext } from "../../context/AuthContext";
 function RegisterUser() {
   const history = useHistory();
   const userId = useContext(AuthContext);
-  console.log("userId....", userId);
   const handleSignUp = (userProfileData) => {
     const url = `${BACKEND_URL}/user/signUp`;
     axios

@@ -30,8 +30,6 @@ import AlertDialog from "../containers/AlertDialog";
 
 function UserDashbordPlan() {
   const auth = useContext(AuthContext);
-
-  // console.log(auth);
   let id = null;
 
   if (auth && auth.isLoggedIn == true && auth.userId != null) {
@@ -93,7 +91,6 @@ function UserDashbordPlan() {
   };
 
   const fetchAllPlanTrips = async () => {
-    // console.log("fetching the data");
     let res = await axios({
       method: "POST",
       url: `${BACKEND_URL}/pt/findPlanTripByUserID/` + id,
@@ -108,7 +105,6 @@ function UserDashbordPlan() {
     let finalCompletedData = Array();
 
     res.data.map((cities) => {
-      // console.log(cities);
       for (let i = 0; i < locData.data.destinations.length; i++) {
         if (locData.data.destinations[i].dest_name === cities.city) {
           if (cities.is_completed === false) {
@@ -126,8 +122,6 @@ function UserDashbordPlan() {
 
     setUpcomingPlanTrip(finalUpcomingData);
     setCompletedPlanTrip(finalCompletedData);
-
-    // console.log(res.data);
   };
 
   useEffect(() => {

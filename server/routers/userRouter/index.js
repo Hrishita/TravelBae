@@ -16,7 +16,6 @@ userRouter.post("/changePassword", userService.updatePassword);
 //Authentication Logic for registration
 
 userRouter.post("/signup", (req, res, next) => {
-  console.log("reqyest.....", req);
   bcrypt.hash(req.body.password, 10).then((hash) => {
     const user = new User({
       email: req.body.email,
@@ -67,7 +66,6 @@ userRouter.post("/login", (req, res, next) => {
       return bcrypt.compare(req.body.password, user.password);
     })
     .then((result) => {
-      console.log(fetchedUser);
       if (!result) {
         return res.status(401).json({
           message: "Auth failed inccorect password",
