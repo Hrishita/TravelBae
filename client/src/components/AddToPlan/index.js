@@ -45,7 +45,7 @@ export default function FormDialogComp(props) {
   const handleAdd = () => {
     if (newPlan) {
       if (!newPlan.match(/^[-\w\s]+$/)) {
-        setValidation("Only Alpha Numeric and Underscore is Allowed");
+        setValidation("Only Alpha Numeric and Underscore is  Allowed");
         return;
       }
       axios
