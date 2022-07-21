@@ -49,7 +49,7 @@ const DayItineraryPage = () => {
   }, [cityName]);
 
   useEffect(() => {
-    const weatherURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${cityLat}&lon=${cityLong}&appid=${Weather_API}`;
+    const weatherURL = `https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/forecast?lat=${cityLat}&lon=${cityLong}&appid=${Weather_API}`;
     axios
       .get(weatherURL)
       .then((res) => {
