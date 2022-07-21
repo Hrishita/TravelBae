@@ -4,7 +4,7 @@
  * Task: Registration
  *
  */
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import RegisterComp from "../../components/Registration";
 import { BACKEND_URL } from "../../config";
 import { useHistory } from "react-router-dom";
@@ -18,20 +18,22 @@ import { AuthContext } from "../../context/AuthContext";
 function RegisterUser() {
   const history = useHistory();
   const userId = useContext(AuthContext);
+  const [authMsg, setAuthMsg] = useState("");
   const handleSignUp = (userProfileData) => {
     const url = `${BACKEND_URL}/user/signUp`;
     axios
       .post(url, userProfileData)
       .then((res) => {
+        setAuthMsg("");
         history.push("/login");
       })
       .catch((e) => {
-        console.error(e);
+        setAuthMsg("User Already Exists!");
       });
   };
   return (
     <>
-      <RegisterComp handleSignUp={handleSignUp} />
+      <RegisterComp handleSignUp={handleSignUp} authMsg={authMsg} />
     </>
   );
 }

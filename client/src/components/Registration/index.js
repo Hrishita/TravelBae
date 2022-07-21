@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Link } from "@material-ui/core";
+import Alert from "@mui/material/Alert";
 
 /**
  * File renders the registration form and takes care of client side validation
@@ -303,6 +304,13 @@ function RegisterComp(props) {
                   helperText={error.cnfPassword}
                 />
               </Grid>
+              {props.authMsg ? (
+                <Grid item xs={12}>
+                  <Alert severity="error">{props.authMsg}</Alert>{" "}
+                </Grid>
+              ) : (
+                <></>
+              )}
               <Grid item xs={12}>
                 <Button
                   type="submit"
@@ -314,6 +322,7 @@ function RegisterComp(props) {
                   <Typography color="white">Sign Up</Typography>
                 </Button>
               </Grid>
+
               <Grid item xs={12}>
                 <Link href="/login">
                   <Typography textAlign="center">
