@@ -15,6 +15,7 @@ import NoDataFound from "../components/NoDataFound";
 import Footer from "../containers/Footer";
 import usePagination from "../containers/UsePagination";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { BACKEND_URL } from "../config";
 
@@ -25,37 +26,73 @@ import { BACKEND_URL } from "../config";
 const Destinations = () => {
   const auth = React.useContext(AuthContext);
   const userID = auth && auth.userId;
+  const params = useParams();
 
   const [destinationsData, setDestinationsData] = useState("");
   const [searchInput, setSearchInput] = useState("");
-  const [bucketList, setBucketList] = useState("");
+  const [getBucketList, setBucketList] = useState("");
 
   useEffect(() => {
-    const fetchDestinationsURL = `${BACKEND_URL}/destination/fetchAllDestinations`;
-    const fetchBucketListURL = `${BACKEND_URL}/bl/fetchBucketListDataByUserId`;
+    if (!params.code) {
+      const fetchDestinationsURL = `${BACKEND_URL}/destination/fetchAllDestinations`;
+      const fetchBucketListURL = `${BACKEND_URL}/bl/fetchBucketListDataByUserId`;
 
-    axios
-      .get(fetchDestinationsURL)
-      .then((destinations) => {
-        axios
-          .post(fetchBucketListURL, {
-            email_id: userID,
-          })
-          .then((buckList) => {
-            setBucketList(buckList.data);
-            const bucketList = buckList.data.bucketListItems;
-            if (bucketList.length > 0) {
-              bucketList.forEach((buckList) => {
-                let index = destinations.data.destinations.findIndex((item) => {
-                  return item.dest_code === buckList.dest_code;
+      axios
+        .get(fetchDestinationsURL)
+        .then((destinations) => {
+          axios
+            .post(fetchBucketListURL, {
+              email_id: userID,
+            })
+            .then((buckList) => {
+              setBucketList(buckList.data);
+              const bucketList = buckList.data.bucketListItems;
+              if (bucketList.length > 0) {
+                bucketList.forEach((buckList) => {
+                  let index = destinations.data.destinations.findIndex(
+                    (item) => {
+                      return item.dest_code === buckList.dest_code;
+                    }
+                  );
+                  destinations.data.destinations[index].isFavorite = true;
                 });
-                destinations.data.destinations[index].isFavorite = true;
-              });
-            }
-            setDestinationsData(destinations.data.destinations);
-          });
-      })
-      .catch((err) => console.log(err));
+              }
+              setDestinationsData(destinations.data.destinations);
+            });
+        })
+        .catch((err) => console.log(err));
+    } else {
+      const fetchSearchedDestination = `${BACKEND_URL}/destination/fetchFilteredDestinations`;
+      const fetchBucketListURL = `${BACKEND_URL}/bl/fetchBucketListDataByUserId`;
+
+      axios
+        .post(fetchSearchedDestination, {
+          tags: filtering,
+          dest_name: params.code,
+        })
+        .then((destinations) => {
+          axios
+            .post(fetchBucketListURL, {
+              email_id: userID,
+            })
+            .then((buckList) => {
+              setBucketList(buckList.data);
+              const bucketList = buckList.data.bucketListItems;
+              if (bucketList.length > 0) {
+                bucketList.forEach((buckList) => {
+                  let index = destinations.data.destinations.findIndex(
+                    (item) => {
+                      return item.dest_code === buckList.dest_code;
+                    }
+                  );
+                  destinations.data.destinations[index].isFavorite = true;
+                });
+              }
+              setDestinationsData(destinations.data.destinations);
+            });
+        })
+        .catch((err) => console.log(err));
+    }
   }, []);
 
   const [page, setPage] = useState(1);
@@ -66,7 +103,6 @@ const Destinations = () => {
     setPage(p);
     _DATA.jump(p);
   };
-
   const _DATA = usePagination(destinationsData, PER_PAGE);
 
   let handleEvent = (event) => {
@@ -78,9 +114,21 @@ const Destinations = () => {
       })
       .then((res) => {
         setPage(1);
-        // _DATA.jump(1);
-        setDestinationsData(res.data.destinations);
-      });
+          let filterBucketList = getBucketList.bucketListItems;
+          if (filterBucketList.length > 0) {
+            filterBucketList.forEach((buckList) => {
+              let index = res.data.destinations.findIndex(
+                (item) => {
+                  return item.dest_code === buckList.dest_code;
+                }
+              );
+              if(index >= 0){
+                res.data.destinations[index].isFavorite = true;
+              }
+            });
+          }
+          setDestinationsData(res.data.destinations);
+        });
   };
 
   const [filtering, setFiltering] = useState({});
@@ -97,7 +145,20 @@ const Destinations = () => {
         dest_name: searchInput,
       })
       .then((res) => {
-        setDestinationsData(res.data.destinations);
+        let filterBucketList = getBucketList.bucketListItems;
+          if (filterBucketList.length > 0) {
+            filterBucketList.forEach((buckList) => {
+              let index = res.data.destinations.findIndex(
+                (item) => {
+                  return item.dest_code === buckList.dest_code;
+                }
+              );
+              if(index >= 0){
+                res.data.destinations[index].isFavorite = true;
+              }
+            });
+          }
+          setDestinationsData(res.data.destinations);
         setPage(1);
         _DATA.jump(1);
       });
@@ -115,7 +176,20 @@ const Destinations = () => {
         dest_name: searchInput,
       })
       .then((res) => {
-        setDestinationsData(res.data.destinations);
+        let filterBucketList = getBucketList.bucketListItems;
+          if (filterBucketList.length > 0) {
+            filterBucketList.forEach((buckList) => {
+              let index = res.data.destinations.findIndex(
+                (item) => {
+                  return item.dest_code === buckList.dest_code;
+                }
+              );
+              if(index >= 0){
+                res.data.destinations[index].isFavorite = true;
+              }
+            });
+          }
+          setDestinationsData(res.data.destinations);
         setPage(1);
         _DATA.jump(1);
       });
@@ -155,10 +229,10 @@ const Destinations = () => {
           <FilterMenu filterProperties={data}></FilterMenu>
         </Grid>
         <Grid container>
-          {_DATA.currentData() && _DATA.currentData().length > 0 ? (
+          {_DATA.currentData() ? (_DATA.currentData().length > 0 ? (
             _DATA.currentData().map((destination) => {
               return (
-                <Grid container>
+                <Grid container key={destination.dest_code}>
                   <DestinationCardCont
                     details={destination}
                   ></DestinationCardCont>
@@ -171,13 +245,14 @@ const Destinations = () => {
               alignItems="center"
               justifyContent="center"
               sx={{ mt: 2 }}
+              className="text-align-center"
             >
               <NoDataFound
                 message="Destination not present. Please search for another one or select from the list."
                 className="text-align-center"
               ></NoDataFound>
             </Grid>
-          )}
+          )) : (<></>)}
         </Grid>
         <Grid item xs={12}>
           <Grid container alignItems="center" justifyContent="center">

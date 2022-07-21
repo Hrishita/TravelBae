@@ -28,7 +28,8 @@ const ActivitySearchBoxComp = (props) => {
             <TextField
               id="searchKeyword"
               name="searchKeyword"
-              placeholder="Activities"
+              label="Search by City"
+              placeholder="Search by City"
               size="medium"
               type="search"
               color="secondary"

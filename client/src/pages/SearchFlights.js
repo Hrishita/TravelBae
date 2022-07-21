@@ -42,7 +42,7 @@ function SearchFlights() {
   const fetchRecommendedFlights = async () => {
     let res = await axios({
       method: "POST",
-      url: 'http://localhost:8000/tp/fetchAllTransporation',
+      url: `${BACKEND_URL}/tp/fetchAllTransporation`,
     })
     setFlights(res.data.data)
     setFilteredFlights(res.data.data)
@@ -74,7 +74,7 @@ function SearchFlights() {
         d.setMinutes(0)
         let res = await axios({
           method: 'POST',
-          url: 'http://localhost:8000/tp/fetchTransporationByDestination',
+          url: `${BACKEND_URL}/tp/fetchTransporationByDestination`,
           data: {
             source: source ? source : null,
             dest_name: dest ? dest : null,
@@ -96,7 +96,7 @@ function SearchFlights() {
         console.log(d1.getTime(), d2.getTime())
         let res = await axios({
           method: 'POST',
-          url: 'http://localhost:8000/tp/fetchTransporationByDestination',
+          url: `${BACKEND_URL}/tp/fetchTransporationByDestination`,
           data: {
             source: source ? source : null,
             dest_name: dest ? dest : null,

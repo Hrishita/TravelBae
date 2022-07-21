@@ -216,7 +216,7 @@ function UserDashbordPlan() {
 
       <Grid item xs={12} lg={8}>
         <Box pl={3} mt={4} pb={3} display="flex">
-          <Paper>
+          <Paper sx={{ width: "100%" }}>
             <Grid container>
               <Grid item lg={6}>
                 <Box pt={2} pl={4}>
@@ -236,11 +236,18 @@ function UserDashbordPlan() {
             <Box pl={2} pt={2} pb={2} pr={2}>
               <Divider />
             </Box>
-            <Box ml={2} pl={2} pt={3} pb={3} mr={3}>
+            <Box ml={4} pl={2} pt={3} pb={3} mr={3}>
               <Grid container flexDirection="column" spacing={2}>
                 {UpcomingPlanTrip.map((plan) => {
                   return displayCard(plan);
                 })}
+                {UpcomingPlanTrip.length === 0 && (
+                  <div>
+                    <p sx={{ marginLeft: "1rem !important" }}>
+                      Plans list is empty.
+                    </p>
+                  </div>
+                )}
               </Grid>
             </Box>
             <Grid item lg={6}>
@@ -253,11 +260,18 @@ function UserDashbordPlan() {
             <Box pl={2} pt={2} pb={2} pr={2}>
               <Divider />
             </Box>
-            <Box ml={2} pl={2} pt={3} pb={3} mr={3}>
+            <Box ml={4} pl={2} pt={3} pb={3} mr={3}>
               <Grid container flexDirection="column" spacing={2}>
                 {CompletedPlanTrip.map((plan) => {
                   return displayCard(plan);
                 })}
+                {CompletedPlanTrip.length === 0 && (
+                  <div>
+                    <p sx={{ marginLeft: "1rem !important" }}>
+                      Plans list is empty.
+                    </p>
+                  </div>
+                )}
               </Grid>
             </Box>
           </Paper>

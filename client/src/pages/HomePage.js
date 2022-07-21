@@ -46,6 +46,7 @@ const HomePage = () => {
   const classes = useStyles();
   const history = useHistory();
   const [open, setOpen] = useState(false); // for alert box
+  const [searchInput, setSearchInput] = useState("");
   const auth = useContext(AuthContext);
 
   const handleOpen = (link, type) => {
@@ -73,6 +74,11 @@ const HomePage = () => {
     if (type === "destination") {
       history.push(link);
     }
+  };
+
+  const handleEvent = (event) => {
+    setSearchInput(event);
+    history.push("/destinations/" + event);
   };
 
   const displayStrip = (title, cards, link, type) => {
@@ -158,11 +164,11 @@ const HomePage = () => {
       </Grid>
       <Grid item xs={12}>
         <Box pt={4} pb={4}>
-          <SearchBoxComp />
+          <SearchBoxComp onEvent={handleEvent} />
         </Box>
       </Grid>
       <Grid item xs={12}>
-        <Box pt={4} pb={4} display="flex" justifyContent="center">
+        <Box pb={4} display="flex" justifyContent="center">
           {" "}
           <Typography
             variant="h5"

@@ -43,7 +43,7 @@ exports.fetchBlogByDestination = function (req, res) {
     }
     res.json(blog);
   }).sort({ published_date: -1 });
-}
+};
 
 exports.addComment = function (req, res) {
   const { comment_id, blog_id, comment_text, author_id } = req.body;
@@ -66,12 +66,12 @@ exports.addComment = function (req, res) {
       res.json(comment);
     }
   );
-}
+};
 
 exports.fetchBlogComments = function (req, res) {
   const { blog_id } = req.body;
 
-  Blog.find({blog_id},{"comments":1}, function (err, comment) {
+  Blog.find({ blog_id }, { comments: 1 }, function (err, comment) {
     if (err) {
       res.send(err);
     }
@@ -87,7 +87,7 @@ exports.deleteBlogByID = function (req, res) {
     }
     res.json(blog);
   });
-}
+};
 
 exports.fetchBlogByID = function (req, res) {
   const { blog_id } = req.body;
@@ -97,4 +97,17 @@ exports.fetchBlogByID = function (req, res) {
     }
     res.json(blog);
   });
-}
+};
+
+exports.findBlogByUserID = function (req, res) {
+  let { userID } = req.body;
+  if (userID === undefined) {
+    userID = req.params.id;
+  }
+  Blog.find({ userID }, function (err, blog) {
+    if (err) {
+      res.send(err);
+    }
+    res.json(blog);
+  });
+};

@@ -18,6 +18,8 @@ import { BACKEND_URL } from "../../config";
 import { useEffect, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import AddToPlanComp from "../AddToPlan";
+import LoginAlertComp from "../LoginAlert";
+import { useLocation } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -42,6 +44,7 @@ function HorizontralCardComp(props) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const history = useLocation();
 
   const auth = useContext(AuthContext);
   const userId = auth.userId ? auth.userId : "";
@@ -136,13 +139,15 @@ function HorizontralCardComp(props) {
           </Box>
         </Modal>
       </CardActions>
-      {
+      {userId ? (
         <AddToPlanComp
           open={open2}
           handleClose={handleClose2}
           data={sendData}
         />
-      }
+      ) : (
+        <LoginAlertComp open={open2} handleClose={handleClose2} />
+      )}
     </Card>
   );
 }

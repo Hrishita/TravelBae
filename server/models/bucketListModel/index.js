@@ -11,7 +11,7 @@
  const bucketListSchema = new mongoose.Schema({
    email_id: { type: String, required: true },
    dest_name: { type: String, required: true },
-   dest_code: { type: String, required: true, unique: true },
+   dest_code: { type: String, required: true },
    img: { type: String, required: true }
  });
  

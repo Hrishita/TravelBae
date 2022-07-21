@@ -164,7 +164,14 @@ function Router() {
 
             <Route
               exact
-              path="/destinations"
+              path="/destinations/:code"
+              render={() => {
+                return <Destinations />;
+              }}
+            />
+            <Route
+              exact
+              path="/destinations/"
               render={() => {
                 return <Destinations />;
               }}

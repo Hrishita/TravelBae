@@ -4,15 +4,12 @@ import { Box, Grid } from "@material-ui/core";
 import AlertDialog from "../../containers/AlertDialog";
 
 // Search box
-const SearchBoxComp = () => {
-  const [open, setOpen] = useState(false); // for alert box
+const SearchBoxComp = ({ onEvent }) => {
+  const [searchInput, setSearchInput] = useState("");
+  const navigateToDest = () => {
+    onEvent(searchInput);
+  }
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
   return (
     <Box marginLeft={4} marginRight={4}>
       <Grid container spacing={4} alignItems="center">
@@ -28,9 +25,10 @@ const SearchBoxComp = () => {
               label="Destination"
               size="medium"
               type="search"
+              value={searchInput}
+              onChange={(event) => setSearchInput(event.target.value)}
               color="secondary"
               variant="outlined"
-              onChange={handleOpen}
               fullWidth
             />
           </Box>
@@ -44,18 +42,9 @@ const SearchBoxComp = () => {
           alignContent="center"
           alignItems="center"
         >
-          <Button variant="contained" fullWidth onClick={handleOpen}>
+          <Button variant="contained" fullWidth onClick={navigateToDest}>
             <Typography p={1}>Search</Typography>
           </Button>
-        </Grid>
-        <Grid item xs={12}>
-          <AlertDialog
-            open={open}
-            title="Confirm"
-            message="API logic required to Search"
-            handleClose={handleClose}
-            buttons={["Cancel", "Ok"]}
-          />
         </Grid>
       </Grid>
     </Box>
