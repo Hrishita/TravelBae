@@ -123,23 +123,6 @@ function AccommodationListPage() {
       </Grid>
       <Grid item xs={12}>
         <Grid container justifyContent="center" alignItems="center">
-          {allHotels.length === 0 && (
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={4}
-              lg={2}
-              style={{ textAlign: "center" }}
-            >
-              <NoDataFound
-                message="Search Results are Empty"
-                display={true}
-                listEmpty={true}
-                className="text-align-center"
-              />
-            </Grid>
-          )}
           {allHotels.length !== 0 && (
             <Grid
               item
@@ -147,6 +130,7 @@ function AccommodationListPage() {
               sm={6}
               md={4}
               lg={2}
+              sx={{pt:2}}
               style={{ textAlign: "center" }}
             >
               <Box
@@ -169,6 +153,28 @@ function AccommodationListPage() {
         <Box sx={{ pr: 20 }}>
           <AccommodationSortDropdown sortingType={setSort} />
         </Box>
+      </Grid>
+
+      <Grid item xs={12}>
+        <Grid container justifyContent="center" alignItems="center">
+          {allHotels.length === 0 && (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={2}
+              style={{ textAlign: "center" }}
+            >
+              <NoDataFound
+                message="Search Results are Empty"
+                display={true}
+                listEmpty={true}
+                className="text-align-center"
+              />
+            </Grid>
+          )}
+        </Grid>
       </Grid>
 
       <Grid item>
