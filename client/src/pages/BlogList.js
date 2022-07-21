@@ -1,24 +1,33 @@
+/**
+ * Author: Hrishita Mavani
+ * Feature: Blog Management
+ * Task: View Blog Task - User can view the blogs
+ */
+
 import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import { Grid } from "@material-ui/core";
-import { Stack } from "@mui/material";
 import Card from "@material-ui/core/Card";
 import Footer from "../containers/Footer";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import { deepOrange } from "@mui/material/colors";
-
 import Avatar from "@material-ui/core/Avatar";
 import NavBar from "../containers/NavBar";
 import { useHistory } from "react-router-dom";
-import { Pagination } from "@material-ui/lab";
 import axios from "axios";
 import { Search } from "@material-ui/icons";
 import { BACKEND_URL } from "../config";
+
+/**
+ * This page is used to display list of blogs
+ * User would be able to click on a particular blog and be redirected to the blog page
+ * User would be able to search for a particular blog
+ */
 const useStyles = makeStyles((theme) => ({
   hero: {
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/6965513/pexels-photo-6965513.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
@@ -91,10 +100,8 @@ function BlogList() {
   const onSearchChange = (e) => {
     setSearch(e.target.value);
     if (e.target.value != "") {
-      console.log("not empty");
       setFiltered(
         blogs.filter((blog) => {
-          console.log(blog.title);
           if (blog.title.includes(e.target.value)) return true;
           else return false;
         })

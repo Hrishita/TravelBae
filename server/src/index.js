@@ -20,6 +20,7 @@ const itineraryRouter = require("../routers/itineraryRouter");
 const specificItineraryRouter = require("../routers/specificItineraryRouter");
 const dayItineraryRouter = require("../routers/dayItineraryRouter");
 const planTripRouter = require("../routers/planTripRouter");
+const bucketListRouter = require("../routers/bucketListRouter");
 const thingsToCarryRouter = require("../routers/thingsToCarryRouter");
 
 /**
@@ -44,6 +45,7 @@ app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
  * because server and client will be runnig on different domains and requests are made from different domain.
  */
 app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
 app.use(cookieParser());
 
 //cors issues middleware
@@ -92,4 +94,5 @@ app.use("/it", itineraryRouter);
 app.use("/sit", specificItineraryRouter);
 app.use("/dit", dayItineraryRouter);
 app.use("/pt", planTripRouter);
+app.use("/bl", bucketListRouter);
 app.use("/tc", thingsToCarryRouter);

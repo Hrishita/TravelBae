@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-// import Button from "@material-ui/core/Button";
+import React, { useEffect, useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@mui/material/TextField";
 import { Grid } from "@material-ui/core";
@@ -8,23 +7,48 @@ import Footer from "../containers/Footer";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 import Fade from "@mui/material/Fade";
-import { Button, Box } from "@mui/material";
-import AlertDialog from "../containers/AlertDialog";
+import { Button, Box, Autocomplete } from "@mui/material";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { BACKEND_URL } from "../config";
 
 const TripPlannerPage = () => {
-  const [open, setOpen] = useState(false); // for alert box
+  const [searchDest, setSearchDest] = useState({
+    dest_name: "Search Destination",
+  });
+  const [startDate, setStartDate] = useState("");
+  const [toDate, setToDate] = useState("");
+
+  const [data, setData] = useState([]);
   const history = useHistory();
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
+  const tripPlannerData = {
+    dest_name: searchDest.dest_name,
+    start_date: startDate,
+    end_date: toDate,
   };
 
   const handleClick = () => {
-    history.push("/trip-planner/plan");
+    history.push({
+      pathname: "/trip-planner/plan",
+      state: { ...tripPlannerData },
+    });
+  };
+
+  useEffect(() => {
+    axios
+      .post(`${BACKEND_URL}/destination/fetchDestinationOnTripPlanner`)
+      .then((res) => {
+        setData(res.data.destinations);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const destOption = {
+    options: data,
+    getOptionLabel: (option) => option && option.dest_name,
   };
 
   return (
@@ -58,22 +82,32 @@ const TripPlannerPage = () => {
               </Grid>
               <Grid item xs={12} sm={8} md={8}>
                 <Box pt={2}>
-                  <TextField
-                    color="secondary"
-                    id="search-with-input"
-                    label="Search"
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <SearchIcon />
-                        </InputAdornment>
-                      ),
-                    }}
-                    variant="outlined"
-                    type="search"
-                    fullWidth
-                    onChange={handleOpen}
-                  />
+                  {destOption && (
+                    <Autocomplete
+                      {...destOption}
+                      id="debug"
+                      debug
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          color="secondary"
+                          label="Search Destination"
+                          InputProps={{
+                            ...params.InputProps,
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <SearchIcon />
+                              </InputAdornment>
+                            ),
+                          }}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      )}
+                      value={searchDest}
+                      onChange={(event, value) => setSearchDest(value)}
+                    />
+                  )}
                 </Box>
               </Grid>
               <Grid item xs={12} sm={12} md={12}>
@@ -87,6 +121,7 @@ const TripPlannerPage = () => {
                     InputLabelProps={{
                       shrink: true,
                     }}
+                    onChange={(e) => setStartDate(e.target.value)}
                   />
                   <TextField
                     color="secondary"
@@ -96,6 +131,7 @@ const TripPlannerPage = () => {
                     InputLabelProps={{
                       shrink: true,
                     }}
+                    onChange={(e) => setToDate(e.target.value)}
                   />
                 </Box>
               </Grid>
@@ -119,15 +155,6 @@ const TripPlannerPage = () => {
         </Grid>
         <Grid item xs={12}>
           <Footer />
-        </Grid>
-        <Grid item xs={12}>
-          <AlertDialog
-            open={open}
-            title="Confirm"
-            message="API logic required to Search"
-            handleClose={handleClose}
-            buttons={["Cancel", "Ok"]}
-          />
         </Grid>
       </Grid>
     </Fade>

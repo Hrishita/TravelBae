@@ -1,15 +1,17 @@
+/**
+ * Author: Nishit Mistry
+ * Feature: Itinerary Management
+ * Task: Search Itinerary and Itinerary Recommendation
+ */
 const itineraryDB = require("../../data/itineraryDB");
 
 /**
- * This function is used to return the data of userDB. Whenever this function is called,
- * the user data will be fetched from the mongo and will be returned in json format.
+ * These functions are used to return the data of itineraryDB by fetching the recommended itineraries and
+ * searching via a city name. Whenever this function is called, the itinerary data will be fetched from
+ * MongoDB and will be returned in json format.
  * @param {*} req
- * @returns
+ * @param {*} res
  */
-// function itineraryService(req) {
-//   return itineraryDB(req);
-// }
-
 exports.fetchRecommendedItineraries = function (req, res) {
   itineraryDB.fetchRecommendedItineraries(req, res);
 };
@@ -18,7 +20,6 @@ exports.searchByCity = function (req, res) {
   itineraryDB.searchByCity(req, res);
 };
 
-/**
- * The module is being exported as userProfileService so that this module can be imported into other modules.
- */
-// module.exports = itineraryService;
+exports.findItineraryByCity = function (req, res) {
+  itineraryDB.findItineraryByCity(req, res);
+};

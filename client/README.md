@@ -1,140 +1,127 @@
-# CSCI5709 Project | Travel Bae | Group - 15
+# Assignment 3
 
-```
-Travel Bae:
-TravelBae is an online travel website that helps customers plan better trips to their favourite destinations. The application keeps track of the best destinations, hotels, and modes of transportation. Other features on the website include activities to do, itinerary management, bucket lists, and much more.
+Name: Smriti Mishra
+Banner ID: B00904799
+Group 15
+Project Name: Travel Bae
+\*Introduction:The online travel site TravelBae assists users in making better travel arrangements to their preferred locations. The application maintains track of the top locations, accommodations, and transit options. The website also offers activities, itinerary management, bucket lists, andmany other features.
 
-The Main Features of our application are:
-- Destinations
-- Bucket Lists
-- Blog Management
-- Transportation Options
-- Accommodation options
-- User Management
-- Profile Management
-- Activities to do
-- Itinerey Management
-- Dashboard
-- Things to carry
-- Trip Planner
-```
+## Team Members:
+
+- Smriti Mishra
+- Hrishita Mavani
+- Smily MS
+- Nishit Mistry
+- Trushita Maurya
+- Sangramsinh More
 
 ## Project Repository, Individual Branch and Deployement URL
 
-* *Date Created*: 16 Jun 2022
-* *Last Modification Date*: 16 Jun 2022
-* *Git Repository URL*: https://git.cs.dal.ca/maurya/csci-5709-project
-* *Heroku deployment URL for application*: https://travel-bae.herokuapp.com/
-* Nishit Mistry: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/nishit-mistry
-* Trushita Maurya: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/trushita-maurya
-* Smily: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/smily
-* Smriti Mishra: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/smriti-mishra
-* Hrishita Mavani: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/hrishita-mavani
-* Sagramsinh More: https://git.cs.dal.ca/maurya/csci-5709-project/-/tree/sangramsinh-more
-
-## Authors
-
-* [Smily](smily@dal.ca) - *(Maintainer)*
-* [Trushita Maurya](tr711348@dal.ca) - *(Maintainer)*
-* [Nishit Mistry](nishit.mistry@dal.ca) - *(Maintainer)*
-* [Sangramsinh More](sangramsinh.more@dal.ca) - *(Maintainer)*
-* [Hrishita Mavani](hr637632@dal.ca) - *(Maintainer)*
-* [Smriti Mishra](sm689498@dal.ca)- *(Maintainer)*
-
-# Getting Started
-
-### Built With
-
-* [React](https://reactjs.org/) - The library used for building the front-end.
-* [Material UI](https://mui.com/) - To build responsive User Interface components - navigation bar, pagination and cards layout.
-* [React Router](https://reactrouter.com/) - Used to do the routing in the application (home and destinationsu) since react does not have anything in-built.
-
-### Components Used
-
-For the completion of this assignment, I have used the components provided by [Material UI](https://mui.com/) 
-The components used are:
-
-* App Bar 
-* Theming
-* Grid
-* Typography
-* Box
-* Form Group
-* Checkbox
-* Icon Button
-* Tool Bar
-* Card
-* Grid
-* Pagination
-* Alert
-* TextField
-
-### Deployed using
-
-- [Heroku](https://dashboard.heroku.com/apps) - For deployment
-- The application has been deployed on Heroku. 
+- _Date Created_: 13 Jul 2022
+- _Last Modification Date_: 15 Jul 2022
+- _Git Repository URL_: https://git.cs.dal.ca/maurya/csci-5709-project
+- _Heroku deployment URL for application_: https://travel-bae.herokuapp.com/
+- \*Feature Deployment URL: https://travel-bae.herokuapp.com/userdashboard
 
 ### Prerequisites
 
-To have a local copy of this assingnment up and running on your local machine, following tools and libraries are required.
+To have a local copy of this lab running on your local machine, you will first need to install the following software / libraries / plug-ins
 
-- `node`, a server-side javascript implementation
-- `npm`, the javascript package manager
+- [Node.js](https://nodejs.org/en/download/) - Framework used to provide npm as package manager for installing packages.
 
-### Installing
+### Installing Steps
 
-To install this project in your local machine following steps need to be performed.
+```
+1. Install Node.js
+2. Verify installation by running node -v and npm -v on the terminal.
+3. Install the heroku package using "npm install heroku".
+```
 
-- `git clone https://git.cs.dal.ca/maurya/csci-5709-project.git`
-- `cd csci-5709-project`
-- `npm install`
-- `npm start`
+## Available Scripts
 
+In the project directory,
 
-# References
+- in /client
 
-## Images Used
+### `npm install`
 
-All the images used for this project are royalty free.
+Install all the node dependencies for the client side
 
-- "https://images.trvl-media.com/hotels/24000000/23010000/23003000/23002973/c0a157e9_b.jpg"
-- "https://images.trvl-media.com/hotels/1000000/10000/7900/7803/2a1ea041_b.jpg"
-- "https://images.trvl-media.com/hotels/1000000/60000/53000/52918/a18b3dc8_b.jpg"
-- "https://cdn.pixabay.com/photo/2020/03/01/08/52/sea-4892044_1280.jpg"
-- "https://www.publicdomainpictures.net/pictures/210000/nahled/boat-in-caribbean-1488476201AFb.jpg"
-- "https://cf.bstatic.com/xdata/images/hotel/max1280x900/188927841.jpg?k=7f112dc4aa557f0ffc6f38b93f227154676ddaa247da8f0349042ec3ccb23451&o=",
--  "https://memberapi.discoverhalifaxns.com/member-images/90558323-afea-461f-b434-9b89a46b036c_profile.jpg",
--  "https://memberapi.discoverhalifaxns.com/member-images/7e2b2e3e-6ee9-4405-aa83-43edd4f80d00.jpg",
+- in /server
 
+### `npm install`
+
+Install all the node dependencies for the server side
+
+- in /client
+
+### `npm start`
+
+Runs the app in the development mode.
+Open [http://localhost:3000] to view it in your browser.
+
+- in /server
+
+### `npm start`
+
+Runs the app in the development mode.
+Runs at [http://localhost:8000] in console
+
+The page will reload when you make changes.
+
+## Built With
+
+- [Node.js](https://nodejs.org/en/download/)
+- [Heroku] - Platform for deploying web applications
+
+## Feature: User Dashboard
+
+### Tasks:
+
+```
+1. Plan Completed Trip Statistics : A user can get the complete insight about the completed trips. User can delete the trip and for getting the 	details about any specific trip they can get by clicking on it.
+2. Blog Statistics : A user can get the complete insight about the blogs written . User can get the details about any specific blog by clicking it.User can also write a bolg and delete a blog.
+3. Flag Collection : For making the Travel Bae unique, this page is will represent all the collection of flags collected by the user
+4. Planned Trips :A user can get the complete insight about the upcoming trips. User can delete the trip as well as if completed then mark it as 					completed trip. For getting the details about any specific trip they can get by clicking on it.
+```
+
+### Frontend development (React)
+
+#### Front-end files:
+
+```
+- client\src\pages\UserDashboardPlan.jsx: This Page is responsible for the api calls with backend and also for the displaying, fetching, updating the trip details.
+- client\src\pages\UserDashboardFlag.jsx: This file is responsible for showing all the flags collected information
+- client\src\pages\UserDashboardBlog.jsx: This file is responsible for showing all the blogs written by the user
+- client\src\components\SideBar\SideBarMenu.js: This component is the sidebar component of the user dashboard
+- client\src\assets\flags: All the assests for my featues is stored at this location
+- client\src\containers\CardCont\mockData.js: Dummy testing data was used from this location for the userdashboard feature development.
+```
+
+### API development (Node.js)
+
+#### Backend files:
+
+```
+- server/data/planTripDB/index.js: This file is used for User Dashboard service mongoose REST calls.
+- server/middleware/planTripService/index.js: This file is used as a middleware for mongoose and nodeJS.
+- server/models/planTripModel/index.js: This file is used for defining mongoose schema
+- server/routers/planTripRouter/index.js: This file is used for routing the frontend calls to backend
+```
 
 ## Sources used
 
-[1] "The W3C Markup Validation Service," _Validator.w3.org_ [Online]. Available: https://validator.w3.org/. [Accessed: June 16, 2022].
-
-- Used to check if the deployed app is W3C compliant.
-
-[2] "Cloud Application Platform | Heroku," _Heroku.com_ [Online]. Available: https://www.heroku.com/. [Accessed: June 16, 2022].
-
-- Used Heroku to deploy the application.
-
-[3] "Getting Started – React", Reactjs.org, 2022. [Online]. Available: https://reactjs.org/docs/getting-started.html. [Accessed: 16- Jun- 2022]
-
-- Used React documentation to to learn React.
-
-[4] "Installation - Material UI", Mui.com, 2022. [Online]. Available: https://mui.com/material-ui/getting-started/installation/. [Accessed: 16- Jun- 2022]
-
-- Used Material UI documentation to learn about different material UI components.
-  
-[5] Assignment-1 Git URL (Smily) - https://git.cs.dal.ca/smily/smily-csci5709-individual/-/tree/assignment1
-
-[6] Assignment-1 Git URL (Hrishita Mavani) - https://git.cs.dal.ca/mavani/hrishita-mavani-csci5709/-/tree/assignment-1
-
-[7] Assignement -1 Git URL (Trushita Maurya) - https://git.cs.dal.ca/maurya/csci-5709/-/tree/assignment1
-
-[8] Assignment -1 Git URL (Sangramsingh More) - https://git.cs.dal.ca/smore/csci-5709/-/tree/assignment1
-
-[9] Assignment -1 Git URL (Smriti Mishra) - https://git.cs.dal.ca/smishra/smriti-mishra-csci5709/-/tree/Assignment1
-
-[10] Assignment - 1 Git URL (Nishit Mistry) - https://git.cs.dal.ca/nmistry/csci5709/-/tree/assignment1
-
-- Some part of code is taken from  first individual assignment referenced above. 
+- Cors
+  https://www.npmjs.com/package/cors
+- DotEnv
+  https://www.npmjs.com/package/dotenv
+- Express
+  https://www.npmjs.com/package/express
+- Nodemon
+  https://www.npmjs.com/search?q=nodemon
+- Mongoose
+  https://www.npmjs.com/package/mongoose
+- Mongoose-unique-validator
+  https://www.npmjs.com/package/mongoose-unique-validator
+- MongoDB
+  https://www.npmjs.com/package/mongodb

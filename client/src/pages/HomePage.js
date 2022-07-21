@@ -1,4 +1,4 @@
-import React, { useContext,useState } from 'react';
+import React, { useContext, useState } from "react";
 import {
   Grid,
   Link,
@@ -14,7 +14,7 @@ import SearchBoxComp from "../components/SearchBox";
 import Divider from "@mui/material/Divider";
 import {
   destinationData,
-  blogCards,
+  accCards2,
   accCards,
 } from "../containers/CardCont/mockData";
 import Footer from "../containers/Footer";
@@ -22,7 +22,7 @@ import Footer from "../containers/Footer";
 import AlertDialog from "../containers/AlertDialog";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-
+import { Button } from "@mui/material";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,28 +48,34 @@ const HomePage = () => {
   const [open, setOpen] = useState(false); // for alert box
   const auth = useContext(AuthContext);
 
-  console.log("userId....",auth.userId);
-
-  const handleOpen = () => {
-    setOpen(true);
+  const handleOpen = (link,type) => {
+    if (type === "accommodation") {
+      history.push(link);
+    }
+    if (type === "blogs") {
+      history.push(link);
+    }
+    if (type === "destination") {
+      history.push("/destinations");
+    }
   };
   const handleClose = () => {
     setOpen(false);
   };
 
-  const handleClick = (link,type) => {
-    if(type==="accommodation"){
-    history.push(link);
-    }
-    if(type==="blogs"){
+  const handleClick = (link, type) => {
+    if (type === "accommodation") {
       history.push(link);
-      }
-      if(type==="destination"){
-        history.push(link);
-        }
+    }
+    if (type === "blogs") {
+      history.push(link);
+    }
+    if (type === "destination") {
+      history.push(link);
+    }
   };
 
-  const displayStrip = (title, cards, link,type) => {
+  const displayStrip = (title, cards, link, type) => {
     const data = cards;
     return (
       <>
@@ -84,7 +90,7 @@ const HomePage = () => {
             </Grid>
             <Grid item xs={2}>
               <Box pt={4} pr={2} display="flex" justifyContent="flex-end">
-                <Link onClick={handleOpen}>View All</Link>
+                <Button onClick={() => handleOpen(link,type)}>View All</Button>
               </Box>
             </Grid>
           </Grid>
@@ -115,7 +121,7 @@ const HomePage = () => {
                 >
                   <Card
                     className={classes.root}
-                    onClick={() => handleClick(`${link}/${card.city}`,type)}
+                    onClick={() => handleClick(`${link}/${card.city}`, type)}
                   >
                     <CardMedia
                       component="img"
@@ -155,10 +161,25 @@ const HomePage = () => {
           <SearchBoxComp />
         </Box>
       </Grid>
-      {displayStrip("Popular Places", destinationData, "/destination", "destination")}
-      {displayStrip("Travel Blogs", blogCards, "/view-blogs")}
-      {displayStrip("Accommodations", accCards, "/accommodation", "accommodation" )}
-
+      {displayStrip(
+        "Popular Places",
+        destinationData,
+        "/destination",
+        "destination"
+      )}
+      {/* {displayStrip("Travel Blogs", blogCards, "/blog-list", "blogs")} */}
+      {displayStrip(
+        "Accommodations",
+        accCards,
+        "/accommodation",
+        "accommodation"
+      )}
+        {displayStrip(
+        "Most Visited",
+        accCards2,
+        "/accommodation",
+        "accommodation"
+      )}
       <Grid item xs={12}>
         <Footer />
       </Grid>

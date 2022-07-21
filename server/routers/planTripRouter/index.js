@@ -1,3 +1,7 @@
+/**
+ * Author: Nishit Mistry and Smriti Mishra
+ * Description: Handles all routes related to user dashboard plan information - add plan, fetch paln, delete plan, update plan.
+ */
 const planTripRouter = require("express").Router();
 const planTripService = require("../../middleware/planTripService");
 /**
@@ -21,5 +25,6 @@ planTripRouter.post(
   "/findPlanTripByPlanID",
   planTripService.findPlanTripByPlanID
 );
+planTripRouter.post("/updatePlan", planTripService.updatePlan);
 
 module.exports = planTripRouter;

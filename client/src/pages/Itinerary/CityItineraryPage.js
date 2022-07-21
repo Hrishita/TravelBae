@@ -1,3 +1,8 @@
+/**
+ * Author: Nishit Mistry
+ * Feature: Itinerary Management
+ * Task: Filter Itinerary
+ */
 import { Grid } from "@material-ui/core";
 import { Typography } from "@mui/material";
 import Divider from "@mui/material/Divider";
@@ -9,12 +14,16 @@ import Filter from "../../containers/Filter";
 import FilterMenu from "../../containers/FilterMenu";
 import filterData from "../../pages/Itinerary/FilterMockData";
 import CardCont from "../../containers/CardCont";
-// import { cityCards } from "../../containers/CardCont/mockData";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { BACKEND_URL } from "../../config";
 
+/**
+ * Renders the city itinerary page by fetching the specific itineraries and filtered itineraries from
+ * MongoDB
+ * @returns
+ */
 const CityItineraryPage = () => {
   const location = useLocation();
   const cityName = location.state.itinerary_city;

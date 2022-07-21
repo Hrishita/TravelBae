@@ -1,3 +1,8 @@
+/**
+ * Author: Smriti Mishra
+ * Feature: UserDashboard
+ */
+
 import React from "react";
 import ProfileImage from "./../../assets/profile.jpg";
 import List from "@mui/material/List";

@@ -1,4 +1,9 @@
-import React, { useEffect, useContext } from "react";
+/**
+ * Author: Smriti Mishra
+ * Feature: UserDashboard Plan Page
+ * Description: On this page, logged-in users will find a list of all the plans that have been finished as well as those that are upcomings.
+ */
+import React, { useEffect, useContext, useState } from "react";
 import "./../components/UserDashboard/Dashboard.css";
 import NavBar from "../containers/NavBar";
 import Footer from "../containers/Footer";
@@ -19,12 +24,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { planData } from "../containers/CardCont/mockData";
 import { completedPlanData } from "../containers/CardCont/mockData";
 import { AuthContext } from "../context/AuthContext";
-import { BACKEND_URL } from "../config";
 import Checkbox from "@mui/material/Checkbox";
+import { BACKEND_URL } from "../config";
+import AlertDialog from "../containers/AlertDialog";
+
 function UserDashbordPlan() {
   const auth = useContext(AuthContext);
-
-  // console.log(auth);
   let id = null;
 
   if (auth && auth.isLoggedIn == true && auth.userId != null) {
@@ -36,6 +41,18 @@ function UserDashbordPlan() {
   const history = useHistory();
   const [UpcomingPlanTrip, setUpcomingPlanTrip] = React.useState([]);
   const [CompletedPlanTrip, setCompletedPlanTrip] = React.useState([]);
+  const [open, setOpen] = useState(false); // for alert box
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const deleteAlert = () => {
+    setOpen(true);
+  };
 
   const handleDelete = (id) => {
     axios({
@@ -51,15 +68,15 @@ function UserDashbordPlan() {
       .catch((error) => console.log(error));
   };
 
-  const handleClick = () => {
-    history.push({
-      pathname: "/myPlan",
-      state: {plan_id:1},
-    });
+  const handleClick = (plan_ids) => {
+    if (plan_ids)
+      history.push({
+        pathname: "/myPlan",
+        state: { plan_id: plan_ids },
+      });
   };
 
   const handleComplete = (id) => {
-    debugger;
     axios({
       method: "post",
       url: `${BACKEND_URL}/pt/updatePlanTripByID`,
@@ -74,7 +91,6 @@ function UserDashbordPlan() {
   };
 
   const fetchAllPlanTrips = async () => {
-    // console.log("fetching the data");
     let res = await axios({
       method: "POST",
       url: `${BACKEND_URL}/pt/findPlanTripByUserID/` + id,
@@ -89,7 +105,6 @@ function UserDashbordPlan() {
     let finalCompletedData = Array();
 
     res.data.map((cities) => {
-      // console.log(cities);
       for (let i = 0; i < locData.data.destinations.length; i++) {
         if (locData.data.destinations[i].dest_name === cities.city) {
           if (cities.is_completed === false) {
@@ -107,8 +122,6 @@ function UserDashbordPlan() {
 
     setUpcomingPlanTrip(finalUpcomingData);
     setCompletedPlanTrip(finalCompletedData);
-
-    // console.log(res.data);
   };
 
   useEffect(() => {
@@ -121,12 +134,12 @@ function UserDashbordPlan() {
     return (
       <Grid item xs={12}>
         <Paper sx={{ display: "flex" }}>
-          <Box sx={{ display: "flex" }} onClick={handleClick}>
+          <Box sx={{ display: "flex" }}>
             <img
               src={plan.img}
               width="200rem"
               alt="Plan Image"
-              onClick={handleClick}
+              onClick={() => handleClick(plan.res.plan_id)}
             />
           </Box>
           <Box
@@ -134,14 +147,17 @@ function UserDashbordPlan() {
             // onClick={handleClick}
           >
             <Typography component="div" variant="h5">
-              {plan.dest_name}
+              {plan.res.plan_name}
             </Typography>
             <Typography
               variant="subtitle1"
               color="text.secondary"
               component="div"
             >
-              {plan.res.start_date + " - " + plan.res.end_date}
+              {plan.res.start_date &&
+                plan.res.start_date.substring(0, 10) +
+                  " - " +
+                  plan.res.end_date.substring(0, 10)}
             </Typography>
             <Typography>{plan.dest_desc}</Typography>
 
@@ -154,7 +170,7 @@ function UserDashbordPlan() {
                     handleComplete(plan.res.plan_id);
                   }}
                 >
-                  Completed
+                  Complete Trip
                 </Button>
               )}
             </Box>
@@ -166,6 +182,7 @@ function UserDashbordPlan() {
               cursor="pointer"
               onClick={() => {
                 handleDelete(plan.res.plan_id);
+                // deleteAlert();
               }}
             />
             {/* {if(plan.res.is_completed===true)} */}
@@ -196,13 +213,14 @@ function UserDashbordPlan() {
       <Grid item xs={12} lg={3}>
         <SideBar />
       </Grid>
+
       <Grid item xs={12} lg={8}>
         <Box pl={3} mt={4} pb={3} display="flex">
           <Paper>
             <Grid container>
               <Grid item lg={6}>
                 <Box pt={2} pl={4}>
-                  <Typography variant="h4" component="span">
+                  <Typography variant="h5" component="span">
                     Upcoming Plans
                   </Typography>
                 </Box>
@@ -227,7 +245,7 @@ function UserDashbordPlan() {
             </Box>
             <Grid item lg={6}>
               <Box pt={2} pl={4}>
-                <Typography variant="h4" component="span">
+                <Typography variant="h5" component="span">
                   Plans Completed
                 </Typography>
               </Box>
@@ -244,6 +262,18 @@ function UserDashbordPlan() {
             </Box>
           </Paper>
         </Box>
+      </Grid>
+      <Grid item xs={12}>
+        <AlertDialog
+          open={open}
+          title="Delete Plan"
+          message="Are you sure you want to delete this plan ?"
+          handleClose={handleClose}
+          buttons={[
+            { label: "No", func: handleClose },
+            { label: "Yes", func: handleClose },
+          ]}
+        />
       </Grid>
 
       <Grid item xs={12}>

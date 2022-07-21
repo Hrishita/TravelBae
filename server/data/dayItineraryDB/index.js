@@ -1,12 +1,16 @@
-const DayItinerary = require("../../models/dayItineraryModel");
 /**
- * This function does all the operations on users collection
- * to find the email that's sent from another function.
- * @param {*} req : The request passsed as a parameter to the function userDB
- * @returns : The function returns the User model
- * associated with the  email foung in the database
+ * Author: Nishit Mistry
+ * Feature: Itinerary Management
+ * Task: Weather Integration
  */
+const DayItinerary = require("../../models/dayItineraryModel");
 
+/**
+ * This function does all the operations on dayItinerary collection
+ * to find the itinerary city that's sent from the front-end and ignore the case of the city name.
+ * @param {*} req
+ * @param {*} res
+ */
 exports.fetchDayItinerary = function (req, res) {
   DayItinerary.find(
     { itinerary_city: { $regex: req.body.itinerary_city, $options: "i" } },
@@ -17,9 +21,3 @@ exports.fetchDayItinerary = function (req, res) {
     }
   );
 };
-
-/**
- * The module is being exported as userDB so that
- * this module can be imported into other modules.
- */
-// module.exports = itineraryDB;

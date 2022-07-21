@@ -4,7 +4,7 @@
  * Task: Display Accommodation/Activities
  */
 import React from "react";
-import { Button, Divider } from "@mui/material";
+import { Button, Divider, Grid } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -13,16 +13,11 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import LocationOn from "@mui/icons-material/LocationOn";
-import { Grid } from "@mui/material";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import axios from "axios";
 import { BACKEND_URL } from "../../config";
 import { useEffect, useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import AlertDialog from "../../containers/AlertDialog";
+import AddToPlanComp from "../AddToPlan";
 
 const style = {
   position: "absolute",
@@ -36,11 +31,10 @@ const style = {
   p: 4,
 };
 
-
 /**
- * This component is responsible for displaying the accommoadtion and activity information in a card form, this component is reused for rendering individual accommodations and activities 
- * @param {*} props 
- * @returns 
+ * This component is responsible for displaying the accommoadtion and activity information in a card form, this component is reused for rendering individual accommodations and activities
+ * @param {*} props
+ * @returns
  */
 
 //Code Reference: https://mui.com/core/
@@ -54,9 +48,10 @@ function HorizontralCardComp(props) {
 
   const [open1, setOpen1] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
-  const handleOpen1 = () => setOpen1(true);
-  const handleOpen2 = () => setOpen2(true);
-  const handleClose1 = () => setOpen1(false);
+  const handleOpen2 = () => {
+    setOpen2(true);
+  };
+
   const handleClose2 = () => setOpen2(false);
 
   const [selectTrip, setSelectTrip] = React.useState("");
@@ -65,6 +60,33 @@ function HorizontralCardComp(props) {
     setSelectTrip(event.target.value);
   };
 
+  var sendData;
+
+  if (props.type === "acc") {
+    sendData = {
+      accommodation: {
+        hotel_id: props.id,
+        hotel_name: props.name,
+        address: props.address,
+        city: props.city,
+        price: props.price,
+        country: props.country,
+      },
+    };
+  }
+
+  if (props.type === "act") {
+    sendData = {
+      activity: {
+        activity_id: props.id,
+        activity_name: props.name,
+        activity_address: props.address,
+        city: props.city,
+        price: props.price,
+        country: props.country,
+      },
+    };
+  }
   const addToTrip = () => {
     axios
       .post(`${BACKEND_URL}/pt/updatePlan`, {
@@ -93,122 +115,59 @@ function HorizontralCardComp(props) {
   }, []);
 
   return (
-    <Card sx={{ width: 345, maxWidth: 345, ml: 2, mt: 2 }}>
-      <CardMedia
-        component="img"
-        height="140"
-        image={props.image}
-        alt={props.name}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {props.name}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          <LocationOn /> {props.address}, {props.city}
-        </Typography>
-      </CardContent>
-      <CardActions sx={{ ml: 2 }}>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          ${props.price}
-        </Typography>
-        <Button onClick={handleOpen} variant="contained" size="small">
-          Learn More
-        </Button>
-        <Button onClick={handleOpen2} variant="contained" size="small">
-          Add to Trip
-        </Button>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <Typography
-              id="modal-modal-title"
-              variant="h5"
-              component="h2"
-              sx={{ mb: 2 }}
+        <Card sx={{ width: 345, maxWidth: 345, ml: 2, mt: 2 }}>
+          <CardMedia
+            component="img"
+            height="140"
+            image={props.image}
+            alt={props.name}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {props.name}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              <LocationOn /> {props.address}, {props.city}
+            </Typography>
+          </CardContent>
+          <CardActions sx={{ ml: 2 }}>
+            <Typography variant="h6" sx={{ flexGrow: 1 }}>
+              ${props.price}
+            </Typography>
+            <Button onClick={handleOpen} variant="contained" size="small">
+              Learn More
+            </Button>
+            <Button onClick={handleOpen2} variant="contained" size="small">
+              Add to Trip
+            </Button>
+            <Modal
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
             >
-              {props.name}:
-            </Typography>
-            <Divider />
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {props.desc}
-            </Typography>
-          </Box>
-        </Modal>
-
-        <Modal
-          open={open1}
-          onClose={handleClose1}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <Typography
-              id="modal-modal-title"
-              variant="h5"
-              component="h2"
-              sx={{ mb: 2 }}
-            >
-              Add to trip:
-            </Typography>
-            <Divider />
-            <Grid container sx={{ pt: 2 }}>
-              <Box sx={{ flexGrow: 1 }}>
-                {" "}
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                  Select a plan:
+              <Box sx={style}>
+                <Typography
+                  id="modal-modal-title"
+                  variant="h5"
+                  component="h2"
+                  sx={{ mb: 2 }}
+                >
+                  {props.name}:
+                </Typography>
+                <Divider />
+                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  {props.desc}
                 </Typography>
               </Box>
-              <Box>
-                <Box sx={{ minWidth: 140 }}>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Select a Trip</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={selectTrip}
-                      label="Select a Trip"
-                      onChange={handleChange}
-                    >
-                      {trips?.map((myVariable, index) => {
-                        return (
-                          <MenuItem key={index} value={myVariable.plan_id}>
-                            {myVariable.plan_name} - {myVariable.city}
-                          </MenuItem>
-                        );
-                      })}
-                    </Select>
-                  </FormControl>
-                </Box>
-              </Box>
-            </Grid>
-            <Grid container sx={{ pt: 2 }}>
-              <Box sx={{ flexGrow: 1 }}></Box>
-              <Button
-                sx={{ minWidth: 120 }}
-                onClick={addToTrip}
-                variant="contained"
-              >
-                Add
-              </Button>
-            </Grid>
-          </Box>
-        </Modal>
-      </CardActions>
-      <Grid item xs={12}>
-        <AlertDialog
+            </Modal>
+          </CardActions>
+          {<AddToPlanComp
           open={open2}
-          title="Confirmation"
-          message="Sucessfully added to trip"
           handleClose={handleClose2}
-          buttons={["Yay"]}
-        />
-      </Grid>
-    </Card>
+          data={sendData}
+        />}
+        </Card>        
   );
 }
 

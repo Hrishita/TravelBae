@@ -8,7 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 
 // By default the button labels are - cancel and ok
 const AlertDialogComp = (props) => {
-  const { open, handleClose, title, message, buttons } = props;
+  const { open, handleClose, title, message, buttons, handleOk } = props;
   return (
     <div>
       <Dialog
@@ -24,9 +24,8 @@ const AlertDialogComp = (props) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          {buttons.map((buttonLabel) => (
-            <Button onClick={handleClose}>{buttonLabel}</Button>
-          ))}
+          <Button onClick={handleClose}>{buttons[0]}</Button>
+          <Button onClick={handleOk}>{buttons[1]}</Button>
         </DialogActions>
       </Dialog>
     </div>

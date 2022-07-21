@@ -1,3 +1,8 @@
+/**
+ * Author: Hrishita Mavani
+ * Feature: Blog Management
+ * Task: Write Blog Task - User can write a blog
+ */
 import { Delete } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import React, { useState, useContext } from "react";
@@ -10,6 +15,15 @@ import axios from "axios";
 import { BACKEND_URL } from "../config";
 
 import { AuthContext } from "../context/AuthContext";
+
+/**
+ * This Page is used to insert blog into database
+ * User would be able to insert image, title , content for the blog 
+ * User can also insert destination tag for the blog 
+ * @param {*} req : The request passsed as a parameter to the function blogDB
+ * @returns 
+ */
+
 export const Blog = () => {
   return (
     <Box component={"div"} className="Blog">
@@ -30,7 +44,6 @@ export const Write = () => {
   const userId = auth.userId ? auth.userId : "";
 
   const handleSubmit = async () => {
-    console.log(editorData);
     if (!title || title === "") {
       setAlert({
         show: true,
@@ -54,7 +67,6 @@ export const Write = () => {
           destination_tag: tag,
         },
       });
-      console.log(res.data);
       setAlert({
         show: true,
         message: "Published successfully",

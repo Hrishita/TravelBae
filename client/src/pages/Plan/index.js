@@ -1,3 +1,8 @@
+/**
+ * Author: Nishit Mistry
+ * Feature: Trip Planner
+ * Task: Customized Trip Form
+ */
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import React, { useContext, useState, useEffect } from "react";
 import NavBar from "../../containers/NavBar";
@@ -10,8 +15,14 @@ import { BACKEND_URL } from "../../config";
 import { useLocation } from "react-router-dom";
 // import data from "./mockData";
 
+/**
+ * Renders the my plan page which opens after clicking on a particular page from the user dashboard
+ * @param {*} title
+ * @param {*} data
+ * @param {*} icon
+ * @returns
+ */
 const displayPaper = (title, data, icon) => {
-  // @Todo: Take data from mockdata and print in grid item
   return (
     <>
       <Grid item xs={12}>
@@ -62,7 +73,7 @@ const displayPaper = (title, data, icon) => {
                 </Typography>
                 <Typography variant="h5">&nbsp;</Typography>
                 <Typography variant="h5">
-                  {data.start_date.substring(0, 10)} -
+                  {data.start_date && data.start_date.substring(0, 10)} -
                 </Typography>
                 <Typography variant="h5">&nbsp;</Typography>
                 <Typography variant="h5" fontWeight={550}>
@@ -70,7 +81,7 @@ const displayPaper = (title, data, icon) => {
                 </Typography>
                 <Typography variant="h5">&nbsp;</Typography>
                 <Typography variant="h5">
-                  {data.end_date.substring(0, 10)}
+                  {data.end_date && data.end_date.substring(0, 10)}
                 </Typography>
               </Box>
             </>
@@ -161,7 +172,7 @@ const displayPaper = (title, data, icon) => {
                     </Typography>
                     <Typography variant="h5">&nbsp;</Typography>
                     <Typography variant="h5">
-                      {tra.start_date.substring(0, 10)} -
+                      {tra.start_date && tra.start_date.substring(0, 10)} -
                     </Typography>
                     <Typography variant="h5">&nbsp;</Typography>
                     <Typography variant="h5" fontWeight={550}>
@@ -169,7 +180,7 @@ const displayPaper = (title, data, icon) => {
                     </Typography>
                     <Typography variant="h5">&nbsp;</Typography>
                     <Typography variant="h5">
-                      {tra.return_date.substring(0, 10)}
+                      {tra.return_date && tra.return_date.substring(0, 10)}
                     </Typography>
                   </Box>
                   <Box display={"inline-flex"} width="100%" pb={1}>
@@ -191,7 +202,6 @@ const displayPaper = (title, data, icon) => {
 const MyPlan = (props) => {
   const [data, setData] = useState({});
   const location = useLocation();
-  console.log("data....", data);
 
   useEffect(() => {
     const fetchURL = `${BACKEND_URL}/pt/findPlanTripByPlanID`;
@@ -218,8 +228,8 @@ const MyPlan = (props) => {
             height: "500px",
             width: "100%",
           }}
-          title={props.name}
-          alt={props.name}
+          title="Trip Planning"
+          alt="Plan your Trip"
           src="https://www.switchbacktravel.com/sites/default/files/images/articles/Travel%20photo%20airplane.jpg"
         />
       </Grid>
