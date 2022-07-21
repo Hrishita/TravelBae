@@ -24,10 +24,11 @@ exports.fetchAllTransportation = function (req, res) {
  */
 exports.searchTransportation = function (req, res) {
 
-  // if round trip
+  // if round trip 
   if (req.body.return_date)  {
     Transportation.find(
       {
+        trip_type: "round trip",
         source: req.body.source.toLowerCase(),
         dest_name: req.body.dest_name.toLowerCase(),
         start_date : {$gte: req.body.start_date},
@@ -40,7 +41,7 @@ exports.searchTransportation = function (req, res) {
     );
   } else { // one way trip
     Transportation.find(
-      {
+      { trip_type: "one way",
         source: req.body.source.toLowerCase(),
         dest_name: req.body.dest_name.toLowerCase(),
         start_date : {$gte: req.body.start_date}

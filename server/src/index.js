@@ -44,8 +44,8 @@ app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
  * The app will use json for data parsing, cookie parser for cookies, cors for cross origin requests
  * because server and client will be runnig on different domains and requests are made from different domain.
  */
-app.use(express.json());
-app.use(express.json({ limit: "50mb" }));
+// app.use(express.json());
+app.use(express.json({ limit: "50mb" })); 
 app.use(cookieParser());
 
 //cors issues middleware
