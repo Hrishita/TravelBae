@@ -49,7 +49,7 @@ const plannedTripSchema = new mongoose.Schema({
   country: { type: String },
   start_date: { type: String },
   end_date: { type: String },
-  is_completed: { type: Boolean, default: false },
+  is_completed: { type: Boolean, required: true , default: false},
   travel_partner: [String],
   recommended_itineraries: [{ String }],
   accommodation: [accommodationSchema],

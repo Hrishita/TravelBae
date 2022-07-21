@@ -20,7 +20,7 @@ exports.createPlanTrip = function (req, res) {
     country,
     start_date,
     end_date,
-    is_completed,
+    
     travel_partner,
     recommended_itineraries,
     accommodation,
@@ -51,7 +51,7 @@ exports.createPlanTrip = function (req, res) {
     (insertPlanTripData.userID = userID),
     // (insertPlanTripData.city = city),
     (insertPlanTripData.country = country),
-    (insertPlanTripData.is_completed = is_completed),
+    (insertPlanTripData.is_completed = false),
     (insertPlanTripData.recommended_itineraries = recommended_itineraries),
     (insertPlanTripData.accommodation = accommodation),
     (insertPlanTripData.transportation = transportation),
