@@ -19,3 +19,11 @@ exports.fetchUserProfile = function (req, res) {
 exports.updatePassword = function (req, res) {
   userDB.updatePassword(req, res);
 };
+
+exports.addDestToBucketList = function (req, res) {
+  userDB.addDestToBucketList(req, res);
+};
+
+exports.confirmEmail = function (req, res) {
+  userDB.confirmEmail(req, res);
+};
