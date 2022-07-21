@@ -77,8 +77,6 @@ const Destinations = () => {
         dest_name: event,
       })
       .then((res) => {
-        console.log(res.data);
-
         setPage(1);
         // _DATA.jump(1);
         setDestinationsData(res.data.destinations);
@@ -99,7 +97,6 @@ const Destinations = () => {
         dest_name: searchInput,
       })
       .then((res) => {
-        console.log(res.data);
         setDestinationsData(res.data.destinations);
         setPage(1);
         _DATA.jump(1);
@@ -118,7 +115,6 @@ const Destinations = () => {
         dest_name: searchInput,
       })
       .then((res) => {
-        console.log(res.data);
         setDestinationsData(res.data.destinations);
         setPage(1);
         _DATA.jump(1);

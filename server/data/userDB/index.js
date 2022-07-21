@@ -15,7 +15,6 @@ exports.fetchUserProfile = function (req, res) {
 
 exports.updatePassword = function (req, res) {
   const { userID, cPassword, nPassword, confPassword } = req.body;
-  console.log("request............", req);
   let errors = [];
 
   //Check passwords match

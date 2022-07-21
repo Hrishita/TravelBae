@@ -53,7 +53,6 @@ const AddToPlanComp = (props) => {
           [col_name]: data[col_name],
         })
         .then((res) => {
-          console.log(res);
           history.push("/userdashboard-plans");
         })
         .catch((err) => {
@@ -66,7 +65,6 @@ const AddToPlanComp = (props) => {
           [col_name]: data[col_name],
         })
         .then((res) => {
-          console.log(res);
           history.push("/userdashboard-plans");
         })
         .catch((err) => {

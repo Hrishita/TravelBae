@@ -48,8 +48,6 @@ const HomePage = () => {
   const [open, setOpen] = useState(false); // for alert box
   const auth = useContext(AuthContext);
 
-  console.log("userId....", auth.userId);
-
   const handleOpen = (link,type) => {
     if (type === "accommodation") {
       history.push(link);

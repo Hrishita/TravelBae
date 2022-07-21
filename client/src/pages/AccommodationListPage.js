@@ -42,8 +42,6 @@ function AccommodationListPage() {
   if (params.code !== undefined) {
     keyword.keyword = params.code;
   }
-  console.log("san", keyword.keyword);
-  console.log("allHot", allHotels);
 
   let [sort, setSort] = useState(0);
 

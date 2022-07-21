@@ -71,13 +71,11 @@ const Destination = () => {
       })
       .then((res) => {
         setBlogCards(res.data);
-        console.log(res.data);
       });
   }, []);
 
   const handleListItemClick = (navigationLink, type) => {
     if (type === "blogs") {
-      debugger;
       history.push(navigationLink);
     }
   };

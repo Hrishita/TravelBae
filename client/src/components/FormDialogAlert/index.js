@@ -85,8 +85,6 @@ export default function FormDialogComp(props) {
       errors.errorMsg = "";
     }
 
-    console.log(" error....", errors);
-
     setValidation(errors);
     if (Object.values(errors).every((value) => value === "")) {
       return true;
