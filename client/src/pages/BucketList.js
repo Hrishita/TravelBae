@@ -1,4 +1,4 @@
-import { Grid, Link, Typography, Card, CardMedia } from "@mui/material";
+import { Grid, Typography, Card, CardMedia } from "@mui/material";
 import React from "react";
 import NavBar from "../containers/NavBar";
 import { Box } from "@material-ui/core";
@@ -10,6 +10,7 @@ import SideBar from "../components/SideBar/Sidebar";
 import { Button, CardActionArea, CardActions, Divider } from "@mui/material";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
+import NoDataFound from "../components/NoDataFound";
 
 const BucketList = () => {
   const auth = React.useContext(AuthContext);
@@ -40,12 +41,14 @@ const BucketList = () => {
   };
 
   const handleOk = () => {
-    axios.post(`${BACKEND_URL}/bl/removeDataFromBucketList`, {
-      email_id: selectedItem.email_id,
-      dest_name: selectedItem.dest_name
-    }).then((res) => {
-      window.location.reload();
-    });
+    axios
+      .post(`${BACKEND_URL}/bl/removeDataFromBucketList`, {
+        email_id: selectedItem.email_id,
+        dest_name: selectedItem.dest_name,
+      })
+      .then((res) => {
+        window.location.reload();
+      });
   };
 
   const displayStrip = (title, cards) => {
@@ -76,62 +79,71 @@ const BucketList = () => {
         </Grid>
 
         <Grid item xs={12}>
-          <Grid
-            container
-            alignItems="center"
-            justifyContent="center"
-            spacing={2}
-          >
-            {data && data.map((card) => {
-              return (
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  md={4}
-                  style={{ textAlign: "center" }}
-                >
-                  <Card>
-                    <CardActionArea>
-                      <CardMedia
-                        component="img"
-                        alt={title}
-                        height="300"
-                        image={card.img}
-                        title={title}
-                      />
-                      <Typography
-                        gutterBottom
-                        variant="h6"
-                        sx={{
-                          position: "absolute",
-                          top: "80%",
-                          left: "10%",
-                          color: "white",
-                          backgroundColor: "none",
-                          fontFamily: "Comic Sans MS",
-                          textAlign: "center",
-                        }}
-                      >
-                        {card.dest_name}
-                      </Typography>
-                    </CardActionArea>
-                    <CardActions sx={{ display: "inline-block" }}>
-                      <Button
-                        size="small"
-                        color="primary"
-                        className="text-align-center"
-                        onClick={(e) => handleOpen(card)}
-                      >
-                        Remove from bucket list
-                      </Button>
-                    </CardActions>
-                  </Card>
-                </Grid>
-              );
-            })}
-            {/* <ImageList /> */}
-          </Grid>
+          {bucketList && bucketList.length > 0 ? (
+            <Grid
+              container
+              alignItems="center"
+              justifyContent="center"
+              spacing={2}
+            >
+              {data &&
+                data.map((card) => {
+                  return (
+                    <Grid
+                      item
+                      xs={12}
+                      sm={6}
+                      md={4}
+                      style={{ textAlign: "center" }}
+                    >
+                      <Card>
+                        <CardActionArea>
+                          <CardMedia
+                            component="img"
+                            alt={title}
+                            height="300"
+                            image={card.img}
+                            title={title}
+                          />
+                          <Typography
+                            gutterBottom
+                            variant="h6"
+                            sx={{
+                              position: "absolute",
+                              top: "80%",
+                              left: "10%",
+                              color: "white",
+                              backgroundColor: "none",
+                              fontFamily: "Comic Sans MS",
+                              textAlign: "center",
+                            }}
+                          >
+                            {card.dest_name}
+                          </Typography>
+                        </CardActionArea>
+                        <CardActions sx={{ display: "inline-block" }}>
+                          <Button
+                            size="small"
+                            color="primary"
+                            className="text-align-center"
+                            onClick={(e) => handleOpen(card)}
+                          >
+                            Remove from bucket list
+                          </Button>
+                        </CardActions>
+                      </Card>
+                    </Grid>
+                  );
+                })}
+            </Grid>
+          ) : (
+            <NoDataFound
+              message="Bucket list is empty."
+              display={true}
+              listEmpty={true}
+              className="text-align-center"
+            />
+          )}
         </Grid>
       </>
     );

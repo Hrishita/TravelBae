@@ -53,3 +53,45 @@ exports.updatePassword = function (req, res) {
     });
   }
 };
+
+exports.addDestToBucketList = function (req, res) {
+  const { dest_name, dest_code, img } = req.body.bucket_list;
+  const userID = req.body.email;
+  User.findOne({ email: userID }, function (err, user) {
+    if (err) {
+      console.log(err);
+    } else {
+      user.bucket_list.push({ dest_name, dest_code, img });
+      user.save();
+      return res.json({ success: true, user: user });
+    }
+  });
+};
+
+exports.confirmEmail = (req, res) => {
+  const { id } = req.params;
+
+  User.findById(id)
+    .then((user) => {
+      // A user with that id does not exist in the DB. Perhaps some tricky
+      // user tried to go to a different url than the one provided in the
+      // confirmation email.
+      if (!user) {
+        res.json({ msg: msgs.couldNotFind });
+      }
+
+      // The user exists but has not been confirmed. We need to confirm this
+      // user and let them know their email address has been confirmed.
+      else if (user && !user.confirmed) {
+        User.findByIdAndUpdate(id, { confirmed: true })
+          .then(() => res.json({ msg: msgs.confirmed }))
+          .catch((err) => console.log(err));
+      }
+
+      // The user has already confirmed this email address.
+      else {
+        res.json({ msg: msgs.alreadyConfirmed });
+      }
+    })
+    .catch((err) => console.log(err));
+};

@@ -103,6 +103,8 @@ function ViewBlog() {
               component={'img'}
               className={'className="img-fluid"'}
               alt="image3"
+              lg={8}
+              height="300px"
               src={blog && blog.image ? blog.image : "https://images.unsplash.com/photo-1657700099387-f11fe97ad6a8?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1NzgxMjEzMg&ixlib=rb-1.2.1&q=80&w=750"}
             />
           </Box>
