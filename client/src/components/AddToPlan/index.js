@@ -1,17 +1,20 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import { Box, Divider, Typography, Button, Grid } from "@mui/material";
-import Modal from "@mui/material/Modal";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import { BACKEND_URL } from "../../config";
 import { useHistory } from "react-router-dom";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import Alert from "@mui/material/Alert";
 
-const AddToPlanComp = (props) => {
+export default function FormDialogComp(props) {
+  const [validation, setValidation] = useState("");
   const { data, open, handleClose } = props;
   const [plan, setPlan] = useState([]);
   const [selectedPlan, setSelectedPlan] = useState(0);
@@ -19,23 +22,11 @@ const AddToPlanComp = (props) => {
   const auth = useContext(AuthContext);
   const history = useHistory();
   const userId = auth.userId;
-  // const data = {
-  //   transportation: {
-  //     source: "dELHI",
-  //     dest_name: "tornoto",
-  //     flight_company: "Air Canada",
-  //     start_date: 12837129831,
-  //     return_date: 18237213910,
-  //     trip_type: "Round Trip",
-  //     price: 1700,
-  //     trip_duration: "17 hours",
-  //     flight_company_logo: "AC",
-  //   },
-  // };
   const keys = data && Object.keys(data);
   const col_name = keys ? keys[0] : [];
 
-  if (Object.keys(plan).length === 0) {
+  // useEffect(() => {
+  if (Object.keys(plan).length === 0 && open) {
     axios({
       method: "POST",
       url: `${BACKEND_URL}/pt/findPlanTripByUserID/` + userId,
@@ -43,9 +34,20 @@ const AddToPlanComp = (props) => {
       setPlan(res.data);
     });
   }
+  // }, []);
+
+  const clearAll = () => {
+    setNewPlan("");
+    setValidation("");
+    setPlan("");
+  };
 
   const handleAdd = () => {
     if (newPlan) {
+      if (!newPlan.match(/^[0-9a-z]+$/)) {
+        setValidation("Only Alpha Numeric Value is Allowed");
+        return;
+      }
       axios
         .post(`${BACKEND_URL}/pt/createPlanTrip`, {
           plan_name: newPlan,
@@ -53,6 +55,7 @@ const AddToPlanComp = (props) => {
           [col_name]: data[col_name],
         })
         .then((res) => {
+          clearAll();
           history.push("/userdashboard-plans");
         })
         .catch((err) => {
@@ -65,6 +68,7 @@ const AddToPlanComp = (props) => {
           [col_name]: data[col_name],
         })
         .then((res) => {
+          clearAll();
           history.push("/userdashboard-plans");
         })
         .catch((err) => {
@@ -78,98 +82,91 @@ const AddToPlanComp = (props) => {
   };
 
   const handleNewPlan = (e) => {
+    setValidation("");
     setNewPlan(e.target.value);
   };
 
-  return (
-    <Grid container alignItems="center" justifyContent="center">
-      <Grid item xs={12}>
-        <Modal
-          open={open}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box
-            sx={{
-              marginTop: "5%",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              bgcolor: "background.paper",
-              width: "50%",
-              marginLeft: "25%",
-            }}
+  const displayDialog = () => {
+    return (
+      <>
+        <Box pl={4} pr={4}>
+          <Typography variant="body2">Choose Existing plan</Typography>
+          <Select
+            id="demo-simple-select"
+            value={selectedPlan}
+            label="select"
+            placeholder="Choose a plan"
+            onChange={handleChange}
+            fullWidth={true}
           >
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              ADD TO PLAN
-            </Typography>
+            {plan.length !== 0 &&
+              plan.map((item) => {
+                return (
+                  <MenuItem key={item.plan_id} value={item.plan_id}>
+                    {item.plan_name} - {item.city}
+                  </MenuItem>
+                );
+              })}
+          </Select>
+        </Box>
+        <Box pt={3} pl={2} pr={2} display="inline-flex" width="100%">
+          <Box width="45%" pt={1}>
             <Divider />
-            <Box pt={2} pb={2}>
-              <Box sx={{ minWidth: 140 }}>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">
-                    Select Plan
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={selectedPlan}
-                    label="Select a Plan"
-                    onChange={handleChange}
-                  >
-                    {plan.length !== 0 &&
-                      plan.map((item) => {
-                        return (
-                          <MenuItem key={item.plan_id} value={item.plan_id}>
-                            {item.plan_name} - {item.city}
-                          </MenuItem>
-                        );
-                      })}
-                  </Select>
-                </FormControl>
-              </Box>
-            </Box>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          </Box>
+          <Box width="10%">
+            <Typography variant="body1" color="grey" textAlign="center">
               OR
             </Typography>
-            <Box pb={2} pt={2}>
-              <TextField
-                fullWidth
-                id="plan name"
-                label="Enter Plan Name"
-                name="plan name"
-                color="secondary"
-                disabled={selectedPlan !== 0}
-                value={newPlan}
-                onChange={handleNewPlan}
-                autoComplete="plan name"
-              />
-            </Box>
-            <Box pb={2} display={"inline-flex"}>
-              <Box pr={5}>
-                <Button
-                  sx={{ minWidth: 120 }}
-                  onClick={handleClose}
-                  variant="contained"
-                >
-                  Close
-                </Button>
-              </Box>
-              <Box>
-                <Button
-                  sx={{ minWidth: 120 }}
-                  onClick={handleAdd}
-                  variant="contained"
-                >
-                  Add
-                </Button>
-              </Box>
-            </Box>
           </Box>
-        </Modal>
-      </Grid>
-    </Grid>
-  );
-};
 
-export default AddToPlanComp;
+          <Box width="45%" pt={1}>
+            <Divider />
+          </Box>
+        </Box>
+        <Box pt={3} pl={4} pr={4}>
+          <TextField
+            fullWidth
+            id="plan name"
+            label="Enter Plan Name"
+            name="plan name"
+            color="secondary"
+            disabled={selectedPlan !== 0}
+            value={newPlan}
+            onChange={handleNewPlan}
+            autoComplete="plan name"
+          />
+        </Box>
+      </>
+    );
+  };
+  return (
+    <Box>
+      <Dialog fullWidth="70%" open={open} onClose={handleClose}>
+        <DialogTitle>Add to Plan</DialogTitle>
+        <DialogContent>
+          <Box pb={2}>
+            <Divider />
+          </Box>
+          {validation && (
+            <Box pb={4}>
+              <Alert severity="error">{validation}</Alert>
+            </Box>
+          )}
+          {displayDialog()}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} variant="contained">
+            Cancel
+          </Button>
+          <Button
+            onClick={handleAdd}
+            variant="contained"
+            disabled={!(newPlan || selectedPlan)}
+          >
+            Add Plan
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Box>
+  );
+}
