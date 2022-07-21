@@ -29,6 +29,7 @@ import ModalComp from "../components/Modal";
 import { BACKEND_URL } from "../config";
 import { AuthContext } from "../context/AuthContext";
 import AddToPlanComp from "../components/AddToPlan";
+import LoginAlertComp from "../components/LoginAlert";
 
 const style = {
   position: "absolute",
@@ -464,7 +465,8 @@ function SearchFlights() {
                           </Grid>
                         </Box>
                       </Modal> */}
-                      {
+
+                      {userId ? (
                         <AddToPlanComp
                           open={open1}
                           handleClose={handleClose1}
@@ -481,7 +483,14 @@ function SearchFlights() {
                             },
                           }}
                         />
-                      }
+                      ) : (
+                        <LoginAlertComp
+                          open={open1}
+                          handleClose={handleClose1}
+                        />
+                      )}
+
+                      {}
                       <Button
                         onClick={handleOpen1}
                         style={{ zIndex: 99 }}
