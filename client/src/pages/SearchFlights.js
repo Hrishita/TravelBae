@@ -28,6 +28,7 @@ import usePagination from "../containers/UsePagination";
 import ModalComp from "../components/Modal";
 import { BACKEND_URL } from "../config";
 import { AuthContext } from "../context/AuthContext";
+import AddToPlanComp from "../components/AddToPlan";
 
 const style = {
   position: "absolute",
@@ -81,7 +82,7 @@ function SearchFlights() {
   const handleChange = (event) => {
     setSelectTrip(event.target.value);
   };
-   useEffect(() => {
+  useEffect(() => {
     fetchRecommendedFlights();
   }, []);
 
@@ -154,14 +155,14 @@ function SearchFlights() {
   };
 
   const handlePriceChange = (price) => {
-    setPrice(price)
-    let newFlightsList = [...flights]
-    newFlightsList = newFlightsList.filter(f => {
-      console.log(f.price, price)
-      return f.price <= price
-    })
-    setFilteredFlights(newFlightsList)
-  } 
+    setPrice(price);
+    let newFlightsList = [...flights];
+    newFlightsList = newFlightsList.filter((f) => {
+      console.log(f.price, price);
+      return f.price <= price;
+    });
+    setFilteredFlights(newFlightsList);
+  };
 
   const [page, setPage] = useState(1);
   const PER_PAGE = 9;
@@ -353,11 +354,14 @@ function SearchFlights() {
               {_DATA.currentData().map((d, index) => {
                 return (
                   <Box
-                   
                     className="mx-2 my-2 d-flex flex-row justify-content-between align-items-center flex-wrap"
                     style={{ cursor: "pointer" }}
                   >
-                    <Box  onClick={onShowSnackbar}component={'div'} className="d-flex flex-row justify-content-between align-items-center py-2">
+                    <Box
+                      onClick={onShowSnackbar}
+                      component={"div"}
+                      className="d-flex flex-row justify-content-between align-items-center py-2"
+                    >
                       <Avatar sx={{ bgcolor: deepOrange[500], mx: 1.4 }}>
                         {d.flight_company_logo}
                       </Avatar>
@@ -385,10 +389,9 @@ function SearchFlights() {
                           {new Date(d.return_date).toLocaleString()}
                         </Typography>
                       </Box>
-                      
                     </Box>
 
-                    <Box component={'div'} className="mx-4 py-2">
+                    <Box component={"div"} className="mx-4 py-2">
                       <Typography variant="body1" color={grey[700]}>
                         {d.flight_company}
                       </Typography>
@@ -400,73 +403,102 @@ function SearchFlights() {
                       </Typography>
                     </Box>
 
-                    <Box component={'div'} className='mx-4 py-2'>
-                    <Modal
-          open={open1}
-          onClose={handleClose1}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <Typography
-              id="modal-modal-title"
-              variant="h5"
-              component="h2"
-              sx={{ mb: 2 }}
-            >
-              Add to trip:
-            </Typography>
-            <Divider />
-            <Grid container sx={{ pt: 2 }}>
-              <Box sx={{ flexGrow: 1 }}>
-                {" "}
-                <Typography id="modal-modal-title" variant="h6" component="h2">
-                  Select a plan:
-                </Typography>
-              </Box>
-              <Box>
-                <Box sx={{ minWidth: 120 }}>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Select a plan</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={selectTrip}
-                      label="Select a Trip"
-                      onChange={handleChange}
-                    >
-                    {trips?.map((myVariable, index) => {
-                        return (
-                          <MenuItem key={index} value={myVariable.plan_id}>
-                            {myVariable.plan_name} - {myVariable.city}
-                          </MenuItem>
-                        );
-                      })}
-                  
-                    </Select>
-                  </FormControl>
-                </Box>
-              </Box>
-            </Grid>
-            <Grid container sx={{ pt: 2 }}>
-              <Box sx={{ flexGrow: 1 }}></Box>
-              <Button
-                sx={{ minWidth: 120 }}
-                variant="contained"
-                onClick={() => {planTripHandler(d)}}
-
-              >
-                Add
-              </Button>
-            </Grid>
-          </Box>
-        </Modal>
-                      <Button onClick={handleOpen1} style={{zIndex: 99}} variant={'contained'}>
+                    <Box component={"div"} className="mx-4 py-2">
+                      {/* <Modal
+                        open={open1}
+                        onClose={handleClose1}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <Box sx={style}>
+                          <Typography
+                            id="modal-modal-title"
+                            variant="h5"
+                            component="h2"
+                            sx={{ mb: 2 }}
+                          >
+                            Add to trip:
+                          </Typography>
+                          <Divider />
+                          <Grid container sx={{ pt: 2 }}>
+                            <Box sx={{ flexGrow: 1 }}>
+                              {" "}
+                              <Typography
+                                id="modal-modal-title"
+                                variant="h6"
+                                component="h2"
+                              >
+                                Select a plan:
+                              </Typography>
+                            </Box>
+                            <Box>
+                              <Box sx={{ minWidth: 120 }}>
+                                <FormControl fullWidth>
+                                  <InputLabel id="demo-simple-select-label">
+                                    Select a plan
+                                  </InputLabel>
+                                  <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={selectTrip}
+                                    label="Select a Trip"
+                                    onChange={handleChange}
+                                  >
+                                    {trips?.map((myVariable, index) => {
+                                      return (
+                                        <MenuItem
+                                          key={index}
+                                          value={myVariable.plan_id}
+                                        >
+                                          {myVariable.plan_name} -{" "}
+                                          {myVariable.city}
+                                        </MenuItem>
+                                      );
+                                    })}
+                                  </Select>
+                                </FormControl>
+                              </Box>
+                            </Box>
+                          </Grid>
+                          <Grid container sx={{ pt: 2 }}>
+                            <Box sx={{ flexGrow: 1 }}></Box>
+                            <Button
+                              sx={{ minWidth: 120 }}
+                              variant="contained"
+                              onClick={() => {
+                                planTripHandler(d);
+                              }}
+                            >
+                              Add
+                            </Button>
+                          </Grid>
+                        </Box>
+                      </Modal> */}
+                      {<AddToPlanComp
+                        open={open1}
+                        close={setOpen1}
+                        data={{
+                          transportation: {
+                            source: d.source,
+                            dest_name: d.dest_name,
+                            flight_company: d.flight_company,
+                            start_date: d.start_date,
+                            return_date: d.return_date,
+                            trip_type: d.trip_type,
+                            price: d.price,
+                            trip_duration: d.trip_duration,
+                          },
+                        }}
+                      />}
+                      <Button
+                        onClick={handleOpen1}
+                        style={{ zIndex: 99 }}
+                        variant={"contained"}
+                      >
                         Add to planned trip
                       </Button>
                     </Box>
                   </Box>
-                  
                 );
               })}
             </Box>
