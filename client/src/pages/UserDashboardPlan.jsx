@@ -153,7 +153,7 @@ function UserDashbordPlan() {
             // onClick={handleClick}
           >
             <Typography component="div" variant="h5">
-              {plan.dest_name}
+              {plan.res.plan_name}
             </Typography>
             <Typography
               variant="subtitle1"
