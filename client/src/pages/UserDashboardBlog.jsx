@@ -46,7 +46,6 @@
        url: `${BACKEND_URL}/bg/fetchAllBlogs`,
      });
      setBlogs(res.data);
-     console.log(res.data);
    };
    useEffect(() => {
      fetchAllBlogs();
@@ -62,11 +61,8 @@
        },
      });
      setShowSnackbar(true);
-     console.log(res.data);
    };
    const goToBlog = (id) => {
-     console.log("blog id is" + id);
- 
      history.push(`/view-blogs/${id}`);
    };
    const displayCard = (blog) => {

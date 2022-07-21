@@ -28,8 +28,6 @@ const AccommodationSearchBoxComp = (props) => {
   if(checkOutDate!==""){
     checkTheCheckOutDate=checkOutDate;
   }
-
-  console.log("checkTheCheckOutDate",checkTheCheckOutDate);
   
   const handleClick = (e) => {
     const sendData={
@@ -37,7 +35,6 @@ const AccommodationSearchBoxComp = (props) => {
       cinDate:checkInDate,
       coutDate:checkOutDate
     }
-    console.log("ss",sendData)
     props.keyword(sendData);
   };
 

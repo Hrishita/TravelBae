@@ -39,7 +39,6 @@ const TripPlannerPage = () => {
     axios
       .post(`${BACKEND_URL}/destination/fetchDestinationOnTripPlanner`)
       .then((res) => {
-        console.log(res);
         setData(res.data.destinations);
       })
       .catch((err) => {

@@ -44,7 +44,6 @@ export const Write = () => {
   const userId = auth.userId ? auth.userId : "";
 
   const handleSubmit = async () => {
-    console.log(editorData);
     if (!title || title === "") {
       setAlert({
         show: true,
@@ -68,7 +67,6 @@ export const Write = () => {
           destination_tag: tag,
         },
       });
-      console.log(res.data);
       setAlert({
         show: true,
         message: "Published successfully",

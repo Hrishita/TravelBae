@@ -99,7 +99,6 @@ const UserDashbordFlag = () => {
   };
 
   const fetchAllPlanTrips = async () => {
-    // console.log("fetching the data");
     const mockDataFlag = flagdata;
 
     let res = await axios({
@@ -111,8 +110,6 @@ const UserDashbordFlag = () => {
     let finalCompletedData = Array();
 
     res.data.map((cities) => {
-      debugger;
-      console.log(cities);
       for (let i = 0; i < mockDataFlag.length; i++) {
         for (let j = 0; j < cities.accommodation.length; j++) {
           if (mockDataFlag[i].country === cities.accommodation[j].country) {
