@@ -14,7 +14,9 @@ import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDiss
 function NoDataFound({ message }) {
   return (
     <Box pt={2} pb={3} sx={{ color: "#757575" }}>
-      <SentimentVeryDissatisfiedIcon sx={{ fontSize: 50 }} />
+      <Typography sx={{ textAlign: "center" }}>
+        <SentimentVeryDissatisfiedIcon sx={{ fontSize: 50 }} />
+      </Typography>
       <Typography
         variant="body1"
         component="p"
