@@ -14,11 +14,17 @@ import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDiss
 function NoDataFound({ message }) {
   return (
     <Box pt={2} pb={3} sx={{ color: "#757575" }}>
-      <SentimentVeryDissatisfiedIcon sx={{ fontSize: 50 }} />
       <Typography
         variant="body1"
         component="p"
-        sx={{ margin: "20px auto", textAlign: "center" }}
+        sx={{ margin: "20px auto", textAlign: "center", color: "#757575" }}
+      >
+        <SentimentVeryDissatisfiedIcon sx={{ fontSize: 50 }} />
+      </Typography>
+      <Typography
+        variant="body1"
+        component="p"
+        sx={{ margin: "20px auto", textAlign: "center", color: "#757575" }}
       >
         {message}
       </Typography>
