@@ -28,6 +28,13 @@ import Checkbox from "@mui/material/Checkbox";
 import { BACKEND_URL } from "../config";
 import AlertDialog from "../containers/AlertDialog";
 
+/**
+ * This Page is responsible for displaying the user dashboard Plan Page.
+ * @param {*} props 
+ * @returns 
+ */
+
+
 function UserDashbordPlan() {
   const auth = useContext(AuthContext);
   let id = null;

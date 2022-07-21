@@ -1,3 +1,8 @@
+/**
+ * Author: Nishit Mistry
+ * Feature: Trip Planner Page
+ * Task: Trip planner Page
+ */
 import React, { useEffect, useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@mui/material/TextField";
@@ -11,6 +16,12 @@ import { Button, Box, Autocomplete } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+
+/**
+ * This Page is responsible for allowing user to plan the trip.
+ * @param {*} props 
+ * @returns 
+ */
 
 const TripPlannerPage = () => {
   const [searchDest, setSearchDest] = useState({

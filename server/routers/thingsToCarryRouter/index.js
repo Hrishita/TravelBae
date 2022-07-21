@@ -1,3 +1,8 @@
+/**
+ * Author: Trushita Maurya
+ * Feature: Things to carry router
+ * Description: Things to carry router for backend calls
+ */
 const thingsToCarryRouter = require("express").Router();
 const thingsToCarryService = require("../../middleware/thingsToCarryService");
 

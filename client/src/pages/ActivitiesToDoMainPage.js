@@ -1,3 +1,8 @@
+/**
+ * Author: Sangramsinh More
+ * Feature: Activities to do
+ * Task: Activity Page
+ */
 import { Divider, Grid } from "@mui/material";
 import React from "react";
 import CardCarousel from "../containers/CardCarousel";
@@ -7,6 +12,12 @@ import ActivitySearchBoxComp from "../components/ActivitySearch";
 import Footer from "../containers/Footer";
 import ActivitiesMainPageCard from "../containers/ActivitiesMainPageCard";
 
+
+/**
+ * This Page is responsible for showing activities main page info.
+ * @param {*} props 
+ * @returns 
+ */
 function ActivitiesToDoMainPage() {
   return (
     <Grid container spacing={0.5}>

@@ -1,3 +1,8 @@
+/**
+ * Author: Hrishita Mavani
+ * Feature: Blogs
+ * Description: Blog router for backend calls
+ */
 const blogRouter = require("express").Router();
 const blogService = require("../../middleware/blogService");
 /**

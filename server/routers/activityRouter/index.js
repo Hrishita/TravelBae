@@ -1,3 +1,8 @@
+/**
+ * Author: Sangramsinh More
+ * Feature: Activity
+ * Description: Activity router for backend calls
+ */
 const activityRouter = require("express").Router();
 const activityService = require("../../middleware/activityService");
 

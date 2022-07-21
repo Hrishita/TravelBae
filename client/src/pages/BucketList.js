@@ -1,3 +1,8 @@
+/**
+ * Author: Smily Ms
+ * Feature: Bucket List
+ * Task: Display Bucket List Page
+ */
 import { Grid, Typography, Card, CardMedia } from "@mui/material";
 import React from "react";
 import NavBar from "../containers/NavBar";
@@ -11,6 +16,12 @@ import { Button, CardActionArea, CardActions, Divider } from "@mui/material";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
 import NoDataFound from "../components/NoDataFound";
+
+/**
+ * This Page is responsible for showing bucket lists which user can add for their profile.
+ * @param {*} props 
+ * @returns 
+ */
 
 const BucketList = () => {
   const auth = React.useContext(AuthContext);

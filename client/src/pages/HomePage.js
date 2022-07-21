@@ -1,3 +1,8 @@
+/**
+ * Author: All
+ * Feature: Generic
+ * Task: Display Home Page
+ */
 import React, { useContext, useState } from "react";
 import {
   Grid,
@@ -23,6 +28,12 @@ import AlertDialog from "../containers/AlertDialog";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { Button } from "@mui/material";
+
+/**
+ * This Page is responsible for displaying the Homepage of our application.
+ * @param {*} props 
+ * @returns 
+ */
 
 const useStyles = makeStyles((theme) => ({
   root: {

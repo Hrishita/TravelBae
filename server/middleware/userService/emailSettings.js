@@ -1,3 +1,7 @@
+/**
+ * Author: Trushita Maurya
+ * Feature: User Management
+ */
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
 const path = require("path");
