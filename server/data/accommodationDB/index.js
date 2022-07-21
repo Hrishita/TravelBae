@@ -3,6 +3,14 @@
  * Feature: Accommodation
  * Task: Accommoadation service for mongoose REST calls
  */
+
+/**
+ * This function does all the operations on specific accommodation collection.
+ * It will fetch the content of accommodations based on city name, rating and price.
+ * @param {object} req
+ * @param {object} res
+ * 
+ */
 const accommodation = require("../../models/accommodationModel");
 
 // here remove .sort() if you only want to search
