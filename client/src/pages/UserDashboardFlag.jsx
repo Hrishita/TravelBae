@@ -109,7 +109,6 @@ const UserDashbordFlag = () => {
     let finalUpcomingData = Array();
     let finalCompletedData = Array();
 
-    debugger;
     res.data.map((cities) => {
       for (let i = 0; i < mockDataFlag.length; i++) {
         for (let j = 0; j < cities.accommodation.length; j++) {
