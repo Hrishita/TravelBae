@@ -1,3 +1,8 @@
+/**
+ * Author: Nishit Mistry
+ * Feature: Trip Planner
+ * Task: Customized Trip Form
+ */
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import React, { useContext, useState, useEffect } from "react";
 import NavBar from "../../containers/NavBar";
@@ -10,8 +15,14 @@ import { BACKEND_URL } from "../../config";
 import { useLocation } from "react-router-dom";
 // import data from "./mockData";
 
+/**
+ * Renders the my plan page which opens after clicking on a particular page from the user dashboard
+ * @param {*} title
+ * @param {*} data
+ * @param {*} icon
+ * @returns
+ */
 const displayPaper = (title, data, icon) => {
-  // @Todo: Take data from mockdata and print in grid item
   return (
     <>
       <Grid item xs={12}>
@@ -62,7 +73,7 @@ const displayPaper = (title, data, icon) => {
                 </Typography>
                 <Typography variant="h5">&nbsp;</Typography>
                 <Typography variant="h5">
-                  {data.start_date.substring(0, 10)} -
+                  {data.start_date && data.start_date.substring(0, 10)} -
                 </Typography>
                 <Typography variant="h5">&nbsp;</Typography>
                 <Typography variant="h5" fontWeight={550}>
@@ -70,7 +81,7 @@ const displayPaper = (title, data, icon) => {
                 </Typography>
                 <Typography variant="h5">&nbsp;</Typography>
                 <Typography variant="h5">
-                  {data.end_date.substring(0, 10)}
+                  {data.end_date && data.end_date.substring(0, 10)}
                 </Typography>
               </Box>
             </>

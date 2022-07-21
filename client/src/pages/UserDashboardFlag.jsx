@@ -111,27 +111,30 @@ const UserDashbordFlag = () => {
     let finalCompletedData = Array();
 
     res.data.map((cities) => {
+      debugger;
       console.log(cities);
       for (let i = 0; i < mockDataFlag.length; i++) {
-        if (mockDataFlag[i].country === cities.country) {
-          if (cities.is_completed === true) {
-            mockDataFlag[i].res = cities;
+        for (let j = 0; j < cities.accommodation.length; j++) {
+          if (mockDataFlag[i].country === cities.accommodation[j].country) {
+            if (cities.is_completed === true) {
+              mockDataFlag[i].res = cities;
 
-            if (!checkIfExist(finalUpcomingData, mockDataFlag[i].country))
-              finalUpcomingData.push({
-                name: mockDataFlag[i].country,
-                image: mockDataFlag[i].flag_image,
-              });
+              if (!checkIfExist(finalUpcomingData, mockDataFlag[i].country))
+                finalUpcomingData.push({
+                  name: mockDataFlag[i].country,
+                  image: mockDataFlag[i].flag_image,
+                });
 
-            return true;
-          } else {
-            mockDataFlag[i].res = cities;
-            if (!checkIfExist(finalCompletedData, mockDataFlag[i].country))
-              finalCompletedData.push({
-                name: mockDataFlag[i].country,
-                image: mockDataFlag[i].flag_image,
-              });
-            return true;
+              return true;
+            } else {
+              mockDataFlag[i].res = cities;
+              if (!checkIfExist(finalCompletedData, mockDataFlag[i].country))
+                finalCompletedData.push({
+                  name: mockDataFlag[i].country,
+                  image: mockDataFlag[i].flag_image,
+                });
+              return true;
+            }
           }
         }
       }

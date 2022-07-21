@@ -179,6 +179,7 @@ function ActivitiesToDoListPage() {
                 desc={myVariable.activity_desc}
                 city={myVariable.dest_name}
                 price={myVariable.price}
+                type="act"
               />
             );
           })}

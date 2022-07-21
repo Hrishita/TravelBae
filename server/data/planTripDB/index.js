@@ -16,7 +16,7 @@ exports.createPlanTrip = function (req, res) {
   const {
     plan_name,
     userID,
-    city,
+    // city,
     country,
     start_date,
     end_date,
@@ -25,20 +25,33 @@ exports.createPlanTrip = function (req, res) {
     recommended_itineraries,
     accommodation,
     transportation,
+    plan,
     activity,
   } = req.body;
 
-  console.log(req.body);
+  // console.log(req.body);
+  console.log(accommodation);
 
+  if (accommodation) {
+    insertPlanTripData.city = accommodation.city;
+  } else if (activity) {
+    insertPlanTripData.city = activity.city;
+  } else if (transportation) {
+    insertPlanTripData.city = transportation.city;
+  } else if (plan) {
+    insertPlanTripData.city = plan.city;
+    insertPlanTripData.start_date = plan.start_date;
+    insertPlanTripData.end_date = plan.end_date;
+    insertPlanTripData.travel_partner = plan.travel_partner;
+  } else {
+    insertPlanTripData.city = city;
+  }
   (insertPlanTripData.plan_id = Math.random() * 1000000),
     (insertPlanTripData.plan_name = plan_name),
     (insertPlanTripData.userID = userID),
-    (insertPlanTripData.city = city),
+    // (insertPlanTripData.city = city),
     (insertPlanTripData.country = country),
-    (insertPlanTripData.start_date = start_date),
-    (insertPlanTripData.end_date = end_date),
     (insertPlanTripData.is_completed = is_completed),
-    (insertPlanTripData.travel_partner = travel_partner),
     (insertPlanTripData.recommended_itineraries = recommended_itineraries),
     (insertPlanTripData.accommodation = accommodation),
     (insertPlanTripData.transportation = transportation),

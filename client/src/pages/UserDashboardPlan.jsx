@@ -153,16 +153,17 @@ function UserDashbordPlan() {
             // onClick={handleClick}
           >
             <Typography component="div" variant="h5">
-              {plan.dest_name}
+              {plan.res.plan_name}
             </Typography>
             <Typography
               variant="subtitle1"
               color="text.secondary"
               component="div"
             >
-              {plan.res.start_date.substring(0, 10) +
-                " - " +
-                plan.res.end_date.substring(0, 10)}
+              {plan.res.start_date &&
+                plan.res.start_date.substring(0, 10) +
+                  " - " +
+                  plan.res.end_date.substring(0, 10)}
             </Typography>
             <Typography>{plan.dest_desc}</Typography>
 
@@ -218,13 +219,14 @@ function UserDashbordPlan() {
       <Grid item xs={12} lg={3}>
         <SideBar />
       </Grid>
+
       <Grid item xs={12} lg={8}>
         <Box pl={3} mt={4} pb={3} display="flex">
           <Paper>
             <Grid container>
               <Grid item lg={6}>
                 <Box pt={2} pl={4}>
-                  <Typography variant="h4" component="span">
+                  <Typography variant="h5" component="span">
                     Upcoming Plans
                   </Typography>
                 </Box>
@@ -249,7 +251,7 @@ function UserDashbordPlan() {
             </Box>
             <Grid item lg={6}>
               <Box pt={2} pl={4}>
-                <Typography variant="h4" component="span">
+                <Typography variant="h5" component="span">
                   Plans Completed
                 </Typography>
               </Box>

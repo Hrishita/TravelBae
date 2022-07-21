@@ -19,3 +19,7 @@ exports.fetchRecommendedItineraries = function (req, res) {
 exports.searchByCity = function (req, res) {
   itineraryDB.searchByCity(req, res);
 };
+
+exports.findItineraryByCity = function (req, res) {
+  itineraryDB.findItineraryByCity(req, res);
+};
