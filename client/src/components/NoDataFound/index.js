@@ -3,9 +3,9 @@
  * Feature: Destination Information System
  * Task: Filter Destination, Search destination .
  */
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import * as React from "react";
-
+import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 /**
  *
  * @param {*} message
@@ -13,13 +13,16 @@ import * as React from "react";
  */
 function NoDataFound({ message }) {
   return (
-    <Typography
-      variant="body1"
-      component="p"
-      sx={{ margin: "20px auto", textAlign: "center" }}
-    >
-      {message}
-    </Typography>
+    <Box pt={2} pb={3} sx={{ color: "#757575" }}>
+      <SentimentVeryDissatisfiedIcon sx={{ fontSize: 50 }} />
+      <Typography
+        variant="body1"
+        component="p"
+        sx={{ margin: "20px auto", textAlign: "center" }}
+      >
+        {message}
+      </Typography>
+    </Box>
   );
 }
 

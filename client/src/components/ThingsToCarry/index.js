@@ -167,14 +167,14 @@ const ThingsToCarryComp = (props) => {
                 paddingLeft={2}
                 paddingRight={2}
               >
-                <Button
+                {/* <Button
                   type="submit"
                   variant="contained"
                   color="primary"
                   onClick={() => handleShare(checkedItems)}
                 >
                   Share Checklist
-                </Button>
+                </Button> */}
               </Box>
             </Box>
           </Grid>
