@@ -10,7 +10,7 @@ import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
 
 /**
- * 
+ *
  * The search component function which invokes an event on click of the search button.
  */
 const SearchComp = ({ onEvent }) => {
@@ -39,8 +39,8 @@ const SearchComp = ({ onEvent }) => {
             id="search-bar"
             className="text"
             variant="outlined"
-            color="primary"
-            placeholder="Search by city name..."
+            color="secondary"
+            label="Search by City Name "
             size="small"
             onChange={(event) => setSearchInput(event.target.value)}
             value={searchInput}

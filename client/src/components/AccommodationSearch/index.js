@@ -9,15 +9,16 @@ import { Box, Grid } from "@material-ui/core";
 
 /**
  * This component is responsible for seaching accommodations by keywords for city name and for checkin checkout dates
- * @param {*} props 
- * @returns 
+ * @param {*} props
+ * @returns
  */
-
 
 // Search box
 const AccommodationSearchBoxComp = (props) => {
   let today = new Date().toISOString().slice(0, 10);
-  let date = new Date(Date.now() + ( 3600 * 1000 * 144)).toISOString().slice(0, 10);
+  let date = new Date(Date.now() + 3600 * 1000 * 144)
+    .toISOString()
+    .slice(0, 10);
 
   const [searchKeyword, setSearchKeyword] = useState("");
   const [checkInDate, setCheckInDate] = useState("");
@@ -25,16 +26,16 @@ const AccommodationSearchBoxComp = (props) => {
 
   var checkTheCheckOutDate = date;
 
-  if(checkOutDate!==""){
-    checkTheCheckOutDate=checkOutDate;
+  if (checkOutDate !== "") {
+    checkTheCheckOutDate = checkOutDate;
   }
-  
+
   const handleClick = (e) => {
-    const sendData={
-      keyword:searchKeyword,
-      cinDate:checkInDate,
-      coutDate:checkOutDate
-    }
+    const sendData = {
+      keyword: searchKeyword,
+      cinDate: checkInDate,
+      coutDate: checkOutDate,
+    };
     props.keyword(sendData);
   };
 
@@ -52,10 +53,11 @@ const AccommodationSearchBoxComp = (props) => {
               id="searchKeyword"
               name="searchKeyword"
               placeholder="Destination"
+              label="Destination"
               size="medium"
               type="search"
               color="secondary"
-              onChange={(v) => setSearchKeyword(v.target.value) }
+              onChange={(v) => setSearchKeyword(v.target.value)}
               fullWidth
             />
           </Box>
@@ -73,9 +75,9 @@ const AccommodationSearchBoxComp = (props) => {
             }}
             inputProps={{
               min: today,
-              max: checkTheCheckOutDate
+              max: checkTheCheckOutDate,
             }}
-            onChange={(v) => setCheckInDate(v.target.value) }
+            onChange={(v) => setCheckInDate(v.target.value)}
           />
         </Grid>
         <Grid item lg={2} md={2} xs={12}>
@@ -90,9 +92,9 @@ const AccommodationSearchBoxComp = (props) => {
               shrink: true,
             }}
             inputProps={{
-              min: today
+              min: today,
             }}
-            onChange={(v) => setCheckOutDate(v.target.value) }
+            onChange={(v) => setCheckOutDate(v.target.value)}
           />
         </Grid>
         <Grid
