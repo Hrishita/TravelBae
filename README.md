@@ -100,14 +100,8 @@ To install this project in your local machine following steps need to be perform
 
 All the images used for this project are royalty free.
 
-- "https://images.trvl-media.com/hotels/24000000/23010000/23003000/23002973/c0a157e9_b.jpg"
-- "https://images.trvl-media.com/hotels/1000000/10000/7900/7803/2a1ea041_b.jpg"
-- "https://images.trvl-media.com/hotels/1000000/60000/53000/52918/a18b3dc8_b.jpg"
-- "https://cdn.pixabay.com/photo/2020/03/01/08/52/sea-4892044_1280.jpg"
-- "https://www.publicdomainpictures.net/pictures/210000/nahled/boat-in-caribbean-1488476201AFb.jpg"
-- "https://cf.bstatic.com/xdata/images/hotel/max1280x900/188927841.jpg?k=7f112dc4aa557f0ffc6f38b93f227154676ddaa247da8f0349042ec3ccb23451&o=",
-- "https://memberapi.discoverhalifaxns.com/member-images/90558323-afea-461f-b434-9b89a46b036c_profile.jpg",
-- "https://memberapi.discoverhalifaxns.com/member-images/7e2b2e3e-6ee9-4405-aa83-43edd4f80d00.jpg",
+- Reference for Images:
+- Search.creativecommons.org. 2022. Openverse | WordPress.org. [online] Available at: <http://search.creativecommons.org/> [Accessed 21 July 2022].
 
 ## Sources used
 
@@ -142,3 +136,8 @@ All the images used for this project are royalty free.
 - Some part of code is taken from first individual assignment referenced above.
 
 [11] "Javascript regular expression password validation having special characters," _StackOverflow.com_ [Online]. Available: https://stackoverflow.com/questions/12090077/javascript-regular-expression-password-validation-having-special-characters. [Accessed: June 16, 2022]
+
+[12] Codegrepper.com. 2022. pagination hook react Code Example. [online] Available at: <https://www.codegrepper.com/code-examples/javascript/pagination+hook+react> [Accessed 21 July 2022].
+
+[13] M. parameter, "Mongoose query with array parameter", Stack Overflow, 2022. [Online]. Available: https://stackoverflow.com/questions/26985908/mongoose-query-with-array-parameter. [Accessed: 21- Jul- 2022]
+
