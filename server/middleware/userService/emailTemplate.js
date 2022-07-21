@@ -1,3 +1,8 @@
+/**
+ * Author: Trushita Maurya
+ * Feature: User Management
+ */
+
 const { FRONTEND_DEV_URL } = require("../../config");
 
 // This file is exporting an Object with a single key/value pair.

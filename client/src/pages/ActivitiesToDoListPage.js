@@ -1,3 +1,8 @@
+/**
+ * Author: Sangramsinh More
+ * Feature: Activities to do
+ * Task: Activity List Page
+ */
 import { Divider, Grid } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import NavBar from "../containers/NavBar";
@@ -15,6 +20,12 @@ import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import usePagination from "../containers/UsePagination";
 import NoDataFound from "../components/NoDataFound";
+
+/**
+ * This Page is responsible for the api calls with backend and also for the sorting, filtering, pagination and searching tasks for activities.
+ * @param {*} props 
+ * @returns 
+ */
 
 function ActivitiesToDoListPage() {
   const [allHotels, setAllHotels] = useState([]);

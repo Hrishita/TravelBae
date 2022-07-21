@@ -1,6 +1,7 @@
 /**
  * Author: Smily Ms
  * Feature: Destination Information System
+ * Task: Display Destination Information
  */
 import { makeStyles, Card, CardMedia } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
@@ -13,6 +14,12 @@ import GoogleMap from "./../components/GoogleMap/index";
 import AlertDialog from "../containers/AlertDialog";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+
+/**
+ * This Page is responsible for showing the availaible destinations to the users.
+ * @param {*} props 
+ * @returns 
+ */
 
 const useStyles = makeStyles((theme) => ({
   root: {

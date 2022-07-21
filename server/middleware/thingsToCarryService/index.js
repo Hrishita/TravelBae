@@ -1,3 +1,8 @@
+/**
+ * Author: Trushita Maurya
+ * Feature: Things to Carry
+ * Task: Things to Carry Middleware for mongoose
+ */
 const thingsToCarryDB = require("../../data/thingsToCarryDB/index");
 
 /**

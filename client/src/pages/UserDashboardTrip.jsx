@@ -1,3 +1,7 @@
+/**
+ * Author: Smriti Mishra
+ * Feature: UserDashboard Trip Page
+ */
 import React from "react";
 import "./../components/UserDashboard/Dashboard.css";
 import img1 from "./../assets/lahore.jpg";
@@ -6,6 +10,12 @@ import NavBar from "../containers/NavBar";
 import Footer from "../containers/Footer";
 import SideBar from "../components/SideBar/Sidebar";
 import { Grid } from "@material-ui/core";
+
+/**
+ * This Page is responsible for displaying the user dashboard Trip Page.
+ * @param {*} props 
+ * @returns 
+ */
 
 function UserDashbordTrip() {
   return (

@@ -1,7 +1,7 @@
 /**
  * Author: Sangramsinh More
  * Feature: Accommodation
- * Task: Accommoadation Main Page
+ * Task: Accommoadation List Page
  */
 import React, { useEffect, useState } from "react";
 import { Grid, Divider } from "@mui/material";
@@ -23,7 +23,7 @@ import { useParams } from "react-router-dom";
 import NoDataFound from "../components/NoDataFound";
 
 /**
- * This component is responsible for the api calls with backend and also for the sorting, filtering, pagination and searching tasks.
+ * This Page is responsible for the api calls with backend and also for the sorting, filtering, pagination and searching tasks.
  * @param {*} props 
  * @returns 
  */

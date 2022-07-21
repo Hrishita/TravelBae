@@ -1,5 +1,9 @@
+/**
+ * Author: Hrishita Maurya
+ * Feature: Transportation
+ * Description: Transportation schema for mongoose
+ */
 const mongoose = require("mongoose");
-
 /**
  * This constant defines the model structure of the transportationSchema that is to be stored in MongoDB.
  *  The schema declares the data type and requiurement for each field.

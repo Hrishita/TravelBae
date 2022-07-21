@@ -1,3 +1,8 @@
+/**
+ * Author: Hrishita Mavani
+ * Feature: Blog
+ * Task: Blog Middleware for mongoose
+ */
 const blogDB = require("../../data/blogDB/index");
 
 /**

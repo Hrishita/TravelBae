@@ -33,6 +33,12 @@ import thailand from "../assets/flags/thailand.jpg";
 import Footer from "../containers/Footer";
 import axios from "axios";
 
+/**
+ * This Page is responsible for displaying the user dashboard Flag Page.
+ * @param {*} props 
+ * @returns 
+ */
+
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundSize: "contain",

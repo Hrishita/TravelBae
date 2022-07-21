@@ -2,7 +2,6 @@
  * Author: Trushita Maurya
  * Description: Handles DB operations of user management - sign up , login, change password
  */
-
 const userDB = require("../../data/userDB");
 
 /**

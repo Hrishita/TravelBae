@@ -1,3 +1,8 @@
+/**
+ * Author: Hrishita Mavani
+ * Feature: Blog
+ * Description: Blog schema for mongoose
+ */
 const mongoose = require("mongoose");
 
 /**

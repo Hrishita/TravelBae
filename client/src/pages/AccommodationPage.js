@@ -1,3 +1,8 @@
+/**
+ * Author: Sangramsinh More
+ * Feature: Accommodation
+ * Task: Accommoadation Main Page
+ */
 import { Divider, Grid } from "@mui/material";
 import React from "react";
 import NavBar from "../containers/NavBar";
@@ -5,8 +10,12 @@ import { Box } from "@material-ui/core";
 import AccommodationSearchBoxComp from "../components/AccommodationSearch";
 import Footer from "../containers/Footer";
 import AccommodationMainPageCard from "../containers/AccommodationMainPageCard";
-// import VerticalDisplayCardComp from "../components/AccommodationVerticalDisplayCard";
 
+/**
+ * This Page is responsible for Displaying Accommodation info.
+ * @param {*} props 
+ * @returns 
+ */
 const AccommodationPage = () => {
   return (
     <Grid container spacing={0.5}>

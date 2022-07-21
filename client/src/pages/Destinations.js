@@ -1,6 +1,7 @@
 /**
  * Author: Smily Ms
  * Feature: Destination Information System
+ * Task: Display Destination Information
  */
 import { Grid, Typography, Pagination, Stack } from "@mui/material";
 import "./../components/DestinationCard/Destination.css";

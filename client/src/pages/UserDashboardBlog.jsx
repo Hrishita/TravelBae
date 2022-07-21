@@ -26,6 +26,12 @@ import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { AuthContext } from "../context/AuthContext";
 
+/**
+ * This Page is responsible for displaying the user dashboard Blog Page.
+ * @param {*} props 
+ * @returns 
+ */
+
 function UserDashbordBlog() {
   const history = useHistory();
   const [blogs, setBlogs] = React.useState([]);

@@ -1,5 +1,9 @@
+/**
+ * Author: Hrishita Mavani
+ * Feature: Search Flights
+ * Task: Search Flights Page
+ */
 import { Box, ButtonBase, Pagination, Stack } from "@mui/material";
-
 import { Grid } from "@mui/material";
 import Footer from "../containers/Footer";
 import { LocationCity } from "@mui/icons-material";
@@ -27,6 +31,12 @@ import axios from "axios";
 import usePagination from "../containers/UsePagination";
 import ModalComp from "../components/Modal";
 import { BACKEND_URL } from "../config";
+
+/**
+ * This Page is responsible for showing the availaible flights to the users.
+ * @param {*} props 
+ * @returns 
+ */
 
 function SearchFlights() {
   const [startDate, setStartDate] = useState();

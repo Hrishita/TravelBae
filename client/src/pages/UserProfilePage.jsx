@@ -1,7 +1,9 @@
 /**
  * Author: Trushita Maurya
+ * File: Display user profile
+ * @returns
  */
-import React, { useContext } from "react";
+ import React, { useContext } from "react";
 import "./../components/UserDashboard/Dashboard.css";
 import NavBar from "../containers/NavBar";
 import Footer from "../containers/Footer";
@@ -15,10 +17,11 @@ import axios from "axios";
 import FormDialogComp from "../components/FormDialogAlert";
 
 /**
- * Author: Trushita Maurya
- * File: Display user profile
- * @returns
+ * This Page is responsible for displaying the user profile Page.
+ * @param {*} props 
+ * @returns 
  */
+
 const UserProfile = () => {
   const auth = useContext(AuthContext);
   const [open, setOpen] = React.useState(false);
