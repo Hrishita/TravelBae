@@ -90,7 +90,11 @@ function RegisterComp(props) {
   //password validation
   const handlePasswordChange = (value) => {
     setPassword(value);
-    let pattern = new RegExp(/^[A-Za-z0-9_@./!$%^~`*=|;:'",(){}#&+-]*$/);
+    // let pattern = new RegExp(/^[A-Za-z0-9_@./!$%^~`*=|;:'",(){}#&+-]*$/);
+    let pattern = new RegExp(
+      /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/
+    );
+
     let errorObj = Object.assign({}, error);
     let len = value.length;
     if (len < 8) {
@@ -99,7 +103,8 @@ function RegisterComp(props) {
       return false;
     }
     if (!pattern.test(value)) {
-      errorObj.password = "Enter valid password";
+      errorObj.password =
+        "Enter 1 uppercase, 1 lowercase and 1 special character";
       setError(errorObj);
       return false;
     }
