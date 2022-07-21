@@ -12,7 +12,7 @@ import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 
 /**
- * Business logic to communicate with node js to register new user
+ * Description: Business logic to communicate with node js to register new user
  * @returns
  */
 function RegisterUser() {

@@ -1,3 +1,8 @@
+/**
+ * Feature: Accommodation
+ * Task: Filter/pagination/sort
+ * Author: Sangramsinh More
+ */
 import React from "react";
 import { accommodationMainPageData } from "./accommodationMainPageData";
 import { Box, Stack } from "@mui/material";
@@ -7,6 +12,10 @@ import Chip from "@mui/material/Chip";
 import { Typography } from "@mui/material";
 import { Grid } from "@mui/material";
 
+/**
+ * Accommodation Page that calls the
+ * @returns
+ */
 function AccommodationMainPageCard() {
   return (
     <Box sx={{ flexGrow: 1, p: 2 }}>
@@ -33,63 +42,17 @@ function AccommodationMainPageCard() {
       </Stack>
       <Divider />
 
-      <Grid container direction="column" alignItems="center" sx={{ flexDirection: "column", pt: 2, pl:5,pr:5 }}>
-      <Typography variant="body2">
-      <Chip label="What we offer" color="primary" />
-      </Typography>
-
-        <Typography variant="body2" sx={{pt:2}}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-          blanditiis tenetur unde suscipit, quam beatae rerum inventore
-          consectetur, neque doloribus, cupiditate numquam dignissimos laborum
-          fugiat deleniti? Eum quasi quidem quibusdam.Lorem ipsum dolor sit
-          amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
-          suscipit, quam beatae rerum inventore consectetur, neque doloribus,
-          cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi
-          quidem quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum
-          inventore consectetur, neque doloribus, cupiditate numquam dignissimos
-          laborum fugiat deleniti? Eum quasi quidem quibusdam.
-          <br />
-          <br />
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-          blanditiis tenetur unde suscipit, quam beatae rerum inventore
-          consectetur, neque doloribus, cupiditate numquam dignissimos laborum
-          fugiat deleniti? Eum quasi quidem quibusdam.Lorem ipsum dolor sit
-          amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
-          suscipit, quam beatae rerum inventore consectetur, neque doloribus,
-          cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi
-          quidem quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum
-          inventore consectetur, neque doloribus, cupiditate numquam dignissimos
-          laborum fugiat deleniti? Eum quasi quidem quibusdam.
-          <br />
-          <br />
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-          blanditiis tenetur unde suscipit, quam beatae rerum inventore
-          consectetur, neque doloribus, cupiditate numquam dignissimos laborum
-          fugiat deleniti? Eum quasi quidem quibusdam.Lorem ipsum dolor sit
-          amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
-          suscipit, quam beatae rerum inventore consectetur, neque doloribus,
-          cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi
-          quidem quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum
-          inventore consectetur, neque doloribus, cupiditate numquam dignissimos
-          laborum fugiat deleniti? Eum quasi quidem quibusdam.
-          <br />
-          <br />
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-          blanditiis tenetur unde suscipit, quam beatae rerum inventore
-          consectetur, neque doloribus, cupiditate numquam dignissimos laborum
-          fugiat deleniti? Eum quasi quidem quibusdam.Lorem ipsum dolor sit
-          amet, consectetur adipisicing elit. Quos blanditiis tenetur unde
-          suscipit, quam beatae rerum inventore consectetur, neque doloribus,
-          cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi
-          quidem quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum
-          inventore consectetur, neque doloribus, cupiditate numquam dignissimos
-          laborum fugiat deleniti? Eum quasi quidem quibusdam.
+      <Grid
+        container
+        direction="column"
+        alignItems="center"
+        sx={{ flexDirection: "column", pt: 2, pl: 5, pr: 5 }}
+      >
+        <Typography variant="body2">
+          <Chip label="What we offer" color="primary" />
         </Typography>
+
+        <Typography variant="body2" sx={{ pt: 2 }}></Typography>
       </Grid>
     </Box>
   );

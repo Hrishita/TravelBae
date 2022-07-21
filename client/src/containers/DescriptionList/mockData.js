@@ -1,3 +1,7 @@
+/**
+ * Author: Nishit Mistry
+ * Description: itinerary
+ */
 const descList = [
   {
     img: "https://live.staticflickr.com/947/27029805017_6f2cbfd76a_b.jpg",

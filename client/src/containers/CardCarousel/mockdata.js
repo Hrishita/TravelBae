@@ -1,3 +1,7 @@
+/**
+ * Feature: Generic
+ * Description: Carousel image Data
+ */
 import KenyaImg from "../../assets/kenya.jpg";
 import SwitzerlandImg from "../../assets/switzerland.jpg";
 import MalaysiaImg from "../../assets/India.jpg";
