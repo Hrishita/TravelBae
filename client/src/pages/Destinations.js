@@ -103,7 +103,6 @@ const Destinations = () => {
     setPage(p);
     _DATA.jump(p);
   };
-
   const _DATA = usePagination(destinationsData, PER_PAGE);
 
   let handleEvent = (event) => {
@@ -230,7 +229,7 @@ const Destinations = () => {
           <FilterMenu filterProperties={data}></FilterMenu>
         </Grid>
         <Grid container>
-          {_DATA.currentData() && _DATA.currentData().length > 0 ? (
+          {_DATA.currentData() ? (_DATA.currentData().length > 0 ? (
             _DATA.currentData().map((destination) => {
               return (
                 <Grid container key={destination.dest_code}>
@@ -253,7 +252,7 @@ const Destinations = () => {
                 className="text-align-center"
               ></NoDataFound>
             </Grid>
-          )}
+          )) : (<></>)}
         </Grid>
         <Grid item xs={12}>
           <Grid container alignItems="center" justifyContent="center">
