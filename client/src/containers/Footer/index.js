@@ -23,14 +23,14 @@ const pages = [
     name: "Transport",
     link: "/flights",
   },
-  {
-    name: "Travel Blogs",
-    link: "/view-blogs",
-  },
-  {
-    name: "Bucket List",
-    link: "/bucket-list",
-  },
+  // {
+  //   name: "Travel Blogs",
+  //   link: "/view-blogs",
+  // },
+  // {
+  //   name: "Bucket List",
+  //   link: "/bucket-list",
+  // },
 ];
 function Footer() {
   return (
@@ -84,11 +84,19 @@ function Footer() {
             fontWeight="bold"
             sx={{ pb: 1 }}
           >
-            Terms and Policies
+            About Us
           </Box>
-          <FooterComp name="Terms & Conditions" />
+          <Box textAlign="center" fontFamily="Arial" sx={{ pb: 1 }}>
+            <Typography>
+              TravelBae is an online travel website allowing users to make the
+              best of their travel experience by using the application’s
+              knowledge base. TravelBae offers a rich set of features which
+              makes trip planning easy and organized.
+            </Typography>
+          </Box>
+          {/* <FooterComp name="Terms & Conditions" />
           <FooterComp name="Privacy" />
-          <FooterComp name="Cookies" />
+          <FooterComp name="Cookies" /> */}
         </Grid>
         <Grid item xs={4}>
           <Box

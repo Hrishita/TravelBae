@@ -15,6 +15,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import SearchIcon from "@mui/icons-material/Search";
 import { useStyles } from "./styles";
+import NoDataFound from "../../components/NoDataFound";
 
 const ThingsToCarryComp = (props) => {
   const classes = useStyles();
@@ -143,21 +144,40 @@ const ThingsToCarryComp = (props) => {
               </Box>
             </Box>
           </Grid>
-          {categories.map((dataObj) => {
-            return (
-              <>
-                <Grid item xs={12}>
-                  <Typography variant="h5" textAlign="center">
-                    {dataObj}
-                  </Typography>
-                </Grid>
-                <Grid item xs={12}>
-                  <Divider />
-                </Grid>
-                {data && data.map((item) => <>{displayCards(item, dataObj)}</>)}
-              </>
-            );
-          })}
+          {data.length === 0 ? (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={2}
+              style={{ textAlign: "center" }}
+            >
+              <NoDataFound
+                message="Search Results are Empty"
+                display={true}
+                listEmpty={true}
+                className="text-align-center"
+              />
+            </Grid>
+          ) : (
+            categories.map((dataObj) => {
+              return (
+                <>
+                  <Grid item xs={12}>
+                    <Typography variant="h5" textAlign="center">
+                      {dataObj}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Divider />
+                  </Grid>
+                  {data &&
+                    data.map((item) => <>{displayCards(item, dataObj)}</>)}
+                </>
+              );
+            })
+          )}
 
           <Grid item xs={12}>
             <Box justifyContent="flex-end" display="flex">
