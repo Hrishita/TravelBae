@@ -21,10 +21,11 @@ const SearchBoxComp = () => {
             Where do you want to go?
           </Typography>
         </Grid>
-        <Grid item lg={4} md={3} xs={12}>
+        <Grid item lg={6} md={6} xs={12}>
           <Box justify="center" display="flex" justifyContent="center">
             <TextField
               placeholder="Destination"
+              label="Destination"
               size="medium"
               type="search"
               color="secondary"
@@ -34,18 +35,11 @@ const SearchBoxComp = () => {
             />
           </Box>
         </Grid>
-        <Grid item lg={3} md={3} xs={12}>
-          <TextField
-            type="date"
-            color="secondary"
-            fullWidth
-            placeholder="Date"
-          />
-        </Grid>
+
         <Grid
           item
           lg={2}
-          md={3}
+          md={2}
           xs={12}
           alignContent="center"
           alignItems="center"

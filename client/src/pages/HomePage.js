@@ -48,7 +48,7 @@ const HomePage = () => {
   const [open, setOpen] = useState(false); // for alert box
   const auth = useContext(AuthContext);
 
-  const handleOpen = (link,type) => {
+  const handleOpen = (link, type) => {
     if (type === "accommodation") {
       history.push(link);
     }
@@ -90,7 +90,7 @@ const HomePage = () => {
             </Grid>
             <Grid item xs={2}>
               <Box pt={4} pr={2} display="flex" justifyContent="flex-end">
-                <Button onClick={() => handleOpen(link,type)}>View All</Button>
+                <Button onClick={() => handleOpen(link, type)}>View All</Button>
               </Box>
             </Grid>
           </Grid>
@@ -161,6 +161,31 @@ const HomePage = () => {
           <SearchBoxComp />
         </Box>
       </Grid>
+      <Grid item xs={12}>
+        <Box pt={4} pb={4} display="flex" justifyContent="center">
+          {" "}
+          <Typography
+            variant="h5"
+            sx={{
+              fontWeight: 500,
+              textAlign: "center",
+            }}
+          >
+            {" "}
+            Begin Your Adventure With Us
+          </Typography>
+        </Box>
+        <Box display="flex" justifyContent="center">
+          <Box pl={20} pr={20} sx={{ color: "grey", fontStyle: "italic" }}>
+            <Typography variant="h6" textAlign="center">
+              Confused where to start from or just looking for suggestions on
+              destination. This is the right place to get all the information
+              you want. Make your experience smooth by exlporing information and
+              advice from travellers!
+            </Typography>
+          </Box>
+        </Box>
+      </Grid>
       {displayStrip(
         "Popular Places",
         destinationData,
@@ -174,7 +199,7 @@ const HomePage = () => {
         "/accommodation",
         "accommodation"
       )}
-        {displayStrip(
+      {displayStrip(
         "Most Visited",
         accCards2,
         "/accommodation",
