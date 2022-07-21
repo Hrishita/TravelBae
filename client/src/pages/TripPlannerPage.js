@@ -18,7 +18,6 @@ const TripPlannerPage = () => {
   });
   const [startDate, setStartDate] = useState("");
   const [toDate, setToDate] = useState("");
-
   const [data, setData] = useState([]);
   const history = useHistory();
 
@@ -102,6 +101,7 @@ const TripPlannerPage = () => {
                           }}
                           variant="outlined"
                           fullWidth
+                          required
                         />
                       )}
                       value={searchDest}
@@ -114,6 +114,7 @@ const TripPlannerPage = () => {
                 <Box pl={2} textAlign="center" pr={2} pt={3}>
                   <TextField
                     color="secondary"
+                    required
                     sx={{ marginRight: "1rem" }}
                     id="date_from"
                     label="From"
@@ -125,6 +126,7 @@ const TripPlannerPage = () => {
                   />
                   <TextField
                     color="secondary"
+                    required
                     id="date_to"
                     label="To"
                     type="date"
