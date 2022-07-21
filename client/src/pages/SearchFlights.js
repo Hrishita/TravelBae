@@ -334,18 +334,13 @@ function SearchFlights() {
                   <Sort onClick={handleSort} />
                 </ButtonBase>
               </Box>
-              {
-                _DATA.length == 0 ? (
-                  <Box className="d-flex flex-row justify-content-center align-items-center">
-                    <Typography
-                      className="mx-4 my-3"
-                      variant="h4"
-                      >
-                        No flights found
-                      </Typography>
-                  </Box>
-                ) : null
-              } 
+              {_DATA.length == 0 ? (
+                <Box className="d-flex flex-row justify-content-center align-items-center">
+                  <Typography className="mx-4 my-3" variant="h4">
+                    No flights found
+                  </Typography>
+                </Box>
+              ) : null}
               {_DATA.currentData().map((d, index) => {
                 return (
                   <Box
@@ -412,7 +407,7 @@ function SearchFlights() {
                             component="h2"
                             sx={{ mb: 2 }}
                           >
-                            Add to trip:
+                            Add to Plan:
                           </Typography>
                           <Divider />
                           <Grid container sx={{ pt: 2 }}>
@@ -469,28 +464,30 @@ function SearchFlights() {
                           </Grid>
                         </Box>
                       </Modal> */}
-                      {<AddToPlanComp
-                        open={open1}
-                        close={setOpen1}
-                        data={{
-                          transportation: {
-                            source: d.source,
-                            dest_name: d.dest_name,
-                            flight_company: d.flight_company,
-                            start_date: new Date(d.start_date) ,
-                            return_date: new Date(d.return_date),
-                            trip_type: d.trip_type,
-                            price: d.price,
-                            trip_duration: d.trip_duration,
-                          },
-                        }}
-                      />}
+                      {
+                        <AddToPlanComp
+                          open={open1}
+                          handleClose={handleClose1}
+                          data={{
+                            transportation: {
+                              source: d.source,
+                              dest_name: d.dest_name,
+                              flight_company: d.flight_company,
+                              start_date: new Date(d.start_date),
+                              return_date: new Date(d.return_date),
+                              trip_type: d.trip_type,
+                              price: d.price,
+                              trip_duration: d.trip_duration,
+                            },
+                          }}
+                        />
+                      }
                       <Button
                         onClick={handleOpen1}
                         style={{ zIndex: 99 }}
                         variant={"contained"}
                       >
-                        Add to planned trip
+                        Add to Plan
                       </Button>
                     </Box>
                   </Box>

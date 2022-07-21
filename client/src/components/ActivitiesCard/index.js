@@ -47,7 +47,6 @@
 
 // export default ActivitiesCardComp;
 
-
 import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -55,12 +54,12 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { Grid } from "@material-ui/core";
-import {Button} from "@mui/material";
+import { Button } from "@mui/material";
 
 const ActivitiesCardComp = (props) => {
   return (
-    <Grid container >
-      <Card sx={{ maxWidth: 250}}>
+    <Grid container>
+      <Card sx={{ maxWidth: 250 }}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -72,7 +71,7 @@ const ActivitiesCardComp = (props) => {
             <Typography gutterBottom variant="h6" component="div">
               {props.title}
             </Typography>
-            <Button variant="contained">Add to Trip</Button>
+            <Button variant="contained">Add to Plan</Button>
           </CardContent>
         </CardActionArea>
       </Card>
