@@ -172,7 +172,7 @@ const displayPaper = (title, data, icon) => {
                     </Typography>
                     <Typography variant="h5">&nbsp;</Typography>
                     <Typography variant="h5">
-                      {tra.start_date.substring(0, 10)} -
+                      {tra.start_date && tra.start_date.substring(0, 10)} -
                     </Typography>
                     <Typography variant="h5">&nbsp;</Typography>
                     <Typography variant="h5" fontWeight={550}>
@@ -180,7 +180,7 @@ const displayPaper = (title, data, icon) => {
                     </Typography>
                     <Typography variant="h5">&nbsp;</Typography>
                     <Typography variant="h5">
-                      {tra.return_date.substring(0, 10)}
+                      {tra.return_date && tra.return_date.substring(0, 10)}
                     </Typography>
                   </Box>
                   <Box display={"inline-flex"} width="100%" pb={1}>
