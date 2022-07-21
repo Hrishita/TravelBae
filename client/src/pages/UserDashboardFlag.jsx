@@ -121,8 +121,7 @@ const UserDashbordFlag = () => {
                   name: mockDataFlag[i].country,
                   image: mockDataFlag[i].flag_image,
                 });
-
-              return true;
+              console.log(finalUpcomingData);
             } else {
               mockDataFlag[i].res = cities;
               if (!checkIfExist(finalCompletedData, mockDataFlag[i].country))
@@ -130,7 +129,6 @@ const UserDashbordFlag = () => {
                   name: mockDataFlag[i].country,
                   image: mockDataFlag[i].flag_image,
                 });
-              return true;
             }
           }
         }
