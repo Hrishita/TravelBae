@@ -18,4 +18,6 @@ blogRouter.post("/fetchBlogByID", blogService.fetchBlogByID);
 
 blogRouter.post("/addComment", blogService.addComment);
 
+blogRouter.post("/findBlogByUserID", blogService.findBlogByUserID);
+
 module.exports = blogRouter;
