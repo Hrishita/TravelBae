@@ -32,7 +32,6 @@ exports.filterItineraries = function (req, res) {
     },
     function (err, filterItineraries) {
       if (err) return res.json({ success: false, error: err });
-
       res.json(filterItineraries);
     }
   );

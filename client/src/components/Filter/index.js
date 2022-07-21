@@ -9,7 +9,7 @@ import Divider from "@mui/material/Divider";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import AlertDialog from "../AlertDialog";
 
 /**
@@ -28,10 +28,7 @@ const FilterComp = (props) => {
   };
 
   const handleChange = (index) => {
-    // setOpen(true);
-
     const newItems = [...checkedItems];
-
     const position = newItems.findIndex((item) => item === index);
     if (position !== -1) {
       newItems.splice(position, 1);
@@ -51,7 +48,7 @@ const FilterComp = (props) => {
   return (
     <div style={{ padding: "20px" }}>
       <Typography gutterBottom variant="h5" component="div">
-        Filter by
+        Filter By
       </Typography>
 
       {props.filterProperty.filterProperties.length > 0
@@ -135,9 +132,12 @@ const FilterComp = (props) => {
               );
             }
           )}
-      <Button variant="contained" onClick={handleClearAll}>
-        Clear All
-      </Button>
+      <Box pt={2}>
+        <Button variant="contained" onClick={handleClearAll}>
+          Clear All
+        </Button>
+      </Box>
+
       <AlertDialog
         open={open}
         title="Confirm"

@@ -23,3 +23,7 @@ exports.updatePassword = function (req, res) {
 exports.addDestToBucketList = function (req, res) {
   userDB.addDestToBucketList(req, res);
 };
+
+exports.confirmEmail = function (req, res) {
+  userDB.confirmEmail(req, res);
+};

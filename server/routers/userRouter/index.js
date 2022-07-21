@@ -8,13 +8,13 @@ const userService = require("../../middleware/userService");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../../models/userModel");
+const sendEmail = require("../../middleware/userService/emailSettings");
+const emailMsgs = require("../../middleware/userService/emailMsgs");
+const emailTemplate = require("../../middleware/userService/emailTemplate");
 
 userRouter.post("/userProfile", userService.fetchUserProfile);
 
-userRouter.post(
-  "/addDestToBucketList",
-  userService.addDestToBucketList
-);
+userRouter.post("/addDestToBucketList", userService.addDestToBucketList);
 
 userRouter.post("/changePassword", userService.updatePassword);
 
@@ -44,8 +44,9 @@ userRouter.post("/signup", (req, res, next) => {
               message: "Error Creating USer",
             });
           }
+          sendEmail(result.email, emailTemplate.confirm(result._id));
           res.status(201).json({
-            message: "User created!",
+            message: emailMsgs.confirm,
             result: result,
           });
         });
@@ -93,5 +94,7 @@ userRouter.post("/login", (req, res, next) => {
       console.log(e);
     });
 });
+
+userRouter.post("/confirmEmail", userService.confirmEmail);
 
 module.exports = userRouter;

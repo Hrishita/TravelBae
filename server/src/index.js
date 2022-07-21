@@ -20,6 +20,7 @@ const itineraryRouter = require("../routers/itineraryRouter");
 const specificItineraryRouter = require("../routers/specificItineraryRouter");
 const dayItineraryRouter = require("../routers/dayItineraryRouter");
 const planTripRouter = require("../routers/planTripRouter");
+const thingsToCarryRouter = require("../routers/thingsToCarryRouter");
 
 /**
  * Using dotenv package, it reads the .env file provided which contains all the secrets and tokens for
@@ -91,3 +92,4 @@ app.use("/it", itineraryRouter);
 app.use("/sit", specificItineraryRouter);
 app.use("/dit", dayItineraryRouter);
 app.use("/pt", planTripRouter);
+app.use("/tc", thingsToCarryRouter);
