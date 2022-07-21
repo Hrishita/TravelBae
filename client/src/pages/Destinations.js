@@ -103,7 +103,6 @@ const Destinations = () => {
     setPage(p);
     _DATA.jump(p);
   };
-  debugger
   const _DATA = usePagination(destinationsData, PER_PAGE);
 
   let handleEvent = (event) => {
