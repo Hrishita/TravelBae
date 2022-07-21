@@ -50,7 +50,7 @@ function UserDashbordBlog() {
   };
   const findBlogByUserID = async () => {
     let res = await axios({
-      method: "POST",
+      method: "post",
       url: `${BACKEND_URL}/bg/findBlogByUserID`,
       data: { author_id: id },
     });

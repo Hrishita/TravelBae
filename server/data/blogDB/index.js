@@ -100,11 +100,8 @@ exports.fetchBlogByID = function (req, res) {
 };
 
 exports.findBlogByUserID = function (req, res) {
-  let { userID } = req.body;
-  if (userID === undefined) {
-    userID = req.params.id;
-  }
-  Blog.find({ userID }, function (err, blog) {
+  let  userID  = req.body.author_id;
+  Blog.find({author_id:  userID }, function (err, blog) {
     if (err) {
       res.send(err);
     }
